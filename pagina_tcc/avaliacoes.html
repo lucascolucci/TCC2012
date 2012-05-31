@@ -53,10 +53,10 @@
 			<a href="./index.html"><span class="l"></span><span class="r"></span><span class="t">Home</span></a>
 		</li>
 		<li>
-			<a href="./avaliacoes.html"><span class="l"></span><span class="r"></span><span class="t">Avaliações</span></a>
+			<a href="./avaliacoes.html" class="active"><span class="l"></span><span class="r"></span><span class="t">Avaliações</span></a>
 		</li>
 		<li>
-			<a href="./proposta.html" class="active"><span class="l"></span><span class="r"></span><span class="t">Proposta</span></a>
+			<a href="./proposta.html"><span class="l"></span><span class="r"></span><span class="t">Proposta</span></a>
 		</li>
 		<li>
 			<a href="./poster.html"><span class="l"></span><span class="r"></span><span class="t">Pôster</span></a>
@@ -65,7 +65,7 @@
 			<a href="./apresentacao.html"><span class="l"></span><span class="r"></span><span class="t">Apresentação</span></a>
 		</li>
 		<li>
-			<a href="./monografia.html"><span class="l"></span><span class="r"></span><span class="t">Monografia</span></a>
+			<a href="./monografia.html" ><span class="l"></span><span class="r"></span><span class="t">Monografia</span></a>
 		</li>
 		<li>
 			<a href="./links.html"><span class="l"></span><span class="r"></span><span class="t">Links</span></a>
@@ -129,109 +129,13 @@
                 <div class="cleared"></div>
                                 <div class="art-postcontent">
 
-<!-- -------------------------------------------- -->
 <p>
-	<h4>Tema</h4>
-</p>
-<p>
-	Trataremos nesse trabalho o problema de otimização de escalonamento de voos e tripulantes em companhias aéreas brasileiras.
+	<h1>
+		Página em construção!
+	</h1>
 </p>
 
-<!-- -------------------------------------------- -->
-<p>	
-	<h4>Resumo</h4>
-</p>
-<p>
-	Os gastos com a tripulação de uma empresa aérea representam o segundo maior custo operacional, perdendo apenas para as despesas com  combustível. Dessa forma, o planejamento otimizado no escalonamento de tripulantes pode representar economias significativas para as empresas. Por esse motivo, tal problema de otimização vem sido amplamente estudado pela comunidade de pesquisa operacional. 
-</p>
-<p>
-	Dado o grande número de variáveis e restrições exigidas para se modelar o problema corretamente, diversas técnicas de otimização aproximadas vêm sido sugeridas visto que o problema é de natureza NP-difícil, tornando-o computacionalmente inviável para qualquer situação realista.
-</p>
-<p>
-	Tradicionalmente o problema tem sido atacado resolvendo-se dois subproblemas sequencialmente, cada um de complexidade menor do que o original. Descreveremos brevemente os dois subproblemas abaixo.
-</p>
-<p>
-	O primeiro deles trata da determinação de um conjunto de viagens ótimo, isto é, de menor custo, que cubra cada voo de um conjunto de voos exatamente uma vez. Uma viagem é formada por uma sequência de jornadas de trabalho (sequência de voos executados em um dia, onde o local de chegada de um voo coincide com o local de partida do próximo). O local de partida de uma viagem deve ser igual ao seu local de chegada, o qual é sempre uma das bases de operação da empresa. A geração de uma viagem válida deve respeitar uma série de regras e restrições impostas pela regulamentação trabalhista do aeronauta.
-</p>
-<p>
-	Obtido o conjunto de viagens ótimas, no segundo subproblema deve-se atribuir viagens aos tripulantes, considerando também uma série de restrições trabalhistas. Além das viagens, também deve-se atribuir outras atividades como folgas, reservas, sobreavisos, cursos, etc. Tais atividades podem ser previamente atribuídas, facilitando assim o processo de otimização. Busca-se, no final, uma solução de custo ótimo, de modo que cada viagem seja corretamente tripulada.
-</p>	
-<p>
-	Ambos os subproblemas podem ser modelados matematicamente em termos de um problema de <i>recobrimento de conjuntos</i> com um número enorme de variáveis. Tendo em vista a magnitude do problema, várias heurísticas são utilizadas na busca de uma solução aproximada obtida com tempo de processamento aceitável.
-</p>
-
-<!-- -------------------------------------------- -->
-<p>
-	<h4>Objetivos</h4>
-</p>
-<p>
-	O primeiro objetivo é realizar um estudo mais detalhado sobre o tema com base nos artigos acadêmicos publicados, visando um bom entendimento sobre a formulação do problema e métodos de resolução.
-</p>
-<p>
-	O segundo objetivo é fazer um estudo computacional, realizando experimentos para determinar até que ponto o problema pode ser resolvido de forma exata usando otimizadores disponíveis. A seguir serão implementadas heurísticas e meta-heurísticas (a serem definidas) para comparação de resultados e desempenho, bem como a formulação integrada dos dois subproblemas (viagens + escalas).
-</p>
-<p>
-	Todos as modelagens e implementações, na geração de viagens e escalas legais, situar-se-ão no contexto brasileiro de regulamentação trabalhista e estrutura de pagamento.
-</p>
-<!-- -------------------------------------------- -->
-<p>
-	<h4>Cronograma</h4>
-</p>
-<p>
-	<ul>
-		<li>Março: escolha do supervisor.</li>
-		<li>Abril: definição do tema e pesquisa bibliográfica.</li>
-		<li>Maio - Junho: definição da proposta e testes com ferramentas de otimização.</li>
-		<li>Julho - Setembro: pesquisa e implementação de meta-heurísticas; entrega da versão preliminar.</li>
-		<li>Outubro: testes e comparação de resultados entre meta-heurísticas.</li>
-		<li>Outubro - Novembro: preparação do poster, apresentação e redação final da monografia.</li>		
-	</ul>
-</p>
-
-
-<p>
-	<h4>Atividades já realizadas</h4>
-</p>
-
-<p>
-	<ul>
-		<li>Definição do orientador;</li>
-		<li>Criação do blog referente ao progresso do projeto;</li>
-		<li>Avaliação de trabalhos de formatura;</li>
-		<li>Estudo sobre o tema através da leitura de livros e publicações acadêmicas;</li>
-		<li>Reuniões periódicas com o orientador;</li>
-		<li>Criação da página web;</li>
-		<li>Redação da parte introdutória da monografia;</li>
-		<li>Contato com os diretores da companhia aérea GOL.</li>
-	</ul>
-</p>
-
-<p>
-	<h4>Estrutura esperada</h4>
-</p>
-<ul>
-	<li>Introdução: Apresentação e contextualização do problema, e breve descrição do trabalho;</li>
-
-	<li>Conceitos e tecnologias: explicação detalhada do problema, e descrição das tecnologias, heurísticas e meta-heurísticas utilizadas;</li>
-		
-	<li>Atividades realizadas: informações sobre o método de trabalho;</li>
-	
-	<li>Resultados e produtos obtidos: Apresentar resultados obtidos através de comparações entre as diferentes técnicas de resolução do problema;</li>
-	
-	<li>Conclusões;</li>
-	
-	<li>Bibliografia.</li>
-</ul>
-<p>
-	
-</p>
-
-
-
-
-
-
-                </div>
+</div>
                 <div class="cleared"></div>
                 </div>
 
