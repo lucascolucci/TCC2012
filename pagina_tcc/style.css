@@ -478,10 +478,11 @@ h2.art-logo-text
 {
   display: block;
   text-align: left;
-  font-size: 14px;
+  font-size: 16px;
   padding: 0;
-  margin: 0;
-  color: #3657E2 !important; /* #D6E6F0 !important; */
+  margin: 0px;
+  margin-top: 1px;
+  color: #2A4EC0 !important; /* #D6E6F0 !important; */
 }
 h2.art-logo-text a,
 h2.art-logo-text a:link,
