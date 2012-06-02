@@ -218,7 +218,7 @@ html
   position: fixed;
   top: 0;
   height:160px;
-    background-image: url('images/page_gl.png');
+    background-image: url('../images/page_gl.png');
   background-repeat: no-repeat;
   background-position: center top;
 }
@@ -305,7 +305,7 @@ table.position
 {
   width: 36px;
   height: 36px;
-  background-image: url('images/sheet_s.png');
+  background-image: url('../images/sheet_s.png');
 }
 
 .art-sheet-tl
@@ -341,7 +341,7 @@ table.position
   left: 18px;
   right: 18px;
   height: 36px;
-  background-image: url('images/sheet_h.png');
+  background-image: url('../images/sheet_h.png');
 }
 
 .art-sheet-tc
@@ -361,7 +361,7 @@ table.position
   top: 18px;
   bottom: 18px;
   width: 36px;
-  background-image: url('images/sheet_v.png');
+  background-image: url('../images/sheet_v.png');
 }
 
 .art-sheet-cr
@@ -426,7 +426,7 @@ div.art-header-png
   top: 0;
   width: 792px;
   height: 150px;
-  background-image: url('images/header.png');
+  background-image: url('../images/header.png');
   background-repeat: no-repeat;
   background-position:center center; 
 }
@@ -438,7 +438,7 @@ div.art-header-jpeg
   left:-50%;
   width: 792px;
   height: 150px;
-  background-image: url('images/header.jpg');
+  background-image: url('../images/header.jpg');
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -552,7 +552,7 @@ h2.art-logo-text a:hover
   top: 0;
   background: none;
   min-height: 0;
-  background-image: url('images/spacer.gif');
+  background-image: url('../images/spacer.gif');
   padding: 10px 30px 30px 30px;
   margin: -10px 0 0 -30px;
 }
@@ -614,7 +614,7 @@ h2.art-logo-text a:hover
   z-index: -1;
   top: 0;
   height: 100%;
-  background-image: url('images/nav.png');
+  background-image: url('../images/nav.png');
 }
 
 .art-nav-l
@@ -657,7 +657,7 @@ h2.art-logo-text a:hover
   top: 0;
   z-index: -1;
   height: 88px;
-  background-image: url('images/menuitem.png');
+  background-image: url('../images/menuitem.png');
 }
 
 .art-hmenu a .l
@@ -741,7 +741,7 @@ h2.art-logo-text a:hover
   margin:0 auto;
   width: 1px;
   height: 26px;
-  background-image: url('images/menuseparator.png');
+  background-image: url('../images/menuseparator.png');
 }
 /* end MenuSeparator */
 
@@ -753,7 +753,7 @@ h2.art-logo-text a:hover
   height: 26px;
   width: 180px;
   overflow: hidden;
-  background-image: url('images/subitem.png');
+  background-image: url('../images/subitem.png');
   background-position: left top;
   background-repeat: repeat-x;
   border-width: 1px;
@@ -978,7 +978,7 @@ ul.art-vmenu a .r, ul.art-vmenu a .l
   display: block;
   top: 0;
   height: 100px;
-  background-image: url('images/vmenuitem.png');
+  background-image: url('../images/vmenuitem.png');
 }
 
 ul.art-vmenu a .l
@@ -1049,7 +1049,7 @@ ul.art-vmenu ul a
   white-space: nowrap;
   height: 20px;
   overflow: visible;
-  background-image: url('images/vsubitem.gif');
+  background-image: url('../images/vsubitem.gif');
   background-position: 25px 0;
   background-repeat: repeat-x;
   padding: 0 0 0 25px;
@@ -1304,7 +1304,7 @@ div.art-block img
   line-height: 125%;    
   color: #3D5266;
   padding: 0 0 0 12px;
-  background-image: url('images/blockcontentbullets.png');
+  background-image: url('../images/blockcontentbullets.png');
   background-repeat: no-repeat;
 }/* end Box, BlockContent */
 
@@ -1396,7 +1396,7 @@ input, select, textarea
   height: 106px;
   margin: 0;
   padding: 0;
-  background-image: url('images/button.png');
+  background-image: url('../images/button.png');
 }
 
 .art-button-wrapper .art-button-l
@@ -1611,7 +1611,7 @@ h2.art-postheader a:hover,  h2.art-postheader a.hovered
   margin: 10px 10px 10px 50px;
   padding: 0 0 0 28px;
   background-color: #FDC9AF;
-  background-image: url('images/postquote.png');
+  background-image: url('../images/postquote.png');
   background-position: left top;
   background-repeat: no-repeat;
   /* makes blockquote not to align behind the image if they are in the same line */
@@ -1670,14 +1670,14 @@ h2.art-postheader a:hover,  h2.art-postheader a.hovered
   right:5px;
   bottom:0;
   height:5px;
-  background-image: url('images/footer_b.png');
+  background-image: url('../images/footer_b.png');
 }
 
 .art-footer-r, .art-footer-l
 {
   position: absolute;
   height:5px;
-  background-image: url('images/footer_s.png');
+  background-image: url('../images/footer_s.png');
   bottom: 0;
 }
 
@@ -1721,7 +1721,7 @@ h2.art-postheader a:hover,  h2.art-postheader a.hovered
 .art-rss-tag-icon
 {
   display: block;
-  background-image: url('images/rssicon.png');
+  background-image: url('../images/rssicon.png');
   background-position: center right;
   background-repeat: no-repeat;
   height: 32px;
