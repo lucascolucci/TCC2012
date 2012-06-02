@@ -1822,4 +1822,14 @@ div.art-footer img
 
 /* end LayoutCell, content */
 
+#underconstruction
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
 
+.text-center
+{
+	text-align: center;
+}
