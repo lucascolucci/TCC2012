@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,7 @@ public class FlightReader {
 	
 	public List<FlightLeg> getFlightsList() {
 		List<FlightLeg> list = new ArrayList<FlightLeg>();
-		DateFormat df = DateFormat.getDateInstance();
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
 		try {
 			FileInputStream fstream = new FileInputStream(fileName);
@@ -35,8 +36,8 @@ public class FlightReader {
 				int number = Integer.parseInt(fields[0]);
 				String from = fields[1];
 				String to = fields[2];
-				Date departure = df.parse(fields[3]);
-				Date arrival = df.parse(fields[4]);
+				Date departure = (Date) df.parse(fields[3]);
+				Date arrival = (Date) df.parse(fields[4]);
 				
 				FlightLeg flightLeg = new FlightLeg(number, from, to, departure, arrival);
 				list.add(flightLeg);
