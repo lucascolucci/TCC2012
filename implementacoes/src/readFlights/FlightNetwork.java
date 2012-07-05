@@ -41,7 +41,6 @@ public class FlightNetwork extends Graph {
 			node = new Node(leg, id++);
 			addNode(node);
 			leg = addOneDay(leg);
-			System.out.println(node.getFlightLeg().getArrival().getDay());
 		}
 	}
 
