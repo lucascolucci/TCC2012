@@ -11,12 +11,13 @@ import readFlights.graph.Node;
 public class FlightNetwork extends Graph {
 	private List<FlightLeg> legsList;
 
-	public FlightNetwork(List<FlightLeg> legsList) {
+	public FlightNetwork() {
 		super();
-		this.legsList = legsList;
+		legsList = null;
 	}
 
-	public void build() throws Exception {
+	public void build(List<FlightLeg> legsList) throws Exception {
+		this.legsList = legsList;
 		addFlightLegs();
 		addFlightLegsConnections();
 	}
@@ -40,6 +41,7 @@ public class FlightNetwork extends Graph {
 			node = new Node(leg, id++);
 			addNode(node);
 			leg = addOneDay(leg);
+			System.out.println(node.getFlightLeg().getArrival().getDay());
 		}
 	}
 
@@ -48,13 +50,13 @@ public class FlightNetwork extends Graph {
 		Date departure = leg.getDeparture();
 		
 		calendar.setTime(departure);
-		calendar.add(Calendar.DATE, 1);
+		calendar.add(Calendar.DAY_OF_MONTH, 1);
 		departure = calendar.getTime();
 		leg.setDeparture(departure);
 
 		Date arrival = leg.getArrival();
 		calendar.setTime(arrival);
-		calendar.add(Calendar.DATE, 1);
+		calendar.add(Calendar.DAY_OF_MONTH, 1);
 		arrival = calendar.getTime();
 		leg.setArrival(arrival);
 		
@@ -77,9 +79,9 @@ public class FlightNetwork extends Graph {
 		}
 	}
 
-	private boolean legsCanBeConnected(FlightLeg from, FlightLeg to) {
-		boolean datesOk = from.getArrival().before(to.getArrival());
-		boolean citiesOk = from.getTo().contentEquals(to.getFrom());
+	private boolean legsCanBeConnected(FlightLeg legA, FlightLeg legB) {
+		boolean datesOk = legA.getArrival().before(legB.getDeparture());
+		boolean citiesOk = legA.getTo().contentEquals(legB.getFrom());
 
 		return datesOk && citiesOk;
 	}
