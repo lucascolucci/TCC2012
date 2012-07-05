@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Graph {
-	private List<Node> nodeList;
+	public List<Node> nodeList;
 	private int numberOfNodes;
 	private int numberOfEdges;
 
