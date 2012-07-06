@@ -6,14 +6,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import readFlights.FlightLeg;
 import readFlights.FlightReader;
+import readFlights.Rules;
 
-public class FlightReaderTest {
+public class FlightReaderTests {
 	private FlightReader flightReader;
 	private List<FlightLeg> list;
 	private DateFormat df;
@@ -21,13 +21,9 @@ public class FlightReaderTest {
 	@Before
 	public void setUp() throws Exception {
 		flightReader = new FlightReader("./src/readFlights/tests/time_table.txt");		
-		df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		df = new SimpleDateFormat(Rules.DATE_FORMAT);
 	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
+	
 	@Test
 	public void isReading62FlightLegs() {
 		list = flightReader.getFlightsList();

@@ -1,7 +1,6 @@
 package readFlights;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,78 +9,69 @@ import readFlights.graph.Node;
 
 public class FlightNetwork extends Graph {
 	private List<FlightLeg> legsList;
-
-	public FlightNetwork() {
+	private int id;
+	
+	public FlightNetwork(List<FlightLeg> legsList) {
 		super();
-		legsList = null;
+		this.legsList = legsList;
+		id = 0;
 	}
 
-	public void build(List<FlightLeg> legsList) throws Exception {
-		this.legsList = legsList;
+	public void build() throws Exception {
 		addFlightLegs();
 		addFlightLegsConnections();
 	}
 
 	private void addFlightLegs() throws Exception {
 		Iterator<FlightLeg> it = legsList.iterator();
-		int flightLegId = 0;
-		
-		while (it.hasNext()) {
-			FlightLeg leg = it.next();
-			addSameFlightLegInSubsequentDays(Rules.MAX_DAYS_PER_PAIRING, leg, flightLegId);
-			flightLegId += Rules.MAX_DAYS_PER_PAIRING;
+		while (it.hasNext()) 
+			addSameFlightLegInSubsequentDays(it.next());
+	}
+
+	private void addSameFlightLegInSubsequentDays(FlightLeg leg) throws Exception {
+		for (int i = 0; i < Rules.MAX_DAYS_PER_PAIRING; i++) {
+			addNode(new Node(leg, id++));
+			addOneDay(leg);
 		}
 	}
 
-	private void addSameFlightLegInSubsequentDays(int numberOfSubsequentDays, FlightLeg leg, int flightLegId) throws Exception {
-		Node node;
-		int id = flightLegId;
-
-		for (int i = 0; i < numberOfSubsequentDays; i++) {
-			node = new Node(leg, id++);
-			addNode(node);
-			leg = addOneDay(leg);
-		}
+	private void addOneDay(FlightLeg leg){
+		addOneDayToDeparture(leg);
+		addOneDayToArrival(leg);
 	}
 
-	private FlightLeg addOneDay(FlightLeg leg){
+	private void addOneDayToDeparture(FlightLeg leg) {
 		Calendar calendar = Calendar.getInstance();
-		Date departure = leg.getDeparture();
-		
-		calendar.setTime(departure);
+		calendar.setTime(leg.getDeparture());
 		calendar.add(Calendar.DAY_OF_MONTH, 1);
-		departure = calendar.getTime();
-		leg.setDeparture(departure);
-
-		Date arrival = leg.getArrival();
-		calendar.setTime(arrival);
+		leg.setDeparture(calendar.getTime());
+	}
+	
+	private void addOneDayToArrival(FlightLeg leg) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(leg.getArrival());
 		calendar.add(Calendar.DAY_OF_MONTH, 1);
-		arrival = calendar.getTime();
-		leg.setArrival(arrival);
-		
-		return leg;
+		leg.setArrival(calendar.getTime());
 	}
 	
 	private void addFlightLegsConnections() throws Exception {
-		Iterator<Node> it_1 = nodeList.iterator();
-		Iterator<Node> it_2;
-		Node from, to;
-		
-		while (it_1.hasNext()) {
-			from = it_1.next();
-			it_2 = nodeList.iterator();
-			while (it_2.hasNext()) {
-				to = it_2.next();
+		Iterator<Node> itOuter = nodeList.iterator();
+		while (itOuter.hasNext()) {
+			Node from = itOuter.next();
+			Iterator<Node> itInner = nodeList.iterator();
+			while (itInner.hasNext()) {
+				Node to = itInner.next();
 				if (legsCanBeConnected(from.getFlightLeg(), to.getFlightLeg()))
 					addEdge(from, to);
 			}
 		}
 	}
 
-	private boolean legsCanBeConnected(FlightLeg legA, FlightLeg legB) {
-		boolean datesOk = legA.getArrival().before(legB.getDeparture());
-		boolean citiesOk = legA.getTo().contentEquals(legB.getFrom());
-
+	// Esta função precisa ser refeita levando em conta os tempos mínimos
+	// e máximo de de conexão.
+	private boolean legsCanBeConnected(FlightLeg legFrom, FlightLeg legTo) {
+		boolean datesOk = legFrom.getArrival().before(legTo.getDeparture());
+		boolean citiesOk = legFrom.getTo().contentEquals(legTo.getFrom());
 		return datesOk && citiesOk;
 	}
 }

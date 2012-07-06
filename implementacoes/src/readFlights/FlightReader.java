@@ -23,7 +23,7 @@ public class FlightReader {
 	
 	public List<FlightLeg> getFlightsList() {
 		List<FlightLeg> list = new ArrayList<FlightLeg>();
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
 
 		try {
 			FileInputStream fstream = new FileInputStream(fileName);
