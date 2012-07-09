@@ -2,15 +2,15 @@ package readFlights;
 
 import java.util.Date;
 
-public class FlightLeg {
+public class Leg {
 	private int number;
 	private String from;
 	private String to;
 	private Date departure;
 	private Date arrival;
-	private String tailNumber;
+	private String tail;
 
-	public FlightLeg(int number, String from, String to, Date departure, Date arrival) {
+	public Leg(int number, String from, String to, Date departure, Date arrival) {
 		this.number = number;
 		this.from = from;
 		this.to = to;
@@ -18,13 +18,13 @@ public class FlightLeg {
 		this.arrival = arrival;
 	}
 
-	public FlightLeg(int number, String from, String to, Date departure, Date arrival, String tailNumber) {
+	public Leg(int number, String from, String to, Date departure, Date arrival, String tail) {
 		this.number = number;
 		this.from = from;
 		this.to = to;
 		this.departure = departure;
 		this.arrival = arrival;
-		this.tailNumber = tailNumber;
+		this.tail = tail;
 	}
 	
 	public int getNumber() {
@@ -67,11 +67,11 @@ public class FlightLeg {
 		this.arrival = arrival;
 	}
 
-	public String getTailNumber() {
-		return tailNumber;
+	public String getTail() {
+		return tail;
 	}
 
-	public void setTailNumber(String tailNumber) {
-		this.tailNumber = tailNumber;
+	public void setTail(String tail) {
+		this.tail = tail;
 	}
 }

@@ -2,7 +2,6 @@ package readFlights.tests;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,12 +16,8 @@ public class GraphTests {
 		graph = new Graph();
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	@Test
-	public void itShouldHasAnEdge() throws Exception {
+	public void itShouldHaveAnEdge() throws Exception {
 		Node from = new Node(null, 1);
 		Node to = new Node(null, 2);
 		graph.addNode(from);

@@ -8,10 +8,10 @@ import readFlights.graph.Graph;
 import readFlights.graph.Node;
 
 public class FlightNetwork extends Graph {
-	private List<FlightLeg> legsList;
+	private List<Leg> legsList;
 	private int id;
 	
-	public FlightNetwork(List<FlightLeg> legsList) {
+	public FlightNetwork(List<Leg> legsList) {
 		super();
 		this.legsList = legsList;
 		id = 0;
@@ -23,31 +23,31 @@ public class FlightNetwork extends Graph {
 	}
 
 	private void addFlightLegs() throws Exception {
-		Iterator<FlightLeg> it = legsList.iterator();
+		Iterator<Leg> it = legsList.iterator();
 		while (it.hasNext()) 
 			addSameFlightLegInSubsequentDays(it.next());
 	}
 
-	private void addSameFlightLegInSubsequentDays(FlightLeg leg) throws Exception {
+	private void addSameFlightLegInSubsequentDays(Leg leg) throws Exception {
 		for (int i = 0; i < Rules.MAX_DAYS_PER_PAIRING; i++) {
 			addNode(new Node(leg, id++));
 			addOneDay(leg);
 		}
 	}
 
-	private void addOneDay(FlightLeg leg){
+	private void addOneDay(Leg leg){
 		addOneDayToDeparture(leg);
 		addOneDayToArrival(leg);
 	}
 
-	private void addOneDayToDeparture(FlightLeg leg) {
+	private void addOneDayToDeparture(Leg leg) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(leg.getDeparture());
 		calendar.add(Calendar.DAY_OF_MONTH, 1);
 		leg.setDeparture(calendar.getTime());
 	}
 	
-	private void addOneDayToArrival(FlightLeg leg) {
+	private void addOneDayToArrival(Leg leg) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(leg.getArrival());
 		calendar.add(Calendar.DAY_OF_MONTH, 1);
@@ -69,7 +69,7 @@ public class FlightNetwork extends Graph {
 
 	// Esta fun‹o precisa ser refeita levando em conta os tempos m’nimos
 	// e m‡ximo de de conex‹o.
-	private boolean legsCanBeConnected(FlightLeg legFrom, FlightLeg legTo) {
+	private boolean legsCanBeConnected(Leg legFrom, Leg legTo) {
 		boolean datesOk = legFrom.getArrival().before(legTo.getDeparture());
 		boolean citiesOk = legFrom.getTo().contentEquals(legTo.getFrom());
 		return datesOk && citiesOk;

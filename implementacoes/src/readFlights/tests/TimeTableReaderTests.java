@@ -9,31 +9,30 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import readFlights.FlightLeg;
-import readFlights.FlightReader;
+import readFlights.Leg;
+import readFlights.TimeTableReader;
 import readFlights.Rules;
 
-public class FlightReaderTests {
-	private FlightReader flightReader;
-	private List<FlightLeg> list;
+public class TimeTableReaderTests {
+	private TimeTableReader timeTableReader;
+	private List<Leg> legs;
 	private DateFormat df;
 	
 	@Before
 	public void setUp() throws Exception {
-		flightReader = new FlightReader("./src/readFlights/tests/time_table.txt");		
+		timeTableReader = new TimeTableReader("./src/readFlights/tests/time_table.txt");		
+		legs = timeTableReader.getLegs();
 		df = new SimpleDateFormat(Rules.DATE_FORMAT);
 	}
 	
 	@Test
-	public void isReading62FlightLegs() {
-		list = flightReader.getFlightsList();
-		assertEquals(62, list.size());
+	public void itShouldRead62Legs() {
+		assertEquals(62, legs.size());
 	}
 	
 	@Test
-	public void isFirstFlightMatching(){
-		list = flightReader.getFlightsList();
-		FlightLeg firstLeg = list.get(0); 
+	public void itShouldMatchFirstLeg(){
+		Leg firstLeg = legs.get(0); 
 		assertEquals(firstLeg.getNumber(), 1500);
 		assertEquals(firstLeg.getFrom(), "CGH");
 		assertEquals(firstLeg.getTo(), "SDU");
@@ -42,9 +41,8 @@ public class FlightReaderTests {
 	}
 	
 	@Test
-	public void isLastFlightMatching(){
-		list = flightReader.getFlightsList();
-		FlightLeg firstLeg = list.get(list.size()-1); 
+	public void itShouldMatchLastFlight(){
+		Leg firstLeg = legs.get(legs.size() - 1); 
 		assertEquals(firstLeg.getNumber(), 1561);
 		assertEquals(firstLeg.getFrom(), "SDU");
 		assertEquals(firstLeg.getTo(), "CGH");

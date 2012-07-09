@@ -2,14 +2,14 @@ package readFlights.graph;
 
 import java.util.ArrayList;
 import java.util.List;
-import readFlights.FlightLeg;
+import readFlights.Leg;
 
 public class Node {
 	private int id;
-	private FlightLeg flightLeg;
+	private Leg flightLeg;
 	private List<Node> neighbors;
 	
-	public Node(FlightLeg flightLeg, int id) {
+	public Node(Leg flightLeg, int id) {
 		this.flightLeg = flightLeg;
 		this.id = id;
 		neighbors = new ArrayList<Node>();
@@ -19,7 +19,7 @@ public class Node {
 		return id;
 	}
 	
-	public FlightLeg getFlightLeg() {
+	public Leg getFlightLeg() {
 		return flightLeg;
 	}
 	

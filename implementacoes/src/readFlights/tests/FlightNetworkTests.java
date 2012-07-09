@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import readFlights.FlightLeg;
+import readFlights.Leg;
 import readFlights.FlightNetwork;
 import readFlights.Rules;
 
@@ -26,10 +26,10 @@ public class FlightNetworkTests {
 		Date leg2Departure = (Date) df.parse("27/08/2012 10:10");
 		Date leg2Arrival = (Date) df.parse("27/08/2012 12:08");
 
-		FlightLeg leg1 = new FlightLeg(1234, "CGH", "UDI", leg1Departure, leg1Arrival);
-		FlightLeg leg2 = new FlightLeg(1235, "UDI", "CGH", leg2Departure, leg2Arrival);
+		Leg leg1 = new Leg(1234, "CGH", "UDI", leg1Departure, leg1Arrival);
+		Leg leg2 = new Leg(1235, "UDI", "CGH", leg2Departure, leg2Arrival);
 		
-		List<FlightLeg> legsList = new ArrayList<FlightLeg>();
+		List<Leg> legsList = new ArrayList<Leg>();
 		legsList.add(leg1);
 		legsList.add(leg2);
 
