@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Node<T> {
-	private int id;
 	private T content;
+	private Label label;
 	private List<Edge<T>> edges;
 	
-	public Node(int id, T content) {
-		this.id = id;
+	public Node(T content, Label label) {
 		this.content = content;
+		this.label = label;
 		edges = new ArrayList<Edge<T>>();
-	}
-	
-	public int getId() {
-		return id;
 	}
 	
 	public T getContent() {
 		return content;
+	}
+	
+	public Label getLabel() {
+		return label;
 	}
 	
 	public List<Edge<T>> getEdges() {
@@ -29,19 +29,26 @@ public class Node<T> {
 	public List<Node<T>> getNeighbors() {
 		List<Node<T>> neighbors = new ArrayList<Node<T>>();
 		for (Edge<T> edge: edges) {
-			neighbors.add(edge.getOut());
+			neighbors.add(edge.getIn());
 		}
 		return neighbors;
 	}
 	
-	public void addNeighbor(Node<T> node) {
-		edges.add(new Edge<T>(this, node));
+	public void addNeighbor(Node<T> node, EdgeType type) {
+		edges.add(new Edge<T>(this, node, type));
 	}
 	
-	public boolean hasNeighbor(Node<T> node) {
+	public boolean hasNeighbor(Node<T> neighbor) {
 		for (Edge<T> edge: edges)
-			if (edge.getIn() == node)
+			if (edge.getIn() == neighbor)
 				return true;
 		return false;
+	}
+	
+	public Edge<T> getEdge(Node<T> neighbor) {
+		for (Edge<T> edge: edges)
+			if (edge.getIn() == neighbor)
+				return edge;
+		return null;
 	}
 }

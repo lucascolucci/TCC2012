@@ -32,15 +32,25 @@ public class Graph<T> {
 			numberOfNodes++;
 		}
 	}
-
+	
 	public void addEdge(Node<T> out, Node<T> in) {
+		addEdge(out, in, null);
+	}
+	
+	public void addEdge(Node<T> out, Node<T> in, EdgeType type) {
 		if (nodes.contains(out) && nodes.contains(in) && out != in) {
-			out.addNeighbor(in);
+			out.addNeighbor(in, type);
 			numberOfEdges++;
 		}
 	}
 
 	public boolean hasEdge(Node<T> out, Node<T> in) {
 		return out.hasNeighbor(in);
+	}
+	
+	public List<Node<T>> getNeighbors(Node<T> node) {
+		if (nodes.contains(node)) 
+			return node.getNeighbors();
+		return null;
 	}
 }

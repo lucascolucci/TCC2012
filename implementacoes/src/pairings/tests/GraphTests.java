@@ -6,25 +6,31 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pairings.graphs.Graph;
+import pairings.graphs.Label;
 import pairings.graphs.Node;
-
 
 public class GraphTests {
 	private Graph<Object> graph;
+	private Node<Object> node1;
+	private Node<Object> node2;
+	private Node<Object> node3;
 	
 	@Before
 	public void setUp() {
 		graph = new Graph<Object>();
+		node1 = new Node<Object>(null, new Label(1));
+		node2 = new Node<Object>(null, new Label(2));
+		node3 = new Node<Object>(null, new Label(3));
+		graph.addNode(node1);
+		graph.addNode(node2);
+		graph.addNode(node3);
+		graph.addEdge(node1, node2);
+		graph.addEdge(node1, node3);
 	}
 
 	@Test
-	public void itShouldHaveAnEdge() {
-		Node<Object> out = new Node<Object>(1, null);
-		Node<Object> in = new Node<Object>(2, null);
-		graph.addNode(out);
-		graph.addNode(in);
-		graph.addEdge(out, in);
-		assertTrue(graph.hasEdge(out, in));
+	public void itShouldHave3Nodes() {
+		assertEquals(graph.getNumberOfNodes(), 3);
 	}
 	
 	@Test
@@ -35,20 +41,40 @@ public class GraphTests {
 	}
 	
 	@Test
+	public void itShouldHave2Edges() {
+		assertEquals(graph.getNumberOfEdges(), 2);
+	}
+	
+	@Test
 	public void itShouldNotAddAnEdgeForNodesNotInGraph() {
-		Node<Object> out = new Node<Object>(1, null);
-		Node<Object> in = new Node<Object>(2, null);
+		Node<Object> other = new Node<Object>(null, new Label(4));
 		int before = graph.getNumberOfEdges();
-		graph.addEdge(out, in);
+		graph.addEdge(node1, other);
 		assertEquals(before, graph.getNumberOfEdges());
 	}
 	
 	@Test
 	public void itShouldNotAddAnEdgeForSameNode() {
-		Node<Object> out = new Node<Object>(1, null);
+		Node<Object> other = new Node<Object>(null, new Label(4));
 		int before = graph.getNumberOfEdges();
-		graph.addNode(out);
-		graph.addEdge(out, out);
+		graph.addNode(other);
+		graph.addEdge(other, other);
 		assertEquals(before, graph.getNumberOfEdges());
+	}
+
+	@Test
+	public void itShouldHaveTheRightEdges() {
+		assertTrue(graph.hasEdge(node1, node2) && graph.hasEdge(node1, node3));
+	}
+	
+	@Test
+	public void itShouldNotHaveTheWrongEdge() {
+		assertFalse(graph.hasEdge(node2, node1));
+	}
+
+	@Test
+	public void itShouldHaveTheRightNeighbors() {
+		Object[] neighbors = new Object[] {node2, node3};
+		assertArrayEquals(neighbors, graph.getNeighbors(node1).toArray());
 	}
 }

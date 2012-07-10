@@ -6,7 +6,6 @@ import java.util.List;
 import pairings.Leg;
 import pairings.Rules;
 
-
 public class FlightNetwork extends Graph<Leg> {
 	private List<Leg> legs;
 	private int id;
@@ -29,7 +28,7 @@ public class FlightNetwork extends Graph<Leg> {
 
 	private void addSameFlightLegInSubsequentDays(Leg leg) {
 		for (int i = 0; i < Rules.MAX_DAYS_PER_PAIRING; i++) {
-			addNode(new Node<Leg>(id++, leg));
+			addNode(new Node<Leg>(leg, new Label(id++)));
 			addOneDay(leg);
 		}
 	}
@@ -59,7 +58,7 @@ public class FlightNetwork extends Graph<Leg> {
 		for (Node<Leg> out: nodes)
 			for (Node<Leg> in: nodes)
 				if (legsCanBeConnected(out.getContent(), in.getContent()))
-					addEdge(out, in);
+					addEdge(out, in, null);
 	}
 
 	// Esta função precisa ser refeita levando em conta os tempos mínimos
