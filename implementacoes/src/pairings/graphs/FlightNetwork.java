@@ -1,11 +1,12 @@
-package readFlights;
+package pairings.graphs;
 
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
-import readFlights.graph.Graph;
-import readFlights.graph.Node;
+import pairings.Leg;
+import pairings.Rules;
+
 
 public class FlightNetwork extends Graph {
 	private List<Leg> legsList;

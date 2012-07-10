@@ -1,8 +1,9 @@
-package readFlights.graph;
+package pairings.graphs;
 
 import java.util.ArrayList;
 import java.util.List;
-import readFlights.Leg;
+
+import pairings.Leg;
 
 public class Node {
 	private int id;

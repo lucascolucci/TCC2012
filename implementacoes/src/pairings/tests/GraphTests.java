@@ -1,12 +1,13 @@
-package readFlights.tests;
+package pairings.tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import readFlights.graph.Graph;
-import readFlights.graph.Node;
+import pairings.graphs.Graph;
+import pairings.graphs.Node;
+
 
 public class GraphTests {
 	private Graph graph;

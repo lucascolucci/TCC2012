@@ -1,4 +1,4 @@
-package readFlights;
+package pairings;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package readFlights.graph;
+package pairings.graphs;
 
 import java.util.ArrayList;
 import java.util.List;

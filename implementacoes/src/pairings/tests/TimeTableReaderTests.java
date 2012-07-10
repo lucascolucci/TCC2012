@@ -1,4 +1,4 @@
-package readFlights.tests;
+package pairings.tests;
 
 import static org.junit.Assert.*;
 
@@ -9,9 +9,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import readFlights.Leg;
-import readFlights.TimeTableReader;
-import readFlights.Rules;
+import pairings.Leg;
+import pairings.Rules;
+import pairings.input.TimeTableReader;
+
 
 public class TimeTableReaderTests {
 	private TimeTableReader timeTableReader;
