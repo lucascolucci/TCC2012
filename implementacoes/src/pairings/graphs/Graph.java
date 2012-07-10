@@ -3,19 +3,19 @@ package pairings.graphs;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Graph {
-	public List<Node> nodeList;
+public class Graph<T> {
+	public List<Node<T>> nodes;
 	private int numberOfNodes;
 	private int numberOfEdges;
 
 	public Graph() {
-		nodeList = new ArrayList<Node>();
+		nodes = new ArrayList<Node<T>>();
 		numberOfNodes = 0;
 		numberOfEdges = 0;
 	}
 	
-	public List<Node> getNodeList() {
-		return nodeList;
+	public List<Node<T>> getNodes() {
+		return nodes;
 	}
 
 	public int getNumberOfEdges() {
@@ -26,24 +26,21 @@ public class Graph {
 		return numberOfNodes;
 	}
 
-	public void addNode(Node node) throws Exception {
+	public void addNode(Node<T> node) {
 		if (node != null) {
-			nodeList.add(node);
+			nodes.add(node);
 			numberOfNodes++;
-		} else
-			throw new Exception("Error: Trying to add a null node.");
+		}
 	}
 
-	public void addEdge(Node from, Node to) throws Exception {
-		if (nodeList.contains(from) && nodeList.contains(to) && from != to) {
-			from.addNeighbor(to);
+	public void addEdge(Node<T> out, Node<T> in) {
+		if (nodes.contains(out) && nodes.contains(in) && out != in) {
+			out.addNeighbor(in);
 			numberOfEdges++;
-		} else
-			throw new Exception("Error: Trying to connect null nodes or same node.");
+		}
 	}
 
-	public boolean hasEdge(Node from, Node to){
-		return nodeList.contains(from) && nodeList.contains(to) 
-				&& from.hasNeighbor(to);
+	public boolean hasEdge(Node<T> out, Node<T> in) {
+		return out.hasNeighbor(in);
 	}
 }

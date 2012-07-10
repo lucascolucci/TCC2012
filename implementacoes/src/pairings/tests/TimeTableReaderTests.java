@@ -21,7 +21,7 @@ public class TimeTableReaderTests {
 	
 	@Before
 	public void setUp() throws Exception {
-		timeTableReader = new TimeTableReader("./src/readFlights/tests/time_table.txt");		
+		timeTableReader = new TimeTableReader("./src/pairings/tests/time_table.txt");		
 		legs = timeTableReader.getLegs();
 		df = new SimpleDateFormat(Rules.DATE_FORMAT);
 	}

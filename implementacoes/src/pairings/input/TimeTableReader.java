@@ -26,20 +26,20 @@ public class TimeTableReader {
 	}
 	
 	public List<Leg> getLegs() {
-		List<Leg> list = new ArrayList<Leg>();
+		List<Leg> legs = new ArrayList<Leg>();
 		try {
 			FileInputStream fstream = new FileInputStream(fileName);
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String line;
 			while ((line = br.readLine()) != null) 
-				list.add(getLeg(line));
+				legs.add(getLeg(line));
 			in.close();
 		} 
 		catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 		}
-		return list;
+		return legs;
 	}
 
 	private Leg getLeg(String line) throws ParseException {

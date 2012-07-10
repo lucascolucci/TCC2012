@@ -1,37 +1,35 @@
 package pairings.graphs;
 
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
 
 import pairings.Leg;
 import pairings.Rules;
 
 
-public class FlightNetwork extends Graph {
-	private List<Leg> legsList;
+public class FlightNetwork extends Graph<Leg> {
+	private List<Leg> legs;
 	private int id;
 	
-	public FlightNetwork(List<Leg> legsList) {
+	public FlightNetwork(List<Leg> legs) {
 		super();
-		this.legsList = legsList;
+		this.legs = legs;
 		id = 0;
 	}
 
-	public void build() throws Exception {
+	public void build() {
 		addFlightLegs();
 		addFlightLegsConnections();
 	}
 
-	private void addFlightLegs() throws Exception {
-		Iterator<Leg> it = legsList.iterator();
-		while (it.hasNext()) 
-			addSameFlightLegInSubsequentDays(it.next());
+	private void addFlightLegs() {
+		for(Leg leg: legs) 
+			addSameFlightLegInSubsequentDays(leg);
 	}
 
-	private void addSameFlightLegInSubsequentDays(Leg leg) throws Exception {
+	private void addSameFlightLegInSubsequentDays(Leg leg) {
 		for (int i = 0; i < Rules.MAX_DAYS_PER_PAIRING; i++) {
-			addNode(new Node(leg, id++));
+			addNode(new Node<Leg>(id++, leg));
 			addOneDay(leg);
 		}
 	}
@@ -55,17 +53,13 @@ public class FlightNetwork extends Graph {
 		leg.setArrival(calendar.getTime());
 	}
 	
-	private void addFlightLegsConnections() throws Exception {
-		Iterator<Node> itOuter = nodeList.iterator();
-		while (itOuter.hasNext()) {
-			Node from = itOuter.next();
-			Iterator<Node> itInner = nodeList.iterator();
-			while (itInner.hasNext()) {
-				Node to = itInner.next();
-				if (legsCanBeConnected(from.getFlightLeg(), to.getFlightLeg()))
-					addEdge(from, to);
-			}
-		}
+	// Esta função pode ser escrita de forma mais eficiente comparando-se
+	// primeiro cidade de origem e destino.
+	private void addFlightLegsConnections() {
+		for (Node<Leg> out: nodes)
+			for (Node<Leg> in: nodes)
+				if (legsCanBeConnected(out.getContent(), in.getContent()))
+					addEdge(out, in);
 	}
 
 	// Esta função precisa ser refeita levando em conta os tempos mínimos

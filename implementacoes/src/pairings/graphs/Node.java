@@ -3,36 +3,45 @@ package pairings.graphs;
 import java.util.ArrayList;
 import java.util.List;
 
-import pairings.Leg;
-
-public class Node {
+public class Node<T> {
 	private int id;
-	private Leg flightLeg;
-	private List<Node> neighbors;
+	private T content;
+	private List<Edge<T>> edges;
 	
-	public Node(Leg flightLeg, int id) {
-		this.flightLeg = flightLeg;
+	public Node(int id, T content) {
 		this.id = id;
-		neighbors = new ArrayList<Node>();
+		this.content = content;
+		edges = new ArrayList<Edge<T>>();
 	}
 	
 	public int getId() {
 		return id;
 	}
 	
-	public Leg getFlightLeg() {
-		return flightLeg;
+	public T getContent() {
+		return content;
 	}
 	
-	public List<Node> getNeighbors() {
+	public List<Edge<T>> getEdges() {
+		return edges;
+	}
+	
+	public List<Node<T>> getNeighbors() {
+		List<Node<T>> neighbors = new ArrayList<Node<T>>();
+		for (Edge<T> edge: edges) {
+			neighbors.add(edge.getOut());
+		}
 		return neighbors;
 	}
 	
-	public void addNeighbor(Node node) {
-		neighbors.add(node);
+	public void addNeighbor(Node<T> node) {
+		edges.add(new Edge<T>(this, node));
 	}
 	
-	public boolean hasNeighbor(Node node) {
-		return neighbors.contains(node);
+	public boolean hasNeighbor(Node<T> node) {
+		for (Edge<T> edge: edges)
+			if (edge.getIn() == node)
+				return true;
+		return false;
 	}
 }

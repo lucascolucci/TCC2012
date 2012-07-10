@@ -10,39 +10,45 @@ import pairings.graphs.Node;
 
 
 public class GraphTests {
-	private Graph graph;
+	private Graph<Object> graph;
 	
 	@Before
-	public void setUp() throws Exception {
-		graph = new Graph();
+	public void setUp() {
+		graph = new Graph<Object>();
 	}
 
 	@Test
-	public void itShouldHaveAnEdge() throws Exception {
-		Node from = new Node(null, 1);
-		Node to = new Node(null, 2);
-		graph.addNode(from);
-		graph.addNode(to);
-		graph.addEdge(from, to);
-		assertTrue(graph.hasEdge(from, to));
+	public void itShouldHaveAnEdge() {
+		Node<Object> out = new Node<Object>(1, null);
+		Node<Object> in = new Node<Object>(2, null);
+		graph.addNode(out);
+		graph.addNode(in);
+		graph.addEdge(out, in);
+		assertTrue(graph.hasEdge(out, in));
 	}
 	
-	@Test(expected = Exception.class)
-	public void itShouldNotAddANullNode() throws Exception {
+	@Test
+	public void itShouldNotAddANullNode() {
+		int before = graph.getNumberOfNodes();
 		graph.addNode(null);
+		assertEquals(before, graph.getNumberOfNodes());
 	}
 	
-	@Test(expected = Exception.class)
-	public void itShouldNotAddAnEdgeForNodesNotInGraph() throws Exception {
-		Node from = new Node(null, 1);
-		Node to = new Node(null, 2);
-		graph.addEdge(from, to);
+	@Test
+	public void itShouldNotAddAnEdgeForNodesNotInGraph() {
+		Node<Object> out = new Node<Object>(1, null);
+		Node<Object> in = new Node<Object>(2, null);
+		int before = graph.getNumberOfEdges();
+		graph.addEdge(out, in);
+		assertEquals(before, graph.getNumberOfEdges());
 	}
 	
-	@Test(expected = Exception.class)
-	public void itShouldNotAddAnEdgeForSameNode() throws Exception {
-		Node from = new Node(null, 1);
-		graph.addNode(from);
-		graph.addEdge(from, from);
+	@Test
+	public void itShouldNotAddAnEdgeForSameNode() {
+		Node<Object> out = new Node<Object>(1, null);
+		int before = graph.getNumberOfEdges();
+		graph.addNode(out);
+		graph.addEdge(out, out);
+		assertEquals(before, graph.getNumberOfEdges());
 	}
 }
