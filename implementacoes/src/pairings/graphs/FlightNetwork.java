@@ -1,8 +1,9 @@
 package pairings.graphs;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import pairings.DateUtil;
 import pairings.Leg;
 import pairings.Rules;
 
@@ -17,55 +18,54 @@ public class FlightNetwork extends Graph<Leg> {
 	}
 
 	public void build() {
-		addFlightLegs();
-		addFlightLegsConnections();
+		addLegs();
+		addLegsConnections();
 	}
 
-	private void addFlightLegs() {
+	private void addLegs() {
 		for(Leg leg: legs) 
-			addSameFlightLegInSubsequentDays(leg);
+			addSameLegInSubsequentDays(leg);
 	}
 
-	private void addSameFlightLegInSubsequentDays(Leg leg) {
+	private void addSameLegInSubsequentDays(Leg leg) {
 		for (int i = 0; i < Rules.MAX_DAYS_PER_PAIRING; i++) {
 			addNode(new Node<Leg>(leg, new Label(id++)));
-			addOneDay(leg);
+			leg = getNextDayLeg(leg);
 		}
 	}
-
-	private void addOneDay(Leg leg){
-		addOneDayToDeparture(leg);
-		addOneDayToArrival(leg);
+	
+	private Leg getNextDayLeg(Leg leg) {
+		int number = leg.getNumber();
+		String from = leg.getFrom();
+		String to = leg.getTo();
+		Date departure = DateUtil.addOneDay(leg.getDeparture());
+		Date arrival = DateUtil.addOneDay(leg.getArrival());
+		String tail = leg.getTail();
+		return new Leg(number, from, to, departure, arrival, tail);
 	}
 
-	private void addOneDayToDeparture(Leg leg) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(leg.getDeparture());
-		calendar.add(Calendar.DAY_OF_MONTH, 1);
-		leg.setDeparture(calendar.getTime());
+	private void addLegsConnections() {
+		for (Node<Leg> out: nodes) 
+			for (Node<Leg> in: nodes) 
+				addConnectionIfSpaceCompatible(out, in);
 	}
 	
-	private void addOneDayToArrival(Leg leg) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(leg.getArrival());
-		calendar.add(Calendar.DAY_OF_MONTH, 1);
-		leg.setArrival(calendar.getTime());
+	private void addConnectionIfSpaceCompatible(Node<Leg> out, Node<Leg> in) {
+		String to = out.getContent().getTo();
+		String from = in.getContent().getFrom();
+		if (to == from) 
+			addConnectionIfTimeCompatible(out, in);
 	}
 	
-	// Esta função pode ser escrita de forma mais eficiente comparando-se
-	// primeiro cidade de origem e destino.
-	private void addFlightLegsConnections() {
-		for (Node<Leg> out: nodes)
-			for (Node<Leg> in: nodes)
-				if (legsCanBeConnected(out.getContent(), in.getContent()))
-					addEdge(out, in, null);
-	}
-
-	// Esta função precisa ser refeita levando em conta os tempos mínimos
-	// e máximo de de conexão.
-	private boolean legsCanBeConnected(Leg legFrom, Leg legTo) {
-		boolean datesOk = legFrom.getArrival().before(legTo.getDeparture());
-		boolean citiesOk = legFrom.getTo().contentEquals(legTo.getFrom());
-		return datesOk && citiesOk;
+	private void addConnectionIfTimeCompatible(Node<Leg> out, Node<Leg> in) {
+		Date arrival = out.getContent().getArrival();
+		Date departure = in.getContent().getDeparture();
+		if (arrival.before(departure)) {
+			int delta = DateUtil.differenceInMinutes(arrival, departure);
+			if (Rules.isLegalSitTime(delta)) 
+				addEdge(out, in, EdgeType.CONNECTION);
+			else if (Rules.isLegalRestTime(delta))
+				addEdge(out, in, EdgeType.OVERNIGHT);
+		}
 	}
 }

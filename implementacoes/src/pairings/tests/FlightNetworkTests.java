@@ -11,10 +11,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import pairings.DateUtil;
 import pairings.Leg;
 import pairings.Rules;
+import pairings.graphs.Edge;
+import pairings.graphs.EdgeType;
 import pairings.graphs.FlightNetwork;
-
+import pairings.graphs.Node;
 
 public class FlightNetworkTests {
 	private FlightNetwork net;
@@ -22,15 +25,16 @@ public class FlightNetworkTests {
 	@Before
 	public void setUp() throws Exception {
 		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
-		Date leg1Departure = (Date) df.parse("27/08/2012 06:10");
-		Date leg1Arrival = (Date) df.parse("27/08/2012 07:08");
-		Date leg2Departure = (Date) df.parse("27/08/2012 10:10");
-		Date leg2Arrival = (Date) df.parse("27/08/2012 12:08");
-
-		Leg leg1 = new Leg(1234, "CGH", "UDI", leg1Departure, leg1Arrival);
-		Leg leg2 = new Leg(1235, "UDI", "CGH", leg2Departure, leg2Arrival);
-		
 		List<Leg> legsList = new ArrayList<Leg>();
+		
+		Date leg1Dep = (Date) df.parse("27/08/2012 06:10");
+		Date leg1Arr = (Date) df.parse("27/08/2012 07:08");
+		Date leg2Dep = (Date) df.parse("27/08/2012 09:00");
+		Date leg2Arr = (Date) df.parse("27/08/2012 09:58");
+		
+		Leg leg1 = new Leg(1234, "CGH", "UDI", leg1Dep, leg1Arr);
+		Leg leg2 = new Leg(1235, "UDI", "CGH", leg2Dep, leg2Arr);
+		
 		legsList.add(leg1);
 		legsList.add(leg2);
 
@@ -39,12 +43,27 @@ public class FlightNetworkTests {
 	}
 	
 	@Test
-	public void itShouldHave10Nodes() throws Exception {		
-		assertEquals(10, net.getNumberOfNodes());
+	public void itShouldHave8Nodes() {		
+		assertEquals(8, net.getNumberOfNodes());
 	}
 
 	@Test
-	public void itShouldHave25Edges() throws Exception {
-		assertEquals(25, net.getNumberOfEdges());
+	public void itShouldHave12Edges() {
+		assertEquals(12, net.getNumberOfEdges());
+	}
+	
+	@Test 
+	public void itShouldHaveCorrectEdges() {
+		for (Node<Leg> node: net.getNodes()) 
+			for (Edge<Leg> edge: node.getEdges()) {
+				Date arrival = edge.getOut().getContent().getArrival();
+				Date departure = edge.getIn().getContent().getDeparture();
+				assertTrue(arrival.before(departure));
+				int delta = DateUtil.differenceInMinutes(arrival, departure);
+				if (Rules.isLegalSitTime(delta))
+					assertEquals(EdgeType.CONNECTION, edge.getType());
+				else if (Rules.isLegalRestTime(delta))
+					assertEquals(EdgeType.OVERNIGHT, edge.getType());
+			}
 	}
 }

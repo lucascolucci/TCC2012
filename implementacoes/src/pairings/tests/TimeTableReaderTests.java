@@ -34,20 +34,20 @@ public class TimeTableReaderTests {
 	@Test
 	public void itShouldMatchFirstLeg(){
 		Leg firstLeg = legs.get(0); 
-		assertEquals(firstLeg.getNumber(), 1500);
-		assertEquals(firstLeg.getFrom(), "CGH");
-		assertEquals(firstLeg.getTo(), "SDU");
-		assertEquals(df.format(firstLeg.getDeparture()), "27/08/2012 06:10");
-		assertEquals(df.format(firstLeg.getArrival()), "27/08/2012 07:08");
+		assertEquals(1500, firstLeg.getNumber());
+		assertEquals("CGH", firstLeg.getFrom());
+		assertEquals("SDU", firstLeg.getTo());
+		assertEquals("27/08/2012 06:10", df.format(firstLeg.getDeparture()));
+		assertEquals("27/08/2012 07:08", df.format(firstLeg.getArrival()));
 	}
 	
 	@Test
 	public void itShouldMatchLastFlight(){
 		Leg firstLeg = legs.get(legs.size() - 1); 
-		assertEquals(firstLeg.getNumber(), 1561);
-		assertEquals(firstLeg.getFrom(), "SDU");
-		assertEquals(firstLeg.getTo(), "CGH");
-		assertEquals(df.format(firstLeg.getDeparture()), "27/08/2012 21:10");
-		assertEquals(df.format(firstLeg.getArrival()), "27/08/2012 22:01");
+		assertEquals(1561, firstLeg.getNumber());
+		assertEquals("SDU", firstLeg.getFrom());
+		assertEquals("CGH", firstLeg.getTo());
+		assertEquals("27/08/2012 21:10", df.format(firstLeg.getDeparture()));
+		assertEquals("27/08/2012 22:01", df.format(firstLeg.getArrival()));
 	}
 }
