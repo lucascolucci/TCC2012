@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import pairings.Leg;
 import pairings.Rules;
-import pairings.input.TimeTableReader;
+import pairings.io.TimeTableReader;
 
 
 public class TimeTableReaderTests {

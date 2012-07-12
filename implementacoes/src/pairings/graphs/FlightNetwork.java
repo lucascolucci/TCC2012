@@ -47,10 +47,10 @@ public class FlightNetwork extends Graph<Leg> {
 	private void addLegsConnections() {
 		for (Node<Leg> out: nodes) 
 			for (Node<Leg> in: nodes) 
-				addConnectionIfSpaceCompatible(out, in);
+				addConnectionIfSpaceAndTimeCompatible(out, in);
 	}
 	
-	private void addConnectionIfSpaceCompatible(Node<Leg> out, Node<Leg> in) {
+	private void addConnectionIfSpaceAndTimeCompatible(Node<Leg> out, Node<Leg> in) {
 		String to = out.getContent().getTo();
 		String from = in.getContent().getFrom();
 		if (to == from) 
