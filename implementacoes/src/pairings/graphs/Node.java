@@ -26,6 +26,10 @@ public class Node<T> {
 		return edges;
 	}
 	
+	public int numberOfNeighbors() {
+		return edges.size();
+	}
+	
 	public List<Node<T>> getNeighbors() {
 		List<Node<T>> neighbors = new ArrayList<Node<T>>();
 		for (Edge<T> edge: edges) {
@@ -36,6 +40,10 @@ public class Node<T> {
 	
 	public void addNeighbor(Node<T> node, EdgeType type) {
 		edges.add(new Edge<T>(this, node, type));
+	}
+	
+	public void addNeighbor(Node<T> node, EdgeType type, Label label) {
+		edges.add(new Edge<T>(this, node, type, label));
 	}
 	
 	public boolean hasNeighbor(Node<T> neighbor) {

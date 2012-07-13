@@ -17,6 +17,7 @@ import pairings.Rules;
 import pairings.graphs.Edge;
 import pairings.graphs.EdgeType;
 import pairings.graphs.FlightNetwork;
+import pairings.graphs.Label;
 import pairings.graphs.Node;
 
 public class FlightNetworkTests {
@@ -65,5 +66,21 @@ public class FlightNetworkTests {
 				else if (Rules.isLegalRestTime(delta))
 					assertEquals(EdgeType.OVERNIGHT, edge.getType());
 			}
+	}
+	
+	@Test
+	public void sourceShouldHave4Neighbors() {
+		Leg sourceLeg = new Leg(0, "CGH", "CGH", null, null);
+		Node<Leg> source = new Node<Leg>(sourceLeg, new Label(-1));
+		net.addSource(source);
+		assertEquals(4, net.numberOfOutwardEdges(source));
+	}
+	
+	@Test
+	public void sinkShouldHave4Neighbors() {
+		Leg sinkLeg = new Leg(0, "CGH", "CGH", null, null);
+		Node<Leg> sink = new Node<Leg>(sinkLeg, new Label(-2));
+		net.addSink(sink);
+		assertEquals(4, net.numberOfInwardEdges(sink));
 	}
 }

@@ -28,7 +28,7 @@ public class FlightNetwork extends Graph<Leg> {
 	}
 
 	private void addSameLegInSubsequentDays(Leg leg) {
-		for (int i = 0; i < Rules.MAX_DAYS_PER_PAIRING; i++) {
+		for (int i = 0; i < Rules.MAX_DUTIES; i++) {
 			addNode(new Node<Leg>(leg, new Label(id++)));
 			leg = getNextDayLeg(leg);
 		}
@@ -62,10 +62,26 @@ public class FlightNetwork extends Graph<Leg> {
 		Date departure = in.getContent().getDeparture();
 		if (arrival.before(departure)) {
 			int delta = DateUtil.differenceInMinutes(arrival, departure);
+			//TODO mudar os ids
+			FlightNetworkEdgeLabel label = new FlightNetworkEdgeLabel(0, delta);
 			if (Rules.isLegalSitTime(delta)) 
-				addEdge(out, in, EdgeType.CONNECTION);
+				addEdge(out, in, EdgeType.CONNECTION, label);
 			else if (Rules.isLegalRestTime(delta))
-				addEdge(out, in, EdgeType.OVERNIGHT);
+				addEdge(out, in, EdgeType.OVERNIGHT, label);
 		}
+	}
+	
+	public void addSource(Node<Leg> source) {
+		String base = source.getContent().getFrom();
+		for (Node<Leg> node: nodes)
+			if (node.getContent().getFrom() == base) 
+				source.addNeighbor(node, EdgeType.FROM_SOURCE);
+	}
+	
+	public void addSink(Node<Leg> sink) {
+		String base = sink.getContent().getFrom();
+		for (Node<Leg> node: nodes)
+			if (node.getContent().getTo() == base) 
+				node.addNeighbor(sink, EdgeType.TO_SINK);
 	}
 }

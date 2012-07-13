@@ -2,5 +2,7 @@ package pairings.graphs;
 
 public enum EdgeType {
 	OVERNIGHT,
-	CONNECTION
+	CONNECTION,
+	FROM_SOURCE,
+	TO_SINK
 }
