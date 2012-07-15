@@ -22,9 +22,9 @@ public class PairingsGenerator {
 		
 	public List<Pairing> getPairings(String base) {
 		Leg sourceLeg = new Leg(0, base, base, null, null);
-		Node<Leg> source = new Node<Leg>(sourceLeg);
+		Node<Leg> source = new Node<Leg>(sourceLeg, null);
 		Leg sinkLeg = new Leg(0, base, base, null, null);
-		Node<Leg> sink = new Node<Leg>(sinkLeg);
+		Node<Leg> sink = new Node<Leg>(sinkLeg, null);
 		net.addSource(source);
 		net.addSink(sink);
 		path = new FlightNetworkPath(source);
@@ -34,17 +34,16 @@ public class PairingsGenerator {
 
 	private void findPairing(Node<Leg> node) {
 		for (Edge<Leg> edge: node.getEdges()) {
-			if (edge.getType() == EdgeType.TO_SINK) {
+			if (edge.getType() == EdgeType.TO_SINK)
 				pairings.add(new Pairing(path));
-			}
 			else if (edge.getType() == EdgeType.CONNECTION) {
-				if (edge.getIn().getInfo().getFlightTime() + path.getFlightTime() <= Rules.MAX_FLIGHT_TIME) {
+				if (edge.getIn().getLabel().getFlightTime() + path.getFlightTime() <= Rules.MAX_FLIGHT_TIME) {
 					FlightNetworkEdgeLabel label = (FlightNetworkEdgeLabel) edge.getLabel();
-					if (label.getSitTime() + edge.getIn().getInfo().getFlightTime() +
+					if (label.getSitTime() + edge.getIn().getLabel().getFlightTime() +
 							path.getDutyTime() <= Rules.MAX_DUTY_TIME) 
 						if(path.getNumberOfLegs() + 1 <= Rules.MAX_LEGS){
-							path.incrementDutyTime(label.getSitTime() + edge.getIn().getInfo().getFlightTime());
-							path.incrementFlightTime(edge.getIn().getInfo().getFlightTime());
+							path.incrementDutyTime(label.getSitTime() + edge.getIn().getLabel().getFlightTime());
+							path.incrementFlightTime(edge.getIn().getLabel().getFlightTime());
 							path.incrementNumberOfLegs();
 							path.addEdge(edge);
 							findPairing(edge.getIn());
@@ -53,8 +52,8 @@ public class PairingsGenerator {
 			}
 			else if (edge.getType() == EdgeType.OVERNIGHT) {
 				if(path.getNumberOfDuties() + 1 <= Rules.MAX_DUTIES) {
-					path.setDutyTime(edge.getIn().getInfo().getFlightTime());
-					path.setFlightTime(edge.getIn().getInfo().getFlightTime());
+					path.setDutyTime(edge.getIn().getLabel().getFlightTime());
+					path.setFlightTime(edge.getIn().getLabel().getFlightTime());
 					path.setNumberOfLegs(1);
 					path.incrementNumberOfDuties();
 					path.addEdge(edge);	

@@ -64,4 +64,12 @@ public class Node<T> {
 				return edge;
 		return null;
 	}
+	
+	public void removeEdges() {
+		edges.clear();
+	}
+	
+	public void removeEdge(Edge<T> edge) {
+		edges.remove(edge);
+	}
 }

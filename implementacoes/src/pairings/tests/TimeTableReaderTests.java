@@ -13,7 +13,6 @@ import pairings.Leg;
 import pairings.Rules;
 import pairings.io.TimeTableReader;
 
-
 public class TimeTableReaderTests {
 	private TimeTableReader timeTableReader;
 	private List<Leg> legs;

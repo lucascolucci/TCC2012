@@ -25,11 +25,12 @@ public class GraphTests {
 		graph.addNode(node3);
 		graph.addEdge(node1, node2);
 		graph.addEdge(node1, node3);
+		graph.addEdge(node2, node3);
 	}
 
 	@Test
 	public void itShouldHave3Nodes() {
-		assertEquals(graph.getNumberOfNodes(), 3);
+		assertEquals(3, graph.getNumberOfNodes());
 	}
 	
 	@Test
@@ -40,8 +41,8 @@ public class GraphTests {
 	}
 	
 	@Test
-	public void itShouldHave2Edges() {
-		assertEquals(graph.getNumberOfEdges(), 2);
+	public void itShouldHave3Edges() {
+		assertEquals(3, graph.getNumberOfEdges());
 	}
 	
 	@Test
@@ -63,17 +64,45 @@ public class GraphTests {
 
 	@Test
 	public void itShouldHaveTheRightEdges() {
-		assertTrue(graph.hasEdge(node1, node2) && graph.hasEdge(node1, node3));
+		assertTrue(graph.hasEdge(node1, node2));
+		assertTrue(graph.hasEdge(node1, node3));
+		assertTrue(graph.hasEdge(node2, node3));
 	}
 	
 	@Test
 	public void itShouldNotHaveTheWrongEdge() {
 		assertFalse(graph.hasEdge(node2, node1));
+		assertFalse(graph.hasEdge(node3, node1));
+		assertFalse(graph.hasEdge(node3, node2));
 	}
 
 	@Test
 	public void itShouldHaveTheRightNeighbors() {
-		Object[] neighbors = new Object[] {node2, node3};
-		assertArrayEquals(neighbors, graph.getNeighbors(node1).toArray());
+		Object[] neighbors1 = new Object[] {node2, node3};
+		Object[] neighbors2 = new Object[] {node3};
+		Object[] neighbors3 = new Object[] {};
+		assertArrayEquals(neighbors1, graph.getNeighbors(node1).toArray());
+		assertArrayEquals(neighbors2, graph.getNeighbors(node2).toArray());
+		assertArrayEquals(neighbors3, graph.getNeighbors(node3).toArray());
+	}
+	
+	@Test
+	public void itShouldHaveTheRightInwardEdges() {
+		Object[] inwards1 = new Object[] {};
+		Object[] inwards2 = new Object[] {node1.getEdge(node2)};
+		Object[] inwards3 = new Object[] {node1.getEdge(node3), node2.getEdge(node3)};
+		assertArrayEquals(inwards1, graph.getInwardEdges(node1).toArray());
+		assertArrayEquals(inwards2, graph.getInwardEdges(node2).toArray());
+		assertArrayEquals(inwards3, graph.getInwardEdges(node3).toArray());
+	}
+	
+	@Test
+	public void itShouldHaveTheRightOutwardEdges() {
+		Object[] outwards1 = new Object[] {node1.getEdge(node2), node1.getEdge(node3)};
+		Object[] outwards2 = new Object[] {node2.getEdge(node3)};
+		Object[] outwards3 = new Object[] {};
+		assertArrayEquals(outwards1, graph.getOutwardEdges(node1).toArray());
+		assertArrayEquals(outwards2, graph.getOutwardEdges(node2).toArray());
+		assertArrayEquals(outwards3, graph.getOutwardEdges(node3).toArray());
 	}
 }

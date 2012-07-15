@@ -68,18 +68,22 @@ public class FlightNetworkTests {
 	}
 	
 	@Test
-	public void sourceShouldHave4Neighbors() {
+	public void sourceShouldHaveCorrectEdges() {
 		Leg sourceLeg = new Leg(0, "CGH", "CGH", null, null);
 		Node<Leg> source = new Node<Leg>(sourceLeg);
 		net.addSource(source);
+		for (Edge<Leg> edge: net.getOutwardEdges(source))
+			assertEquals(EdgeType.FROM_SOURCE, edge.getType());
 		assertEquals(4, net.numberOfOutwardEdges(source));
 	}
 	
 	@Test
-	public void sinkShouldHave4Neighbors() {
+	public void sinkShouldHaveCorrectEdges() {
 		Leg sinkLeg = new Leg(0, "CGH", "CGH", null, null);
 		Node<Leg> sink = new Node<Leg>(sinkLeg);
 		net.addSink(sink);
+		for (Edge<Leg> edge: net.getInwardEdges(sink))
+			assertEquals(EdgeType.TO_SINK, edge.getType());
 		assertEquals(4, net.numberOfInwardEdges(sink));
 	}
 }

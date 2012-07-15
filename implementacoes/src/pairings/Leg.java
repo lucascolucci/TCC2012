@@ -8,7 +8,6 @@ public class Leg {
 	private String to;
 	private Date departure;
 	private Date arrival;
-	private int flightTime;
 	
 	public Leg(int number, String from, String to, Date departure, Date arrival) {
 		this.number = number;
@@ -16,7 +15,6 @@ public class Leg {
 		this.to = to;
 		this.departure = departure;
 		this.arrival = arrival;
-		flightTime = evaluateFlightTime();
 	}
 
 	public int getNumber() {
@@ -57,13 +55,5 @@ public class Leg {
 
 	public void setArrival(Date arrival) {
 		this.arrival = arrival;
-	}
-
-	public int getFlightTime() {
-		return flightTime;
-	}
-	
-	private int evaluateFlightTime() {
-		return DateUtil.difference(departure, arrival);
 	}	
 }

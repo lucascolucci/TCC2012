@@ -47,9 +47,15 @@ public class Graph<T> {
 			numberOfEdges++;
 		}
 	}
-
+	
 	public boolean hasEdge(Node<T> out, Node<T> in) {
-		return out.hasNeighbor(in);
+		return nodes.contains(out) && nodes.contains(in) && out.hasNeighbor(in);
+	}
+	
+	public Edge<T> getEdge(Node<T> out, Node<T> in) {
+		if (nodes.contains(out) && nodes.contains(in))
+			return out.getEdge(in);
+		return null;
 	}
 	
 	public List<Node<T>> getNeighbors(Node<T> node) {
@@ -58,15 +64,41 @@ public class Graph<T> {
 		return null;
 	}
 	
-	public int numberOfInwardEdges(Node<T> node) {
-		int count = 0;
-		for (Node<T> out: nodes) 
-			if (out.hasNeighbor(node))
-				count++;
-		return count;
+	public List<Edge<T>> getOutwardEdges(Node<T> node) {
+		if (nodes.contains(node))
+			return node.getEdges();
+		return null;
 	}
 	
 	public int numberOfOutwardEdges(Node<T> node) {
-		return node.numberOfNeighbors();
+		if (nodes.contains(node))
+			return node.numberOfNeighbors();
+		return -1;
+	}
+	
+	public List<Edge<T>> getInwardEdges(Node<T> node) {
+		if (nodes.contains(node)) {
+			List<Edge<T>> edges = new ArrayList<Edge<T>>();
+			for (Node<T> out: nodes) 
+				if (out.hasNeighbor(node))
+					edges.add(out.getEdge(node));
+			return edges;
+		}
+		return null;
+	}
+	
+	public int numberOfInwardEdges(Node<T> node) {
+		if (nodes.contains(node)) {
+			int count = 0;
+			for (Node<T> out: nodes) 
+				if (out.hasNeighbor(node))
+					count++;
+			return count;
+		}
+		return -1;
+	}
+	
+	public void removeNode(Node<T> node) {
+		// TODO
 	}
 }

@@ -29,10 +29,19 @@ public class FlightNetwork extends Graph<Leg> {
 	}
 
 	private void addSameLegInSubsequentDays(Leg leg) {
+		int flightTime = evaluateFlightTime(leg); 
 		for (int i = 0; i < Rules.MAX_DUTIES; i++) {
-			addNode(new Node<Leg>(leg));
+			addNode(new Node<Leg>(leg, new FlightNetworkNodeLabel(flightTime)));
 			leg = getNextDayLeg(leg);
 		}
+	}
+	
+	private int evaluateFlightTime(Leg leg) {
+		Date departure = leg.getDeparture();
+		Date arrival = leg.getArrival();
+		if (departure != null && arrival != null) 
+			return DateUtil.difference(departure, arrival);
+		return 0;
 	}
 	
 	private Leg getNextDayLeg(Leg leg) {
@@ -60,17 +69,15 @@ public class FlightNetwork extends Graph<Leg> {
 	private void addConnectionIfTimeCompatible(Node<Leg> out, Node<Leg> in) {
 		Date arrival = out.getInfo().getArrival();
 		Date departure = in.getInfo().getDeparture();
-		if (arrival.before(departure))
-			addProperEdge(out, in, arrival, departure);
+		if (arrival.before(departure)) 
+			addProperEdge(out, in, DateUtil.difference(arrival, departure));
 	}
 
-	private void addProperEdge(Node<Leg> out, Node<Leg> in, Date arrival, Date departure) {
-		int sit = DateUtil.difference(arrival, departure);
-		FlightNetworkEdgeLabel label = new FlightNetworkEdgeLabel(sit);
+	private void addProperEdge(Node<Leg> out, Node<Leg> in, int sit) {
 		if (Rules.isLegalSitTime(sit)) 
-			addEdge(out, in, EdgeType.CONNECTION, label);
-		else if (Rules.isLegalRestTime(sit))
-			addEdge(out, in, EdgeType.OVERNIGHT, label);
+			addEdge(out, in, EdgeType.CONNECTION, new FlightNetworkEdgeLabel(sit));
+		else if (Rules.isLegalRestTime(sit)) 
+			addEdge(out, in, EdgeType.OVERNIGHT, new FlightNetworkEdgeLabel(sit));
 	}
 	
 	public void addSource(Node<Leg> source) {
@@ -78,6 +85,7 @@ public class FlightNetwork extends Graph<Leg> {
 		for (Node<Leg> node: nodes)
 			if (node.getInfo().getFrom() == base) 
 				source.addNeighbor(node, EdgeType.FROM_SOURCE);
+		addNode(source);
 	}
 	
 	public void addSink(Node<Leg> sink) {
@@ -85,13 +93,6 @@ public class FlightNetwork extends Graph<Leg> {
 		for (Node<Leg> node: nodes)
 			if (node.getInfo().getTo() == base) 
 				node.addNeighbor(sink, EdgeType.TO_SINK);
-	}
-
-	public void removeSource(Node<Leg> source) {
-		// TODO
-	}
-	
-	public void removeSink(Node<Leg> sink) {
-		// TODO
+		addNode(sink);
 	}
 }
