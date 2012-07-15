@@ -3,8 +3,9 @@ package pairings;
 import java.util.ArrayList;
 import java.util.List;
 
-import pairings.graphs.Edge;
-import pairings.graphs.EdgeType;
+import pairings.graph.Edge;
+import pairings.graph.EdgeType;
+import pairings.graph.networks.FlightNetworkPath;
 
 public class Pairing {
 	private List<Duty> duties;
@@ -23,7 +24,7 @@ public class Pairing {
 		for (Edge<Leg> edge: path.getEdges()) {			
 			if (edge.getType() == EdgeType.OVERNIGHT) 
 				duty = new Duty();	
-			duty.addLeg(edge.getIn().getContent());
+			duty.addLeg(edge.getIn().getInfo());
 		}
 	}
 }

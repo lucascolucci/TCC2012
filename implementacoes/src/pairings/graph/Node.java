@@ -1,21 +1,27 @@
-package pairings.graphs;
+package pairings.graph;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Node<T> {
-	private T content;
+	private T info;
 	private Label label;
 	private List<Edge<T>> edges;
+
+	public Node(T info) {
+		this.info = info;
+		label = null;
+		edges = new ArrayList<Edge<T>>();
+	}
 	
-	public Node(T content, Label label) {
-		this.content = content;
+	public Node(T info, Label label) {
+		this.info = info;
 		this.label = label;
 		edges = new ArrayList<Edge<T>>();
 	}
 	
-	public T getContent() {
-		return content;
+	public T getInfo() {
+		return info;
 	}
 	
 	public Label getLabel() {
@@ -32,14 +38,13 @@ public class Node<T> {
 	
 	public List<Node<T>> getNeighbors() {
 		List<Node<T>> neighbors = new ArrayList<Node<T>>();
-		for (Edge<T> edge: edges) {
+		for (Edge<T> edge: edges)
 			neighbors.add(edge.getIn());
-		}
 		return neighbors;
 	}
 	
 	public void addNeighbor(Node<T> node, EdgeType type) {
-		edges.add(new Edge<T>(this, node, type));
+		edges.add(new Edge<T>(this, node, type, null));
 	}
 	
 	public void addNeighbor(Node<T> node, EdgeType type, Label label) {

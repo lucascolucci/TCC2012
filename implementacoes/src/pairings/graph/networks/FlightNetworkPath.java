@@ -1,7 +1,8 @@
-package pairings;
+package pairings.graph.networks;
 
-import pairings.graphs.Node;
-import pairings.graphs.Path;
+import pairings.Leg;
+import pairings.graph.Node;
+import pairings.graph.Path;
 
 public class FlightNetworkPath extends Path<Leg>{
 	private int flightTime;
@@ -10,7 +11,7 @@ public class FlightNetworkPath extends Path<Leg>{
 	private int numberOfDuties;
 	
 	public FlightNetworkPath(Node<Leg> source) {
-		super(source);
+		super();
 		flightTime = 0;
 		dutyTime = 0;
 		numberOfLegs = 0;

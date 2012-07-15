@@ -14,11 +14,10 @@ import org.junit.Test;
 import pairings.DateUtil;
 import pairings.Leg;
 import pairings.Rules;
-import pairings.graphs.Edge;
-import pairings.graphs.EdgeType;
-import pairings.graphs.FlightNetwork;
-import pairings.graphs.Label;
-import pairings.graphs.Node;
+import pairings.graph.Edge;
+import pairings.graph.EdgeType;
+import pairings.graph.Node;
+import pairings.graph.networks.FlightNetwork;
 
 public class FlightNetworkTests {
 	private FlightNetwork net;
@@ -57,10 +56,10 @@ public class FlightNetworkTests {
 	public void itShouldHaveCorrectEdges() {
 		for (Node<Leg> node: net.getNodes()) 
 			for (Edge<Leg> edge: node.getEdges()) {
-				Date arrival = edge.getOut().getContent().getArrival();
-				Date departure = edge.getIn().getContent().getDeparture();
+				Date arrival = edge.getOut().getInfo().getArrival();
+				Date departure = edge.getIn().getInfo().getDeparture();
 				assertTrue(arrival.before(departure));
-				int delta = DateUtil.differenceInMinutes(arrival, departure);
+				int delta = DateUtil.difference(arrival, departure);
 				if (Rules.isLegalSitTime(delta))
 					assertEquals(EdgeType.CONNECTION, edge.getType());
 				else if (Rules.isLegalRestTime(delta))
@@ -71,7 +70,7 @@ public class FlightNetworkTests {
 	@Test
 	public void sourceShouldHave4Neighbors() {
 		Leg sourceLeg = new Leg(0, "CGH", "CGH", null, null);
-		Node<Leg> source = new Node<Leg>(sourceLeg, new Label(-1));
+		Node<Leg> source = new Node<Leg>(sourceLeg);
 		net.addSource(source);
 		assertEquals(4, net.numberOfOutwardEdges(source));
 	}
@@ -79,7 +78,7 @@ public class FlightNetworkTests {
 	@Test
 	public void sinkShouldHave4Neighbors() {
 		Leg sinkLeg = new Leg(0, "CGH", "CGH", null, null);
-		Node<Leg> sink = new Node<Leg>(sinkLeg, new Label(-2));
+		Node<Leg> sink = new Node<Leg>(sinkLeg);
 		net.addSink(sink);
 		assertEquals(4, net.numberOfInwardEdges(sink));
 	}

@@ -1,4 +1,4 @@
-package pairings.graphs;
+package pairings.graph;
 
 public enum EdgeType {
 	OVERNIGHT,

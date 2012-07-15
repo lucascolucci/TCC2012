@@ -5,9 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import pairings.graphs.Graph;
-import pairings.graphs.Label;
-import pairings.graphs.Node;
+import pairings.graph.Graph;
+import pairings.graph.Node;
 
 public class GraphTests {
 	private Graph<Object> graph;
@@ -18,9 +17,9 @@ public class GraphTests {
 	@Before
 	public void setUp() {
 		graph = new Graph<Object>();
-		node1 = new Node<Object>(null, new Label(1));
-		node2 = new Node<Object>(null, new Label(2));
-		node3 = new Node<Object>(null, new Label(3));
+		node1 = new Node<Object>(null);
+		node2 = new Node<Object>(null);
+		node3 = new Node<Object>(null);
 		graph.addNode(node1);
 		graph.addNode(node2);
 		graph.addNode(node3);
@@ -47,7 +46,7 @@ public class GraphTests {
 	
 	@Test
 	public void itShouldNotAddAnEdgeForNodesNotInGraph() {
-		Node<Object> other = new Node<Object>(null, new Label(4));
+		Node<Object> other = new Node<Object>(null);
 		int before = graph.getNumberOfEdges();
 		graph.addEdge(node1, other);
 		assertEquals(before, graph.getNumberOfEdges());
@@ -55,7 +54,7 @@ public class GraphTests {
 	
 	@Test
 	public void itShouldNotAddAnEdgeForSameNode() {
-		Node<Object> other = new Node<Object>(null, new Label(4));
+		Node<Object> other = new Node<Object>(null);
 		int before = graph.getNumberOfEdges();
 		graph.addNode(other);
 		graph.addEdge(other, other);

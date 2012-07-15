@@ -8,7 +8,6 @@ public class Leg {
 	private String to;
 	private Date departure;
 	private Date arrival;
-	private String tail;
 	private int flightTime;
 	
 	public Leg(int number, String from, String to, Date departure, Date arrival) {
@@ -20,16 +19,6 @@ public class Leg {
 		flightTime = evaluateFlightTime();
 	}
 
-	public Leg(int number, String from, String to, Date departure, Date arrival, String tail) {
-		this.number = number;
-		this.from = from;
-		this.to = to;
-		this.departure = departure;
-		this.arrival = arrival;
-		this.tail = tail;
-		flightTime = evaluateFlightTime();
-	}
-	
 	public int getNumber() {
 		return number;
 	}
@@ -70,20 +59,11 @@ public class Leg {
 		this.arrival = arrival;
 	}
 
-	public String getTail() {
-		return tail;
-	}
-
-	public void setTail(String tail) {
-		this.tail = tail;
-	}
-	
 	public int getFlightTime() {
 		return flightTime;
 	}
 	
 	private int evaluateFlightTime() {
-		return DateUtil.differenceInMinutes(departure, arrival);
-	}
-	
+		return DateUtil.difference(departure, arrival);
+	}	
 }

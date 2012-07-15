@@ -1,4 +1,4 @@
-package pairings.graphs;
+package pairings.graph;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,14 +34,11 @@ public class Graph<T> {
 	}
 	
 	public void addEdge(Node<T> out, Node<T> in) {
-		addEdge(out, in, null);
+		addEdge(out, in, null, null);
 	}
 	
 	public void addEdge(Node<T> out, Node<T> in, EdgeType type) {
-		if (nodes.contains(out) && nodes.contains(in) && out != in) {
-			out.addNeighbor(in, type);
-			numberOfEdges++;
-		}
+		addEdge(out, in, type, null);
 	}
 	
 	public void addEdge(Node<T> out, Node<T> in, EdgeType type, Label label) {
@@ -63,8 +60,8 @@ public class Graph<T> {
 	
 	public int numberOfInwardEdges(Node<T> node) {
 		int count = 0;
-		for (Node<T> n: nodes) 
-			if (n.hasNeighbor(node))
+		for (Node<T> out: nodes) 
+			if (out.hasNeighbor(node))
 				count++;
 		return count;
 	}

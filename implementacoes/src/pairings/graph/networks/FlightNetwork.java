@@ -1,4 +1,4 @@
-package pairings.graphs;
+package pairings.graph.networks;
 
 import java.util.Date;
 import java.util.List;
@@ -6,15 +6,16 @@ import java.util.List;
 import pairings.DateUtil;
 import pairings.Leg;
 import pairings.Rules;
+import pairings.graph.EdgeType;
+import pairings.graph.Graph;
+import pairings.graph.Node;
 
 public class FlightNetwork extends Graph<Leg> {
 	private List<Leg> legs;
-	private int id;
 	
 	public FlightNetwork(List<Leg> legs) {
 		super();
 		this.legs = legs;
-		id = 0;
 	}
 
 	public void build() {
@@ -29,7 +30,7 @@ public class FlightNetwork extends Graph<Leg> {
 
 	private void addSameLegInSubsequentDays(Leg leg) {
 		for (int i = 0; i < Rules.MAX_DUTIES; i++) {
-			addNode(new Node<Leg>(leg, new Label(id++)));
+			addNode(new Node<Leg>(leg));
 			leg = getNextDayLeg(leg);
 		}
 	}
@@ -40,48 +41,57 @@ public class FlightNetwork extends Graph<Leg> {
 		String to = leg.getTo();
 		Date departure = DateUtil.addOneDay(leg.getDeparture());
 		Date arrival = DateUtil.addOneDay(leg.getArrival());
-		String tail = leg.getTail();
-		return new Leg(number, from, to, departure, arrival, tail);
+		return new Leg(number, from, to, departure, arrival);
 	}
 
 	private void addLegsConnections() {
 		for (Node<Leg> out: nodes) 
 			for (Node<Leg> in: nodes) 
-				addConnectionIfSpaceAndTimeCompatible(out, in);
+				addConnectionIfApplicable(out, in);
 	}
 	
-	private void addConnectionIfSpaceAndTimeCompatible(Node<Leg> out, Node<Leg> in) {
-		String to = out.getContent().getTo();
-		String from = in.getContent().getFrom();
+	private void addConnectionIfApplicable(Node<Leg> out, Node<Leg> in) {
+		String to = out.getInfo().getTo();
+		String from = in.getInfo().getFrom();
 		if (to == from) 
 			addConnectionIfTimeCompatible(out, in);
 	}
 	
 	private void addConnectionIfTimeCompatible(Node<Leg> out, Node<Leg> in) {
-		Date arrival = out.getContent().getArrival();
-		Date departure = in.getContent().getDeparture();
-		if (arrival.before(departure)) {
-			int delta = DateUtil.differenceInMinutes(arrival, departure);
-			//TODO mudar os ids
-			FlightNetworkEdgeLabel label = new FlightNetworkEdgeLabel(0, delta);
-			if (Rules.isLegalSitTime(delta)) 
-				addEdge(out, in, EdgeType.CONNECTION, label);
-			else if (Rules.isLegalRestTime(delta))
-				addEdge(out, in, EdgeType.OVERNIGHT, label);
-		}
+		Date arrival = out.getInfo().getArrival();
+		Date departure = in.getInfo().getDeparture();
+		if (arrival.before(departure))
+			addProperEdge(out, in, arrival, departure);
+	}
+
+	private void addProperEdge(Node<Leg> out, Node<Leg> in, Date arrival, Date departure) {
+		int sit = DateUtil.difference(arrival, departure);
+		FlightNetworkEdgeLabel label = new FlightNetworkEdgeLabel(sit);
+		if (Rules.isLegalSitTime(sit)) 
+			addEdge(out, in, EdgeType.CONNECTION, label);
+		else if (Rules.isLegalRestTime(sit))
+			addEdge(out, in, EdgeType.OVERNIGHT, label);
 	}
 	
 	public void addSource(Node<Leg> source) {
-		String base = source.getContent().getFrom();
+		String base = source.getInfo().getFrom();
 		for (Node<Leg> node: nodes)
-			if (node.getContent().getFrom() == base) 
+			if (node.getInfo().getFrom() == base) 
 				source.addNeighbor(node, EdgeType.FROM_SOURCE);
 	}
 	
 	public void addSink(Node<Leg> sink) {
-		String base = sink.getContent().getFrom();
+		String base = sink.getInfo().getFrom();
 		for (Node<Leg> node: nodes)
-			if (node.getContent().getTo() == base) 
+			if (node.getInfo().getTo() == base) 
 				node.addNeighbor(sink, EdgeType.TO_SINK);
+	}
+
+	public void removeSource(Node<Leg> source) {
+		// TODO
+	}
+	
+	public void removeSink(Node<Leg> sink) {
+		// TODO
 	}
 }
