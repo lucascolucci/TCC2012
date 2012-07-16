@@ -61,6 +61,6 @@ public class Leg {
 
 	public String dataToString() {
 		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
-		return number + ": " + from + "->" + to + "  " + df.format(departure) + " - " + df.format(arrival);
+		return number + "  " + from + "->" + to + "  " + df.format(departure) + " - " + df.format(arrival);
 	}	
 }

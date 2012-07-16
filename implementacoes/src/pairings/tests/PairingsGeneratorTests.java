@@ -1,22 +1,12 @@
 package pairings.tests;
 
-import static org.junit.Assert.*;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import pairings.Leg;
 import pairings.Pairing;
 import pairings.PairingsGenerator;
-import pairings.Rules;
-import pairings.graph.Node;
 import pairings.graph.networks.FlightNetwork;
 import pairings.io.PairingsOutputer;
 import pairings.io.TimeTableReader;
