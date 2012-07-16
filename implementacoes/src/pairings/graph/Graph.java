@@ -99,6 +99,16 @@ public class Graph<T> {
 	}
 	
 	public void removeNode(Node<T> node) {
-		// TODO
+		if (nodes.contains(node)) {
+			List<Edge<T>> inwards = getInwardEdges(node);
+			for (Edge<T> edge: inwards) {
+				edge.getOut().removeEdge(edge);
+				numberOfEdges--;
+			}
+			numberOfEdges -= node.numberOfNeighbors();
+			node.removeEdges();
+			nodes.remove(node);
+			numberOfNodes--;
+		}
 	}
 }
