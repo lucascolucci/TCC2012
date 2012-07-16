@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -69,12 +70,14 @@ public class FlightNetworkTests {
 	
 	@Test
 	public void sourceShouldHaveCorrectEdges() {
-		Leg sourceLeg = new Leg(0, "CGH", "CGH", null, null);
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(2012, 8, 27);
+		Leg sourceLeg = new Leg(0, "CGH", "CGH", calendar.getTime(), calendar.getTime());
 		Node<Leg> source = new Node<Leg>(sourceLeg);
 		net.addSource(source);
 		for (Edge<Leg> edge: net.getOutwardEdges(source))
 			assertEquals(EdgeType.FROM_SOURCE, edge.getType());
-		assertEquals(4, net.numberOfOutwardEdges(source));
+		assertEquals(1, net.numberOfOutwardEdges(source));
 	}
 	
 	@Test

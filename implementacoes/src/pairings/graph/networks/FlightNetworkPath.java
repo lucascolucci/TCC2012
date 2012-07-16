@@ -2,7 +2,6 @@ package pairings.graph.networks;
 
 import pairings.Leg;
 import pairings.graph.Edge;
-import pairings.graph.Node;
 import pairings.graph.Path;
 
 public class FlightNetworkPath extends Path<Leg>{

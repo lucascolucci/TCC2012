@@ -1,5 +1,7 @@
 package pairings;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Leg {
@@ -55,5 +57,10 @@ public class Leg {
 
 	public void setArrival(Date arrival) {
 		this.arrival = arrival;
+	}
+
+	public String printData() {
+		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
+		return number + ": " + from + "->" + to + "  " + df.format(departure) + " - " + df.format(arrival);
 	}	
 }

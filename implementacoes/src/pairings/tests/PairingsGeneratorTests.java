@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import pairings.Pairing;
 import pairings.PairingsGenerator;
 import pairings.Rules;
 import pairings.graph.networks.FlightNetwork;
+import pairings.io.PairingsOutputer;
 
 public class PairingsGeneratorTests {
 	private FlightNetwork net;
@@ -43,22 +45,21 @@ public class PairingsGeneratorTests {
 	}
 
 	@Test
-	public void test() throws ParseException {
-		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
+	public void itShouldHave2PairingsForCGH() {
 		PairingsGenerator generator = new PairingsGenerator(net);
-		List<Pairing> pairings = generator.getPairings("CGH", (Date) df.parse("27/08/2012 00:00"));
-		int j = 1;
-		for(Pairing pairing: pairings) {
-			System.out.println();
-			System.out.println("Pairing " + j++);
-			int i = 1;
-			for(Duty duty: pairing.getDuties()){
-				System.out.println("Duty " + i++);
-				for(Leg leg: duty.getLegs()){
-					System.out.println(leg.getNumber() + " " + leg.getFrom() + " " + leg.getTo() + " " + df.format(leg.getDeparture()) + " " + df.format(leg.getArrival()));
-				}
-			}
-		}
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(2012, 8, 27);
+		List<Pairing> pairings = generator.getPairings("CGH", calendar.getTime());
+		assertEquals(2, pairings.size());
+	}
+	
+	@Test
+	public void itShouldHave2PairingsForUDI() {
+		PairingsGenerator generator = new PairingsGenerator(net);
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(2012, 8, 27);
+		List<Pairing> pairings = generator.getPairings("UDI", calendar.getTime());
+		assertEquals(2, pairings.size());
 	}
 
 }
