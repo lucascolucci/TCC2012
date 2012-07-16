@@ -10,6 +10,7 @@ import pairings.graph.networks.FlightNetwork;
 import pairings.graph.networks.FlightNetworkEdgeLabel;
 import pairings.graph.networks.FlightNetworkNodeLabel;
 import pairings.graph.networks.FlightNetworkPath;
+import pairings.io.PairingsOutputer;
 
 public class PairingsGenerator {
 	private FlightNetwork net;
@@ -53,7 +54,8 @@ public class PairingsGenerator {
 			exploreTroughOvernight(edge, nodeLabel);
 			break;
 		case TO_SINK:
-			pairings.add(new Pairing(path));
+			PairingsOutputer.print(new Pairing(path));
+			//pairings.add(new Pairing(path));
 			break;
 		}
 	}

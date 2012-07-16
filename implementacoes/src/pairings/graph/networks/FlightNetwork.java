@@ -54,15 +54,15 @@ public class FlightNetwork extends Graph<Leg> {
 	}
 
 	private void addLegsConnections() {
-		for (Node<Leg> out: nodes) 
-			for (Node<Leg> in: nodes) 
+		for (Node<Leg> out: getNodes()) 
+			for (Node<Leg> in: getNodes()) 
 				addConnectionIfApplicable(out, in);
 	}
 	
 	private void addConnectionIfApplicable(Node<Leg> out, Node<Leg> in) {
 		String to = out.getInfo().getTo();
 		String from = in.getInfo().getFrom();
-		if (to == from) 
+		if (to.contentEquals(from))
 			addConnectionIfTimeCompatible(out, in);
 	}
 	
@@ -74,31 +74,31 @@ public class FlightNetwork extends Graph<Leg> {
 	}
 
 	private void addProperEdge(Node<Leg> out, Node<Leg> in, int sit) {
-		if (Rules.isLegalSitTime(sit)) 
+		if (Rules.isLegalSitTime(sit))
 			addEdge(out, in, EdgeType.CONNECTION, new FlightNetworkEdgeLabel(sit));
-		else if (Rules.isLegalRestTime(sit)) 
+		else if (Rules.isLegalRestTime(sit))
 			addEdge(out, in, EdgeType.OVERNIGHT, new FlightNetworkEdgeLabel(sit));
 	}
 	
 	public void addSource(Node<Leg> source) {
 		String base = source.getInfo().getFrom();
 		Date sourceDate = source.getInfo().getArrival();
-		for (Node<Leg> node: nodes)
-			if (!isSinkOrSource(node) && node.getInfo().getFrom() == base && DateUtil.isSameDayOfMonth(node.getInfo().getArrival(), sourceDate)) 
+		for (Node<Leg> node: getNodes())
+			if (!isSinkOrSource(node) && node.getInfo().getFrom().contentEquals(base) && DateUtil.isSameDayOfMonth(node.getInfo().getArrival(), sourceDate)) 
 				source.addNeighbor(node, EdgeType.FROM_SOURCE);
 		addNode(source);
 	}
 	
 	public void addSink(Node<Leg> sink) {
 		String base = sink.getInfo().getFrom();
-		for (Node<Leg> node: nodes)
-			if (!isSinkOrSource(node) && node.getInfo().getTo() == base) 
+		for (Node<Leg> node: getNodes())
+			if (!isSinkOrSource(node) && node.getInfo().getTo().contentEquals(base)) 
 				node.addNeighbor(sink, EdgeType.TO_SINK);
 		addNode(sink);
 	}
 	
 	private boolean isSinkOrSource(Node<Leg> node) {
-		return (node.getInfo().getFrom() == node.getInfo().getTo());
+		return (node.getInfo().getFrom().contentEquals(node.getInfo().getTo()));
 	}
 
 }

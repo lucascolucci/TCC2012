@@ -32,7 +32,7 @@ public class Rules {
 	}
 	
 	public static boolean isPossibleToAppendOvernightEdge(FlightNetworkPath path, Edge<Leg> edge, String base){
-		boolean	isOvernightNotAtBase = edge.getOut().getInfo().getTo() != base;
+		boolean	isOvernightNotAtBase = !edge.getOut().getInfo().getTo().contentEquals(base);
 		boolean isLegalNumberOfDuties = path.getNumberOfDuties() + 1 <= Rules.MAX_DUTIES;
 		return isOvernightNotAtBase && isLegalNumberOfDuties;
 	}
