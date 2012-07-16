@@ -20,4 +20,19 @@ public class DateUtil {
 		calendar.add(Calendar.DAY_OF_MONTH, 1);
 		return calendar.getTime();
 	}
+	
+	public static int getDayOfMonth(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return calendar.get(Calendar.DAY_OF_MONTH);
+	}
+	
+	public static boolean isSameDayOfMonth(Date date1, Date date2) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date1);
+		int day1 = calendar.get(Calendar.DAY_OF_MONTH);
+		calendar.setTime(date2);
+		int day2 = calendar.get(Calendar.DAY_OF_MONTH);
+		return day1 == day2;
+	}
 }

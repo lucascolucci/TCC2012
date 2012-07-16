@@ -22,9 +22,13 @@ public class Pairing {
 	private void build(FlightNetworkPath path) {
 		Duty duty = new Duty();
 		for (Edge<Leg> edge: path.getEdges()) {			
-			if (edge.getType() == EdgeType.OVERNIGHT) 
+			if (edge.getType() == EdgeType.OVERNIGHT) {
+				duties.add(duty);
 				duty = new Duty();	
+			}
 			duty.addLeg(edge.getIn().getInfo());
 		}
+		if (!duties.contains(duty)) 
+			duties.add(duty);
 	}
 }

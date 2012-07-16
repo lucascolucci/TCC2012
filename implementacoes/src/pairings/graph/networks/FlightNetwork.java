@@ -82,8 +82,9 @@ public class FlightNetwork extends Graph<Leg> {
 	
 	public void addSource(Node<Leg> source) {
 		String base = source.getInfo().getFrom();
+		Date sourceDate = source.getInfo().getArrival();
 		for (Node<Leg> node: nodes)
-			if (node.getInfo().getFrom() == base) 
+			if (!isSinkOrSource(node) && node.getInfo().getFrom() == base && DateUtil.isSameDayOfMonth(node.getInfo().getArrival(), sourceDate)) 
 				source.addNeighbor(node, EdgeType.FROM_SOURCE);
 		addNode(source);
 	}
@@ -91,8 +92,13 @@ public class FlightNetwork extends Graph<Leg> {
 	public void addSink(Node<Leg> sink) {
 		String base = sink.getInfo().getFrom();
 		for (Node<Leg> node: nodes)
-			if (node.getInfo().getTo() == base) 
+			if (!isSinkOrSource(node) && node.getInfo().getTo() == base) 
 				node.addNeighbor(sink, EdgeType.TO_SINK);
 		addNode(sink);
 	}
+	
+	private boolean isSinkOrSource(Node<Leg> node) {
+		return (node.getInfo().getFrom() == node.getInfo().getTo());
+	}
+
 }
