@@ -61,8 +61,6 @@ public class PairingsGeneratorTests {
 		PairingsGenerator generator = new PairingsGenerator(xpto);
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2012, 8, 27);
-		List<Pairing> pairings = generator.getPairings("CGH", calendar.getTime());
-		PairingsOutputer outputer = new PairingsOutputer(pairings);
-		outputer.print();
+		generator.getPairings("CGH", calendar.getTime());
 	}
 }
