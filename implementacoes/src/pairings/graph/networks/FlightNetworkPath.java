@@ -11,13 +11,12 @@ public class FlightNetworkPath extends Path<Leg>{
 	private int numberOfLegs;
 	private int numberOfDuties;
 	
-	public FlightNetworkPath(Node<Leg> source) {
+	public FlightNetworkPath() {
 		super();
 		flightTime = 0;
 		dutyTime = 0;
 		numberOfLegs = 0;
 		numberOfDuties = 0;
-		
 	}
 
 	public int getFlightTime() {
