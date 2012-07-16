@@ -64,4 +64,26 @@ public class DateUtilTests {
 		after = (Date) df.parse("16/01/2010 19:04");
 		assertEquals(after, DateUtil.addOneDay(before));
 	}
+	
+	@Test
+	public void itShouldGiveTheRightDayOfMonth() throws ParseException {
+		before = (Date) df.parse("01/01/2010 19:04");
+		after = (Date) df.parse("31/01/2010 19:04");
+		assertEquals(1, DateUtil.getDayOfMonth(before));
+		assertEquals(31, DateUtil.getDayOfMonth(after));
+	}
+	
+	@Test
+	public void itShouldBeTheSameDayOfMonth() throws ParseException {
+		before = (Date) df.parse("15/01/2010 19:04");
+		after = (Date) df.parse("15/02/2010 22:55");
+		assertTrue(DateUtil.isSameDayOfMonth(before, after));
+	}
+	
+	@Test
+	public void itShouldNotBeTheSameDayOfMonth() throws ParseException {
+		before = (Date) df.parse("01/01/2010 19:04");
+		after = (Date) df.parse("02/01/2010 22:55");
+		assertFalse(DateUtil.isSameDayOfMonth(before, after));
+	}
 }
