@@ -1,7 +1,6 @@
 package pairings;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import pairings.graph.Edge;
@@ -23,9 +22,9 @@ public class PairingsGenerator {
 		pairings = new ArrayList<Pairing>();
 	}
 		
-	public List<Pairing> getPairings(String base, Date start) {
+	public List<Pairing> getPairings(String base) {
 		this.base = base;
-		Leg sourceLeg = new Leg(0, base, base, start, start);
+		Leg sourceLeg = new Leg(0, base, base, null, null);
 		Node<Leg> source = new Node<Leg>(sourceLeg, null);
 		Leg sinkLeg = new Leg(0, base, base, null, null);
 		Node<Leg> sink = new Node<Leg>(sinkLeg, null);
@@ -42,88 +41,90 @@ public class PairingsGenerator {
 	}
 
 	private void exploreTroughEdge(Edge<Leg> edge) {
-		FlightNetworkNodeLabel nodeLabel = (FlightNetworkNodeLabel) edge.getIn().getLabel();
 		switch (edge.getType()) {
 		case FROM_SOURCE:
-			exploreTroughSourceEdges(edge, nodeLabel);
+			exploreTroughSource(edge);
 			break;
 		case CONNECTION:
-			exploreTroughConnection(edge, nodeLabel);
+			exploreTroughConnection(edge);
 			break;
 		case OVERNIGHT:
-			exploreTroughOvernight(edge, nodeLabel);
+			exploreTroughOvernight(edge);
 			break;
 		case TO_SINK:
-			PairingsOutputer.print(new Pairing(path));
-			//pairings.add(new Pairing(path));
+			// TODO opcção de saída
+			Pairing pairing = new Pairing(path);
+			PairingsOutputer.print(pairing);
+			pairings.add(pairing);
 			break;
 		}
 	}
-
-	private void exploreTroughConnection(Edge<Leg> edge, FlightNetworkNodeLabel nodeLabel) {
-		if (!path.hasSameLegNumber(edge.getIn().getInfo().getNumber())){				
-			FlightNetworkEdgeLabel edgeLabel = (FlightNetworkEdgeLabel) edge.getLabel();
-			if (Rules.isPossibleToAppendConnectionEdge(path, nodeLabel, edgeLabel)) {
-				addConnectionEdgeToPath(edge, nodeLabel, edgeLabel);
-				findPairing(edge.getIn());
-				removeConnectionEdgeFromPath(nodeLabel, edgeLabel);
-			}
-		}
-	}
-
-	private void addConnectionEdgeToPath(Edge<Leg> edge, FlightNetworkNodeLabel nodeLabel, FlightNetworkEdgeLabel edgeLabel) {
-		path.incrementDutyTime(edgeLabel.getSitTime() + nodeLabel.getFlightTime());
-		path.incrementFlightTime(nodeLabel.getFlightTime());
-		path.incrementNumberOfLegs();
-		path.addEdge(edge);
+	
+	private void exploreTroughSource(Edge<Leg> edge) {
+		addNewDutyToPath(edge);	
+		findPairing(edge.getIn());
+		resetPath();
 	}
 	
-	private void removeConnectionEdgeFromPath(FlightNetworkNodeLabel nodeLabel, FlightNetworkEdgeLabel edgeLabel) {
-		path.removeEdge();
-		path.decrementNumberOfLegs();
-		path.decrementFlightTime(nodeLabel.getFlightTime());
-		path.decrementDutyTime(edgeLabel.getSitTime() + nodeLabel.getFlightTime());
-	}
-	
-	private void exploreTroughOvernight(Edge<Leg> edge, FlightNetworkNodeLabel nodeLabel) {
-		if(!path.hasSameLegNumber(edge.getIn().getInfo().getNumber()))
-			if(Rules.isPossibleToAppendOvernightEdge(path, edge, base)) {
-				int numberOfLegs = path.getNumberOfLegs();
-				int dutyTime = path.getDutyTime();
-				int flightTime = path.getFlightTime();
-				addNewDutyToPath(edge, nodeLabel);	
-				findPairing(edge.getIn());
-				removeOvernightEdgeFromPath(numberOfLegs, dutyTime, flightTime);
-			}
-	}
-
-	private void addNewDutyToPath(Edge<Leg> edge, FlightNetworkNodeLabel nodeLabel) {
-		path.setDutyTime(nodeLabel.getFlightTime());
-		path.setFlightTime(nodeLabel.getFlightTime());
+	private void addNewDutyToPath(Edge<Leg> edge) {
+		int flightTime = ((FlightNetworkNodeLabel) edge.getIn().getLabel()).getFlightTime();
+		path.setFlightTime(flightTime);
+		path.setDutyTime(flightTime);
 		path.setNumberOfLegs(1);
 		path.incrementNumberOfDuties();
 		path.addEdge(edge);
 	}
 
-	private void removeOvernightEdgeFromPath(int numberOfLegs, int dutyTime, int flightTime) {
+	private void resetPath() {
+		path.removeEdge();
+		path.setNumberOfDuties(0);
+		path.setNumberOfLegs(0);
+		path.setDutyTime(0);
+		path.setFlightTime(0);
+	}
+
+	private void exploreTroughConnection(Edge<Leg> edge) {
+		if (Rules.isPossibleToAppendConnection(path, edge)) {
+			addConnectionToPath(edge);
+			findPairing(edge.getIn());
+			removeConnectionFromPath(edge);
+		}
+	}
+	
+	private void addConnectionToPath(Edge<Leg> edge) {
+		int flightTime = ((FlightNetworkNodeLabel) edge.getIn().getLabel()).getFlightTime();
+		int sitTime = ((FlightNetworkEdgeLabel) edge.getLabel()).getSitTime();
+		path.incrementFlightTime(flightTime);
+		path.incrementDutyTime(flightTime + sitTime);
+		path.incrementNumberOfLegs();
+		path.addEdge(edge);
+	}
+	
+	private void removeConnectionFromPath(Edge<Leg> edge) {
+		int flightTime = ((FlightNetworkNodeLabel) edge.getIn().getLabel()).getFlightTime();
+		int sitTime = ((FlightNetworkEdgeLabel) edge.getLabel()).getSitTime();
+		path.removeEdge();
+		path.decrementNumberOfLegs();
+		path.decrementDutyTime(flightTime + sitTime);
+		path.decrementFlightTime(flightTime);
+	}
+	
+	private void exploreTroughOvernight(Edge<Leg> edge) {
+		if(Rules.isPossibleToAppendOvernight(path, edge, base)) {
+			int numberOfLegs = path.getNumberOfLegs();
+			int dutyTime = path.getDutyTime();
+			int flightTime = path.getFlightTime();
+			addNewDutyToPath(edge);	
+			findPairing(edge.getIn());
+			removeOvernightFromPath(numberOfLegs, dutyTime, flightTime);
+		}
+	}
+
+	private void removeOvernightFromPath(int numberOfLegs, int dutyTime, int flightTime) {
 		path.removeEdge();
 		path.decrementNumberOfDuties();
 		path.setNumberOfLegs(numberOfLegs);
 		path.setDutyTime(dutyTime);
 		path.setFlightTime(flightTime);
-	}
-	
-	private void exploreTroughSourceEdges(Edge<Leg> edge, FlightNetworkNodeLabel nodeLabel) {
-		addNewDutyToPath(edge, nodeLabel);	
-		findPairing(edge.getIn());
-		resetPath();
-	}
-
-	private void resetPath() {
-		path.removeEdge();
-		path.decrementNumberOfDuties();
-		path.setNumberOfLegs(0);
-		path.setDutyTime(0);
-		path.setFlightTime(0);
 	}
 }

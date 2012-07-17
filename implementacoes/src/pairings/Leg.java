@@ -59,8 +59,11 @@ public class Leg {
 		this.arrival = arrival;
 	}
 
-	public String dataToString() {
+	public String toString() {
 		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
-		return number + ": " + from + "->" + to + "  " + df.format(departure) + " - " + df.format(arrival);
+		StringBuilder sb = new StringBuilder();
+		sb.append(number).append("  ").append(from).append("->").append(to).append("  ");
+		sb.append(df.format(departure)).append(" - ").append(df.format(arrival));
+		return sb.toString();
 	}	
 }

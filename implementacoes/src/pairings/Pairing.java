@@ -28,7 +28,6 @@ public class Pairing {
 			}
 			duty.addLeg(edge.getIn().getInfo());
 		}
-		if (!duties.contains(duty)) 
-			duties.add(duty);
+		duties.add(duty);
 	}
 }
