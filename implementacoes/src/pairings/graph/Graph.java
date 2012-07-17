@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Graph<T> {
-	private List<Node<T>> nodes;
-	private int numberOfNodes;
-	private int numberOfEdges;
+	protected List<Node<T>> nodes;
+	protected int numberOfNodes;
+	protected int numberOfEdges;
 
 	public Graph() {
 		nodes = new ArrayList<Node<T>>();

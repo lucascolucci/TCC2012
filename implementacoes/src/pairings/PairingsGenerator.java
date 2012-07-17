@@ -1,7 +1,6 @@
 package pairings;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import pairings.graph.Edge;
@@ -10,6 +9,7 @@ import pairings.graph.networks.FlightNetwork;
 import pairings.graph.networks.FlightNetworkEdgeLabel;
 import pairings.graph.networks.FlightNetworkNodeLabel;
 import pairings.graph.networks.FlightNetworkPath;
+import pairings.io.PairingsOutputer;
 
 public class PairingsGenerator {
 	private FlightNetwork net;
@@ -22,9 +22,9 @@ public class PairingsGenerator {
 		pairings = new ArrayList<Pairing>();
 	}
 		
-	public List<Pairing> getPairings(String base, Date start) {
+	public List<Pairing> getPairings(String base) {
 		this.base = base;
-		Leg sourceLeg = new Leg(0, base, base, start, start);
+		Leg sourceLeg = new Leg(0, base, base, null, null);
 		Node<Leg> source = new Node<Leg>(sourceLeg, null);
 		Leg sinkLeg = new Leg(0, base, base, null, null);
 		Node<Leg> sink = new Node<Leg>(sinkLeg, null);

@@ -50,42 +50,42 @@ public class FlightNetworkPath extends Path<Leg>{
 		this.numberOfDuties = numberOfDuties;
 	}
 	
-	public boolean hasSameLegNumber(int number) {
-		for (Edge<Leg> edge: getEdges())
-			if (edge.getOut().getInfo().getNumber() == number)
-				return true;
-		return false;
-	}
-
-	public void incrementNumberOfDuties() {
-		numberOfDuties++;
-	}
-
-	public void incrementNumberOfLegs() {
-		numberOfLegs++;
-	}
-
 	public void incrementFlightTime(int time) {
 		flightTime += time;
+	}
+	
+	public void decrementFlightTime(int time) {
+		flightTime -= time;
 	}
 
 	public void incrementDutyTime(int time) {
 		dutyTime += time;
 	}
 	
+	public void decrementDutyTime(int time) {
+		dutyTime -= time;
+	}
+	
+	public void incrementNumberOfLegs() {
+		numberOfLegs++;
+	}
+	
+	public void decrementNumberOfLegs() {
+		numberOfLegs--;
+	}
+	
+	public void incrementNumberOfDuties() {
+		numberOfDuties++;
+	}
+	
 	public void decrementNumberOfDuties() {
 		numberOfDuties--;
 	}
 
-	public void decrementNumberOfLegs() {
-		numberOfLegs--;
-	}
-
-	public void decrementFlightTime(int time) {
-		flightTime -= time;
-	}
-
-	public void decrementDutyTime(int time) {
-		dutyTime -= time;
+	public boolean hasSameLegNumber(int number) {
+		for (Edge<Leg> edge: edges)
+			if (edge.getOut().getInfo().getNumber() == number)
+				return true;
+		return false;
 	}
 }

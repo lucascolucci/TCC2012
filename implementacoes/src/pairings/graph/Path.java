@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Path<T> {
-	private List<Edge<T>> edges;
+	protected List<Edge<T>> edges;
 	
 	public Path() {
 		edges = new ArrayList<Edge<T>>();

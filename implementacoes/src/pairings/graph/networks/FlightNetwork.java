@@ -30,8 +30,8 @@ public class FlightNetwork extends Graph<Leg> {
 
 	private void addSameLegInSubsequentDays(Leg leg) {
 		int flightTime = evaluateFlightTime(leg); 
-		for (int i = 0; i < Rules.MAX_DUTIES; i++) {
-			addNode(new Node<Leg>(leg, new FlightNetworkNodeLabel(flightTime)));
+		for (int day = 1; day <= Rules.MAX_DUTIES; day++) {
+			addNode(new Node<Leg>(leg, new FlightNetworkNodeLabel(flightTime, day)));
 			leg = getNextDayLeg(leg);
 		}
 	}
@@ -54,8 +54,8 @@ public class FlightNetwork extends Graph<Leg> {
 	}
 
 	private void addLegsConnections() {
-		for (Node<Leg> out: getNodes()) 
-			for (Node<Leg> in: getNodes()) 
+		for (Node<Leg> out: nodes) 
+			for (Node<Leg> in: nodes) 
 				addConnectionIfApplicable(out, in);
 	}
 	
@@ -82,23 +82,41 @@ public class FlightNetwork extends Graph<Leg> {
 	
 	public void addSource(Node<Leg> source) {
 		String base = source.getInfo().getFrom();
-		Date sourceDate = source.getInfo().getArrival();
-		for (Node<Leg> node: getNodes())
-			if (!isSinkOrSource(node) && node.getInfo().getFrom().contentEquals(base) && DateUtil.isSameDayOfMonth(node.getInfo().getArrival(), sourceDate)) 
+		for (Node<Leg> node: nodes)
+			if (shouldBeConnectedToSource(node, base)) 
 				source.addNeighbor(node, EdgeType.FROM_SOURCE);
 		addNode(source);
+	}
+
+	private boolean shouldBeConnectedToSource(Node<Leg> node, String base) {
+		if (!isSink(node)) {
+			int day = ((FlightNetworkNodeLabel) node.getLabel()).getDay();
+			return node.getInfo().getFrom().contentEquals(base) && (day == 1);
+		}
+		return false;
+	}
+	
+	private boolean isSink(Node<Leg> node) {
+		Leg leg = node.getInfo();
+		return (leg.getFrom().contentEquals(leg.getTo()));
 	}
 	
 	public void addSink(Node<Leg> sink) {
 		String base = sink.getInfo().getFrom();
-		for (Node<Leg> node: getNodes())
-			if (!isSinkOrSource(node) && node.getInfo().getTo().contentEquals(base)) 
+		for (Node<Leg> node: nodes)
+			if (shouldBeConnectedToSink(node, base)) 
 				node.addNeighbor(sink, EdgeType.TO_SINK);
 		addNode(sink);
 	}
-	
-	private boolean isSinkOrSource(Node<Leg> node) {
-		return (node.getInfo().getFrom().contentEquals(node.getInfo().getTo()));
-	}
 
+	private boolean shouldBeConnectedToSink(Node<Leg> node, String base) {
+		if (!isSource(node))
+			return node.getInfo().getTo().contentEquals(base);
+		return false;
+	}
+	
+	private boolean isSource(Node<Leg> node) {
+		Leg leg = node.getInfo();
+		return (leg.getFrom().contentEquals(leg.getTo()));
+	}
 }
