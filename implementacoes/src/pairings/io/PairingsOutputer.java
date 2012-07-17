@@ -7,7 +7,15 @@ import pairings.Leg;
 import pairings.Pairing;
 
 public class PairingsOutputer {
-	private static int printedPairings = 0;
+	private static int pairingNumber = 1;
+	
+	public static int getPairingNumber() {
+		return pairingNumber;
+	}
+
+	public static void setPairingNumber(int pairingNumber) {
+		PairingsOutputer.pairingNumber = pairingNumber;
+	}
 	
 	public static void print(List<Pairing> pairings) {
 		for (Pairing pairing: pairings)
@@ -15,7 +23,7 @@ public class PairingsOutputer {
 	}
 	
 	public static void print(Pairing pairing) {
-		System.out.println("\nPairing " + (printedPairings++));
+		System.out.println("\nPairing " + (pairingNumber++));
 		int dutyNumber = 1;
 		for(Duty duty: pairing.getDuties()) {
 			System.out.println("\tDuty " + (dutyNumber++));

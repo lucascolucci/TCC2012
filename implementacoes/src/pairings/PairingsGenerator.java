@@ -52,8 +52,10 @@ public class PairingsGenerator {
 			exploreTroughOvernight(edge);
 			break;
 		case TO_SINK:
-			// TODO
-			pairings.add(new Pairing(path));
+			// TODO opcção de saída
+			Pairing pairing = new Pairing(path);
+			PairingsOutputer.print(pairing);
+			pairings.add(pairing);
 			break;
 		}
 	}

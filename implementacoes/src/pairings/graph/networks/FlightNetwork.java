@@ -91,14 +91,14 @@ public class FlightNetwork extends Graph<Leg> {
 	private boolean shouldBeConnectedToSource(Node<Leg> node, String base) {
 		if (!isSink(node)) {
 			int day = ((FlightNetworkNodeLabel) node.getLabel()).getDay();
-			return node.getInfo().getFrom().contentEquals(base) && (day == 1);
+			return (day == 1) && node.getInfo().getFrom().contentEquals(base);
 		}
 		return false;
 	}
 	
 	private boolean isSink(Node<Leg> node) {
 		Leg leg = node.getInfo();
-		return (leg.getFrom().contentEquals(leg.getTo()));
+		return leg.getFrom().contentEquals(leg.getTo());
 	}
 	
 	public void addSink(Node<Leg> sink) {
@@ -117,6 +117,6 @@ public class FlightNetwork extends Graph<Leg> {
 	
 	private boolean isSource(Node<Leg> node) {
 		Leg leg = node.getInfo();
-		return (leg.getFrom().contentEquals(leg.getTo()));
+		return leg.getFrom().contentEquals(leg.getTo());
 	}
 }

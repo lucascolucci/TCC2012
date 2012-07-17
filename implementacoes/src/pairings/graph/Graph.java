@@ -98,6 +98,7 @@ public class Graph<T> {
 		return -1;
 	}
 	
+	// TODO refatorar
 	public void removeNode(Node<T> node) {
 		if (nodes.contains(node)) {
 			List<Edge<T>> inwards = getInwardEdges(node);
