@@ -74,9 +74,9 @@ public class FlightNetwork extends Graph<Leg> {
 	}
 
 	private void addProperEdge(Node<Leg> out, Node<Leg> in, int sit) {
-		if (Rules.isLegalSitTime(sit))
+		if (Rules.sitTimeCheck(sit))
 			addEdge(out, in, EdgeType.CONNECTION, new FlightNetworkEdgeLabel(sit));
-		else if (Rules.isLegalRestTime(sit))
+		else if (Rules.restTimeCheck(sit))
 			addEdge(out, in, EdgeType.OVERNIGHT, new FlightNetworkEdgeLabel(sit));
 	}
 	

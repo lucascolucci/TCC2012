@@ -61,9 +61,9 @@ public class FlightNetworkTests {
 				Date departure = edge.getIn().getInfo().getDeparture();
 				assertTrue(arrival.before(departure));
 				int delta = DateUtil.difference(arrival, departure);
-				if (Rules.isLegalSitTime(delta))
+				if (Rules.sitTimeCheck(delta))
 					assertEquals(EdgeType.CONNECTION, edge.getType());
-				else if (Rules.isLegalRestTime(delta))
+				else if (Rules.restTimeCheck(delta))
 					assertEquals(EdgeType.OVERNIGHT, edge.getType());
 			}
 	}

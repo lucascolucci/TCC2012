@@ -57,10 +57,12 @@ public class PairingsGeneratorTests {
 		TimeTableReader reader = new TimeTableReader("./src/pairings/tests/time_table.txt");
 		FlightNetwork xpto = new FlightNetwork(reader.getLegs());
 		xpto.build();
-
+		
+		
 		PairingsGenerator generator = new PairingsGenerator(xpto);
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2012, 8, 27);
-		generator.getPairings("CGH", calendar.getTime());
+		
+		generator.getPairings("CGH", calendar.getTime());	
 	}
 }
