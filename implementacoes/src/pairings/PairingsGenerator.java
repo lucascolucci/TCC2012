@@ -1,40 +1,54 @@
 package pairings;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import pairings.graph.Edge;
 import pairings.graph.Node;
 import pairings.graph.networks.FlightNetwork;
 import pairings.graph.networks.FlightNetworkEdgeLabel;
 import pairings.graph.networks.FlightNetworkNodeLabel;
 import pairings.graph.networks.FlightNetworkPath;
-import pairings.io.PairingsOutputer;
+import pairings.io.Outputable;
 
 public class PairingsGenerator {
 	private FlightNetwork net;
-	private List<Pairing> pairings;
-	private FlightNetworkPath path;
 	private String base;
-
+	private Outputable outputer;
+	private FlightNetworkPath path;
+	private Node<Leg> source;
+	private Node<Leg> sink;
+	
 	public PairingsGenerator(FlightNetwork net) {
 		this.net = net;
 	}
 		
-	public List<Pairing> getPairings(String base) {
+	public void generate(String base, Outputable outputer) {
+		initialSetUp(base, outputer);
+		addSourceAndSink();
+		findPairings(source);
+		removeSourceAndSink();
+	}
+
+	private void initialSetUp(String base, Outputable outputer) {
 		this.base = base;
+		this.outputer = outputer;
+		path = new FlightNetworkPath();
+		setSourceAndSink(base);
+	}
+
+	private void setSourceAndSink(String base) {
 		Leg sourceLeg = new Leg(0, base, base, null, null);
-		Node<Leg> source = new Node<Leg>(sourceLeg, null);
 		Leg sinkLeg = new Leg(0, base, base, null, null);
-		Node<Leg> sink = new Node<Leg>(sinkLeg, null);
+		source = new Node<Leg>(sourceLeg, null);
+		sink = new Node<Leg>(sinkLeg, null);
+	}
+	
+	private void addSourceAndSink() {
 		net.addSource(source);
 		net.addSink(sink);
-		path = new FlightNetworkPath();
-		pairings = new ArrayList<Pairing>();
-		findPairings(source);
-		net.removeNode(sink);
+	}
+	
+	private void removeSourceAndSink() {
 		net.removeNode(source);
-		return pairings;
+		net.removeNode(sink);
 	}
 
 	private void findPairings(Node<Leg> node) {
@@ -54,10 +68,7 @@ public class PairingsGenerator {
 			exploreTroughOvernight(edge);
 			break;
 		case TO_SINK:
-			// TODO opcção de saída
-			Pairing pairing = new Pairing(path);
-			//PairingsOutputer.print(pairing);
-			pairings.add(pairing);
+			outputer.output(new Pairing(path));
 			break;
 		}
 	}

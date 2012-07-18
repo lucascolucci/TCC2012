@@ -8,45 +8,47 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pairings.Pairing;
+import pairings.PairingsGenerator;
 import pairings.Rules;
-import pairings.generators.MpsFilePairingsGenerator;
-import pairings.generators.MemoryPairingsGenerator;
 import pairings.graph.networks.FlightNetwork;
-import pairings.io.PairingsOutputer;
+import pairings.io.MemoryOutputer;
+import pairings.io.MpsOutputer;
 import pairings.io.TimeTableReader;
 
 public class PairingsGeneratorTests {
-	private MemoryPairingsGenerator memoryGenerator;
-	private MpsFilePairingsGenerator mpsGenerator;
-
+	private FlightNetwork net;
+	private PairingsGenerator generator;
+	
 	@Before
 	public void setUp() throws Exception {
-		TimeTableReader reader = new TimeTableReader("./src/pairings/tests/time_table_pairings_test.txt");
-		FlightNetwork net = new FlightNetwork(reader.getLegs());
+		TimeTableReader reader = new TimeTableReader("./src/pairings/tests/time_table_pairings_tests.txt");
+		net = new FlightNetwork(reader.getLegs());
 		net.build();
-		memoryGenerator = new MemoryPairingsGenerator(net);
-		mpsGenerator = new MpsFilePairingsGenerator(net);
+		generator = new PairingsGenerator(net);
 	}
 
 	@Test
 	public void itShouldGiveLegalPairings(){
 		String base = "CGH";
-		memoryGenerator.generate(base);
-		List<Pairing> pairings = memoryGenerator.getPairings();
-		PairingsOutputer.setPairingNumber(1);		
+		MemoryOutputer outputer = new MemoryOutputer();
+		generator.generate(base, outputer);
+		List<Pairing> pairings = outputer.getPairings();
 		for (Pairing pairing: pairings)
 			assertTrue(Rules.isPairingLegal(pairing, base));
+		
 		base = "SDU";
-		memoryGenerator.generate(base);
-		pairings = memoryGenerator.getPairings();
-		PairingsOutputer.setPairingNumber(1);		
+		outputer.clear();
+		generator.generate(base, outputer);
+		pairings = outputer.getPairings();				
 		for (Pairing pairing: pairings)
 			assertTrue(Rules.isPairingLegal(pairing, base));
 	}
 	
 	@Test
-	public void itShouldPrintCplexFile(){
+	public void itShouldOutputTheMpsFile() {
 		String base = "CGH";
-		mpsGenerator.generate(base);
+		MpsOutputer outputer = new MpsOutputer(net.getLegs(), base, null);
+		generator.generate(base, outputer);
+		outputer.completeFile();
 	}
 }
