@@ -19,7 +19,6 @@ public class PairingsGenerator {
 
 	public PairingsGenerator(FlightNetwork net) {
 		this.net = net;
-		pairings = new ArrayList<Pairing>();
 	}
 		
 	public List<Pairing> getPairings(String base) {
@@ -31,11 +30,14 @@ public class PairingsGenerator {
 		net.addSource(source);
 		net.addSink(sink);
 		path = new FlightNetworkPath();
-		findPairing(source);
+		pairings = new ArrayList<Pairing>();
+		findPairings(source);
+		net.removeNode(sink);
+		net.removeNode(source);
 		return pairings;
 	}
 
-	private void findPairing(Node<Leg> node) {
+	private void findPairings(Node<Leg> node) {
 		for (Edge<Leg> edge: node.getEdges())
 			exploreTroughEdge(edge);		
 	}
@@ -54,7 +56,7 @@ public class PairingsGenerator {
 		case TO_SINK:
 			// TODO opcção de saída
 			Pairing pairing = new Pairing(path);
-			PairingsOutputer.print(pairing);
+			//PairingsOutputer.print(pairing);
 			pairings.add(pairing);
 			break;
 		}
@@ -62,7 +64,7 @@ public class PairingsGenerator {
 	
 	private void exploreTroughSource(Edge<Leg> edge) {
 		addNewDutyToPath(edge);	
-		findPairing(edge.getIn());
+		findPairings(edge.getIn());
 		resetPath();
 	}
 	
@@ -86,7 +88,7 @@ public class PairingsGenerator {
 	private void exploreTroughConnection(Edge<Leg> edge) {
 		if (Rules.isPossibleToAppendConnection(path, edge)) {
 			addConnectionToPath(edge);
-			findPairing(edge.getIn());
+			findPairings(edge.getIn());
 			removeConnectionFromPath(edge);
 		}
 	}
@@ -115,7 +117,7 @@ public class PairingsGenerator {
 			int dutyTime = path.getDutyTime();
 			int flightTime = path.getFlightTime();
 			addNewDutyToPath(edge);	
-			findPairing(edge.getIn());
+			findPairings(edge.getIn());
 			removeOvernightFromPath(numberOfLegs, dutyTime, flightTime);
 		}
 	}

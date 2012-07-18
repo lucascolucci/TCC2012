@@ -88,7 +88,7 @@ public class Graph<T> {
 	}
 	
 	public int numberOfInwardEdges(Node<T> node) {
-		if (nodes.contains(node)) {
+		if (node != null && nodes.contains(node)) {
 			int count = 0;
 			for (Node<T> out: nodes) 
 				if (out.hasNeighbor(node))
@@ -100,7 +100,7 @@ public class Graph<T> {
 	
 	// TODO refatorar
 	public void removeNode(Node<T> node) {
-		if (nodes.contains(node)) {
+		if (node != null && nodes.contains(node)) {
 			List<Edge<T>> inwards = getInwardEdges(node);
 			for (Edge<T> edge: inwards) {
 				edge.getOut().removeEdge(edge);

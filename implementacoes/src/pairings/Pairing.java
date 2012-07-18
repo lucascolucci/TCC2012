@@ -19,6 +19,26 @@ public class Pairing {
 		return duties;
 	}
 	
+	public int getNumberOfDuties() {
+		return duties.size();
+	}
+	
+	public Leg getFirstLeg() {
+		if (!duties.isEmpty() && !duties.get(0).getLegs().isEmpty()) 
+			return duties.get(0).getLegs().get(0);
+		return null;
+	}
+	
+	public Leg getLastLeg() {
+		if (!duties.isEmpty()) {
+			Duty lastDuty = duties.get(duties.size() - 1);
+			int numberOfLegs = lastDuty.getLegs().size();
+			if (numberOfLegs > 0)
+				return lastDuty.getLegs().get(numberOfLegs - 1);
+		}
+		return null;
+	}
+	
 	private void build(FlightNetworkPath path) {
 		Duty duty = new Duty();
 		for (Edge<Leg> edge: path.getEdges()) {			

@@ -83,8 +83,10 @@ public class FlightNetwork extends Graph<Leg> {
 	public void addSource(Node<Leg> source) {
 		String base = source.getInfo().getFrom();
 		for (Node<Leg> node: nodes)
-			if (shouldBeConnectedToSource(node, base)) 
+			if (shouldBeConnectedToSource(node, base)) {
 				source.addNeighbor(node, EdgeType.FROM_SOURCE);
+				numberOfEdges++;
+			}
 		addNode(source);
 	}
 
@@ -104,8 +106,10 @@ public class FlightNetwork extends Graph<Leg> {
 	public void addSink(Node<Leg> sink) {
 		String base = sink.getInfo().getFrom();
 		for (Node<Leg> node: nodes)
-			if (shouldBeConnectedToSink(node, base)) 
+			if (shouldBeConnectedToSink(node, base)) {
 				node.addNeighbor(sink, EdgeType.TO_SINK);
+				numberOfEdges++;
+			}
 		addNode(sink);
 	}
 

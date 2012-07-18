@@ -41,7 +41,7 @@ public class TimeTableReaderTests {
 	}
 	
 	@Test
-	public void itShouldMatchLastFlight(){
+	public void itShouldMatchLastLeg(){
 		Leg firstLeg = legs.get(legs.size() - 1); 
 		assertEquals(1561, firstLeg.getNumber());
 		assertEquals("SDU", firstLeg.getFrom());

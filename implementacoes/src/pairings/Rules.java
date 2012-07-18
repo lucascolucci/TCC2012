@@ -16,6 +16,56 @@ public class Rules {
 	public static final int MAX_DUTY_TIME = 690;  // 11.5 horas;
 	public static final int MAX_LEGS = 5;
 	
+	public static boolean isPairingLegal(Pairing pairing, String base) {
+		if (pairing != null && pairing.getNumberOfDuties() <= MAX_DUTIES) {
+			if (originDestinationCheck(pairing, base))
+				return pairingDutiesCheck(pairing);
+		}
+		return false;
+	}
+
+	private static boolean originDestinationCheck(Pairing pairing, String base) {
+		String from = pairing.getFirstLeg().getFrom();
+		String to = pairing.getLastLeg().getTo();
+		return from.contentEquals(base) && to.contentEquals(to);
+	}
+
+	private static boolean pairingDutiesCheck(Pairing pairing) {
+		Duty previous = null;
+		for (Duty duty: pairing.getDuties()) {
+			if (!isDutyLegal(duty)) 
+				return false;
+			if (previous != null) {
+				int sit = DateUtil.difference(previous.getLastLeg().getArrival(), duty.getFirstLeg().getDeparture());
+				if (!restTimeCheck(sit)) 
+					return false;
+			}
+		}
+		return true;
+	}
+
+	private static boolean isDutyLegal(Duty duty) {
+		if (duty != null && duty.getNumberOfLegs() <= MAX_LEGS) {
+			if (duty.getFlightTime() <= MAX_FLIGHT_TIME) 
+				if (duty.getDutyTime() <= MAX_DUTY_TIME) 
+					return checkDutyConnections(duty);
+		}
+		return false;
+	}
+
+	private static boolean checkDutyConnections(Duty duty) {
+		Leg previous = null;
+		for (Leg leg: duty.getLegs()) {
+			if (previous != null) {
+				int sit = DateUtil.difference(previous.getArrival(), leg.getDeparture());
+				if (!sitTimeCheck(sit))
+					return false;
+			}
+			previous = leg;
+		}
+		return true;
+	}
+	
 	public static boolean sitTimeCheck(int sit) {
 		return (sit >= Rules.MIN_SIT_TIME && sit <= Rules.MAX_SIT_TIME);
 	}
