@@ -49,6 +49,6 @@ public class PairingsGeneratorTests {
 		String base = "CGH";
 		MpsOutputer outputer = new MpsOutputer(net.getLegs(), base, null);
 		generator.generate(base, outputer);
-		outputer.completeFile();
+		outputer.complete();
 	}
 }
