@@ -50,4 +50,15 @@ public class Pairing {
 		}
 		duties.add(duty);
 	}
+
+	public int getCost() {
+		return 45;
+	}
+
+	public boolean contains(int number) {
+		for (Duty duty: duties)
+			if(duty.contains(number))
+				return true;
+		return false;
+	}
 }

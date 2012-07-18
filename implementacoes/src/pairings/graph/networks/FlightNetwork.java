@@ -18,6 +18,10 @@ public class FlightNetwork extends Graph<Leg> {
 		this.legs = legs;
 	}
 
+	public List<Leg> getLegs() {
+		return legs;
+	}
+
 	public void build() {
 		addLegs();
 		addLegsConnections();
@@ -123,4 +127,5 @@ public class FlightNetwork extends Graph<Leg> {
 		Leg leg = node.getInfo();
 		return leg.getFrom().contentEquals(leg.getTo());
 	}
+
 }

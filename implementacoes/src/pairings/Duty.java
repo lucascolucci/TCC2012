@@ -47,4 +47,11 @@ public class Duty {
 			return legs.get(legs.size() - 1);
 		return null;
 	}
+
+	public boolean contains(int number) {
+		for (Leg leg: legs)
+			if (leg.getNumber() == number)
+				return true;
+		return false;
+	}
 }
