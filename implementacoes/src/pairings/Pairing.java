@@ -64,4 +64,15 @@ public class Pairing {
 				return true;
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		int dutyNumber = 0;
+		for(Duty duty: duties) {
+			sb.append("\tDuty ").append(++dutyNumber).append('\n');
+			sb.append(duty.toString());
+		}
+		return sb.toString();
+	}
 }

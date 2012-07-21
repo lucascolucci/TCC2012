@@ -54,4 +54,12 @@ public class Duty {
 				return true;
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for(Leg leg: legs)
+			sb.append("\t\t").append(leg.toString()).append('\n');
+		return sb.toString();
+	}
 }

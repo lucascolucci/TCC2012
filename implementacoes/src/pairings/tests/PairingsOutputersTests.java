@@ -2,33 +2,48 @@ package pairings.tests;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
+
+import com.sun.xml.internal.ws.message.stream.OutboundStreamHeader;
 
 import pairings.PairingsGenerator;
 import pairings.graph.networks.FlightNetwork;
+import pairings.io.CplexOutputer;
+import pairings.io.FileOutputer;
 import pairings.io.MpsOutputer;
 import pairings.io.Outputable;
+import pairings.io.TerminalOutputer;
 import pairings.io.TimeTableReader;
 
 public class PairingsOutputersTests {
-	private FlightNetwork net;
-	private PairingsGenerator generator;
-	
-	@Before
-	public void setUp() throws Exception {
-		TimeTableReader reader = new TimeTableReader("./src/pairings/tests/time_table_pairings_tests.txt");
-		net = new FlightNetwork(reader.getLegs());
-		net.build();
-		generator = new PairingsGenerator(net);
-	}
-
 	@Test
-	public void itShouldOutputTheMpsFile() {
-		MpsOutputer outputer = new MpsOutputer(net.getLegs(), "CGH", null);
-		Outputable[] outputers =  new Outputable[] { outputer };
-		generator.generate("CGH", outputers);
-		outputer.complete();
-		assertTrue(true);
+	public void itShouldGiveTheSameNumberOfPairingsForAllOutputers() {
+		TimeTableReader reader = new TimeTableReader("./src/pairings/tests/time_tables/cgh_sdu_10.txt");
+		FlightNetwork net = new FlightNetwork(reader.getLegs());
+		net.build();
+		PairingsGenerator generator = new PairingsGenerator(net);
+	
+		TerminalOutputer terminal = new TerminalOutputer();
+		FileOutputer file = new FileOutputer("pairings.dat");
+		MpsOutputer mps = new MpsOutputer(net.getLegs(), "in.mps");
+		CplexOutputer cplex = new CplexOutputer();
+		Outputable[] outs = new Outputable[] { terminal, file, mps, cplex };
+		
+		mps.writeUntilColumns();	
+		
+		generator.generate("CGH", outs);
+		
+		mps.writeRhsBoundsAndEnd();
+		mps.close();
+		file.close();
+		
+		int last = -1;
+		for (Outputable out: outs)
+			if (last == -1)
+				last = out.getNumberOfPairings();
+			else {
+				assertEquals(last, out.getNumberOfPairings());
+				last = out.getNumberOfPairings();
+			}
 	}
 }

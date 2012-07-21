@@ -6,7 +6,13 @@ import java.util.List;
 import pairings.Pairing;
 
 public class MemoryOutputer implements Outputable {
+	private int numberOfPairings;
 	private List<Pairing> pairings;
+	
+	@Override
+	public int getNumberOfPairings() {
+		return numberOfPairings;
+	}
 	
 	public MemoryOutputer() {
 		pairings = new ArrayList<Pairing>();
@@ -16,16 +22,13 @@ public class MemoryOutputer implements Outputable {
 		return pairings;
 	}
 	
-	public int getNumberOfPairings() {
-		return pairings.size();
-	}
-	
 	public void clear() {
 		pairings.clear();
 	}
 	
 	@Override
 	public void output(Pairing pairing) {
+		++numberOfPairings;
 		pairings.add(pairing);
 	}
 }

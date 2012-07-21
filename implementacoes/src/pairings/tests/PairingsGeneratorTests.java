@@ -68,7 +68,7 @@ public class PairingsGeneratorTests {
 	
 	@Test
 	public void itShouldGiveLegalPairings() {
-		TimeTableReader reader = new TimeTableReader("./src/pairings/tests/time_table_pairings_tests.txt");
+		TimeTableReader reader = new TimeTableReader("./src/pairings/tests/time_tables/cgh_sdu_10.txt");
 		FlightNetwork net = new FlightNetwork(reader.getLegs());
 		net.build();
 		

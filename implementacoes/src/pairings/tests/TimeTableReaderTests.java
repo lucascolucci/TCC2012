@@ -20,7 +20,7 @@ public class TimeTableReaderTests {
 	
 	@Before
 	public void setUp() throws Exception {
-		timeTableReader = new TimeTableReader("./src/pairings/tests/time_table.txt");		
+		timeTableReader = new TimeTableReader("./src/pairings/tests/time_tables/cgh_sdu_62.txt");		
 		legs = timeTableReader.getLegs();
 		df = new SimpleDateFormat(Rules.DATE_FORMAT);
 	}
