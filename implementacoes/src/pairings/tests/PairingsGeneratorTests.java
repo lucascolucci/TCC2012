@@ -1,54 +1,86 @@
 package pairings.tests;
 
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import static org.junit.Assert.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import pairings.Leg;
 import pairings.Pairing;
 import pairings.PairingsGenerator;
 import pairings.Rules;
 import pairings.graph.networks.FlightNetwork;
 import pairings.io.MemoryOutputer;
-import pairings.io.MpsOutputer;
+import pairings.io.Outputable;
 import pairings.io.TimeTableReader;
 
 public class PairingsGeneratorTests {
-	private FlightNetwork net;
-	private PairingsGenerator generator;
+	private MemoryOutputer outputer;
+	private Outputable[] outputers;
 	
-	@Before
-	public void setUp() throws Exception {
-		TimeTableReader reader = new TimeTableReader("./src/pairings/tests/time_table_pairings_tests.txt");
-		net = new FlightNetwork(reader.getLegs());
-		net.build();
-		generator = new PairingsGenerator(net);
+	@Before 
+	public void setUp() {
+		outputer = new MemoryOutputer();
+		outputers = new Outputable[] { outputer };
 	}
-
+	
 	@Test
-	public void itShouldGiveLegalPairings(){
-		String base = "CGH";
-		MemoryOutputer outputer = new MemoryOutputer();
-		generator.generate(base, outputer);
-		List<Pairing> pairings = outputer.getPairings();
-		for (Pairing pairing: pairings)
-			assertTrue(Rules.isPairingLegal(pairing, base));
+	public void itShouldGive2PairingsForEachBase() throws ParseException {
+		FlightNetwork net = getFlightNetworkWith2Legs();
+		PairingsGenerator generator = new PairingsGenerator(net);
 		
-		base = "SDU";
+		generator.generate("CGH", outputers);
+		assertEquals(2, outputer.getNumberOfPairings());
+		
 		outputer.clear();
-		generator.generate(base, outputer);
-		pairings = outputer.getPairings();				
-		for (Pairing pairing: pairings)
-			assertTrue(Rules.isPairingLegal(pairing, base));
+		generator.generate("UDI", outputers);
+		assertEquals(2, outputer.getNumberOfPairings());
+	}
+	
+	private FlightNetwork getFlightNetworkWith2Legs() throws ParseException {
+		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
+		List<Leg> legsList = new ArrayList<Leg>();
+		
+		Date leg1Dep = (Date) df.parse("27/08/2012 06:10");
+		Date leg1Arr = (Date) df.parse("27/08/2012 07:08");
+		Date leg2Dep = (Date) df.parse("27/08/2012 09:00");
+		Date leg2Arr = (Date) df.parse("27/08/2012 09:58");
+		
+		Leg leg1 = new Leg(1234, "CGH", "UDI", leg1Dep, leg1Arr);
+		Leg leg2 = new Leg(1235, "UDI", "CGH", leg2Dep, leg2Arr);
+		
+		legsList.add(leg1);
+		legsList.add(leg2);
+		
+		FlightNetwork net = new FlightNetwork(legsList);
+		net.build();
+		
+		return net;
 	}
 	
 	@Test
-	public void itShouldOutputTheMpsFile() {
-		String base = "CGH";
-		MpsOutputer outputer = new MpsOutputer(net.getLegs(), base, null);
-		generator.generate(base, outputer);
-		outputer.complete();
+	public void itShouldGiveLegalPairings() {
+		TimeTableReader reader = new TimeTableReader("./src/pairings/tests/time_table_pairings_tests.txt");
+		FlightNetwork net = new FlightNetwork(reader.getLegs());
+		net.build();
+		
+		PairingsGenerator generator = new PairingsGenerator(net);
+		
+		generator.generate("CGH", outputers);
+		for (Pairing pairing: outputer.getPairings())
+			assertTrue(Rules.isPairingLegal(pairing, "CGH"));
+		
+		outputer.clear();
+		generator.generate("SDU", outputers);	
+		for (Pairing pairing: outputer.getPairings())
+			assertTrue(Rules.isPairingLegal(pairing, "SDU"));
 	}
 }

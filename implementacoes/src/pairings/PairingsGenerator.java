@@ -11,7 +11,7 @@ import pairings.io.Outputable;
 public class PairingsGenerator {
 	private FlightNetwork net;
 	private String base;
-	private Outputable outputer;
+	private Outputable[] outputers;
 	private FlightNetworkPath path;
 	private Node<Leg> source;
 	private Node<Leg> sink;
@@ -20,16 +20,16 @@ public class PairingsGenerator {
 		this.net = net;
 	}
 		
-	public void generate(String base, Outputable outputer) {
-		initialSetUp(base, outputer);
+	public void generate(String base, Outputable[] outputers) {
+		initialSetUp(base, outputers);
 		addSourceAndSink();
 		findPairings(source);
 		removeSourceAndSink();
 	}
 
-	private void initialSetUp(String base, Outputable outputer) {
+	private void initialSetUp(String base, Outputable[] outputers) {
 		this.base = base;
-		this.outputer = outputer;
+		this.outputers = outputers;
 		path = new FlightNetworkPath();
 		setSourceAndSink(base);
 	}
@@ -68,7 +68,7 @@ public class PairingsGenerator {
 			exploreTroughOvernight(edge);
 			break;
 		case TO_SINK:
-			outputer.output(new Pairing(path));
+			outputFoundPairing();
 			break;
 		}
 	}
@@ -139,5 +139,11 @@ public class PairingsGenerator {
 		path.setNumberOfLegs(numberOfLegs);
 		path.setDutyTime(dutyTime);
 		path.setFlightTime(flightTime);
+	}
+	
+	private void outputFoundPairing() {
+		Pairing pairing = new Pairing(path);
+		for (Outputable outputer: outputers)
+			outputer.output(pairing);
 	}
 }
