@@ -6,23 +6,17 @@ import java.io.IOException;
 
 import pairings.Pairing;
 
-public class FileOutputer implements Outputable {
+public class FileOutputer extends BasicOutputer {
 	private String fileName;
-	private int numberOfPairings;
 	private BufferedWriter out;
 	
 	public String getFileName() {
 		return fileName;
 	}
 	
-	@Override
-	public int getNumberOfPairings() {
-		return numberOfPairings;
-	}
-	
 	public FileOutputer(String fileName) {
+		super();
 		this.fileName = fileName;
-		numberOfPairings = 0;
 		setUpBufferedWriter();
 	}
 	
@@ -36,9 +30,10 @@ public class FileOutputer implements Outputable {
 
 	@Override
 	public void output(Pairing pairing) {
-		++numberOfPairings;
-		write("Pairing " + numberOfPairings + '\n');
-		write(pairing.toString());
+		StringBuilder sb = new StringBuilder("Pairing ");
+		sb.append(numberOfPairings).append('\n');
+		sb.append(pairing.toString());
+		write(sb.toString());
 	}
 	
 	private void write(String content) {

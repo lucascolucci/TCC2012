@@ -6,12 +6,12 @@ import pairings.graph.networks.FlightNetwork;
 import pairings.graph.networks.FlightNetworkEdgeLabel;
 import pairings.graph.networks.FlightNetworkNodeLabel;
 import pairings.graph.networks.FlightNetworkPath;
-import pairings.io.Outputable;
+import pairings.io.BasicOutputer;
 
 public class PairingsGenerator {
 	private FlightNetwork net;
 	private String base;
-	private Outputable[] outputers;
+	private BasicOutputer[] outputers;
 	private FlightNetworkPath path;
 	private Node<Leg> source;
 	private Node<Leg> sink;
@@ -20,14 +20,14 @@ public class PairingsGenerator {
 		this.net = net;
 	}
 		
-	public void generate(String base, Outputable[] outputers) {
+	public void generate(String base, BasicOutputer[] outputers) {
 		initialSetUp(base, outputers);
 		addSourceAndSink();
 		findPairings(source);
 		removeSourceAndSink();
 	}
 
-	private void initialSetUp(String base, Outputable[] outputers) {
+	private void initialSetUp(String base, BasicOutputer[] outputers) {
 		this.base = base;
 		this.outputers = outputers;
 		path = new FlightNetworkPath();
@@ -143,7 +143,9 @@ public class PairingsGenerator {
 	
 	private void outputFoundPairing() {
 		Pairing pairing = new Pairing(path);
-		for (Outputable outputer: outputers)
+		for (BasicOutputer outputer: outputers) {
+			outputer.incrementNumberOfPairings();
 			outputer.output(pairing);
+		}
 	}
 }

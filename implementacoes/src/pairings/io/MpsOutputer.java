@@ -8,29 +8,19 @@ import java.util.List;
 import pairings.Leg;
 import pairings.Pairing;
 
-public class MpsOutputer implements Outputable {
+public class MpsOutputer extends BasicOutputer {
 	private List<Leg> legs;
 	private String fileName;
 	private BufferedWriter out;
-	private int numberOfPairings;
 	
 	public String getFileName() {
 		return fileName;
 	}
 	
-	@Override
-	public int getNumberOfPairings() {
-		return numberOfPairings;
-	}
-	
-	public void setPairingNumber(int numberOfPairings) {
-		this.numberOfPairings = numberOfPairings;
-	}
-	
 	public MpsOutputer(List<Leg> legs, String fileName) {
+		super();
 		this.legs = legs;
 		this.fileName = fileName;
-		numberOfPairings = 0;
 		setUpBufferedWriter();
 	}
 	
@@ -43,13 +33,9 @@ public class MpsOutputer implements Outputable {
 	}
 	
 	public void writeUntilColumns() {
-		writeHeader();
-		writeRows();
-		writeColumnsFirstLine();
-	}
-	
-	private void writeHeader() {
 		write("NAME CPP\n");
+		writeRows();
+		write("COLUMNS\n");
 	}
 	
 	private void writeRows() {
@@ -60,13 +46,8 @@ public class MpsOutputer implements Outputable {
 		write(sb.toString());
 	}
 	
-	private void writeColumnsFirstLine() {
-		write("COLUMNS\n");
-	}
-	
 	@Override
 	public void output(Pairing pairing) {
-		++numberOfPairings;
 		StringBuilder sb = new StringBuilder();
 		sb.append(" X").append(numberOfPairings).append(" COST ").append(String.valueOf(pairing.getCost())).append('\n');
 		for (Leg leg: legs) 
@@ -78,7 +59,7 @@ public class MpsOutputer implements Outputable {
 	public void writeRhsBoundsAndEnd() {
 		writeRhs();
 		writeBounds();
-		writeEnd();
+		write("ENDATA\n");
 	}
 		
 	private void writeRhs() {
@@ -95,10 +76,6 @@ public class MpsOutputer implements Outputable {
 			write(sb.toString());
 			sb = new StringBuilder();
 		}
-	}
-	
-	private void writeEnd() {
-		write("ENDATA\n");
 	}
 	
 	private void write(String content) {

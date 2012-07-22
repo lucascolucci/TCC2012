@@ -19,17 +19,17 @@ import pairings.PairingsGenerator;
 import pairings.Rules;
 import pairings.graph.networks.FlightNetwork;
 import pairings.io.MemoryOutputer;
-import pairings.io.Outputable;
+import pairings.io.BasicOutputer;
 import pairings.io.TimeTableReader;
 
 public class PairingsGeneratorTests {
 	private MemoryOutputer outputer;
-	private Outputable[] outputers;
+	private BasicOutputer[] outputers;
 	
 	@Before 
 	public void setUp() {
 		outputer = new MemoryOutputer();
-		outputers = new Outputable[] { outputer };
+		outputers = new BasicOutputer[] { outputer };
 	}
 	
 	@Test

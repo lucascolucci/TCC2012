@@ -2,20 +2,13 @@ package pairings.io;
 
 import pairings.Pairing;
 
-public class CplexOutputer implements Outputable {
-	private int numberOfPairings;
-	
-	@Override
-	public int getNumberOfPairings() {
-		return numberOfPairings;
-	}
-	
+public class CplexOutputer extends BasicOutputer {
 	public CplexOutputer() {
-		numberOfPairings = 0;
+		super();
 	}
 		
 	@Override
 	public void output(Pairing pairing) {
-		++numberOfPairings;
+
 	}
 }
