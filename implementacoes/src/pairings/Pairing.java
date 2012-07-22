@@ -2,7 +2,6 @@ package pairings;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import pairings.graph.Edge;
 import pairings.graph.EdgeType;
@@ -54,8 +53,7 @@ public class Pairing {
 
 	public int getCost() {
 		// TODO
-		Random r = new Random();
-		return r.nextInt(500);
+		return 1;
 	}
 
 	public boolean contains(int number) {

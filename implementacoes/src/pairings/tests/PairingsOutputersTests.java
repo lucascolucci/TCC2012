@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.sun.xml.internal.ws.message.stream.OutboundStreamHeader;
-
 import pairings.PairingsGenerator;
 import pairings.graph.networks.FlightNetwork;
 import pairings.io.CplexOutputer;
