@@ -25,7 +25,6 @@ public class TerminalOutputer extends Outputer {
 	}
 	
 	private void print(Pairing pairing) {
-		System.out.println("Pairing " + numberOfPairings);
 		System.out.print(pairing.toString());
 	}
 }

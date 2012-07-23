@@ -31,7 +31,7 @@ public class SolversTests {
 		
 		mps.writeUntilColumns();	
 		generator.generate("CGH", outputers);
-		mps.writeRhsBoundsAndEnd();
+		mps.writeRhsAndBounds(generator.getNumberOfPairings());
 		mps.close();
 
 		GlpkSolver solver = new GlpkSolver(mpsFile);

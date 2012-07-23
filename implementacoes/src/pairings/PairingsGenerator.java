@@ -10,11 +10,16 @@ import pairings.io.Outputer;
 
 public class PairingsGenerator {
 	private FlightNetwork net;
+	private int numberOfPairings;
 	private String base;
 	private Outputer[] outputers;
 	private FlightNetworkPath path;
 	private Node<Leg> source;
 	private Node<Leg> sink;
+	
+	public int getNumberOfPairings() {
+		return numberOfPairings;
+	}
 	
 	public PairingsGenerator(FlightNetwork net) {
 		this.net = net;
@@ -30,6 +35,7 @@ public class PairingsGenerator {
 	private void initialSetUp(String base, Outputer[] outputers) {
 		this.base = base;
 		this.outputers = outputers;
+		numberOfPairings = 0;
 		path = new FlightNetworkPath();
 		setSourceAndSink(base);
 	}
@@ -143,9 +149,8 @@ public class PairingsGenerator {
 	
 	private void outputFoundPairing() {
 		Pairing pairing = new Pairing(path);
-		for (Outputer outputer: outputers) {
-			outputer.incrementNumberOfPairings();
+		pairing.setNumber(++numberOfPairings);
+		for (Outputer outputer: outputers) 
 			outputer.output(pairing);
-		}
 	}
 }

@@ -38,11 +38,11 @@ public class PairingsGeneratorTests {
 		PairingsGenerator generator = new PairingsGenerator(net);
 		
 		generator.generate("CGH", outputers);
-		assertEquals(2, outputer.getNumberOfPairings());
+		assertEquals(2, generator.getNumberOfPairings());
 		
 		outputer.reset();
 		generator.generate("UDI", outputers);
-		assertEquals(2, outputer.getNumberOfPairings());
+		assertEquals(2, generator.getNumberOfPairings());
 	}
 	
 	private FlightNetwork getFlightNetworkWith2Legs() throws ParseException {

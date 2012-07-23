@@ -30,10 +30,7 @@ public class FileOutputer extends Outputer {
 
 	@Override
 	public void output(Pairing pairing) {
-		StringBuilder sb = new StringBuilder("Pairing ");
-		sb.append(numberOfPairings).append('\n');
-		sb.append(pairing.toString());
-		write(sb.toString());
+		write(pairing.toString());
 	}
 	
 	private void write(String content) {

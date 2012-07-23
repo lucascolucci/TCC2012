@@ -49,16 +49,16 @@ public class MpsOutputer extends Outputer {
 	@Override
 	public void output(Pairing pairing) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(" X").append(numberOfPairings).append(" COST ").append(String.valueOf(pairing.getCost())).append('\n');
+		sb.append(" X").append(pairing.getNumber()).append(" COST ").append(String.valueOf(pairing.getCost())).append('\n');
 		for (Leg leg: legs) 
 			if (pairing.contains(leg.getNumber()))
-				sb.append(" X").append(numberOfPairings).append(" F").append(leg.getNumber()).append(" 1").append('\n');
+				sb.append(" X").append(pairing.getNumber()).append(" F").append(leg.getNumber()).append(" 1").append('\n');
 		write(sb.toString());		
 	}
 	
-	public void writeRhsBoundsAndEnd() {
+	public void writeRhsAndBounds(int numberOfPairings) {
 		writeRhs();
-		writeBounds();
+		writeBounds(numberOfPairings);
 		write("ENDATA\n");
 	}
 		
@@ -69,7 +69,7 @@ public class MpsOutputer extends Outputer {
 		write(sb.toString());
 	}
 
-	private void writeBounds() {
+	private void writeBounds(int numberOfPairings) {
 		StringBuilder sb = new StringBuilder("BOUNDS\n");
 		for (int i = 1; i <= numberOfPairings; i++) {
 			sb.append(" BV BND X").append(i).append('\n');

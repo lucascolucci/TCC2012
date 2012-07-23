@@ -8,7 +8,16 @@ import pairings.graph.EdgeType;
 import pairings.graph.networks.FlightNetworkPath;
 
 public class Pairing {
+	private int number;
 	private List<Duty> duties;
+	
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
 	
 	public Pairing(FlightNetworkPath path) {
 		duties = new ArrayList<Duty>();
@@ -63,7 +72,7 @@ public class Pairing {
 			Duty previous = duties.get(index);
 			Duty next = duties.get(index + 1);
 			int rest = DateUtil.difference(previous.getLastLeg().getArrival(), next.getFirstLeg().getDeparture());
-			return rest - Rules.MIN_REST_TIME;
+			return (rest - Rules.MIN_REST_TIME);
 		}
 		return 0;
 	}
@@ -77,8 +86,8 @@ public class Pairing {
 	
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("Cost ");
-		sb.append(getCost()).append('\n');
+		StringBuilder sb = new StringBuilder("Pairing ");
+		sb.append(number).append(" - Cost ").append(getCost()).append('\n');
 		int dutyNumber = 0;
 		for(Duty duty: duties) {
 			sb.append("\tDuty ").append(++dutyNumber).append('\n');

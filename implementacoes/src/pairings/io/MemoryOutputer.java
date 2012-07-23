@@ -23,7 +23,6 @@ public class MemoryOutputer extends Outputer {
 	}
 	
 	public void reset() {
-		numberOfPairings = 0;
 		pairings.clear();
 	}
 }
