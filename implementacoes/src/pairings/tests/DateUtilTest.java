@@ -13,7 +13,7 @@ import org.junit.Test;
 import pairings.DateUtil;
 import pairings.Rules;
 
-public class DateUtilTests {
+public class DateUtilTest {
 	private DateFormat df; 
 	private Date before;
 	private Date after;

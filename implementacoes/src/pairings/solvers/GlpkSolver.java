@@ -8,8 +8,8 @@ import pairings.io.GlpkSolutionReader;
 
 public class GlpkSolver implements Solvable {
 	private String mpsFile;
+	private String solutionFile;
 	
-	private static final String SOLUTION_FILE = "solution.txt";
 	private static final String GLPSOL = "/usr/local/bin/glpsol";
 	private static final String INFEASIBLE = "PROBLEM HAS NO PRIMAL FEASIBLE SOLUTION";
 	
@@ -17,8 +17,13 @@ public class GlpkSolver implements Solvable {
 		return mpsFile;
 	}
 	
-	public GlpkSolver(String mpsFile) {
+	public String getSolutionFile() {
+		return solutionFile;
+	}
+	
+	public GlpkSolver(String mpsFile, String solutionFile) {
 		this.mpsFile = mpsFile;
+		this.solutionFile = solutionFile;
 	}
 	
 	@Override
@@ -32,7 +37,7 @@ public class GlpkSolver implements Solvable {
 	}
 	
 	private Process runGlpsol() throws Exception {
-		String[] cmd = { GLPSOL, mpsFile, "-w", SOLUTION_FILE };
+		String[] cmd = { GLPSOL, mpsFile, "-w", solutionFile };
 		Process process = Runtime.getRuntime().exec(cmd);
 		readGlpsolOutput(process);
 		process.waitFor();
@@ -60,7 +65,7 @@ public class GlpkSolver implements Solvable {
 	
 	@Override
 	public List<Pairing> getSolution(List<Pairing> pairings) {
-		List<Integer> oneVariables = (new GlpkSolutionReader(SOLUTION_FILE)).getOneVariables();
+		List<Integer> oneVariables = (new GlpkSolutionReader(solutionFile)).getOneVariables();
 		return getSolutionFromOneVariables(oneVariables, pairings);
 	}
 
@@ -74,6 +79,6 @@ public class GlpkSolver implements Solvable {
 		
 	@Override
 	public int getSolutionCost() {
-		return (new GlpkSolutionReader(SOLUTION_FILE)).getCost();
+		return (new GlpkSolutionReader(solutionFile)).getCost();
 	}
 }

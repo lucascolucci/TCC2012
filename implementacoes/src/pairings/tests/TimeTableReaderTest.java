@@ -13,14 +13,16 @@ import pairings.Leg;
 import pairings.Rules;
 import pairings.io.TimeTableReader;
 
-public class TimeTableReaderTests {
+public class TimeTableReaderTest {
 	private TimeTableReader timeTableReader;
 	private List<Leg> legs;
 	private DateFormat df;
 	
+	private static final String TIME_TABLES_PATH = "./src/pairings/tests/time_tables/";
+	
 	@Before
 	public void setUp() throws Exception {
-		timeTableReader = new TimeTableReader("./src/pairings/tests/time_tables/cgh_sdu_62.txt");		
+		timeTableReader = new TimeTableReader(TIME_TABLES_PATH + "cgh_sdu_62.txt");		
 		legs = timeTableReader.getLegs();
 		df = new SimpleDateFormat(Rules.DATE_FORMAT);
 	}

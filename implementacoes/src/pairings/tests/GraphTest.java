@@ -8,7 +8,7 @@ import org.junit.Test;
 import pairings.graph.Graph;
 import pairings.graph.Node;
 
-public class GraphTests {
+public class GraphTest {
 	private Graph<Object> graph;
 	private Node<Object> node1;
 	private Node<Object> node2;

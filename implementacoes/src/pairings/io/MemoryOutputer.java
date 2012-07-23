@@ -22,7 +22,7 @@ public class MemoryOutputer extends Outputer {
 		pairings.add(pairing);
 	}
 	
-	public void reset() {
+	public void clear() {
 		pairings.clear();
 	}
 }

@@ -19,7 +19,7 @@ import pairings.graph.EdgeType;
 import pairings.graph.Node;
 import pairings.graph.networks.FlightNetwork;
 
-public class FlightNetworkTests {
+public class FlightNetworkTest {
 	private FlightNetwork net;
 	
 	@Before
