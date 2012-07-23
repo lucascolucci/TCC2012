@@ -1,8 +1,10 @@
 package pairings.io;
 
+import java.util.List;
+
 import pairings.Pairing;
 
-public abstract class BasicOutputer {
+public abstract class Outputer {
 	protected int numberOfPairings;
 	
 	public int getNumberOfPairings() {
@@ -13,12 +15,19 @@ public abstract class BasicOutputer {
 		this.numberOfPairings = numberOfPairings;
 	}
 	
-	public BasicOutputer() {
+	public Outputer() {
 		numberOfPairings = 0;
 	}
 	
 	public void incrementNumberOfPairings() {
 		numberOfPairings++;
+	}
+	
+	public void output(List<Pairing> pairings) {
+		for (Pairing pairing: pairings) {
+			incrementNumberOfPairings();
+			output(pairing);
+		}
 	}
 	
 	public abstract void output(Pairing pairing);

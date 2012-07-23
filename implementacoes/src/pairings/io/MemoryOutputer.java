@@ -5,7 +5,7 @@ import java.util.List;
 
 import pairings.Pairing;
 
-public class MemoryOutputer extends BasicOutputer {
+public class MemoryOutputer extends Outputer {
 	private List<Pairing> pairings;
 	
 	public List<Pairing> getPairings() {
@@ -22,7 +22,8 @@ public class MemoryOutputer extends BasicOutputer {
 		pairings.add(pairing);
 	}
 	
-	public void clear() {
+	public void reset() {
+		numberOfPairings = 0;
 		pairings.clear();
 	}
 }

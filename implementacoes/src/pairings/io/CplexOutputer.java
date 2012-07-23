@@ -2,7 +2,7 @@ package pairings.io;
 
 import pairings.Pairing;
 
-public class CplexOutputer extends BasicOutputer {
+public class CplexOutputer extends Outputer {
 	public CplexOutputer() {
 		super();
 	}

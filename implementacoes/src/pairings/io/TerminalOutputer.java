@@ -2,7 +2,7 @@ package pairings.io;
 
 import pairings.Pairing;
 
-public class TerminalOutputer extends BasicOutputer {
+public class TerminalOutputer extends Outputer {
 	private boolean printEnabled;
 	
 	public boolean getPrintEnabled() {
@@ -17,7 +17,7 @@ public class TerminalOutputer extends BasicOutputer {
 		super();
 		printEnabled = true;
 	}
-	
+		
 	@Override
 	public void output(Pairing pairing) {
 		if (getPrintEnabled())

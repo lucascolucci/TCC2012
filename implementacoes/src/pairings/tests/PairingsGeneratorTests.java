@@ -19,17 +19,17 @@ import pairings.PairingsGenerator;
 import pairings.Rules;
 import pairings.graph.networks.FlightNetwork;
 import pairings.io.MemoryOutputer;
-import pairings.io.BasicOutputer;
+import pairings.io.Outputer;
 import pairings.io.TimeTableReader;
 
 public class PairingsGeneratorTests {
 	private MemoryOutputer outputer;
-	private BasicOutputer[] outputers;
+	private Outputer[] outputers;
 	
 	@Before 
 	public void setUp() {
 		outputer = new MemoryOutputer();
-		outputers = new BasicOutputer[] { outputer };
+		outputers = new Outputer[] { outputer };
 	}
 	
 	@Test
@@ -40,7 +40,7 @@ public class PairingsGeneratorTests {
 		generator.generate("CGH", outputers);
 		assertEquals(2, outputer.getNumberOfPairings());
 		
-		outputer.clear();
+		outputer.reset();
 		generator.generate("UDI", outputers);
 		assertEquals(2, outputer.getNumberOfPairings());
 	}
@@ -78,7 +78,7 @@ public class PairingsGeneratorTests {
 		for (Pairing pairing: outputer.getPairings())
 			assertTrue(Rules.isPairingLegal(pairing, "CGH"));
 		
-		outputer.clear();
+		outputer.reset();
 		generator.generate("SDU", outputers);	
 		for (Pairing pairing: outputer.getPairings())
 			assertTrue(Rules.isPairingLegal(pairing, "SDU"));

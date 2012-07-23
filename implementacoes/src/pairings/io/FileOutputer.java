@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import pairings.Pairing;
 
-public class FileOutputer extends BasicOutputer {
+public class FileOutputer extends Outputer {
 	private String fileName;
 	private BufferedWriter out;
 	

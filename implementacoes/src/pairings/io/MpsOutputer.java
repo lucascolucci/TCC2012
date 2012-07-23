@@ -8,7 +8,7 @@ import java.util.List;
 import pairings.Leg;
 import pairings.Pairing;
 
-public class MpsOutputer extends BasicOutputer {
+public class MpsOutputer extends Outputer {
 	private List<Leg> legs;
 	private String fileName;
 	private BufferedWriter out;
@@ -45,7 +45,7 @@ public class MpsOutputer extends BasicOutputer {
 			sb.append(" E ").append("F").append(leg.getNumber()).append('\n');
 		write(sb.toString());
 	}
-	
+		
 	@Override
 	public void output(Pairing pairing) {
 		StringBuilder sb = new StringBuilder();

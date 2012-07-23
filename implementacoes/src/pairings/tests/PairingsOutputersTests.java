@@ -9,7 +9,7 @@ import pairings.graph.networks.FlightNetwork;
 import pairings.io.CplexOutputer;
 import pairings.io.FileOutputer;
 import pairings.io.MpsOutputer;
-import pairings.io.BasicOutputer;
+import pairings.io.Outputer;
 import pairings.io.TerminalOutputer;
 import pairings.io.TimeTableReader;
 
@@ -25,7 +25,7 @@ public class PairingsOutputersTests {
 		FileOutputer file = new FileOutputer("pairings.dat");
 		MpsOutputer mps = new MpsOutputer(net.getLegs(), "in.mps");
 		CplexOutputer cplex = new CplexOutputer();
-		BasicOutputer[] outs = new BasicOutputer[] { terminal, file, mps, cplex };
+		Outputer[] outs = new Outputer[] { terminal, file, mps, cplex };
 		
 		mps.writeUntilColumns();	
 		
@@ -36,7 +36,7 @@ public class PairingsOutputersTests {
 		file.close();
 		
 		int last = -1;
-		for (BasicOutputer out: outs)
+		for (Outputer out: outs)
 			if (last == -1)
 				last = out.getNumberOfPairings();
 			else {
