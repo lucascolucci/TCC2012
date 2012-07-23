@@ -28,9 +28,7 @@ public class PairingsOutputersTests {
 		Outputer[] outs = new Outputer[] { terminal, file, mps, cplex };
 		
 		mps.writeUntilColumns();	
-		
 		generator.generate("CGH", outs);
-		
 		mps.writeRhsBoundsAndEnd();
 		mps.close();
 		file.close();
