@@ -7,7 +7,7 @@ import org.junit.Test;
 import pairings.PairingsGenerator;
 import pairings.graph.networks.FlightNetwork;
 import pairings.io.CplexOutputer;
-import pairings.io.FileOutputer;
+import pairings.io.TextOutputer;
 import pairings.io.MpsOutputer;
 import pairings.io.Outputer;
 import pairings.io.TerminalOutputer;
@@ -22,7 +22,7 @@ public class PairingsOutputersTests {
 		PairingsGenerator generator = new PairingsGenerator(net);
 	
 		TerminalOutputer terminal = new TerminalOutputer();
-		FileOutputer file = new FileOutputer("pairings.dat");
+		TextOutputer file = new TextOutputer("pairings.dat");
 		MpsOutputer mps = new MpsOutputer(net.getLegs(), "in.mps");
 		CplexOutputer cplex = new CplexOutputer();
 		Outputer[] outs = new Outputer[] { terminal, file, mps, cplex };

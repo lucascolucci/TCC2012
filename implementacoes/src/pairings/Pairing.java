@@ -15,11 +15,8 @@ public class Pairing {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public Pairing(int number, FlightNetworkPath path) {
 		this.number = number;
-	}
-	
-	public Pairing(FlightNetworkPath path) {
 		duties = new ArrayList<Duty>();
 		build(path);
 	}

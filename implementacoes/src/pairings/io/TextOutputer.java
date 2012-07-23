@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import pairings.Pairing;
 
-public class FileOutputer extends Outputer {
+public class TextOutputer extends Outputer {
 	private String fileName;
 	private BufferedWriter out;
 	
@@ -14,7 +14,7 @@ public class FileOutputer extends Outputer {
 		return fileName;
 	}
 	
-	public FileOutputer(String fileName) {
+	public TextOutputer(String fileName) {
 		super();
 		this.fileName = fileName;
 		setUpBufferedWriter();

@@ -74,7 +74,7 @@ public class PairingsGenerator {
 			exploreTroughOvernight(edge);
 			break;
 		case TO_SINK:
-			outputFoundPairing();
+			incrementNumberOfPairingsAndOutput();
 			break;
 		}
 	}
@@ -147,9 +147,14 @@ public class PairingsGenerator {
 		path.setFlightTime(flightTime);
 	}
 	
-	private void outputFoundPairing() {
-		Pairing pairing = new Pairing(path);
-		pairing.setNumber(++numberOfPairings);
+	private void incrementNumberOfPairingsAndOutput() {
+		++numberOfPairings;
+		if (outputers != null)
+			output();
+	}
+	
+	private void output() {
+		Pairing pairing = new Pairing(numberOfPairings, path);
 		for (Outputer outputer: outputers) 
 			outputer.output(pairing);
 	}
