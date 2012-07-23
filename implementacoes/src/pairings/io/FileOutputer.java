@@ -40,7 +40,7 @@ public class FileOutputer extends Outputer {
 		try {
 			out.write(content);
 		} catch (IOException e) {
-			System.out.println("Error: " + e.getMessage());
+			System.err.println("Error: " + e.getMessage());
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class FileOutputer extends Outputer {
 		try {
 			out.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println("Error: " + e.getMessage());
 		}
 	}
 }

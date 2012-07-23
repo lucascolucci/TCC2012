@@ -1,9 +1,10 @@
 package pairings.solvers;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
-
 import pairings.Pairing;
+import pairings.io.GlpkSolutionReader;
 
 public class GlpkSolver implements Solvable {
 	private String mpsFile;
@@ -25,7 +26,7 @@ public class GlpkSolver implements Solvable {
 		try {
 			return (runGlpsol().exitValue() == 0);
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
+			System.err.println("Error: " + e.getMessage());
 			return false;
 		}
 	}
@@ -59,13 +60,20 @@ public class GlpkSolver implements Solvable {
 	
 	@Override
 	public List<Pairing> getSolution(List<Pairing> pairings) {
-		// TODO
-		return null;
+		List<Integer> oneVariables = (new GlpkSolutionReader(SOLUTION_FILE)).getOneVariables();
+		return getSolutionFromOneVariables(oneVariables, pairings);
 	}
-	
+
+	private List<Pairing> getSolutionFromOneVariables(List<Integer> oneVariables, List<Pairing> pairings) {
+		List<Pairing> solution = new ArrayList<Pairing>();
+		if (oneVariables != null)
+			for (int var: oneVariables)
+				solution.add(pairings.get(var - 1));
+		return solution;
+	}
+		
 	@Override
 	public int getSolutionCost() {
-		// TODO
-		return 0;
+		return (new GlpkSolutionReader(SOLUTION_FILE)).getCost();
 	}
 }

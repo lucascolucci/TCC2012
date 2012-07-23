@@ -2,13 +2,17 @@ package pairings.tests;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 
+import pairings.Pairing;
 import pairings.PairingsGenerator;
 import pairings.graph.networks.FlightNetwork;
-import pairings.io.FileOutputer;
+import pairings.io.MemoryOutputer;
 import pairings.io.MpsOutputer;
 import pairings.io.Outputer;
+import pairings.io.TerminalOutputer;
 import pairings.io.TimeTableReader;
 import pairings.solvers.GlpkSolver;
 
@@ -21,18 +25,20 @@ public class SolversTests {
 		PairingsGenerator generator = new PairingsGenerator(net);
 	
 		String mpsFile = "in.mps";
-		String pairingsFile = "pairings.dat";
+		MemoryOutputer memory = new MemoryOutputer();
 		MpsOutputer mps = new MpsOutputer(net.getLegs(), mpsFile);
-		FileOutputer file = new FileOutputer(pairingsFile);
-		Outputer[] outputers = new Outputer[] { mps, file };
+		Outputer[] outputers = new Outputer[] { memory, mps };
 		
 		mps.writeUntilColumns();	
 		generator.generate("CGH", outputers);
 		mps.writeRhsBoundsAndEnd();
 		mps.close();
-		file.close();
-		
+
 		GlpkSolver solver = new GlpkSolver(mpsFile);
 		assertTrue(solver.solve());
+		
+		List<Pairing> solution = solver.getSolution(memory.getPairings());
+		TerminalOutputer terminal = new TerminalOutputer();
+		terminal.output(solution);
 	}
 }
