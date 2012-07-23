@@ -52,8 +52,20 @@ public class Pairing {
 	}
 
 	public int getCost() {
-		// TODO
-		return 1;
+		int cost = 0;
+		for (int i = 0; i < duties.size(); i++)
+			cost += duties.get(i).getCost() + getOvernightCost(i);
+		return cost;
+	}
+	
+	private int getOvernightCost(int index) {
+		if (index < duties.size() - 1) {
+			Duty previous = duties.get(index);
+			Duty next = duties.get(index + 1);
+			int rest = DateUtil.difference(previous.getLastLeg().getArrival(), next.getFirstLeg().getDeparture());
+			return rest - Rules.MIN_REST_TIME;
+		}
+		return 0;
 	}
 
 	public boolean contains(int number) {
@@ -65,7 +77,8 @@ public class Pairing {
 	
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder("Cost ");
+		sb.append(getCost()).append('\n');
 		int dutyNumber = 0;
 		for(Duty duty: duties) {
 			sb.append("\tDuty ").append(++dutyNumber).append('\n');

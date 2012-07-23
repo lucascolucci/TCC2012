@@ -55,6 +55,22 @@ public class Duty {
 		return false;
 	}
 	
+	public int getCost() {
+		int cost = 0;
+		for (int i = 0; i < legs.size(); i++)
+			cost += getConnectionCost(i);
+		return cost;
+	}
+	
+	private int getConnectionCost(int index) {
+		if (index < legs.size() - 1) {
+			Leg previous = legs.get(index);
+			Leg next = legs.get(index + 1);
+			return DateUtil.difference(previous.getArrival(), next.getDeparture()) - Rules.MIN_SIT_TIME;
+		}
+		return 0;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
