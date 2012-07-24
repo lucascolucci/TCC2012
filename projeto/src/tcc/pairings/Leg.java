@@ -11,14 +11,6 @@ public class Leg {
 	private Date departure;
 	private Date arrival;
 	
-	public Leg(int number, String from, String to, Date departure, Date arrival) {
-		this.number = number;
-		this.from = from;
-		this.to = to;
-		this.departure = departure;
-		this.arrival = arrival;
-	}
-
 	public int getNumber() {
 		return number;
 	}
@@ -56,6 +48,14 @@ public class Leg {
 	}
 
 	public void setArrival(Date arrival) {
+		this.arrival = arrival;
+	}
+
+	public Leg(int number, String from, String to, Date departure, Date arrival) {
+		this.number = number;
+		this.from = from;
+		this.to = to;
+		this.departure = departure;
 		this.arrival = arrival;
 	}
 

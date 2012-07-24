@@ -6,20 +6,6 @@ public class Edge<T> {
 	private EdgeType type;
 	private Label label;
 	
-	public Edge(Node<T> out, Node<T> in, EdgeType type) {
-		this.out = out;
-		this.in = in;
-		this.type = type;
-		label = null;
-	}
-	
-	public Edge(Node<T> out, Node<T> in, EdgeType type, Label label) {
-		this.out = out;
-		this.in = in;
-		this.type = type;
-		this.label = label;
-	}
-	
 	public Node<T> getOut() {
 		return out;
 	}
@@ -37,6 +23,20 @@ public class Edge<T> {
 	}
 	
 	public void setLabel(Label label) {
+		this.label = label;
+	}
+	
+	public Edge(Node<T> out, Node<T> in, EdgeType type) {
+		this.out = out;
+		this.in = in;
+		this.type = type;
+		label = null;
+	}
+	
+	public Edge(Node<T> out, Node<T> in, EdgeType type, Label label) {
+		this.out = out;
+		this.in = in;
+		this.type = type;
 		this.label = label;
 	}
 }

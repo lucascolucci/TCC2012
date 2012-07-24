@@ -7,12 +7,12 @@ import java.util.List;
 public class Duty {
 	private List<Leg> legs;
 	
-	public Duty() {
-		legs = new ArrayList<Leg>();
-	}
-	
 	public List<Leg> getLegs() {
 		return legs;
+	}
+	
+	public Duty() {
+		legs = new ArrayList<Leg>();
 	}
 	
 	public int getNumberOfLegs() {

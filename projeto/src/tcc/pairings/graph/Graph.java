@@ -8,24 +8,24 @@ public class Graph<T> {
 	protected int numberOfNodes;
 	protected int numberOfEdges;
 
-	public Graph() {
-		nodes = new ArrayList<Node<T>>();
-		numberOfNodes = 0;
-		numberOfEdges = 0;
-	}
-	
 	public List<Node<T>> getNodes() {
 		return nodes;
+	}
+	
+	public int getNumberOfNodes() {
+		return numberOfNodes;
 	}
 
 	public int getNumberOfEdges() {
 		return numberOfEdges;
 	}
 
-	public int getNumberOfNodes() {
-		return numberOfNodes;
+	public Graph() {
+		nodes = new ArrayList<Node<T>>();
+		numberOfNodes = 0;
+		numberOfEdges = 0;
 	}
-
+	
 	public void addNode(Node<T> node) {
 		if (node != null) {
 			nodes.add(node);
@@ -98,7 +98,7 @@ public class Graph<T> {
 		return -1;
 	}
 	
-	// TODO refatorar
+	// TODO Refatorar
 	public void removeNode(Node<T> node) {
 		if (node != null && nodes.contains(node)) {
 			List<Edge<T>> inwards = getInwardEdges(node);

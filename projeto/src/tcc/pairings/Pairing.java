@@ -14,6 +14,10 @@ public class Pairing {
 	public int getNumber() {
 		return number;
 	}
+	
+	public List<Duty> getDuties() {
+		return duties;
+	}
 
 	public Pairing(int number, FlightNetworkPath path) {
 		this.number = number;
@@ -21,8 +25,16 @@ public class Pairing {
 		build(path);
 	}
 	
-	public List<Duty> getDuties() {
-		return duties;
+	private void build(FlightNetworkPath path) {
+		Duty duty = new Duty();
+		for (Edge<Leg> edge: path.getEdges()) {			
+			if (edge.getType() == EdgeType.OVERNIGHT) {
+				duties.add(duty);
+				duty = new Duty();	
+			}
+			duty.addLeg(edge.getIn().getInfo());
+		}
+		duties.add(duty);
 	}
 	
 	public int getNumberOfDuties() {
@@ -43,18 +55,6 @@ public class Pairing {
 				return lastDuty.getLegs().get(numberOfLegs - 1);
 		}
 		return null;
-	}
-	
-	private void build(FlightNetworkPath path) {
-		Duty duty = new Duty();
-		for (Edge<Leg> edge: path.getEdges()) {			
-			if (edge.getType() == EdgeType.OVERNIGHT) {
-				duties.add(duty);
-				duty = new Duty();	
-			}
-			duty.addLeg(edge.getIn().getInfo());
-		}
-		duties.add(duty);
 	}
 
 	public int getCost() {

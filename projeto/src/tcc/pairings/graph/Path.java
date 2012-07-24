@@ -6,12 +6,12 @@ import java.util.List;
 public class Path<T> {
 	protected List<Edge<T>> edges;
 	
-	public Path() {
-		edges = new ArrayList<Edge<T>>();
-	}
-	
 	public List<Edge<T>> getEdges() {
 		return edges;
+	}
+	
+	public Path() {
+		edges = new ArrayList<Edge<T>>();
 	}
 	
 	public void addEdge(Edge<T> edge) {

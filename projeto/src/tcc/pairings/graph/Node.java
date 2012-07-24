@@ -8,18 +8,6 @@ public class Node<T> {
 	private Label label;
 	private List<Edge<T>> edges;
 
-	public Node(T info) {
-		this.info = info;
-		label = null;
-		edges = new ArrayList<Edge<T>>();
-	}
-	
-	public Node(T info, Label label) {
-		this.info = info;
-		this.label = label;
-		edges = new ArrayList<Edge<T>>();
-	}
-	
 	public T getInfo() {
 		return info;
 	}
@@ -30,6 +18,18 @@ public class Node<T> {
 	
 	public List<Edge<T>> getEdges() {
 		return edges;
+	}
+	
+	public Node(T info) {
+		this.info = info;
+		label = null;
+		edges = new ArrayList<Edge<T>>();
+	}
+	
+	public Node(T info, Label label) {
+		this.info = info;
+		this.label = label;
+		edges = new ArrayList<Edge<T>>();
 	}
 	
 	public int numberOfNeighbors() {

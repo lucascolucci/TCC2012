@@ -9,14 +9,6 @@ public class FlightNetworkPath extends Path<Leg>{
 	private int dutyTime;
 	private int numberOfLegs;
 	private int numberOfDuties;
-	
-	public FlightNetworkPath() {
-		super();
-		flightTime = 0;
-		dutyTime = 0;
-		numberOfLegs = 0;
-		numberOfDuties = 0;
-	}
 
 	public int getFlightTime() {
 		return flightTime;
@@ -50,6 +42,14 @@ public class FlightNetworkPath extends Path<Leg>{
 		this.numberOfDuties = numberOfDuties;
 	}
 	
+	public FlightNetworkPath() {
+		super();
+		flightTime = 0;
+		dutyTime = 0;
+		numberOfLegs = 0;
+		numberOfDuties = 0;
+	}
+
 	public void incrementFlightTime(int time) {
 		flightTime += time;
 	}

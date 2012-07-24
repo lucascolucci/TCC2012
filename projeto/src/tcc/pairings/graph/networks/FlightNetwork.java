@@ -12,14 +12,14 @@ import tcc.pairings.graph.Node;
 
 public class FlightNetwork extends Graph<Leg> {
 	private List<Leg> legs;
+
+	public List<Leg> getLegs() {
+		return legs;
+	}
 	
 	public FlightNetwork(List<Leg> legs) {
 		super();
 		this.legs = legs;
-	}
-
-	public List<Leg> getLegs() {
-		return legs;
 	}
 
 	public void build() {
@@ -84,6 +84,7 @@ public class FlightNetwork extends Graph<Leg> {
 			addEdge(out, in, EdgeType.OVERNIGHT, new FlightNetworkEdgeLabel(sit));
 	}
 	
+	// TODO refatorar
 	public void addSource(Node<Leg> source) {
 		String base = source.getInfo().getFrom();
 		for (Node<Leg> node: nodes)
@@ -107,6 +108,7 @@ public class FlightNetwork extends Graph<Leg> {
 		return leg.getFrom().contentEquals(leg.getTo());
 	}
 	
+	// TODO refatorar
 	public void addSink(Node<Leg> sink) {
 		String base = sink.getInfo().getFrom();
 		for (Node<Leg> node: nodes)
@@ -127,5 +129,4 @@ public class FlightNetwork extends Graph<Leg> {
 		Leg leg = node.getInfo();
 		return leg.getFrom().contentEquals(leg.getTo());
 	}
-
 }

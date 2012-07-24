@@ -17,12 +17,12 @@ import tcc.pairings.Rules;
 public class TimeTableReader {
 	private String fileName;
 
-	public TimeTableReader(String fileName) {
-		this.fileName = fileName;
-	}
-
 	public String getFileName() {
 		return fileName;
+	}
+	
+	public TimeTableReader(String fileName) {
+		this.fileName = fileName;
 	}
 	
 	public List<Leg> getLegs() {
