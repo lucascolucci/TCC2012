@@ -1,8 +1,13 @@
 package tcc.pairings.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,19 +23,16 @@ import tcc.pairings.io.TimeTableReader;
 public class PairingsOutputersTest {
 	private FlightNetwork net;
 	
-	private static final String TIME_TABLES_PATH = "./src/tcc/pairings/tests/time_tables/";
-	private static final String OUTPUTS_PATH = "./src/tcc/pairings/tests/outputs/";
-	
 	@Before
 	public void setUp() {
-		TimeTableReader reader = new TimeTableReader(TIME_TABLES_PATH + "cgh_sdu_10.txt");
+		TimeTableReader reader = new TimeTableReader(DataPaths.TIME_TABLES + "cgh_sdu_10.txt");
 		net = new FlightNetwork(reader.getLegs());
 		net.build();
 	}
 	
 	@Test
 	public void terminalOutputShouldBeRight() throws Exception {
-		String logFile = OUTPUTS_PATH + "terminal.log";
+		String logFile = DataPaths.OUTPUTS + "terminal.log";
 		
 		FileOutputStream fos = new FileOutputStream(logFile);
 		PrintStream logStream = new PrintStream(fos);
@@ -43,14 +45,14 @@ public class PairingsOutputersTest {
 		generator.generate("CGH");
 		System.setOut(out);
 		
-		String expected = getContent(OUTPUTS_PATH + "cgh_sdu_10.pairings");
+		String expected = getContent(DataPaths.OUTPUTS + "cgh_sdu_10.pairings");
 		String actual = getContent(logFile);
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void textOutputShouldBeRight() throws Exception {
-		String pairingsFile = OUTPUTS_PATH + "pairings.txt";
+		String pairingsFile = DataPaths.OUTPUTS + "pairings.txt";
 		
 		TextOutputer text = new TextOutputer(pairingsFile);
 		Outputer[] outputers = new Outputer[] { text };
@@ -58,14 +60,14 @@ public class PairingsOutputersTest {
 		generator.generate("CGH");
 		text.close();
 		
-		String expected = getContent(OUTPUTS_PATH + "cgh_sdu_10.pairings");
+		String expected = getContent(DataPaths.OUTPUTS + "cgh_sdu_10.pairings");
 		String actual = getContent(pairingsFile);
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void mpsOutputShouldBeRight() throws Exception {
-		String mpsFile = OUTPUTS_PATH + "in.mps";
+		String mpsFile = DataPaths.OUTPUTS + "in.mps";
 		
 		MpsOutputer mps = new MpsOutputer(net.getLegs(), mpsFile);
 		Outputer[] outputers = new Outputer[] { mps };
@@ -75,7 +77,7 @@ public class PairingsOutputersTest {
 		mps.writeRhsAndBounds(generator.getNumberOfPairings());
 		mps.close();
 		
-		String expected = getContent(OUTPUTS_PATH + "cgh_sdu_10.mps");
+		String expected = getContent(DataPaths.OUTPUTS + "cgh_sdu_10.mps");
 		String actual = getContent(mpsFile);
 		assertEquals(expected, actual);
 	}

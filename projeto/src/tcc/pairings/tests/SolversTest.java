@@ -1,6 +1,7 @@
 package tcc.pairings.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -20,12 +21,9 @@ public class SolversTest {
 	private FlightNetwork net;
 	private MemoryOutputer memory;
 	
-	private static final String TIME_TABLES_PATH = "./src/tcc/pairings/tests/time_tables/";
-	private static final String OUTPUTS_PATH = "./src/tcc/pairings/tests/outputs/";
-	
 	@Before
 	public void setUp() {
-		TimeTableReader reader = new TimeTableReader(TIME_TABLES_PATH + "cgh_sdu_10.txt");
+		TimeTableReader reader = new TimeTableReader(DataPaths.TIME_TABLES + "cgh_sdu_10.txt");
 		net = new FlightNetwork(reader.getLegs());
 		net.build();
 		
@@ -48,8 +46,8 @@ public class SolversTest {
 	}
 
 	private GlpkSolver getGlpkSolver() {
-		String mpsFile = OUTPUTS_PATH + "in.mps";
-		String solutionFile = OUTPUTS_PATH + "out.sol";
+		String mpsFile = DataPaths.OUTPUTS + "in.mps";
+		String solutionFile = DataPaths.OUTPUTS + "out.sol";
 		
 		MpsOutputer mps = new MpsOutputer(net.getLegs(), mpsFile);
 		Outputer[] outputers = new Outputer[] { memory, mps };

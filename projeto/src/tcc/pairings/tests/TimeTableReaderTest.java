@@ -1,6 +1,6 @@
 package tcc.pairings.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,11 +18,9 @@ public class TimeTableReaderTest {
 	private List<Leg> legs;
 	private DateFormat df;
 	
-	private static final String TIME_TABLES_PATH = "./src/tcc/pairings/tests/time_tables/";
-	
 	@Before
 	public void setUp() throws Exception {
-		timeTableReader = new TimeTableReader(TIME_TABLES_PATH + "cgh_sdu_62.txt");		
+		timeTableReader = new TimeTableReader(DataPaths.TIME_TABLES + "cgh_sdu_62.txt");		
 		legs = timeTableReader.getLegs();
 		df = new SimpleDateFormat(Rules.DATE_FORMAT);
 	}

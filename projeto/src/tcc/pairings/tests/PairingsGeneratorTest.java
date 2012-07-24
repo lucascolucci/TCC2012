@@ -22,8 +22,6 @@ import tcc.pairings.io.Outputer;
 import tcc.pairings.io.TimeTableReader;
 
 public class PairingsGeneratorTest {
-	private static final String TIME_TABLES_PATH = "./src/tcc/pairings/tests/time_tables/";
-
 	@Test
 	public void itShouldGive2PairingsForCGH() throws ParseException {
 		FlightNetwork net = getFlightNetworkWith2Legs();
@@ -123,7 +121,7 @@ public class PairingsGeneratorTest {
 	}
 	
 	private PairingsGenerator getGeneratorForCghSdu10(Outputer[] outputers) {
-		TimeTableReader reader = new TimeTableReader(TIME_TABLES_PATH + "cgh_sdu_10.txt");
+		TimeTableReader reader = new TimeTableReader(DataPaths.TIME_TABLES + "cgh_sdu_10.txt");
 		FlightNetwork net = new FlightNetwork(reader.getLegs());
 		net.build();
 		return new PairingsGenerator(net, outputers);
