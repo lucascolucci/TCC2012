@@ -17,11 +17,14 @@ public class ResultsBuilder {
 	
 	public static void main(String[] args) {
 		ResultsBuilder rb = new ResultsBuilder();
-		rb.buildNumberOfPairingsFor2Stations(30);
+		
+		System.out.print("Gerando pairings para 2 estações com no máximo 34 pernas... ");
+		rb.buildNumberOfPairingsFor2Stations(34);
+		System.out.println("Feito!");
 	}
 	
 	private void buildNumberOfPairingsFor2Stations(int maxLegs) {
-		ResultsWriter writer = new ResultsWriter("number_of_pairings_2_stations.txt");
+		ResultsWriter writer = new ResultsWriter("number_of_pairings_2_stations.dat");
 		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
 			buildNet(getTrimmedList(allLegs, numberOfLegs));
