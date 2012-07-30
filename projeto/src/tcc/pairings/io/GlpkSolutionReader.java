@@ -69,4 +69,28 @@ public class GlpkSolutionReader {
 		in.close();
 		return cost;
 	}
+	
+	public int getNumberOfOneVariables() {
+		try {
+			return tryToReadFileAndCountOneVariables();
+		} 
+		catch (Exception e) {
+			System.err.println("Error: " + e.getMessage());
+			return -1;
+		}
+	}
+	
+	private int tryToReadFileAndCountOneVariables() throws Exception {
+		DataInputStream in = new DataInputStream(new FileInputStream(fileName));
+		BufferedReader br = new BufferedReader(new InputStreamReader(in));
+		int lineCount = 0; int rows = 0; int count = 0; String line;
+		while ((line = br.readLine()) != null) { 
+			if (++lineCount == 1)
+				rows = Integer.parseInt(line.split(" ")[0]) - 1;
+			else if (lineCount > rows + 3 && Integer.parseInt(line) == 1)
+				++count;
+		}
+		in.close();
+		return count;
+	}
 }

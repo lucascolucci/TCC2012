@@ -11,9 +11,11 @@ import tcc.pairings.io.GlpkSolutionReader;
 public class GlpkSolver implements Solvable {
 	private String mpsFile;
 	private String solutionFile;
+	private double solutionTime;
 	
 	private static final String GLPSOL = "/usr/local/bin/glpsol";
 	private static final String INFEASIBLE = "PROBLEM HAS NO PRIMAL FEASIBLE SOLUTION";
+	private static final String SOLUTION_TIME = "Time used:";
 	
 	public String getMpsFile() {
 		return mpsFile;
@@ -23,9 +25,14 @@ public class GlpkSolver implements Solvable {
 		return solutionFile;
 	}
 	
+	public double getSolutionTime() {
+		return solutionTime;
+	}
+	
 	public GlpkSolver(String mpsFile, String solutionFile) {
 		this.mpsFile = mpsFile;
 		this.solutionFile = solutionFile;
+		solutionTime = -1;
 	}
 	
 	@Override
@@ -49,14 +56,24 @@ public class GlpkSolver implements Solvable {
 	private void readGlpsolOutput(Process process) throws Exception {
 		BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
 		String line;
-		while ((line = in.readLine()) != null) { 
-			System.out.println(line);
-			if (line.contentEquals(INFEASIBLE)) {
-				in.close();
-				throw new Exception(INFEASIBLE);
-			}
-		}
+		while ((line = in.readLine()) != null) 
+			processOutput(in, line);
 		in.close();
+	}
+
+	private void processOutput(BufferedReader in, String line) throws Exception {
+		System.out.println(line);
+		if (line.contentEquals(INFEASIBLE)) {
+			in.close();
+			throw new Exception(INFEASIBLE);
+		}
+		else if (line.contains(SOLUTION_TIME))
+			setSolutionTime(line);
+	}
+	
+	private void setSolutionTime(String line) {
+		String time = line.substring(SOLUTION_TIME.length()).trim();
+		solutionTime = Double.parseDouble(time.split(" ")[0]);
 	}
 	
 	@Override
@@ -82,5 +99,9 @@ public class GlpkSolver implements Solvable {
 	@Override
 	public int getSolutionCost() {
 		return (new GlpkSolutionReader(solutionFile)).getCost();
+	}
+	
+	public int getSolutionSize() {
+		return (new GlpkSolutionReader(solutionFile).getNumberOfOneVariables());
 	}
 }
