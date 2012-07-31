@@ -29,6 +29,12 @@ public class GlpkSolver implements Solvable {
 		return solutionTime;
 	}
 	
+	public GlpkSolver(String mpsFile) {
+		this.mpsFile = mpsFile;
+		solutionFile = null;
+		solutionTime = -1;
+	}
+	
 	public GlpkSolver(String mpsFile, String solutionFile) {
 		this.mpsFile = mpsFile;
 		this.solutionFile = solutionFile;
@@ -46,11 +52,16 @@ public class GlpkSolver implements Solvable {
 	}
 	
 	private Process runGlpsol() throws Exception {
-		String[] cmd = { GLPSOL, mpsFile, "-w", solutionFile };
-		Process process = Runtime.getRuntime().exec(cmd);
+		Process process = Runtime.getRuntime().exec(getCommand());
 		readGlpsolOutput(process);
 		process.waitFor();
 		return process;
+	}
+	
+	private String[] getCommand() {
+		if (solutionFile != null)
+			return new String[] { GLPSOL, mpsFile, "-w", solutionFile };
+		return new String[] { GLPSOL, mpsFile };
 	}
 
 	private void readGlpsolOutput(Process process) throws Exception {

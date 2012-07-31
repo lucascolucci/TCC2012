@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 MAY 2012 16:36
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  31 JUL 2012 11:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -475,10 +475,10 @@ ulacao.toc)
 
 [2]
 Package epstopdf Info: Source file: <fig/planejamento.eps>
-(epstopdf)                    date: 2012-05-06 13:11:02
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 4523 bytes
 (epstopdf)             Output file: <fig/planejamento-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-05-12 22:27:25
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 6426 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/planejamento-eps-conve
 rted-to.pdf fig/planejamento.eps>
@@ -502,10 +502,10 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 169.
  [4 <./fig/planejamento-eps-converted-to.pdf>] [5]
 Package epstopdf Info: Source file: <fig/viagem.eps>
-(epstopdf)                    date: 2012-05-13 16:23:45
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 11289 bytes
 (epstopdf)             Output file: <fig/viagem-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-05-13 16:24:06
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 11156 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/viagem-eps-converted-t
 o.pdf fig/viagem.eps>
@@ -520,10 +520,10 @@ Package pdftex.def Info: fig/viagem-eps-converted-to.pdf used on input line 215
 .
 (pdftex.def)             Requested size: 380.9222pt x 136.50966pt.
 Package epstopdf Info: Source file: <fig/escala.eps>
-(epstopdf)                    date: 2012-05-06 18:30:48
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 9449 bytes
 (epstopdf)             Output file: <fig/escala-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-05-12 22:27:27
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 8018 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/escala-eps-converted-t
 o.pdf fig/escala.eps>
@@ -539,10 +539,10 @@ Package pdftex.def Info: fig/escala-eps-converted-to.pdf used on input line 228
 (pdftex.def)             Requested size: 347.79852pt x 103.88786pt.
  [6 <./fig/viagem-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig/escalonamento.eps>
-(epstopdf)                    date: 2012-05-10 20:41:56
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 9253 bytes
 (epstopdf)             Output file: <fig/escalonamento-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-05-12 22:27:27
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 12524 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/escalonamento-eps-conv
 erted-to.pdf fig/escalonamento.eps>
@@ -559,10 +559,10 @@ ine 267.
  [7 <./fig/escala-eps-converted-to.pdf>] [8 <./fig/escalonamento-eps-converted-
 to.pdf>] [9] [10]
 Package epstopdf Info: Source file: <fig/pdv.eps>
-(epstopdf)                    date: 2012-05-12 22:30:10
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 7378 bytes
 (epstopdf)             Output file: <fig/pdv-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-05-12 22:30:16
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 8280 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/pdv-eps-converted-to.p
 df fig/pdv.eps>
@@ -578,10 +578,10 @@ Package pdftex.def Info: fig/pdv-eps-converted-to.pdf used on input line 379.
  [11] [12 <./fig/pdv-eps-converted-to.pdf>]
 [13] [14] [15]
 Package epstopdf Info: Source file: <fig/rede.eps>
-(epstopdf)                    date: 2012-05-11 20:57:10
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 27069 bytes
 (epstopdf)             Output file: <fig/rede-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-05-12 22:27:28
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 12245 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/rede-eps-converted-to.
 pdf fig/rede.eps>
@@ -596,10 +596,10 @@ Package pdftex.def Info: fig/rede-eps-converted-to.pdf used on input line 617.
 (pdftex.def)             Requested size: 380.36655pt x 345.13533pt.
  [16] [17 <./fig/rede-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig/pde.eps>
-(epstopdf)                    date: 2012-05-12 22:29:23
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 10165 bytes
 (epstopdf)             Output file: <fig/pde-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-05-12 22:30:16
+(epstopdf)                    date: 2012-06-28 22:27:04
 (epstopdf)                    size: 8667 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/pde-eps-converted-to.p
 df fig/pde.eps>
@@ -647,7 +647,7 @@ nts/cm/cmr8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts
 cm/cmsy6.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmsy8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mti12.pfb>
-Output written on formulacao.pdf (23 pages, 241368 bytes).
+Output written on formulacao.pdf (23 pages, 241370 bytes).
 PDF statistics:
  184 PDF objects out of 1000 (max. 8388607)
  127 compressed objects within 2 object streams

@@ -18,27 +18,28 @@ public class Application {
 	
 	private static final String TIME_TABLES_PATH = "./time_tables/";
 	private static final String OUTPUTS_PATH = "./outputs/";
-	private static final int TRIALS = 5;
+	private static final int GENERATION_TRIALS = 5;
+	private static final int SOLUTION_TRIALS = 3;
 	
 	public static void main(String[] args) {
-		Application app = new Application();
-		app.findNumberOfPairings();
-		app.findGenerationTime();
-		app.findGlpkSolutionTime();
+		//Application app = new Application();
+		//app.doNumberOfPairings();
+		//app.doGenerationTime();
+		//app.doGlpkSolutionTime();
 	}
 
-	public void findNumberOfPairings() {
+	public void doNumberOfPairings() {
 		System.out.print("Nœmero de pairings... ");
 		Rules.MAX_DUTIES = 2;
-		findNumberOfpairings(36, "number_of_pairings_2.dat");
+		doNumberOfpairings(36, "number_of_pairings_2.dat");
 		Rules.MAX_DUTIES = 3;
-		findNumberOfpairings(36, "number_of_pairings_3.dat");
+		doNumberOfpairings(36, "number_of_pairings_3.dat");
 		Rules.MAX_DUTIES = 4;
-		findNumberOfpairings(36, "number_of_pairings_4.dat");
+		doNumberOfpairings(36, "number_of_pairings_4.dat");
 		System.out.println("Feito!");
 	}
 	
-	private void findNumberOfpairings(int maxLegs, String outputFile) {
+	private void doNumberOfpairings(int maxLegs, String outputFile) {
 		ResultsWriter writer = new ResultsWriter(outputFile);
 		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
@@ -49,24 +50,24 @@ public class Application {
 		writer.close();
 	}
 	
-	public void findGenerationTime() {
+	public void doGenerationTime() {
 		System.out.print("Generation time... ");
 		Rules.MAX_DUTIES = 2;
-		findGenerationTime(36, "generation_time_2.dat");
+		doGenerationTime(36, "generation_time_2.dat");
 		Rules.MAX_DUTIES = 3;
-		findGenerationTime(36, "generation_time_3.dat");
+		doGenerationTime(36, "generation_time_3.dat");
 		Rules.MAX_DUTIES = 4;
-		findGenerationTime(36, "generation_time_4.dat");
+		doGenerationTime(36, "generation_time_4.dat");
 		System.out.println("Feito!");
 	}
 	
-	private void findGenerationTime(int maxLegs, String outputFile) {
+	private void doGenerationTime(int maxLegs, String outputFile) {
 		ResultsWriter writer = new ResultsWriter(outputFile);
 		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
 			List<Leg> trimmedList = getTrimmedList(allLegs, numberOfLegs);
-			double[] values = new double[TRIALS]; 
-			for (int i = 0; i < TRIALS; i++) {
+			double[] values = new double[GENERATION_TRIALS]; 
+			for (int i = 0; i < GENERATION_TRIALS; i++) {
 				long start = System.nanoTime();
 				buildNet(trimmedList);
 				generatePairings(new String[] { "CGH" }, null);
@@ -79,18 +80,18 @@ public class Application {
 		writer.close();
 	}
 	
-	public void findGlpkSolutionTime() {
+	public void doGlpkSolutionTime() {
 		System.out.print("GLPK solution time... ");
 		Rules.MAX_DUTIES = 2;
-		findGlpkSolutionTime(36, "glpk_solution_time_2.dat");
+		doGlpkSolutionTime(36, "glpk_solution_time_2.dat");
 		Rules.MAX_DUTIES = 3;
-		findGlpkSolutionTime(36, "glpk_solution_time_3.dat");
+		doGlpkSolutionTime(36, "glpk_solution_time_3.dat");
 		Rules.MAX_DUTIES = 4;
-		findGlpkSolutionTime(36, "glpk_solution_time_4.dat");
+		doGlpkSolutionTime(36, "glpk_solution_time_4.dat");
 		System.out.println("Feito!");
 	}
 	
-	private void findGlpkSolutionTime(int maxLegs, String outputFile) {
+	private void doGlpkSolutionTime(int maxLegs, String outputFile) {
 		ResultsWriter writer = new ResultsWriter(outputFile);
 		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
@@ -101,9 +102,9 @@ public class Application {
 			generatePairings(new String[] { "CGH" }, new Outputer[] { mps });
 			mps.writeRhsAndBounds(generator.getNumberOfPairings());
 			mps.close();
-			GlpkSolver solver = new GlpkSolver(OUTPUTS_PATH + "cgh_sdu.mps", OUTPUTS_PATH + "cgh_sdu.sol");
-			double[] values = new double[TRIALS]; 
-			for (int i = 0; i < TRIALS; i++) {
+			GlpkSolver solver = new GlpkSolver(OUTPUTS_PATH + "cgh_sdu.mps");
+			double[] values = new double[SOLUTION_TRIALS]; 
+			for (int i = 0; i < SOLUTION_TRIALS; i++) {
 				solver.solve();
 				values[i] = solver.getSolutionTime();
 			}
