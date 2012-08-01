@@ -23,7 +23,7 @@ public class SolversTest {
 	
 	@Before
 	public void setUp() {
-		TimeTableReader reader = new TimeTableReader(DataPaths.TIME_TABLES + "cgh_sdu_10.txt");
+		TimeTableReader reader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_10.txt");
 		net = new FlightNetwork(reader.getLegs());
 		net.build();
 		
@@ -46,8 +46,8 @@ public class SolversTest {
 	}
 
 	private GlpkSolver getGlpkSolver() {
-		String mpsFile = DataPaths.OUTPUTS + "in.mps";
-		String solutionFile = DataPaths.OUTPUTS + "out.sol";
+		String mpsFile = FilePaths.OUTPUTS + "in.mps";
+		String solutionFile = FilePaths.OUTPUTS + "out.sol";
 		
 		MpsOutputer mps = new MpsOutputer(net.getLegs(), mpsFile);
 		Outputer[] outputers = new Outputer[] { memory, mps };
