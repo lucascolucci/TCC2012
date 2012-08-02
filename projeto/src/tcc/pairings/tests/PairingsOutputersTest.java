@@ -46,7 +46,7 @@ public class PairingsOutputersTest {
 		generator.generate("CGH");
 		System.setOut(out);
 		
-		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_notail_10.pairings");
+		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_10.pairings");
 		String actual = getContent(logFile);
 		assertEquals(expected, actual);
 	}
@@ -61,7 +61,7 @@ public class PairingsOutputersTest {
 		generator.generate("CGH");
 		text.close();
 		
-		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_notail_10.pairings");
+		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_10.pairings");
 		String actual = getContent(pairingsFile);
 		assertEquals(expected, actual);
 	}
@@ -78,7 +78,7 @@ public class PairingsOutputersTest {
 		mps.writeRhsAndBounds(generator.getNumberOfPairings());
 		mps.close();
 		
-		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_notail_10.mps");
+		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_10.mps");
 		String actual = getContent(mpsFile);
 		assertEquals(expected, actual);
 	}
@@ -94,7 +94,7 @@ public class PairingsOutputersTest {
 		generator.generate("CGH");
 		cplex.exportModel(cplexFile);
 
-		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_notail_10.lp");
+		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_10.lp");
 		String actual = getContent(cplexFile);
 		assertEquals(expected, actual);
 	}
