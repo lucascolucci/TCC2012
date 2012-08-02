@@ -25,6 +25,7 @@ public class GlpkSolver implements Solvable {
 		return solutionFile;
 	}
 	
+	@Override
 	public double getSolutionTime() {
 		return solutionTime;
 	}
@@ -112,6 +113,7 @@ public class GlpkSolver implements Solvable {
 		return (new GlpkSolutionReader(solutionFile)).getCost();
 	}
 	
+	@Override
 	public int getSolutionSize() {
 		return (new GlpkSolutionReader(solutionFile).getNumberOfOneVariables());
 	}

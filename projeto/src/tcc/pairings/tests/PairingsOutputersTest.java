@@ -15,11 +15,13 @@ import org.junit.Test;
 import tcc.pairings.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.CplexOutputer;
+import tcc.pairings.io.MemoryOutputer;
 import tcc.pairings.io.MpsOutputer;
 import tcc.pairings.io.Outputer;
 import tcc.pairings.io.TerminalOutputer;
 import tcc.pairings.io.TextOutputer;
 import tcc.pairings.io.TimeTableReader;
+import tcc.pairings.solvers.CplexSolver;
 
 public class PairingsOutputersTest {
 	private FlightNetwork net;
@@ -98,6 +100,22 @@ public class PairingsOutputersTest {
 		String actual = getContent(cplexFile);
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void test() throws Exception {
+		CplexOutputer cplex = new CplexOutputer(net.getLegs());
+		MemoryOutputer memory = new MemoryOutputer();
+		Outputer[] outputers = new Outputer[] { cplex, memory };
+		PairingsGenerator generator = new PairingsGenerator(net, outputers);
+		cplex.addRows();
+		generator.generate("CGH");
+		
+		CplexSolver solver = new CplexSolver(cplex.getModel());
+		solver.solve();
+		new TerminalOutputer().output(solver.getSolution(memory.getPairings()));
+		solver.endModel();
+	}
+
 	
 	private String getContent(String fileName) throws Exception {
 		DataInputStream in = new DataInputStream(new FileInputStream(fileName));

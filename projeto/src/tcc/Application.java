@@ -22,10 +22,11 @@ public class Application {
 	private static final int SOLUTION_TRIALS = 3;
 	
 	public static void main(String[] args) {
-		//Application app = new Application();
+		Application app = new Application();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
+		app.doCplexSolutionTime();
 	}
 
 	public void doNumberOfPairings() {
@@ -112,6 +113,21 @@ public class Application {
 			writer.write(numberOfLegs + "\t" + mean + "\t" + getSD(values, mean));
 		}
 		writer.close();	
+	}
+	
+	public void doCplexSolutionTime() {
+		System.out.print("GLPK solution time... ");
+		Rules.MAX_DUTIES = 2;
+		doCplexSolutionTime(36, "cplex_solution_time_2.dat");
+		Rules.MAX_DUTIES = 3;
+		doCplexSolutionTime(36, "cplex_solution_time_3.dat");
+		Rules.MAX_DUTIES = 4;
+		doCplexSolutionTime(36, "cplex_solution_time_4.dat");
+		System.out.println("Feito!");
+	}
+	
+	private void doCplexSolutionTime(int maxLegs, String outputFile) {
+		// TODO	
 	}
 	
 	private List<Leg> getLegsFromFile(String fileName) {

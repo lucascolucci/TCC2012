@@ -60,4 +60,6 @@ public class SolversTest {
 
 		return new GlpkSolver(mpsFile, solutionFile);
 	}
+	
+	// TODO Cplex tests
 }

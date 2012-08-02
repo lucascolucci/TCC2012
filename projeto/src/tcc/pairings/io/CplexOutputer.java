@@ -23,10 +23,6 @@ public class CplexOutputer extends Outputer {
 		return model;
 	}
 	
-	public IloLPMatrix getMatrix() {
-		return matrix;
-	}
-	
 	public CplexOutputer(List<Leg> legs) {
 		super();
 		this.legs = legs;
