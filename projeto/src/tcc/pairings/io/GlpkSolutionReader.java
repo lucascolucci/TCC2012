@@ -53,7 +53,7 @@ public class GlpkSolutionReader {
 		} 
 		catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
-			return 0;
+			return -1;
 		}
 	}
 	
