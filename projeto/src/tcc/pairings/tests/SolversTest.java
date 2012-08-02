@@ -26,7 +26,7 @@ public class SolversTest {
 	
 	@Before
 	public void setUp() {
-		TimeTableReader reader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_10.txt");
+		TimeTableReader reader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_notail_10.txt");
 		net = new FlightNetwork(reader.getLegs());
 		net.build();
 		

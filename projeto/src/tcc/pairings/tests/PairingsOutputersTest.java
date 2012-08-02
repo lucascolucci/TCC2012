@@ -15,20 +15,18 @@ import org.junit.Test;
 import tcc.pairings.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.CplexOutputer;
-import tcc.pairings.io.MemoryOutputer;
 import tcc.pairings.io.MpsOutputer;
 import tcc.pairings.io.Outputer;
 import tcc.pairings.io.TerminalOutputer;
 import tcc.pairings.io.TextOutputer;
 import tcc.pairings.io.TimeTableReader;
-import tcc.pairings.solvers.CplexSolver;
 
 public class PairingsOutputersTest {
 	private FlightNetwork net;
 	
 	@Before
 	public void setUp() {
-		TimeTableReader reader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_10.txt");
+		TimeTableReader reader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_notail_10.txt");
 		net = new FlightNetwork(reader.getLegs());
 		net.build();
 	}
@@ -48,7 +46,7 @@ public class PairingsOutputersTest {
 		generator.generate("CGH");
 		System.setOut(out);
 		
-		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_10.pairings");
+		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_notail_10.pairings");
 		String actual = getContent(logFile);
 		assertEquals(expected, actual);
 	}
@@ -63,7 +61,7 @@ public class PairingsOutputersTest {
 		generator.generate("CGH");
 		text.close();
 		
-		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_10.pairings");
+		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_notail_10.pairings");
 		String actual = getContent(pairingsFile);
 		assertEquals(expected, actual);
 	}
@@ -80,7 +78,7 @@ public class PairingsOutputersTest {
 		mps.writeRhsAndBounds(generator.getNumberOfPairings());
 		mps.close();
 		
-		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_10.mps");
+		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_notail_10.mps");
 		String actual = getContent(mpsFile);
 		assertEquals(expected, actual);
 	}
@@ -96,26 +94,10 @@ public class PairingsOutputersTest {
 		generator.generate("CGH");
 		cplex.exportModel(cplexFile);
 
-		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_10.lp");
+		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_notail_10.lp");
 		String actual = getContent(cplexFile);
 		assertEquals(expected, actual);
 	}
-	
-	@Test
-	public void test() throws Exception {
-		CplexOutputer cplex = new CplexOutputer(net.getLegs());
-		MemoryOutputer memory = new MemoryOutputer();
-		Outputer[] outputers = new Outputer[] { cplex, memory };
-		PairingsGenerator generator = new PairingsGenerator(net, outputers);
-		cplex.addRows();
-		generator.generate("CGH");
-		
-		CplexSolver solver = new CplexSolver(cplex.getModel());
-		solver.solve();
-		new TerminalOutputer().output(solver.getSolution(memory.getPairings()));
-		solver.endModel();
-	}
-
 	
 	private String getContent(String fileName) throws Exception {
 		DataInputStream in = new DataInputStream(new FileInputStream(fileName));

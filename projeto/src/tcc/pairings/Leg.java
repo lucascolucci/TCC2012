@@ -10,6 +10,7 @@ public class Leg {
 	private String to;
 	private Date departure;
 	private Date arrival;
+	private String tail;
 	
 	public int getNumber() {
 		return number;
@@ -50,6 +51,23 @@ public class Leg {
 	public void setArrival(Date arrival) {
 		this.arrival = arrival;
 	}
+	
+	public String getTail() {
+		return tail;
+	}
+
+	public void setTail(String tail) {
+		this.tail = tail;
+	}
+	
+	public Leg(int number, String from, String to, Date departure, Date arrival, String tail) {
+		this.number = number;
+		this.from = from;
+		this.to = to;
+		this.departure = departure;
+		this.arrival = arrival;
+		this.tail = null;
+	}
 
 	public Leg(int number, String from, String to, Date departure, Date arrival) {
 		this.number = number;
@@ -57,6 +75,7 @@ public class Leg {
 		this.to = to;
 		this.departure = departure;
 		this.arrival = arrival;
+		tail = null;
 	}
 
 	public String toString() {
@@ -64,6 +83,8 @@ public class Leg {
 		StringBuilder sb = new StringBuilder();
 		sb.append(number).append("  ").append(from).append("->").append(to).append("  ");
 		sb.append(df.format(departure)).append(" - ").append(df.format(arrival));
+		if (tail != null)
+			sb.append("  ").append(tail);
 		return sb.toString();
 	}	
 }

@@ -40,8 +40,8 @@ public class Application {
 		System.out.println("Feito!");
 	}
 	
-	private void doNumberOfpairings(int maxLegs, String outputFile) {
-		ResultsWriter writer = new ResultsWriter(outputFile);
+	private void doNumberOfpairings(int maxLegs, String dataFile) {
+		ResultsWriter writer = new ResultsWriter(dataFile);
 		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
 			buildNet(getTrimmedList(allLegs, numberOfLegs));
@@ -62,8 +62,8 @@ public class Application {
 		System.out.println("Feito!");
 	}
 	
-	private void doGenerationTime(int maxLegs, String outputFile) {
-		ResultsWriter writer = new ResultsWriter(outputFile);
+	private void doGenerationTime(int maxLegs, String dataFile) {
+		ResultsWriter writer = new ResultsWriter(dataFile);
 		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
 			List<Leg> trimmedList = getTrimmedList(allLegs, numberOfLegs);
@@ -92,8 +92,8 @@ public class Application {
 		System.out.println("Feito!");
 	}
 	
-	private void doGlpkSolutionTime(int maxLegs, String outputFile) {
-		ResultsWriter writer = new ResultsWriter(outputFile);
+	private void doGlpkSolutionTime(int maxLegs, String dataFile) {
+		ResultsWriter writer = new ResultsWriter(dataFile);
 		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
 			List<Leg> trimmedLegs = getTrimmedList(allLegs, numberOfLegs);
@@ -126,7 +126,7 @@ public class Application {
 		System.out.println("Feito!");
 	}
 	
-	private void doCplexSolutionTime(int maxLegs, String outputFile) {
+	private void doCplexSolutionTime(int maxLegs, String dataFile) {
 		// TODO	
 	}
 	

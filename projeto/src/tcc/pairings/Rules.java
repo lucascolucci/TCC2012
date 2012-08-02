@@ -15,6 +15,7 @@ public class Rules {
 	public static int MAX_FLIGHT_TIME = 570; // 9.5 horas
 	public static int MAX_DUTY_TIME = 690; // 11.5 horas
 	public static int MAX_LEGS = 5;
+	public static int MAX_TAILS = 2;
 	
 	public static boolean isPairingLegal(Pairing pairing, String base) {
 		if (pairing != null && pairing.getNumberOfDuties() <= MAX_DUTIES) {

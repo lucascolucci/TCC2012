@@ -58,6 +58,9 @@ public class TimeTableReader {
 		String to = fields[2];
 		Date departure = (Date) df.parse(fields[3]);
 		Date arrival = (Date) df.parse(fields[4]);
-		return new Leg(number, from, to, departure, arrival);
+		Leg leg = new Leg(number, from, to, departure, arrival);
+		if (fields.length == 6)
+			leg.setTail(fields[5]);
+		return leg;
 	}
 }
