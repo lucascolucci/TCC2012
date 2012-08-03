@@ -77,25 +77,32 @@ public class Rules {
 	
 	public static boolean isPossibleToAppendConnection(FlightNetworkPath path, Edge<Leg> edge) {
 		if (!path.hasSameLegNumber(edge.getIn().getInfo().getNumber())) {
+			String tail = edge.getIn().getInfo().getTail();
 			int flightTime = ((FlightNetworkNodeLabel) edge.getIn().getLabel()).getFlightTime();
 			int sitTime = ((FlightNetworkEdgeLabel) edge.getLabel()).getSitTime();
-			return flightTimeCheck(path, flightTime) && dutyTimeCheck(path, flightTime, sitTime) && numberOfLegsCheck(path);
+			return numberOfLegsCheck(path) && tailChangesCheck(path, tail) && flightTimeCheck(path, flightTime) && dutyTimeCheck(path, flightTime, sitTime);
 		}
 		return false;
 	}
 	
+	private static boolean numberOfLegsCheck(FlightNetworkPath path) {
+		return path.getDutyData().getNumberOfLegs() + 1 <= Rules.MAX_LEGS;	
+	}
+	
+	private static boolean tailChangesCheck(FlightNetworkPath path, String tail) {
+		if (tail != null && !tail.contentEquals(path.getTail()))
+			return path.getDutyData().getNumberOfTails() + 1 <= Rules.MAX_TAILS;
+		return true;
+	}
+		
 	private static boolean flightTimeCheck(FlightNetworkPath path, int flightTime) {
-		return path.getFlightTime() + flightTime <= Rules.MAX_FLIGHT_TIME;
+		return path.getDutyData().getFlightTime() + flightTime <= Rules.MAX_FLIGHT_TIME;
 	}
 	
 	private static boolean dutyTimeCheck(FlightNetworkPath path, int flightTime, int sitTime) { 
-		return path.getDutyTime() + flightTime + sitTime <= Rules.MAX_DUTY_TIME;
+		return path.getDutyData().getDutyTime() + flightTime + sitTime <= Rules.MAX_DUTY_TIME;
 	}
-	
-	private static boolean numberOfLegsCheck(FlightNetworkPath path) {
-		return path.getNumberOfLegs() + 1 <= Rules.MAX_LEGS;	
-	}
-	
+		
 	public static boolean isPossibleToAppendOvernight(FlightNetworkPath path, Edge<Leg> edge, String base) {
 		if(!path.hasSameLegNumber(edge.getIn().getInfo().getNumber()))
 			if (!edge.getOut().getInfo().getTo().contentEquals(base))

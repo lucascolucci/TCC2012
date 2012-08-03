@@ -54,7 +54,8 @@ public class FlightNetwork extends Graph<Leg> {
 		String to = leg.getTo();
 		Date departure = DateUtil.addOneDay(leg.getDeparture());
 		Date arrival = DateUtil.addOneDay(leg.getArrival());
-		return new Leg(number, from, to, departure, arrival);
+		String tail = leg.getTail(); // Possível falha na repetição da malha. 
+		return new Leg(number, from, to, departure, arrival, tail);
 	}
 
 	private void addLegsConnections() {

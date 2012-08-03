@@ -7,9 +7,13 @@ import tcc.pairings.Leg;
 import tcc.pairings.PairingsGenerator;
 import tcc.pairings.Rules;
 import tcc.pairings.graph.networks.FlightNetwork;
+import tcc.pairings.io.CplexOutputer;
+import tcc.pairings.io.MemoryOutputer;
 import tcc.pairings.io.MpsOutputer;
 import tcc.pairings.io.Outputer;
+import tcc.pairings.io.TerminalOutputer;
 import tcc.pairings.io.TimeTableReader;
+import tcc.pairings.solvers.CplexSolver;
 import tcc.pairings.solvers.GlpkSolver;
 
 public class Application {
@@ -23,10 +27,29 @@ public class Application {
 	
 	public static void main(String[] args) {
 		Application app = new Application();
+		app.doPairings();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
-		app.doCplexSolutionTime();
+		//app.doCplexSolutionTime();
+	}
+	
+	public void doPairings() {
+		List<Leg> allLegs = getLegsFromFile("cgh_sdu_tail_62.txt");
+		buildNet(getTrimmedList(allLegs, 62));
+		Rules.MAX_DUTIES = 2;
+		Rules.MAX_TAILS = 2;
+		Rules.MAX_LEGS = 5;
+		Rules.MIN_SIT_TIME = 20;
+		MemoryOutputer memory = new MemoryOutputer();
+		CplexOutputer cplex = new CplexOutputer(net.getLegs());
+		cplex.addRows();
+		generatePairings(new String[] { "CGH", "SDU" }, new Outputer[] { cplex, memory });
+		CplexSolver solver = new CplexSolver(cplex.getModel());
+		solver.solve();
+		new TerminalOutputer().output(solver.getSolution(memory.getPairings()));
+		System.out.println(solver.getSolutionCost());
+		System.out.println(solver.getSolutionSize());
 	}
 
 	public void doNumberOfPairings() {
@@ -42,7 +65,7 @@ public class Application {
 	
 	private void doNumberOfpairings(int maxLegs, String dataFile) {
 		ResultsWriter writer = new ResultsWriter(dataFile);
-		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
+		List<Leg> allLegs = getLegsFromFile("cgh_sdu_notail_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
 			buildNet(getTrimmedList(allLegs, numberOfLegs));
 			generatePairings(new String[] { "CGH" }, null);
@@ -64,7 +87,7 @@ public class Application {
 	
 	private void doGenerationTime(int maxLegs, String dataFile) {
 		ResultsWriter writer = new ResultsWriter(dataFile);
-		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
+		List<Leg> allLegs = getLegsFromFile("cgh_sdu_notail_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
 			List<Leg> trimmedList = getTrimmedList(allLegs, numberOfLegs);
 			double[] values = new double[GENERATION_TRIALS]; 
@@ -94,7 +117,7 @@ public class Application {
 	
 	private void doGlpkSolutionTime(int maxLegs, String dataFile) {
 		ResultsWriter writer = new ResultsWriter(dataFile);
-		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
+		List<Leg> allLegs = getLegsFromFile("cgh_sdu_notail_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
 			List<Leg> trimmedLegs = getTrimmedList(allLegs, numberOfLegs);
 			buildNet(trimmedLegs);

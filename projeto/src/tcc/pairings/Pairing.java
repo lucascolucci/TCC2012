@@ -62,6 +62,7 @@ public class Pairing {
 		for (int i = 0; i < duties.size(); i++)
 			cost += duties.get(i).getCost() + getOvernightCost(i);
 		return cost;
+//		return 1;
 	}
 	
 	private int getOvernightCost(int index) {

@@ -66,7 +66,7 @@ public class Leg {
 		this.to = to;
 		this.departure = departure;
 		this.arrival = arrival;
-		this.tail = null;
+		this.tail = tail;
 	}
 
 	public Leg(int number, String from, String to, Date departure, Date arrival) {
