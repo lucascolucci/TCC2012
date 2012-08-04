@@ -83,7 +83,7 @@ public class CplexSolver implements Solvable {
 	private List<Pairing> tryToGetSolution(List<Pairing> pairings) throws IloException {
 		List<Pairing> solution = new ArrayList<Pairing>(); int ncols = matrix.getNcols();
 		for (int i = 0; i < ncols; i++)
-			if (model.getValue(matrix.getNumVar(i)) == 1)
+			if ((int) model.getValue(matrix.getNumVar(i)) == 1)
 				solution.add(pairings.get(i));
 		return solution;
 	}

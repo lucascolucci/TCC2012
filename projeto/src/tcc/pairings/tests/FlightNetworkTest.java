@@ -12,7 +12,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import tcc.pairings.DateUtil;
+import tcc.DateUtil;
 import tcc.pairings.Leg;
 import tcc.pairings.Rules;
 import tcc.pairings.graph.Edge;

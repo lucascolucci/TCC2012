@@ -35,21 +35,23 @@ public class Application {
 	}
 	
 	public void doPairings() {
-		List<Leg> allLegs = getLegsFromFile("cgh_sdu_tail_62.txt");
-		buildNet(getTrimmedList(allLegs, 62));
-		Rules.MAX_DUTIES = 2;
+		List<Leg> allLegs = getLegsFromFile("738_48.txt");
+		buildNet(allLegs);
+		Rules.MAX_DUTIES = 4;
 		Rules.MAX_TAILS = 2;
 		Rules.MAX_LEGS = 5;
-		Rules.MIN_SIT_TIME = 20;
+		Rules.MIN_SIT_TIME = 30;
 		MemoryOutputer memory = new MemoryOutputer();
 		CplexOutputer cplex = new CplexOutputer(net.getLegs());
 		cplex.addRows();
-		generatePairings(new String[] { "CGH", "SDU" }, new Outputer[] { cplex, memory });
+		generatePairings(new String[] { "GRU", "GIG" }, new Outputer[] { cplex, memory });
 		CplexSolver solver = new CplexSolver(cplex.getModel());
-		solver.solve();
-		new TerminalOutputer().output(solver.getSolution(memory.getPairings()));
-		System.out.println(solver.getSolutionCost());
-		System.out.println(solver.getSolutionSize());
+		if (solver.solve()) {
+			new TerminalOutputer().output(solver.getSolution(memory.getPairings()));
+			System.out.println("Custo = " + solver.getSolutionCost());
+			System.out.println("Tamanho = " + solver.getSolutionSize());
+		}
+		System.out.println(generator.getNumberOfPairings());
 	}
 
 	public void doNumberOfPairings() {

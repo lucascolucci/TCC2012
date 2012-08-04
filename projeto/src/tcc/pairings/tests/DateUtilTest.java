@@ -12,7 +12,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import tcc.pairings.DateUtil;
+import tcc.DateUtil;
 import tcc.pairings.Rules;
 
 public class DateUtilTest {
@@ -37,6 +37,13 @@ public class DateUtilTest {
 		before = (Date) df.parse("05/10/2012 00:00");
 		after = (Date) df.parse("05/10/2012 00:01");
 		assertEquals(1, DateUtil.difference(before, after));
+	}
+	
+	@Test
+	public void itShouldGive2MinutesAgain() throws ParseException {
+		before = (Date) df.parse("04/10/2012 23:58");
+		after = (Date) df.parse("05/10/2012 00:00");
+		assertEquals(2, DateUtil.difference(before, after));
 	}
 	
 	@Test
