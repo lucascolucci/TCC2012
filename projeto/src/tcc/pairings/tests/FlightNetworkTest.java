@@ -33,8 +33,8 @@ public class FlightNetworkTest {
 		Date leg2Dep = (Date) df.parse("27/08/2012 09:00");
 		Date leg2Arr = (Date) df.parse("27/08/2012 09:58");
 		
-		Leg leg1 = new Leg(1234, "CGH", "UDI", leg1Dep, leg1Arr);
-		Leg leg2 = new Leg(1235, "UDI", "CGH", leg2Dep, leg2Arr);
+		Leg leg1 = new Leg((short) 1234, "CGH", "UDI", leg1Dep, leg1Arr);
+		Leg leg2 = new Leg((short) 1235, "UDI", "CGH", leg2Dep, leg2Arr);
 		
 		legsList.add(leg1);
 		legsList.add(leg2);
@@ -70,7 +70,7 @@ public class FlightNetworkTest {
 	
 	@Test
 	public void sourceShouldHaveCorrectEdges() {
-		Leg sourceLeg = new Leg(0, "CGH", "CGH", null, null);
+		Leg sourceLeg = new Leg((short) 0, "CGH", "CGH", null, null);
 		Node<Leg> source = new Node<Leg>(sourceLeg);
 		net.addSource(source);
 		for (Edge<Leg> edge: net.getOutwardEdges(source))
@@ -80,7 +80,7 @@ public class FlightNetworkTest {
 	
 	@Test
 	public void sinkShouldHaveCorrectEdges() {
-		Leg sinkLeg = new Leg(0, "CGH", "CGH", null, null);
+		Leg sinkLeg = new Leg((short) 0, "CGH", "CGH", null, null);
 		Node<Leg> sink = new Node<Leg>(sinkLeg);
 		net.addSink(sink);
 		for (Edge<Leg> edge: net.getInwardEdges(sink))

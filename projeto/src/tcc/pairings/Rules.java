@@ -77,7 +77,7 @@ public class Rules {
 	}
 	
 	public static boolean isPossibleToAppendConnection(FlightNetworkPath path, Edge<Leg> edge) {
-		if (!path.hasSameLegNumber(edge.getIn().getInfo().getNumber())) {
+		if (!path.hasLeg(edge.getIn().getInfo())) {
 			String tail = edge.getIn().getInfo().getTail();
 			int flightTime = ((FlightNetworkNodeLabel) edge.getIn().getLabel()).getFlightTime();
 			int sitTime = ((FlightNetworkEdgeLabel) edge.getLabel()).getSitTime();
@@ -105,7 +105,7 @@ public class Rules {
 	}
 		
 	public static boolean isPossibleToAppendOvernight(FlightNetworkPath path, Edge<Leg> edge, String base) {
-		if(!path.hasSameLegNumber(edge.getIn().getInfo().getNumber()))
+		if(!path.hasLeg(edge.getIn().getInfo()))
 			if (!edge.getOut().getInfo().getTo().contentEquals(base))
 				return numberOfDutiesCheck(path);
 		return false;

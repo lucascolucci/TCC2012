@@ -45,8 +45,8 @@ public class PairingsGenerator {
 	}
 
 	private void setSourceAndSink(String base) {
-		Leg sourceLeg = new Leg(0, base, base, null, null);
-		Leg sinkLeg = new Leg(0, base, base, null, null);
+		Leg sourceLeg = new Leg((short) 0, base, base, null, null);
+		Leg sinkLeg = new Leg((short) 0, base, base, null, null);
 		source = new Node<Leg>(sourceLeg, null);
 		sink = new Node<Leg>(sinkLeg, null);
 	}

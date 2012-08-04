@@ -53,7 +53,7 @@ public class TimeTableReader {
 	private Leg getLeg(String line) throws ParseException {
 		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
 		String[] fields = line.split("\t");
-		int number = Integer.parseInt(fields[0]);
+		short number = Short.parseShort(fields[0]);
 		String from = fields[1];
 		String to = fields[2];
 		Date departure = (Date) df.parse(fields[3]);

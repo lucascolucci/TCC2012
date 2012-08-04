@@ -5,18 +5,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Leg {
-	private int number;
+	private short number;
 	private String from;
 	private String to;
 	private Date departure;
 	private Date arrival;
 	private String tail;
 	
-	public int getNumber() {
+	public short getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(short number) {
 		this.number = number;
 	}
 
@@ -60,7 +60,7 @@ public class Leg {
 		this.tail = tail;
 	}
 	
-	public Leg(int number, String from, String to, Date departure, Date arrival, String tail) {
+	public Leg(short number, String from, String to, Date departure, Date arrival, String tail) {
 		this.number = number;
 		this.from = from;
 		this.to = to;
@@ -69,7 +69,7 @@ public class Leg {
 		this.tail = tail;
 	}
 
-	public Leg(int number, String from, String to, Date departure, Date arrival) {
+	public Leg(short number, String from, String to, Date departure, Date arrival) {
 		this.number = number;
 		this.from = from;
 		this.to = to;
@@ -77,7 +77,12 @@ public class Leg {
 		this.arrival = arrival;
 		tail = null;
 	}
+	
+	public boolean isTheSame(Leg leg) {
+		return number == leg.getNumber() && from.contentEquals(leg.getFrom()) && to.contentEquals(leg.getTo());
+	}
 
+	@Override
 	public String toString() {
 		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
 		StringBuilder sb = new StringBuilder();

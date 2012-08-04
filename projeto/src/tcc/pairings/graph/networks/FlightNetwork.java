@@ -49,7 +49,7 @@ public class FlightNetwork extends Graph<Leg> {
 	}
 	
 	private Leg getNextDayLeg(Leg leg) {
-		int number = leg.getNumber();
+		short number = leg.getNumber();
 		String from = leg.getFrom();
 		String to = leg.getTo();
 		Date departure = DateUtil.addOneDay(leg.getDeparture());

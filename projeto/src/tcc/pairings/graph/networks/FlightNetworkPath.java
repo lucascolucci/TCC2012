@@ -83,9 +83,9 @@ public class FlightNetworkPath extends Path<Leg>{
 		numberOfDuties--;
 	}
 	
-	public boolean hasSameLegNumber(int number) {
-		for (Edge<Leg> edge: edges)
-			if (edge.getOut().getInfo().getNumber() == number)
+	public boolean hasLeg(Leg leg) {
+		for (Edge<Leg> edge: edges) 
+			if (leg.isTheSame(edge.getOut().getInfo()))
 				return true;
 		return false;
 	}

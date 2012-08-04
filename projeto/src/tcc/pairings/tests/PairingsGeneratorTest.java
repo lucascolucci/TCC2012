@@ -61,8 +61,8 @@ public class PairingsGeneratorTest {
 		Date leg2Dep = (Date) df.parse("27/08/2012 09:00");
 		Date leg2Arr = (Date) df.parse("27/08/2012 09:58");
 		
-		Leg leg1 = new Leg(1234, "CGH", "UDI", leg1Dep, leg1Arr);
-		Leg leg2 = new Leg(1235, "UDI", "CGH", leg2Dep, leg2Arr);
+		Leg leg1 = new Leg((short) 1234, "CGH", "UDI", leg1Dep, leg1Arr);
+		Leg leg2 = new Leg((short) 1235, "UDI", "CGH", leg2Dep, leg2Arr);
 		
 		legsList.add(leg1);
 		legsList.add(leg2);
