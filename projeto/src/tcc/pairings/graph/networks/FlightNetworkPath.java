@@ -7,7 +7,7 @@ import tcc.pairings.graph.Path;
 
 public class FlightNetworkPath extends Path<Leg>{
 	private DutyData dutyData;
-	private String tail;
+	private short track;
 	private int numberOfDuties;
 	
 	public DutyData getDutyData() {
@@ -18,12 +18,12 @@ public class FlightNetworkPath extends Path<Leg>{
 		this.dutyData = dutyData;
 	}
 
-	public String getTail() {
-		return tail;
+	public short getTrack() {
+		return track;
 	}
 
-	public void setTail(String tail) {
-		this.tail = tail;
+	public void setTrack(short track) {
+		this.track = track;
 	}
 
 	public int getNumberOfDuties() {
@@ -37,49 +37,49 @@ public class FlightNetworkPath extends Path<Leg>{
 	public FlightNetworkPath() {
 		super();
 		dutyData = new DutyData();
-		tail = null;
+		track = -1;
 		numberOfDuties = 0;
 	}
 	
-	public void addNewDuty(int flightTime, String tail) {
+	public void addNewDuty(int flightTime, short track) {
 		dutyData.startNew(flightTime);
-		this.tail = tail;
+		this.track = track;
 		numberOfDuties++;
 	}
 	
 	public void reset() {
 		dutyData.reset();
-		tail = null;
+		track = -1;
 		numberOfDuties = 0;
 	}
 	
-	public void addConnection(int flightTime, int sitTime, String tail) {
+	public void addConnection(int flightTime, int sitTime, short track) {
 		dutyData.addConnection(flightTime, sitTime);
-		incrementTailsIfDifferent(tail);
+		incrementTracksIfDifferent(track);
 	}
 
-	private void incrementTailsIfDifferent(String newTail) {
-		if (newTail != null && !newTail.contentEquals(tail)) {
-			dutyData.incrementNumberOfTails();
-			tail = newTail;
+	private void incrementTracksIfDifferent(short newTrack) {
+		if (newTrack != track) {
+			dutyData.incrementNumberOfTracks();
+			track = newTrack;
 		}
 	}
 	
-	public void removeConnection(int flightTime, int sitTime, String tail) {
+	public void removeConnection(int flightTime, int sitTime, short track) {
 		dutyData.removeConnection(flightTime, sitTime);
-		decrementTailsIfDifferent(tail);
+		decrementTracksIfDifferent(track);
 	}
 
-	private void decrementTailsIfDifferent(String oldTail) {
-		if (oldTail != null && !oldTail.contentEquals(tail)) {
-			dutyData.decrementNumberOfTails();
-			tail = oldTail;
+	private void decrementTracksIfDifferent(short oldTrack) {
+		if (oldTrack != track) {
+			dutyData.decrementNumberOfTracks();
+			track = oldTrack;
 		}
 	}
 	
-	public void removeOvernight(DutyData lastDuty, String lastTail) {
+	public void removeOvernight(DutyData lastDuty, short lastTrack) {
 		dutyData.resume(lastDuty);
-		tail = lastTail;
+		track = lastTrack;
 		numberOfDuties--;
 	}
 	

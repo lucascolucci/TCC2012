@@ -10,7 +10,7 @@ public class Leg {
 	private String to;
 	private Date departure;
 	private Date arrival;
-	private String tail;
+	private short track;
 	
 	public short getNumber() {
 		return number;
@@ -52,32 +52,23 @@ public class Leg {
 		this.arrival = arrival;
 	}
 	
-	public String getTail() {
-		return tail;
+	public short getTrack() {
+		return track;
 	}
 
-	public void setTail(String tail) {
-		this.tail = tail;
+	public void setTrack(short track) {
+		this.track = track;
 	}
 	
-	public Leg(short number, String from, String to, Date departure, Date arrival, String tail) {
+	public Leg(short number, String from, String to, Date departure, Date arrival, short track) {
 		this.number = number;
 		this.from = from;
 		this.to = to;
 		this.departure = departure;
 		this.arrival = arrival;
-		this.tail = tail;
+		this.track = track;
 	}
 
-	public Leg(short number, String from, String to, Date departure, Date arrival) {
-		this.number = number;
-		this.from = from;
-		this.to = to;
-		this.departure = departure;
-		this.arrival = arrival;
-		tail = null;
-	}
-	
 	public boolean isTheSame(Leg leg) {
 		return number == leg.getNumber() && from.contentEquals(leg.getFrom()) && to.contentEquals(leg.getTo());
 	}
@@ -88,8 +79,7 @@ public class Leg {
 		StringBuilder sb = new StringBuilder();
 		sb.append(number).append("  ").append(from).append("->").append(to).append("  ");
 		sb.append(df.format(departure)).append(" - ").append(df.format(arrival));
-		if (tail != null)
-			sb.append("  ").append(tail);
+		sb.append("  ").append(track);
 		return sb.toString();
 	}	
 }

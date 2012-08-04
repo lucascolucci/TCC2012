@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import tcc.pairings.PairingsGenerator;
+import tcc.pairings.Rules;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.CplexOutputer;
 import tcc.pairings.io.MpsOutputer;
@@ -26,7 +27,12 @@ public class PairingsOutputersTest {
 	
 	@Before
 	public void setUp() {
-		TimeTableReader reader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_notail_10.txt");
+		Rules.MAX_DUTIES = 4;
+		Rules.MIN_SIT_TIME = 25;
+		Rules.MAX_LEGS = 5;
+		Rules.MAX_TRACKS = 2;
+		
+		TimeTableReader reader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_10.txt");
 		net = new FlightNetwork(reader.getLegs());
 		net.build();
 	}

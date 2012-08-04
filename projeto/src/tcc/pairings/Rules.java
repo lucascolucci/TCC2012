@@ -9,17 +9,17 @@ import tcc.pairings.graph.networks.FlightNetworkPath;
 public class Rules {
 	public static final String DATE_FORMAT = "dd/MM/yyyy HH:mm";
 	public static int MAX_DUTIES = 4;
-	public static int MIN_SIT_TIME = 30;
+	public static int MIN_SIT_TIME = 25;
 	public static int MAX_SIT_TIME = 120; // 02 horas
 	public static int MIN_REST_TIME = 720; // 12 horas
 	public static int MAX_REST_TIME = 2160; // 36 horas
 	public static int MAX_FLIGHT_TIME = 570; // 9.5 horas
 	public static int MAX_DUTY_TIME = 690; // 11.5 horas
 	public static int MAX_LEGS = 5;
-	public static int MAX_TAILS = 2;
+	public static int MAX_TRACKS = 2;
 	
 	public static boolean isPairingLegal(Pairing pairing, String base) {
-		if (pairing != null && pairing.getNumberOfDuties() <= MAX_DUTIES) {
+		if (pairing.getNumberOfDuties() <= MAX_DUTIES) {
 			if (originDestinationCheck(pairing, base))
 				return pairingDutiesCheck(pairing);
 		}
@@ -47,7 +47,7 @@ public class Rules {
 	}
 
 	private static boolean isDutyLegal(Duty duty) {
-		if (duty != null && duty.getNumberOfLegs() <= MAX_LEGS) {
+		if (duty.getNumberOfLegs() <= MAX_LEGS) {
 			if (duty.getFlightTime() <= MAX_FLIGHT_TIME) 
 				if (duty.getDutyTime() <= MAX_DUTY_TIME) 
 					return checkDutyConnections(duty);
@@ -78,10 +78,10 @@ public class Rules {
 	
 	public static boolean isPossibleToAppendConnection(FlightNetworkPath path, Edge<Leg> edge) {
 		if (!path.hasLeg(edge.getIn().getInfo())) {
-			String tail = edge.getIn().getInfo().getTail();
 			int flightTime = ((FlightNetworkNodeLabel) edge.getIn().getLabel()).getFlightTime();
 			int sitTime = ((FlightNetworkEdgeLabel) edge.getLabel()).getSitTime();
-			return numberOfLegsCheck(path) && tailChangesCheck(path, tail) && flightTimeCheck(path, flightTime) && dutyTimeCheck(path, flightTime, sitTime);
+			short track = edge.getIn().getInfo().getTrack();
+			return numberOfLegsCheck(path) && trackChangesCheck(path, track) && flightTimeCheck(path, flightTime) && dutyTimeCheck(path, flightTime, sitTime);
 		}
 		return false;
 	}
@@ -90,9 +90,9 @@ public class Rules {
 		return path.getDutyData().getNumberOfLegs() + 1 <= Rules.MAX_LEGS;	
 	}
 	
-	private static boolean tailChangesCheck(FlightNetworkPath path, String tail) {
-		if (tail != null && !tail.contentEquals(path.getTail()))
-			return path.getDutyData().getNumberOfTails() + 1 <= Rules.MAX_TAILS;
+	private static boolean trackChangesCheck(FlightNetworkPath path, short track) {
+		if (track != path.getTrack())
+			return path.getDutyData().getNumberOfTracks() + 1 <= Rules.MAX_TRACKS;
 		return true;
 	}
 		

@@ -21,71 +21,34 @@ public class TimeTableReaderTest {
 	@Before
 	public void setUp() throws Exception {
 		df = new SimpleDateFormat(Rules.DATE_FORMAT);
-	}
-	
-	@Test
-	public void itShouldRead62NoTailLegs() {
-		timeTableReader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_notail_62.txt");		
+		timeTableReader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_62.txt");		
 		legs = timeTableReader.getLegs();
+	}
+		
+	@Test
+	public void itShouldRead62Legs() {
 		assertEquals(62, legs.size());
 	}
 	
 	@Test
-	public void itShouldRead62TailLegs() {
-		timeTableReader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_tail_62.txt");		
-		legs = timeTableReader.getLegs();
-		assertEquals(62, legs.size());
-	}
-	
-	@Test
-	public void itShouldMatchFirstNoTailLeg() {
-		timeTableReader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_notail_62.txt");		
-		legs = timeTableReader.getLegs();
+	public void itShouldMatchFirstLeg() {
 		Leg firstLeg = legs.get(0); 
 		assertEquals(1500, firstLeg.getNumber());
 		assertEquals("CGH", firstLeg.getFrom());
 		assertEquals("SDU", firstLeg.getTo());
 		assertEquals("27/08/2012 06:10", df.format(firstLeg.getDeparture()));
 		assertEquals("27/08/2012 07:08", df.format(firstLeg.getArrival()));
-		assertEquals(null, firstLeg.getTail());
+		assertEquals(1, firstLeg.getTrack());
 	}
 	
 	@Test
-	public void itShouldMatchFirstTailLeg() {
-		timeTableReader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_tail_62.txt");		
-		legs = timeTableReader.getLegs();
-		Leg firstLeg = legs.get(0); 
-		assertEquals(1500, firstLeg.getNumber());
-		assertEquals("CGH", firstLeg.getFrom());
-		assertEquals("SDU", firstLeg.getTo());
-		assertEquals("27/08/2012 06:10", df.format(firstLeg.getDeparture()));
-		assertEquals("27/08/2012 07:08", df.format(firstLeg.getArrival()));
-		assertEquals("GOA", firstLeg.getTail());
-	}
-	
-	@Test
-	public void itShouldMatchLastNoTailLeg(){
-		timeTableReader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_notail_62.txt");		
-		legs = timeTableReader.getLegs();
+	public void itShouldMatchLastLeg(){
 		Leg lastLeg = legs.get(legs.size() - 1); 
 		assertEquals(1561, lastLeg.getNumber());
 		assertEquals("SDU", lastLeg.getFrom());
 		assertEquals("CGH", lastLeg.getTo());
 		assertEquals("27/08/2012 21:10", df.format(lastLeg.getDeparture()));
 		assertEquals("27/08/2012 22:01", df.format(lastLeg.getArrival()));
-		assertEquals(null, lastLeg.getTail());
-	}
-	
-	@Test
-	public void itShouldMatchLastTailLeg(){
-		timeTableReader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_tail_62.txt");		
-		legs = timeTableReader.getLegs();
-		Leg lastLeg = legs.get(legs.size() - 1); 
-		assertEquals(1561, lastLeg.getNumber());
-		assertEquals("SDU", lastLeg.getFrom());
-		assertEquals("CGH", lastLeg.getTo());
-		assertEquals("27/08/2012 21:10", df.format(lastLeg.getDeparture()));
-		assertEquals("27/08/2012 22:01", df.format(lastLeg.getArrival()));
-		assertEquals("GOD", lastLeg.getTail());
+		assertEquals(4, lastLeg.getTrack());
 	}
 }

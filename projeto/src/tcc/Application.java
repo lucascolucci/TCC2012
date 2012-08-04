@@ -38,7 +38,7 @@ public class Application {
 		List<Leg> allLegs = getLegsFromFile("738_48.txt");
 		buildNet(allLegs);
 		Rules.MAX_DUTIES = 4;
-		Rules.MAX_TAILS = 2;
+		Rules.MAX_TRACKS = 2;
 		Rules.MAX_LEGS = 5;
 		Rules.MIN_SIT_TIME = 30;
 		MemoryOutputer memory = new MemoryOutputer();

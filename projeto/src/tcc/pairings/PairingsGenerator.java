@@ -45,8 +45,8 @@ public class PairingsGenerator {
 	}
 
 	private void setSourceAndSink(String base) {
-		Leg sourceLeg = new Leg((short) 0, base, base, null, null);
-		Leg sinkLeg = new Leg((short) 0, base, base, null, null);
+		Leg sourceLeg = new Leg((short) 0, base, base, null, null, (short) 0);
+		Leg sinkLeg = new Leg((short) 0, base, base, null, null, (short) 0);
 		source = new Node<Leg>(sourceLeg, null);
 		sink = new Node<Leg>(sinkLeg, null);
 	}
@@ -91,8 +91,8 @@ public class PairingsGenerator {
 	
 	private void addNewDutyToPath(Edge<Leg> edge) {
 		int flightTime = ((FlightNetworkNodeLabel) edge.getIn().getLabel()).getFlightTime();
-		String tail = edge.getIn().getInfo().getTail();
-		path.addNewDuty(flightTime, tail);
+		short track = edge.getIn().getInfo().getTrack();
+		path.addNewDuty(flightTime, track);
 		path.addEdge(edge);
 	}
 
@@ -112,31 +112,31 @@ public class PairingsGenerator {
 	private void addConnectionToPath(Edge<Leg> edge) {
 		int flightTime = ((FlightNetworkNodeLabel) edge.getIn().getLabel()).getFlightTime();
 		int sitTime = ((FlightNetworkEdgeLabel) edge.getLabel()).getSitTime();
-		String tail = edge.getIn().getInfo().getTail();
-		path.addConnection(flightTime, sitTime, tail);
+		short track = edge.getIn().getInfo().getTrack();
+		path.addConnection(flightTime, sitTime, track);
 		path.addEdge(edge);
 	}
 	
 	private void removeConnectionFromPath(Edge<Leg> edge) {
-		String tail = edge.getOut().getInfo().getTail();
 		int flightTime = ((FlightNetworkNodeLabel) edge.getIn().getLabel()).getFlightTime();
 		int sitTime = ((FlightNetworkEdgeLabel) edge.getLabel()).getSitTime();
-		path.removeConnection(flightTime, sitTime, tail);
+		short track = edge.getOut().getInfo().getTrack();
+		path.removeConnection(flightTime, sitTime, track);
 		path.removeEdge();
 	}
 	
 	private void exploreTroughOvernight(Edge<Leg> edge) {
 		if (Rules.isPossibleToAppendOvernight(path, edge, base)) {
 			DutyData dutyData = path.getDutyData().clone();
-			String tail = path.getTail();
+			short track = path.getTrack();
 			addNewDutyToPath(edge);	
 			findPairings(edge.getIn());
-			removeOvernightFromPath(dutyData, tail);
+			removeOvernightFromPath(dutyData, track);
 		}
 	}
 
-	private void removeOvernightFromPath(DutyData dutyData, String tail) {
-		path.removeOvernight(dutyData, tail);
+	private void removeOvernightFromPath(DutyData dutyData, short track) {
+		path.removeOvernight(dutyData, track);
 		path.removeEdge();
 	}
 	

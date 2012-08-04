@@ -4,7 +4,7 @@ public class DutyData implements Cloneable {
 	private int flightTime;
 	private int dutyTime;
 	private int numberOfLegs;
-	private int numberOfTails;
+	private int numberOfTracks;
 	
 	public int getFlightTime() {
 		return flightTime;
@@ -30,19 +30,19 @@ public class DutyData implements Cloneable {
 		this.numberOfLegs = numberOfLegs;
 	}
 	
-	public int getNumberOfTails() {
-		return numberOfTails;
+	public int getNumberOfTracks() {
+		return numberOfTracks;
 	}
 	
-	public void setNumberOfTails(int numberOfTails) {
-		this.numberOfTails = numberOfTails;
+	public void setNumberOfTails(int numberOfTracks) {
+		this.numberOfTracks = numberOfTracks;
 	}
 	
-	public DutyData(int flightTime, int dutyTime, int numberOfLegs, int numberOfTails) {
+	public DutyData(int flightTime, int dutyTime, int numberOfLegs, int numberOfTracks) {
 		this.flightTime = flightTime;
 		this.dutyTime = dutyTime;
 		this.numberOfLegs = numberOfLegs;
-		this.numberOfTails = numberOfTails;
+		this.numberOfTracks = numberOfTracks;
 	}
 	
 	public DutyData() {
@@ -53,14 +53,14 @@ public class DutyData implements Cloneable {
 		flightTime = 0;
 		dutyTime = 0;
 		numberOfLegs = 0;
-		numberOfTails = 0;
+		numberOfTracks = 0;
 	}
 	
 	public void startNew(int flightTime) {
 		this.flightTime = flightTime;
 		this.dutyTime = flightTime;
 		numberOfLegs = 1;
-		numberOfTails = 1;
+		numberOfTracks = 1;
 	}
 	
 	public void addConnection(int flightTime, int sitTime) {
@@ -79,19 +79,19 @@ public class DutyData implements Cloneable {
 		flightTime = lastDuty.getFlightTime();
 		dutyTime = lastDuty.getDutyTime();
 		numberOfLegs = lastDuty.getNumberOfLegs();
-		numberOfTails = lastDuty.getNumberOfTails();
+		numberOfTracks = lastDuty.getNumberOfTracks();
 	}
 
-	public void incrementNumberOfTails() {
-		numberOfTails++;
+	public void incrementNumberOfTracks() {
+		numberOfTracks++;
 	}
 	
-	public void decrementNumberOfTails() {
-		numberOfTails--;
+	public void decrementNumberOfTracks() {
+		numberOfTracks--;
 	}
 	
 	@Override
 	public DutyData clone() {
-		return new DutyData(flightTime, dutyTime, numberOfLegs, numberOfTails);
+		return new DutyData(flightTime, dutyTime, numberOfLegs, numberOfTracks);
 	}
 }
