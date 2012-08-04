@@ -75,9 +75,9 @@ public class Pairing {
 		return 0;
 	}
 
-	public boolean contains(int number) {
+	public boolean contains(Leg leg) {
 		for (Duty duty: duties)
-			if(duty.contains(number))
+			if(duty.contains(leg))
 				return true;
 		return false;
 	}

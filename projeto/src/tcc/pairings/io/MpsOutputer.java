@@ -51,7 +51,7 @@ public class MpsOutputer extends Outputer {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" X").append(pairing.getNumber()).append(" COST ").append(String.valueOf(pairing.getCost())).append('\n');
 		for (Leg leg: legs) 
-			if (pairing.contains(leg.getNumber()))
+			if (pairing.contains(leg))
 				sb.append(" X").append(pairing.getNumber()).append(" F").append(leg.getNumber()).append(" 1").append('\n');
 		write(sb.toString());		
 	}

@@ -74,7 +74,7 @@ public class CplexOutputer extends Outputer {
 	private void tryToOutput(Pairing pairing) throws IloException {
 		IloColumn col = model.column(obj, pairing.getCost());
 		for (int i = 0; i < legs.size(); i++)
-			if (pairing.contains(legs.get(i).getNumber()))
+			if (pairing.contains(legs.get(i)))
 				col = col.and(model.column(range[i], 1));
 		matrix.addColumn(model.boolVar(col, "X" + pairing.getNumber()));
 	}

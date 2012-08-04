@@ -60,9 +60,9 @@ public class Duty {
 		return null;
 	}
 
-	public boolean contains(int number) {
-		for (Leg leg: legs)
-			if (leg.getNumber() == number)
+	public boolean contains(Leg leg) {
+		for (Leg dutyLeg: legs)
+			if (dutyLeg.isTheSame(leg))
 				return true;
 		return false;
 	}

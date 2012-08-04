@@ -35,7 +35,7 @@ public class Application {
 	}
 	
 	public void doPairings() {
-		List<Leg> allLegs = getLegsFromFile("738_48.txt");
+		List<Leg> allLegs = getLegsFromFile("733_92.txt");
 		buildNet(allLegs);
 		Rules.MAX_DUTIES = 4;
 		Rules.MAX_TRACKS = 2;
@@ -44,7 +44,7 @@ public class Application {
 		MemoryOutputer memory = new MemoryOutputer();
 		CplexOutputer cplex = new CplexOutputer(net.getLegs());
 		cplex.addRows();
-		generatePairings(new String[] { "GRU", "GIG" }, new Outputer[] { cplex, memory });
+		generatePairings(new String[] { "GRU" }, new Outputer[] { cplex, memory });
 		CplexSolver solver = new CplexSolver(cplex.getModel());
 		if (solver.solve()) {
 			new TerminalOutputer().output(solver.getSolution(memory.getPairings()));
