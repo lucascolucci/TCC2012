@@ -47,11 +47,11 @@ public class Rules {
 	}
 
 	private static boolean isDutyLegal(Duty duty) {
-		if (duty.getNumberOfLegs() <= MAX_LEGS) {
-			if (duty.getFlightTime() <= MAX_FLIGHT_TIME) 
-				if (duty.getDutyTime() <= MAX_DUTY_TIME) 
-					return checkDutyConnections(duty);
-		}
+		if (duty.getNumberOfLegs() <= MAX_LEGS) 
+			if (duty.getNumberOfTracks() <= MAX_TRACKS)
+				if (duty.getFlightTime() <= MAX_FLIGHT_TIME) 
+					if (duty.getDutyTime() <= MAX_DUTY_TIME) 
+						return checkDutyConnections(duty);
 		return false;
 	}
 

@@ -17,10 +17,6 @@ public class Duty {
 		legs = new ArrayList<Leg>();
 	}
 	
-	public int getNumberOfLegs() {
-		return legs.size();
-	}
-	
 	public int getFlightTime() {
 		int total = 0;
 		for (Leg leg: legs)
@@ -32,6 +28,20 @@ public class Duty {
 		Date departure = legs.get(0).getDeparture();
 		Date arrival = legs.get(legs.size() - 1).getArrival();
 		return DateUtil.difference(departure, arrival);
+	}
+	
+	public int getNumberOfLegs() {
+		return legs.size();
+	}
+	
+	public int getNumberOfTracks() {
+		int count = 0; short track = -1;
+		for (int i = 0; i < legs.size(); i++) 
+			if (track != legs.get(i).getTrack()) {
+				track = legs.get(i).getTrack();
+				count++;
+			}
+		return count;	
 	}
 	
 	public void addLeg(Leg leg) {

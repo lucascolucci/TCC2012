@@ -126,7 +126,7 @@ public class PairingsGeneratorTest {
 	}
 	
 	private PairingsGenerator getGeneratorForCghSdu10(Outputer[] outputers) {
-		TimeTableReader reader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_10.txt");
+		TimeTableReader reader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_20.txt");
 		FlightNetwork net = new FlightNetwork(reader.getLegs());
 		net.build();
 		return new PairingsGenerator(net, outputers);
