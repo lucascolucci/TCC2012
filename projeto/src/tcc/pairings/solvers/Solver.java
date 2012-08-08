@@ -4,11 +4,11 @@ import java.util.List;
 
 import tcc.pairings.Pairing;
 
-public interface Solvable {
+public interface Solver {
 	double getSolutionTime();
 	boolean solve();
 	List<Pairing> getSolution(String pairingsFile);
 	List<Pairing> getSolution(List<Pairing> pairings);
-	int getSolutionCost();
+	double getSolutionCost();
 	int getSolutionSize();
 }

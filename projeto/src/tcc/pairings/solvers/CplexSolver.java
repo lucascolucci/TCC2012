@@ -8,7 +8,7 @@ import java.util.List;
 
 import tcc.pairings.Pairing;
 
-public class CplexSolver implements Solvable {
+public class CplexSolver implements Solver {
 	private IloCplex model;
 	private IloLPMatrix matrix;
 	private double solutionTime;
@@ -89,7 +89,7 @@ public class CplexSolver implements Solvable {
 	}
 	
 	@Override
-	public int getSolutionCost() {
+	public double getSolutionCost() {
 		try {
 			return tryToGetSolutionCost();
 		} catch (IloException e) {
@@ -98,9 +98,9 @@ public class CplexSolver implements Solvable {
 		}
 	}
 
-	private int tryToGetSolutionCost() throws IloException {
+	private double tryToGetSolutionCost() throws IloException {
 		if (model != null)
-			return (int) model.getObjValue();
+			return model.getObjValue();
 		return -1;
 	}
 	

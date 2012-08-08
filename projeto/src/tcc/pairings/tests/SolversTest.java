@@ -19,7 +19,7 @@ import tcc.pairings.io.Outputer;
 import tcc.pairings.io.TimeTableReader;
 import tcc.pairings.solvers.CplexSolver;
 import tcc.pairings.solvers.GlpkSolver;
-import tcc.pairings.solvers.Solvable;
+import tcc.pairings.solvers.Solver;
 
 public class SolversTest {
 	private FlightNetwork net;
@@ -117,11 +117,11 @@ public class SolversTest {
 		return new CplexSolver(mpsFile);
 	}
 
-	private void itShouldGiveRightSolutionCost(Solvable solver) {
+	private void itShouldGiveRightSolutionCost(Solver solver) {
 		List<Pairing> solution = solver.getSolution(memory.getPairings());
-		int cost = 0;
+		double cost = 0;
 		for (Pairing pairing: solution) 
 			cost += pairing.getCost();
-		assertEquals(solver.getSolutionCost(), cost);
+		assertEquals(solver.getSolutionCost(), cost, 0.1);
 	}	
 }

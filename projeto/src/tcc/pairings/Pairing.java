@@ -1,5 +1,6 @@
 package tcc.pairings;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +11,19 @@ import tcc.pairings.graph.networks.FlightNetworkPath;
 
 public class Pairing {
 	private int number;
+	private double cost;
 	private List<Duty> duties;
 	
 	public int getNumber() {
 		return number;
+	}
+	
+	public double getCost() {
+		return cost;
+	}
+	
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 	
 	public List<Duty> getDuties() {
@@ -22,6 +32,7 @@ public class Pairing {
 
 	public Pairing(int number, FlightNetworkPath path) {
 		this.number = number;
+		cost = 1;
 		duties = new ArrayList<Duty>();
 		build(path);
 	}
@@ -58,14 +69,21 @@ public class Pairing {
 		return null;
 	}
 
-	public int getCost() {
-		int cost = 0;
-		for (int i = 0; i < duties.size(); i++)
-			cost += duties.get(i).getCost() + getOvernightCost(i);
-		return cost;
+	public boolean contains(Leg leg) {
+		for (Duty duty: duties)
+			if(duty.contains(leg))
+				return true;
+		return false;
 	}
 	
-	private int getOvernightCost(int index) {
+	public int getExcessTime() {
+		int excess = 0;
+		for (int i = 0; i < duties.size(); i++)
+			excess += duties.get(i).getExcessTime() + getOvernightExcessTime(i);
+		return excess;
+	}
+	
+	private int getOvernightExcessTime(int index) {
 		if (index < duties.size() - 1) {
 			Duty previous = duties.get(index);
 			Duty next = duties.get(index + 1);
@@ -74,18 +92,20 @@ public class Pairing {
 		}
 		return 0;
 	}
-
-	public boolean contains(Leg leg) {
-		for (Duty duty: duties)
-			if(duty.contains(leg))
-				return true;
-		return false;
-	}
 	
+	public int getFlightTime() {
+		int flight = 0;
+		for (Duty duty: duties)
+			flight += duty.getFlightTime();			
+		return flight;
+	}
+
 	@Override
 	public String toString() {
+		DecimalFormat df = new DecimalFormat();
+		df.applyPattern("#.###");
 		StringBuilder sb = new StringBuilder("Pairing ");
-		sb.append(number).append(" - Cost ").append(getCost()).append('\n');
+		sb.append(number).append(" - Cost ").append(df.format(getCost())).append('\n');
 		int dutyNumber = 0;
 		for(Duty duty: duties) {
 			sb.append("\tDuty ").append(++dutyNumber).append('\n');

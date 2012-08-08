@@ -1,5 +1,6 @@
 package tcc.pairings;
 
+import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.Node;
 import tcc.pairings.graph.networks.FlightNetwork;
@@ -11,6 +12,7 @@ import tcc.pairings.io.Outputer;
 public class PairingsGenerator {
 	private FlightNetwork net;
 	private Outputer[] outputers;
+	private CostCalculator calculator;
 	private int numberOfPairings;
 	private String base;
 	private FlightNetworkPath path;
@@ -26,8 +28,13 @@ public class PairingsGenerator {
 	}
 	
 	public PairingsGenerator(FlightNetwork net, Outputer[] outputers) {
+		this(net, outputers, null);
+	}
+	
+	public PairingsGenerator(FlightNetwork net, Outputer[] outputers, CostCalculator calculator) {
 		this.net = net;
 		this.outputers = outputers;
+		this.calculator = calculator;
 		numberOfPairings = 0;
 	}
 		
@@ -147,8 +154,15 @@ public class PairingsGenerator {
 	}
 	
 	private void output() {
-		Pairing pairing = new Pairing(numberOfPairings, path);
+		Pairing pairing = getNewPairing();
 		for (Outputer outputer: outputers) 
 			outputer.output(pairing);
+	}
+
+	private Pairing getNewPairing() {
+		Pairing pairing = new Pairing(numberOfPairings, path);
+		if (calculator != null)
+			calculator.setCost(pairing);
+		return pairing;
 	}
 }

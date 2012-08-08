@@ -67,18 +67,19 @@ public class Duty {
 		return false;
 	}
 	
-	public int getCost() {
-		int cost = 0;
+	public int getExcessTime() {
+		int excess = 0;
 		for (int i = 0; i < legs.size(); i++)
-			cost += getConnectionCost(i);
-		return cost;
+			excess += getConnectionExcessTime(i);
+		return excess;
 	}
 	
-	private int getConnectionCost(int index) {
+	private int getConnectionExcessTime(int index) {
 		if (index < legs.size() - 1) {
 			Leg previous = legs.get(index);
 			Leg next = legs.get(index + 1);
-			return DateUtil.difference(previous.getArrival(), next.getDeparture()) - Rules.MIN_SIT_TIME;
+			int sit = DateUtil.difference(previous.getArrival(), next.getDeparture()); 
+			return (sit - Rules.MIN_SIT_TIME);
 		}
 		return 0;
 	}

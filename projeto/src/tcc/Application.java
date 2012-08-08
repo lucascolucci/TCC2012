@@ -35,12 +35,13 @@ public class Application {
 	}
 	
 	public void doPairings() {
-		List<Leg> allLegs = getLegsFromFile("733_92.txt");
-		buildNet(allLegs);
 		Rules.MAX_DUTIES = 4;
 		Rules.MAX_TRACKS = 2;
 		Rules.MAX_LEGS = 5;
-		Rules.MIN_SIT_TIME = 30;
+		Rules.MIN_SIT_TIME = 25;
+		
+		List<Leg> allLegs = getLegsFromFile("738_48.txt");
+		buildNet(allLegs);
 		MemoryOutputer memory = new MemoryOutputer();
 		CplexOutputer cplex = new CplexOutputer(net.getLegs());
 		cplex.addRows();

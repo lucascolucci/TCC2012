@@ -47,7 +47,7 @@ public class GlpkSolutionReader {
 		in.close();
 	}
 	
-	public int getCost() {
+	public double getCost() {
 		try {
 			return tryToReadFileAndGetCost();
 		} 
@@ -57,13 +57,13 @@ public class GlpkSolutionReader {
 		}
 	}
 	
-	private int tryToReadFileAndGetCost() throws Exception {
+	private double tryToReadFileAndGetCost() throws Exception {
 		DataInputStream in = new DataInputStream(new FileInputStream(fileName));
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
-		int lineCount = 0; int cost = 0; String line;
+		int lineCount = 0; double cost = 0; String line;
 		while ((line = br.readLine()) != null)  
 			if (++lineCount == 3) {
-				cost = Integer.parseInt(line);
+				cost = Double.parseDouble(line);
 				break;
 			}
 		in.close();

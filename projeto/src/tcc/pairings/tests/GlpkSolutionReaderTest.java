@@ -18,6 +18,6 @@ public class GlpkSolutionReaderTest {
 	@Test
 	public void itShouldReadTheRightSolutionCost() {
 		GlpkSolutionReader reader = new GlpkSolutionReader(FilePaths.OUTPUTS + "cgh_sdu_10.solution");
-		assertEquals(1810, reader.getCost());
+		assertEquals(1810, reader.getCost(), 0.1);
 	}
 }

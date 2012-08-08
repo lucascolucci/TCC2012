@@ -8,7 +8,7 @@ import java.util.List;
 import tcc.pairings.Pairing;
 import tcc.pairings.io.GlpkSolutionReader;
 
-public class GlpkSolver implements Solvable {
+public class GlpkSolver implements Solver {
 	private String mpsFile;
 	private String solutionFile;
 	private double solutionTime;
@@ -109,7 +109,7 @@ public class GlpkSolver implements Solvable {
 	}
 		
 	@Override
-	public int getSolutionCost() {
+	public double getSolutionCost() {
 		return (new GlpkSolutionReader(solutionFile)).getCost();
 	}
 	
