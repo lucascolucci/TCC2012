@@ -78,7 +78,7 @@ public class Duty {
 		if (index < legs.size() - 1) {
 			Leg previous = legs.get(index);
 			Leg next = legs.get(index + 1);
-			int sit = DateUtil.difference(previous.getArrival(), next.getDeparture()); 
+			int sit = DateUtil.difference(previous.getArrival(), next.getDeparture());
 			return (sit - Rules.MIN_SIT_TIME);
 		}
 		return 0;

@@ -29,6 +29,10 @@ public class Pairing {
 	public List<Duty> getDuties() {
 		return duties;
 	}
+	
+	public Pairing() {
+		duties = new ArrayList<Duty>();
+	}
 
 	public Pairing(int number, FlightNetworkPath path) {
 		this.number = number;
@@ -46,6 +50,10 @@ public class Pairing {
 			}
 			duty.addLeg(edge.getIn().getInfo());
 		}
+		duties.add(duty);
+	}
+	
+	public void addDuty(Duty duty) {
 		duties.add(duty);
 	}
 	

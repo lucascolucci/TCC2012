@@ -5,7 +5,7 @@ import tcc.pairings.Pairing;
 public class ExcessCalculator implements CostCalculator {
 	@Override
 	public void setCost(Pairing pairing) {
-		double flight = (double) pairing.getFlightTime();
-		pairing.setCost(flight);
+		double excess = (double) pairing.getExcessTime();
+		pairing.setCost(excess);
 	}
 }
