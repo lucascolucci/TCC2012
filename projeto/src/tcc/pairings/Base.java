@@ -15,7 +15,7 @@ public class Base {
 		airports.add(airport);
 	}
 	
-	public Base(String[] airports) {
+	public Base(String... airports) {
 		this();
 		for (String airport: airports) 
 			this.airports.add(airport);

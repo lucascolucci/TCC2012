@@ -136,4 +136,22 @@ public class PairingsGeneratorTest {
 		net.build();
 		return new PairingsGenerator(net, outputers);
 	}
+	
+	@Test
+	public void itShouldGiveLegalPairingsFor738() {
+		MemoryOutputer memory = new MemoryOutputer();
+		Outputer[] outputers = new Outputer[] { memory };
+		PairingsGenerator generator = getGeneratorFor738(outputers);
+		Base base = new Base("GIG", "SDU");
+		generator.generate(base);
+		for (Pairing pairing: memory.getPairings())
+			assertTrue(Rules.isPairingLegal(pairing, base));
+	}
+	
+	private PairingsGenerator getGeneratorFor738(Outputer[] outputers) {
+		TimeTableReader reader = new TimeTableReader(FilePaths.TIME_TABLES + "738_48.txt");
+		FlightNetwork net = new FlightNetwork(reader.getLegs());
+		net.build();
+		return new PairingsGenerator(net, outputers);
+	}
 }

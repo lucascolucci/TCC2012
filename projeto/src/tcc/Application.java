@@ -47,7 +47,7 @@ public class Application {
 		CplexOutputer cplex = new CplexOutputer(net.getLegs());
 		cplex.addRows();
 		Base sao = new Base("GRU");
-		Base rio = new Base(new String[] { "SDU", "GIG" });
+		Base rio = new Base("SDU", "GIG");
 		generatePairings(new Base[] { sao, rio }, new Outputer[] { cplex, memory });
 		CplexSolver solver = new CplexSolver(cplex.getModel());
 		if (solver.solve()) {
