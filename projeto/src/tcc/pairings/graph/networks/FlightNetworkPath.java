@@ -85,7 +85,7 @@ public class FlightNetworkPath extends Path<Leg>{
 	
 	public boolean contains(Leg leg) {
 		for (Edge<Leg> edge: edges) 
-			if (leg.isTheSame(edge.getOut().getInfo()))
+			if (leg.isDuplicate(edge.getIn().getInfo()))
 				return true;
 		return false;
 	}

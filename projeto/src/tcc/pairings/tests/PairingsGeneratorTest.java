@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import tcc.pairings.Base;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.PairingsGenerator;
@@ -32,7 +33,7 @@ public class PairingsGeneratorTest {
 		FlightNetwork net = getFlightNetworkWith2Legs();
 		PairingsGenerator generator = new PairingsGenerator(net, null);
 		
-		generator.generate("CGH");
+		generator.generate(new Base("CGH"));
 		assertEquals(2, generator.getNumberOfPairings());
 	}
 	
@@ -41,7 +42,7 @@ public class PairingsGeneratorTest {
 		FlightNetwork net = getFlightNetworkWith2Legs();
 		PairingsGenerator generator = new PairingsGenerator(net, null);
 		
-		generator.generate("UDI");
+		generator.generate(new Base("UDI"));
 		assertEquals(1, generator.getNumberOfPairings());
 	}
 	
@@ -50,10 +51,10 @@ public class PairingsGeneratorTest {
 		FlightNetwork net = getFlightNetworkWith2Legs();
 		PairingsGenerator generator = new PairingsGenerator(net, null);
 		
-		generator.generate("CGH");
+		generator.generate(new Base("CGH"));
 		assertEquals(2, generator.getNumberOfPairings());
 		
-		generator.generate("UDI");
+		generator.generate(new Base("UDI"));
 		assertEquals(3, generator.getNumberOfPairings());
 	}
 	
@@ -83,9 +84,10 @@ public class PairingsGeneratorTest {
 		MemoryOutputer memory = new MemoryOutputer();
 		Outputer[] outputers = new Outputer[] { memory };
 		PairingsGenerator generator = getGeneratorForCghSdu10(outputers);
-		generator.generate("CGH");
+		Base base = new Base("CGH");
+		generator.generate(base);
 		for (Pairing pairing: memory.getPairings())
-			assertTrue(Rules.isPairingLegal(pairing, "CGH"));
+			assertTrue(Rules.isPairingLegal(pairing, base));
 	}
 	
 	@Test
@@ -93,9 +95,10 @@ public class PairingsGeneratorTest {
 		MemoryOutputer memory = new MemoryOutputer();
 		Outputer[] outputers = new Outputer[] { memory };
 		PairingsGenerator generator = getGeneratorForCghSdu10(outputers);
-		generator.generate("SDU");
+		Base base = new Base("SDU");
+		generator.generate(base);
 		for (Pairing pairing: memory.getPairings())
-			assertTrue(Rules.isPairingLegal(pairing, "SDU"));
+			assertTrue(Rules.isPairingLegal(pairing, base));
 	}
 	
 	@Test
@@ -104,14 +107,16 @@ public class PairingsGeneratorTest {
 		Outputer[] outputers = new Outputer[] { memory };
 		PairingsGenerator generator = getGeneratorForCghSdu10(outputers);
 		
-		generator.generate("CGH");
+		Base base = new Base("CGH");
+		generator.generate(base);
 		for (Pairing pairing: memory.getPairings())
-			assertTrue(Rules.isPairingLegal(pairing, "CGH"));
+			assertTrue(Rules.isPairingLegal(pairing, base));
 		
 		memory.clear();
-		generator.generate("SDU");
+		base = new Base("SDU");
+		generator.generate(base);
 		for (Pairing pairing: memory.getPairings())
-			assertTrue(Rules.isPairingLegal(pairing, "SDU"));
+			assertTrue(Rules.isPairingLegal(pairing, base));
 	}
 	
 	@Test
@@ -119,8 +124,8 @@ public class PairingsGeneratorTest {
 		MemoryOutputer memory = new MemoryOutputer();
 		Outputer[] outputers = new Outputer[] { memory };
 		PairingsGenerator generator = getGeneratorForCghSdu10(outputers);
-		generator.generate("CGH");
-		generator.generate("SDU");
+		generator.generate(new Base("CGH"));
+		generator.generate(new Base("SDU"));
 		for (Pairing pairing: memory.getPairings())
 			assertTrue(pairing.getCost() >= 0);
 	}

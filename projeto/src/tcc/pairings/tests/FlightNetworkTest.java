@@ -13,12 +13,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import tcc.DateUtil;
+import tcc.pairings.Base;
 import tcc.pairings.Leg;
 import tcc.pairings.Rules;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.EdgeType;
 import tcc.pairings.graph.Node;
 import tcc.pairings.graph.networks.FlightNetwork;
+import tcc.pairings.graph.networks.SpecialNode;
 
 public class FlightNetworkTest {
 	private FlightNetwork net;
@@ -75,8 +77,7 @@ public class FlightNetworkTest {
 	
 	@Test
 	public void sourceShouldHaveCorrectEdges() {
-		Leg sourceLeg = new Leg((short) 0, "CGH", "CGH", null, null, (short) 0);
-		Node<Leg> source = new Node<Leg>(sourceLeg);
+		SpecialNode source = new SpecialNode(new Base("CGH"));
 		net.addSource(source);
 		for (Edge<Leg> edge: net.getOutwardEdges(source))
 			assertEquals(EdgeType.FROM_SOURCE, edge.getType());
@@ -85,8 +86,7 @@ public class FlightNetworkTest {
 	
 	@Test
 	public void sinkShouldHaveCorrectEdges() {
-		Leg sinkLeg = new Leg((short) 0, "CGH", "CGH", null, null, (short) 0);
-		Node<Leg> sink = new Node<Leg>(sinkLeg);
+		SpecialNode sink = new SpecialNode(new Base("CGH"));
 		net.addSink(sink);
 		for (Edge<Leg> edge: net.getInwardEdges(sink))
 			assertEquals(EdgeType.TO_SINK, edge.getType());

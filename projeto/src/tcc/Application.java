@@ -3,6 +3,7 @@ package tcc;
 import java.util.ArrayList;
 import java.util.List;
 
+import tcc.pairings.Base;
 import tcc.pairings.Leg;
 import tcc.pairings.PairingsGenerator;
 import tcc.pairings.Rules;
@@ -45,7 +46,9 @@ public class Application {
 		MemoryOutputer memory = new MemoryOutputer();
 		CplexOutputer cplex = new CplexOutputer(net.getLegs());
 		cplex.addRows();
-		generatePairings(new String[] { "GRU" }, new Outputer[] { cplex, memory });
+		Base sao = new Base("GRU");
+		Base rio = new Base(new String[] { "SDU", "GIG" });
+		generatePairings(new Base[] { sao, rio }, new Outputer[] { cplex, memory });
 		CplexSolver solver = new CplexSolver(cplex.getModel());
 		if (solver.solve()) {
 			new TerminalOutputer().output(solver.getSolution(memory.getPairings()));
@@ -71,7 +74,8 @@ public class Application {
 		List<Leg> allLegs = getLegsFromFile("cgh_sdu_notail_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
 			buildNet(getTrimmedList(allLegs, numberOfLegs));
-			generatePairings(new String[] { "CGH" }, null);
+			Base base = new Base("GRU");
+			generatePairings(new Base[] { base }, null);
 			writer.write(numberOfLegs + "\t" + generator.getNumberOfPairings());
 		}
 		writer.close();
@@ -97,7 +101,8 @@ public class Application {
 			for (int i = 0; i < GENERATION_TRIALS; i++) {
 				long start = System.nanoTime();
 				buildNet(trimmedList);
-				generatePairings(new String[] { "CGH" }, null);
+				Base base = new Base("GRU");
+				generatePairings(new Base[] { base }, null);
 				long stop = System.nanoTime();
 				values[i] = (double) (stop - start) / 1000000;
 			}
@@ -126,7 +131,8 @@ public class Application {
 			buildNet(trimmedLegs);
 			MpsOutputer mps = new MpsOutputer(trimmedLegs, OUTPUTS_PATH + "cgh_sdu.mps");
 			mps.writeUntilColumns();
-			generatePairings(new String[] { "CGH" }, new Outputer[] { mps });
+			Base base = new Base("GRU");
+			generatePairings(new Base[] { base }, new Outputer[] { mps });
 			mps.writeRhsAndBounds(generator.getNumberOfPairings());
 			mps.close();
 			GlpkSolver solver = new GlpkSolver(OUTPUTS_PATH + "cgh_sdu.mps");
@@ -174,9 +180,9 @@ public class Application {
 		net.build();
 	}
 	
-	private void generatePairings(String[] bases, Outputer[] outputers) {
+	private void generatePairings(Base[] bases, Outputer[] outputers) {
 		generator = new PairingsGenerator(net, outputers);
-		for (String base: bases)
+		for (Base base: bases)
 			generator.generate(base);
 	}
 	

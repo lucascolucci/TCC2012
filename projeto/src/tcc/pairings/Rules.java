@@ -18,7 +18,7 @@ public class Rules {
 	public static int MAX_LEGS = 5;
 	public static int MAX_TRACKS = 2;
 	
-	public static boolean isPairingLegal(Pairing pairing, String base) {
+	public static boolean isPairingLegal(Pairing pairing, Base base) {
 		if (pairing.getNumberOfDuties() <= MAX_DUTIES) {
 			if (originDestinationCheck(pairing, base))
 				return pairingDutiesCheck(pairing);
@@ -26,10 +26,17 @@ public class Rules {
 		return false;
 	}
 
-	private static boolean originDestinationCheck(Pairing pairing, String base) {
+	private static boolean originDestinationCheck(Pairing pairing, Base base) {
 		String from = pairing.getFirstLeg().getFrom();
 		String to = pairing.getLastLeg().getTo();
-		return from.contentEquals(base) && to.contentEquals(to);
+		return isAirportAtBase(from, base) && isAirportAtBase(to, base);
+	}
+
+	private static boolean isAirportAtBase(String airport, Base base) {
+		for (String baseAirport: base.getAirports())
+			if (airport.contentEquals(baseAirport))
+				return true;
+		return false;
 	}
 
 	private static boolean pairingDutiesCheck(Pairing pairing) {
@@ -104,10 +111,17 @@ public class Rules {
 		return path.getDutyData().getDutyTime() + flightTime + sitTime <= Rules.MAX_DUTY_TIME;
 	}
 		
-	public static boolean isPossibleToAppendOvernight(FlightNetworkPath path, Edge<Leg> edge, String base) {
+	public static boolean isPossibleToAppendOvernight(FlightNetworkPath path, Edge<Leg> edge, Base base) {
 		if(!path.contains(edge.getIn().getInfo()))
-			if (!edge.getOut().getInfo().getTo().contentEquals(base))
+			if (!isOvernightAtOneOfTheBaseAirports(edge.getOut().getInfo(), base))
 				return numberOfDutiesCheck(path);
+		return false;
+	}
+	
+	private static boolean isOvernightAtOneOfTheBaseAirports(Leg leg, Base base) {
+		for (String airport: base.getAirports())
+			if (leg.getTo().contentEquals(airport))
+				return true;
 		return false;
 	}
 

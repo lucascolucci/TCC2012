@@ -69,7 +69,7 @@ public class Leg {
 		this.track = track;
 	}
 
-	public boolean isTheSame(Leg leg) {
+	public boolean isDuplicate(Leg leg) {
 		return number == leg.getNumber() && from.contentEquals(leg.getFrom()) && to.contentEquals(leg.getTo());
 	}
 

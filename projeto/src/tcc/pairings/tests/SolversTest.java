@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import tcc.pairings.Base;
 import tcc.pairings.Pairing;
 import tcc.pairings.PairingsGenerator;
 import tcc.pairings.Rules;
@@ -60,7 +61,7 @@ public class SolversTest {
 		PairingsGenerator generator = new PairingsGenerator(net, outputers);
 	
 		mps.writeUntilColumns();	
-		generator.generate("CGH");
+		generator.generate(new Base("CGH"));
 		mps.writeRhsAndBounds(generator.getNumberOfPairings());
 		mps.close();
 
@@ -97,7 +98,7 @@ public class SolversTest {
 		PairingsGenerator generator = new PairingsGenerator(net, outputers);
 		
 		cplex.addRows();	
-		generator.generate("CGH");
+		generator.generate(new Base("CGH"));
 		
 		return new CplexSolver(cplex.getModel());
 	}
@@ -110,7 +111,7 @@ public class SolversTest {
 		PairingsGenerator generator = new PairingsGenerator(net, outputers);
 		
 		mps.writeUntilColumns();
-		generator.generate("CGH");
+		generator.generate(new Base("CGH"));
 		mps.writeRhsAndBounds(generator.getNumberOfPairings());
 		mps.close();
 		

@@ -62,7 +62,7 @@ public class Duty {
 
 	public boolean contains(Leg leg) {
 		for (Leg dutyLeg: legs)
-			if (dutyLeg.isTheSame(leg))
+			if (dutyLeg.isDuplicate(leg))
 				return true;
 		return false;
 	}

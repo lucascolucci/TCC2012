@@ -20,10 +20,12 @@ public class Node<T> {
 		return edges;
 	}
 	
+	public Node() {
+		this(null, null);
+	}
+	
 	public Node(T info) {
-		this.info = info;
-		label = null;
-		edges = new ArrayList<Edge<T>>();
+		this(info, null);
 	}
 	
 	public Node(T info, Label label) {

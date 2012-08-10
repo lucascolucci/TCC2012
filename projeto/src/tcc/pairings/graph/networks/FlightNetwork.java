@@ -85,49 +85,37 @@ public class FlightNetwork extends Graph<Leg> {
 			addEdge(out, in, EdgeType.OVERNIGHT, new FlightNetworkEdgeLabel(sit));
 	}
 	
-	// TODO refatorar
-	public void addSource(Node<Leg> source) {
-		String base = source.getInfo().getFrom();
+	public void addSource(SpecialNode source) {
 		for (Node<Leg> node: nodes)
-			if (shouldBeConnectedToSource(node, base)) {
-				source.addNeighbor(node, EdgeType.FROM_SOURCE);
-				numberOfEdges++;
-			}
+			for (String airport: source.getAirports())
+				if (shouldBeConnectedToSource(node, airport)) {
+					source.addNeighbor(node, EdgeType.FROM_SOURCE);
+					numberOfEdges++;
+				}
 		addNode(source);
 	}
 
-	private boolean shouldBeConnectedToSource(Node<Leg> node, String base) {
-		if (!isSink(node)) {
+	private boolean shouldBeConnectedToSource(Node<Leg> node, String airport) {
+		if (node.getClass() != SpecialNode.class) {
 			int day = ((FlightNetworkNodeLabel) node.getLabel()).getDay();
-			return (day == 1) && node.getInfo().getFrom().contentEquals(base);
+			return (day == 1) && node.getInfo().getFrom().contentEquals(airport);
 		}
 		return false;
 	}
 	
-	private boolean isSink(Node<Leg> node) {
-		Leg leg = node.getInfo();
-		return leg.getFrom().contentEquals(leg.getTo());
-	}
-	
-	// TODO refatorar
-	public void addSink(Node<Leg> sink) {
-		String base = sink.getInfo().getFrom();
+	public void addSink(SpecialNode sink) {
 		for (Node<Leg> node: nodes)
-			if (shouldBeConnectedToSink(node, base)) {
-				node.addNeighbor(sink, EdgeType.TO_SINK);
-				numberOfEdges++;
-			}
+			for (String airport: sink.getAirports())
+				if (shouldBeConnectedToSink(node, airport)) {
+					node.addNeighbor(sink, EdgeType.TO_SINK);
+					numberOfEdges++;
+				}
 		addNode(sink);
 	}
 
-	private boolean shouldBeConnectedToSink(Node<Leg> node, String base) {
-		if (!isSource(node))
-			return node.getInfo().getTo().contentEquals(base);
+	private boolean shouldBeConnectedToSink(Node<Leg> node, String airport) {
+		if (node.getClass() != SpecialNode.class)
+			return node.getInfo().getTo().contentEquals(airport);
 		return false;
-	}
-	
-	private boolean isSource(Node<Leg> node) {
-		Leg leg = node.getInfo();
-		return leg.getFrom().contentEquals(leg.getTo());
 	}
 }

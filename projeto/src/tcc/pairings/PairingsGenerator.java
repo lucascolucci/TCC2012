@@ -7,6 +7,7 @@ import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.graph.networks.FlightNetworkEdgeLabel;
 import tcc.pairings.graph.networks.FlightNetworkNodeLabel;
 import tcc.pairings.graph.networks.FlightNetworkPath;
+import tcc.pairings.graph.networks.SpecialNode;
 import tcc.pairings.io.Outputer;
 
 public class PairingsGenerator {
@@ -14,10 +15,10 @@ public class PairingsGenerator {
 	private Outputer[] outputers;
 	private CostCalculator calculator;
 	private int numberOfPairings;
-	private String base;
+	private Base base;
 	private FlightNetworkPath path;
-	private Node<Leg> source;
-	private Node<Leg> sink;
+	private SpecialNode source;
+	private SpecialNode sink;
 	
 	public int getNumberOfPairings() {
 		return numberOfPairings;
@@ -38,24 +39,22 @@ public class PairingsGenerator {
 		numberOfPairings = 0;
 	}
 		
-	public void generate(String base) {
+	public void generate(Base base) {
 		initialSetUp(base);
 		addSourceAndSink();
 		findPairings(source);
 		removeSourceAndSink();
 	}
 
-	private void initialSetUp(String base) {
+	private void initialSetUp(Base base) {
 		this.base = base;
 		path = new FlightNetworkPath();
-		setSourceAndSink(base);
+		setSourceAndSink();
 	}
 
-	private void setSourceAndSink(String base) {
-		Leg sourceLeg = new Leg((short) 0, base, base, null, null, (short) 0);
-		Leg sinkLeg = new Leg((short) 0, base, base, null, null, (short) 0);
-		source = new Node<Leg>(sourceLeg, null);
-		sink = new Node<Leg>(sinkLeg, null);
+	private void setSourceAndSink() {
+		source = new SpecialNode(base);
+		sink = new SpecialNode(base);
 	}
 	
 	private void addSourceAndSink() {

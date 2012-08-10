@@ -12,6 +12,7 @@ import java.io.PrintStream;
 import org.junit.Before;
 import org.junit.Test;
 
+import tcc.pairings.Base;
 import tcc.pairings.PairingsGenerator;
 import tcc.pairings.Rules;
 import tcc.pairings.graph.networks.FlightNetwork;
@@ -49,7 +50,7 @@ public class PairingsOutputersTest {
 		TerminalOutputer terminal = new TerminalOutputer();
 		Outputer[] outputers = new Outputer[] { terminal };
 		PairingsGenerator generator = new PairingsGenerator(net, outputers);
-		generator.generate("CGH");
+		generator.generate(new Base("CGH"));
 		System.setOut(out);
 		
 		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_10.pairings");
@@ -64,7 +65,7 @@ public class PairingsOutputersTest {
 		TextOutputer text = new TextOutputer(pairingsFile);
 		Outputer[] outputers = new Outputer[] { text };
 		PairingsGenerator generator = new PairingsGenerator(net, outputers);
-		generator.generate("CGH");
+		generator.generate(new Base("CGH"));
 		text.close();
 		
 		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_10.pairings");
@@ -80,7 +81,7 @@ public class PairingsOutputersTest {
 		Outputer[] outputers = new Outputer[] { mps };
 		PairingsGenerator generator = new PairingsGenerator(net, outputers);
 		mps.writeUntilColumns();
-		generator.generate("CGH");
+		generator.generate(new Base("CGH"));
 		mps.writeRhsAndBounds(generator.getNumberOfPairings());
 		mps.close();
 		
@@ -97,7 +98,7 @@ public class PairingsOutputersTest {
 		Outputer[] outputers = new Outputer[] { cplex };
 		PairingsGenerator generator = new PairingsGenerator(net, outputers);
 		cplex.addRows();
-		generator.generate("CGH");
+		generator.generate(new Base("CGH"));
 		cplex.exportModel(cplexFile);
 
 		String expected = getContent(FilePaths.OUTPUTS + "cgh_sdu_10.lp");
