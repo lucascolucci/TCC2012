@@ -107,6 +107,13 @@ public class Pairing {
 			flight += duty.getFlightTime();			
 		return flight;
 	}
+	
+	public int getDutyTime() {
+		int dutyTime = 0;
+		for (Duty duty: duties)
+			dutyTime += duty.getDutyTime();			
+		return dutyTime;
+	}
 
 	@Override
 	public String toString() {

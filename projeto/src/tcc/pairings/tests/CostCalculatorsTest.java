@@ -15,6 +15,7 @@ import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.Rules;
 import tcc.pairings.costs.CostCalculator;
+import tcc.pairings.costs.DutyToFlightCalculator;
 import tcc.pairings.costs.ExcessCalculator;
 import tcc.pairings.costs.ExcessToFlightCalculator;
 
@@ -28,38 +29,30 @@ public class CostCalculatorsTest {
 	}
 
 	@Test
-	public void excessCalculotorShouldGiveTheRightCostForOneDayPairing() throws ParseException {
-		Pairing pairing = getOneDayPairing();
+	public void excessCalculotorShouldGiveTheRightCostFor1DayPairing() throws ParseException {
+		Pairing pairing = get1DayPairing();
 		calc = new ExcessCalculator();
 		calc.setCost(pairing);
 		assertEquals(87, pairing.getCost(), 0.001);
 	}
 	
 	@Test
-	public void excessToFlightCalculotorShouldGiveTheRightCostForOneDayPairing() throws ParseException {
-		Pairing pairing = getOneDayPairing();
+	public void excessToFlightCalculotorShouldGiveTheRightCostFor1DayPairing() throws ParseException {
+		Pairing pairing = get1DayPairing();
 		calc = new ExcessToFlightCalculator();
 		calc.setCost(pairing);
-		assertEquals(0.75, pairing.getCost(), 0.001);
+		assertEquals(0.750, pairing.getCost(), 0.001);
 	}
 	
 	@Test
-	public void excessCalculotorShouldGiveTheRightCostForTwoDaysPairing() throws ParseException {
-		Pairing pairing = getTwoDaysPairing();
-		calc = new ExcessCalculator();
+	public void dutyToFlightCalculotorShouldGiveTheRightCostFor1DayPairing() throws ParseException {
+		Pairing pairing = get1DayPairing();
+		calc = new DutyToFlightCalculator();
 		calc.setCost(pairing);
-		assertEquals(832, pairing.getCost(), 0.001);
+		assertEquals(1.966, pairing.getCost(), 0.001);
 	}
 	
-	@Test
-	public void excessToFlightCalculotorShouldGiveTheRightCostForTwoDaysPairing() throws ParseException {
-		Pairing pairing = getTwoDaysPairing();
-		calc = new ExcessToFlightCalculator();
-		calc.setCost(pairing);
-		assertEquals(7.172, pairing.getCost(), 0.001);
-	}
-
-	private Pairing getOneDayPairing() throws ParseException {
+	private Pairing get1DayPairing() throws ParseException {
 		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
 		Date dep1 = (Date) df.parse("27/08/2012 06:10");
 		Date arr1 = (Date) df.parse("27/08/2012 07:08");
@@ -79,7 +72,31 @@ public class CostCalculatorsTest {
 		return pairing;
 	}
 	
-	private Pairing getTwoDaysPairing() throws ParseException {
+	@Test
+	public void excessCalculotorShouldGiveTheRightCostFor2DaysPairing() throws ParseException {
+		Pairing pairing = get2DaysPairing();
+		calc = new ExcessCalculator();
+		calc.setCost(pairing);
+		assertEquals(832, pairing.getCost(), 0.001);
+	}
+	
+	@Test
+	public void excessToFlightCalculotorShouldGiveTheRightCostFor2DaysPairing() throws ParseException {
+		Pairing pairing = get2DaysPairing();
+		calc = new ExcessToFlightCalculator();
+		calc.setCost(pairing);
+		assertEquals(7.172, pairing.getCost(), 0.001);
+	}
+	
+	@Test
+	public void dutyToFlightCalculotorShouldGiveTheRightCostFor2DaysPairing() throws ParseException {
+		Pairing pairing = get2DaysPairing();
+		calc = new DutyToFlightCalculator();
+		calc.setCost(pairing);
+		assertEquals(1.000, pairing.getCost(), 0.001);
+	}
+	
+	private Pairing get2DaysPairing() throws ParseException {
 		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
 		Date dep1 = (Date) df.parse("27/08/2012 06:10");
 		Date arr1 = (Date) df.parse("27/08/2012 07:08");
