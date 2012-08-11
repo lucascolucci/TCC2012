@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import tcc.pairings.Duty;
+import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.Rules;
@@ -63,8 +64,8 @@ public class CostCalculatorsTest {
 		Leg leg2 = new Leg((short) 1235, "UDI", "CGH", dep2, arr2, (short) 1);
 		
 		Duty duty = new Duty();
-		duty.addLeg(leg1);
-		duty.addLeg(leg2);
+		duty.addLeg(new DutyLeg(leg1));
+		duty.addLeg(new DutyLeg(leg2));
 		
 		Pairing pairing = new Pairing();
 		pairing.addDuty(duty);
@@ -107,10 +108,10 @@ public class CostCalculatorsTest {
 		Leg leg2 = new Leg((short) 1235, "UDI", "CGH", dep2, arr2, (short) 1);
 		
 		Duty duty1 = new Duty();
-		duty1.addLeg(leg1);
+		duty1.addLeg(new DutyLeg(leg1));
 		
 		Duty duty2 = new Duty();
-		duty2.addLeg(leg2);
+		duty2.addLeg(new DutyLeg(leg2));
 		
 		Pairing pairing = new Pairing();
 		pairing.addDuty(duty1);

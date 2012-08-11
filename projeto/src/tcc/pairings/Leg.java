@@ -11,7 +11,6 @@ public class Leg {
 	private Date departure;
 	private Date arrival;
 	private short track;
-	private boolean deadHead;
 	
 	public short getNumber() {
 		return number;
@@ -60,15 +59,7 @@ public class Leg {
 	public void setTrack(short track) {
 		this.track = track;
 	}
-	
-	public boolean isDeadHead() {
-		return deadHead;
-	}
-
-	public void setDeadHead(boolean deadHead) {
-		this.deadHead = deadHead;
-	}
-	
+		
 	public Leg(short number, String from, String to, Date departure, Date arrival, short track) {
 		this.number = number;
 		this.from = from;
@@ -76,7 +67,6 @@ public class Leg {
 		this.departure = departure;
 		this.arrival = arrival;
 		this.track = track;
-		deadHead = false;
 	}
 
 	public boolean isDuplicate(Leg leg) {
@@ -90,7 +80,6 @@ public class Leg {
 		sb.append(number).append("  ").append(from).append("->").append(to).append("  ");
 		sb.append(df.format(departure)).append(" - ").append(df.format(arrival));
 		sb.append("  ").append(track);
-		if (deadHead) sb.append("  DH");
 		return sb.toString();
 	}	
 }

@@ -35,13 +35,13 @@ public class FlightNetworkTest {
 		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
 		List<Leg> legsList = new ArrayList<Leg>();
 		
-		Date leg1Dep = (Date) df.parse("27/08/2012 06:10");
-		Date leg1Arr = (Date) df.parse("27/08/2012 07:08");
-		Date leg2Dep = (Date) df.parse("27/08/2012 09:00");
-		Date leg2Arr = (Date) df.parse("27/08/2012 09:58");
+		Date dep1 = (Date) df.parse("27/08/2012 06:10");
+		Date arr1 = (Date) df.parse("27/08/2012 07:08");
+		Date dep2 = (Date) df.parse("27/08/2012 09:00");
+		Date arr2 = (Date) df.parse("27/08/2012 09:58");
 		
-		Leg leg1 = new Leg((short) 1234, "CGH", "UDI", leg1Dep, leg1Arr, (short) 1);
-		Leg leg2 = new Leg((short) 1235, "UDI", "CGH", leg2Dep, leg2Arr, (short) 1);
+		Leg leg1 = new Leg((short) 1234, "CGH", "UDI", dep1, arr1, (short) 1);
+		Leg leg2 = new Leg((short) 1235, "UDI", "CGH", dep2, arr2, (short) 1);
 		
 		legsList.add(leg1);
 		legsList.add(leg2);

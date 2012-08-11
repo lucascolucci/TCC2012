@@ -14,8 +14,8 @@ import tcc.pairings.io.MpsOutputer;
 import tcc.pairings.io.Outputer;
 import tcc.pairings.io.TerminalOutputer;
 import tcc.pairings.io.TimeTableReader;
-import tcc.pairings.solvers.CplexSolver;
-import tcc.pairings.solvers.GlpkSolver;
+import tcc.pairings.optimizers.CplexOptimizer;
+import tcc.pairings.optimizers.GlpkOptimizer;
 
 public class Application {
 	private FlightNetwork net;
@@ -49,11 +49,11 @@ public class Application {
 		Base sao = new Base("GRU");
 		Base rio = new Base("SDU", "GIG");
 		generatePairings(new Base[] { sao, rio }, new Outputer[] { cplex, memory });
-		CplexSolver solver = new CplexSolver(cplex.getModel());
-		if (solver.solve()) {
-			new TerminalOutputer().output(solver.getSolution(memory.getPairings()));
-			System.out.println("Custo = " + solver.getSolutionCost());
-			System.out.println("Tamanho = " + solver.getSolutionSize());
+		CplexOptimizer optimizer = new CplexOptimizer(cplex.getModel());
+		if (optimizer.optimize()) {
+			new TerminalOutputer().output(optimizer.getOptimalPairings(memory.getPairings()));
+			System.out.println("Custo = " + optimizer.getOptimalCost());
+			System.out.println("Tamanho = " + optimizer.getOptimalSize());
 		}
 		System.out.println(generator.getNumberOfPairings());
 	}
@@ -135,11 +135,11 @@ public class Application {
 			generatePairings(new Base[] { base }, new Outputer[] { mps });
 			mps.writeRhsAndBounds(generator.getNumberOfPairings());
 			mps.close();
-			GlpkSolver solver = new GlpkSolver(OUTPUTS_PATH + "cgh_sdu.mps");
+			GlpkOptimizer optimizer = new GlpkOptimizer(OUTPUTS_PATH + "cgh_sdu.mps");
 			double[] values = new double[SOLUTION_TRIALS]; 
 			for (int i = 0; i < SOLUTION_TRIALS; i++) {
-				solver.solve();
-				values[i] = solver.getSolutionTime();
+				optimizer.optimize();
+				values[i] = optimizer.getOptimizationTime();
 			}
 			double mean = getMean(values);
 			writer.write(numberOfLegs + "\t" + mean + "\t" + getSD(values, mean));

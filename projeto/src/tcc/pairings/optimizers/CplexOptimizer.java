@@ -1,4 +1,4 @@
-package tcc.pairings.solvers;
+package tcc.pairings.optimizers;
 
 import ilog.concert.*;
 import ilog.cplex.*;
@@ -8,7 +8,7 @@ import java.util.List;
 
 import tcc.pairings.Pairing;
 
-public class CplexSolver implements Solver {
+public class CplexOptimizer implements Optimizer {
 	private IloCplex model;
 	private IloLPMatrix matrix;
 	private double solutionTime;
@@ -18,17 +18,17 @@ public class CplexSolver implements Solver {
 	}
 	
 	@Override
-	public double getSolutionTime() {
+	public double getOptimizationTime() {
 		return solutionTime;
 	}
 	
-	public CplexSolver(IloCplex model) {
+	public CplexOptimizer(IloCplex model) {
 		this.model = model;
 		matrix = (IloLPMatrix) model.LPMatrixIterator().next();
 		solutionTime = -1;
 	}
 	
-	public CplexSolver(String mpsFile) {
+	public CplexOptimizer(String mpsFile) {
 		setUpModelFromFile(mpsFile);
 		matrix = (IloLPMatrix) model.LPMatrixIterator().next();
 		solutionTime = -1;
@@ -48,16 +48,16 @@ public class CplexSolver implements Solver {
 	}
 	
 	@Override
-	public boolean solve() {
+	public boolean optimize() {
 		try {
-			return tryToSolve();
+			return tryToOptimize();
 		} catch (IloException e) {
 			System.err.println("Error: " + e.getMessage());
 		}
 		return false;
 	}
 
-	private boolean tryToSolve() throws IloException {
+	private boolean tryToOptimize() throws IloException {
 		if (model != null)
 			// TODO setSolutionTime()
 			return model.solve();
@@ -65,13 +65,7 @@ public class CplexSolver implements Solver {
 	}
 	
 	@Override
-	public List<Pairing> getSolution(String pairingsFile) {
-		// TODO
-		return null;
-	}
-	
-	@Override
-	public List<Pairing> getSolution(List<Pairing> pairings) {
+	public List<Pairing> getOptimalPairings(List<Pairing> pairings) {
 		try {
 			return tryToGetSolution(pairings);
 		} catch (IloException e) {
@@ -89,7 +83,7 @@ public class CplexSolver implements Solver {
 	}
 	
 	@Override
-	public double getSolutionCost() {
+	public double getOptimalCost() {
 		try {
 			return tryToGetSolutionCost();
 		} catch (IloException e) {
@@ -105,16 +99,16 @@ public class CplexSolver implements Solver {
 	}
 	
 	@Override
-	public int getSolutionSize() {
+	public int getOptimalSize() {
 		try {
-			return tryToGetSolutionSize();
+			return tryToGetOptimalSize();
 		} catch (IloException e) {
 			System.err.println("Error: " + e.getMessage());
 			return -1;
 		}
 	}
 
-	private int tryToGetSolutionSize() throws IloException {
+	private int tryToGetOptimalSize() throws IloException {
 		int count = 0; int ncols = matrix.getNcols();
 		for (int i = 0; i < ncols; i++)
 			if (model.getValue(matrix.getNumVar(i)) == 1)

@@ -48,7 +48,7 @@ public class Pairing {
 				duties.add(duty);
 				duty = new Duty();	
 			}
-			duty.addLeg(edge.getIn().getInfo());
+			duty.addLeg(new DutyLeg(edge.getIn().getInfo()));
 		}
 		duties.add(duty);
 	}

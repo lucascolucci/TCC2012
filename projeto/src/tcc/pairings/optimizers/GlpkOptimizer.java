@@ -1,4 +1,4 @@
-package tcc.pairings.solvers;
+package tcc.pairings.optimizers;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -8,7 +8,7 @@ import java.util.List;
 import tcc.pairings.Pairing;
 import tcc.pairings.io.GlpkSolutionReader;
 
-public class GlpkSolver implements Solver {
+public class GlpkOptimizer implements Optimizer {
 	private String mpsFile;
 	private String solutionFile;
 	private double solutionTime;
@@ -26,24 +26,24 @@ public class GlpkSolver implements Solver {
 	}
 	
 	@Override
-	public double getSolutionTime() {
+	public double getOptimizationTime() {
 		return solutionTime;
 	}
 	
-	public GlpkSolver(String mpsFile) {
+	public GlpkOptimizer(String mpsFile) {
 		this.mpsFile = mpsFile;
 		solutionFile = null;
 		solutionTime = -1;
 	}
 	
-	public GlpkSolver(String mpsFile, String solutionFile) {
+	public GlpkOptimizer(String mpsFile, String solutionFile) {
 		this.mpsFile = mpsFile;
 		this.solutionFile = solutionFile;
 		solutionTime = -1;
 	}
 	
 	@Override
-	public boolean solve() {
+	public boolean optimize() {
 		try {
 			return (runGlpsol().exitValue() == 0);
 		} catch (Exception e) {
@@ -89,13 +89,7 @@ public class GlpkSolver implements Solver {
 	}
 	
 	@Override
-	public List<Pairing> getSolution(String pairingsFile) {
-		// TODO
-		return null;
-	}
-	
-	@Override
-	public List<Pairing> getSolution(List<Pairing> pairings) {
+	public List<Pairing> getOptimalPairings(List<Pairing> pairings) {
 		List<Integer> oneVariables = (new GlpkSolutionReader(solutionFile)).getOneVariables();
 		return getSolutionFromOneVariables(oneVariables, pairings);
 	}
@@ -109,12 +103,12 @@ public class GlpkSolver implements Solver {
 	}
 		
 	@Override
-	public double getSolutionCost() {
+	public double getOptimalCost() {
 		return (new GlpkSolutionReader(solutionFile)).getCost();
 	}
 	
 	@Override
-	public int getSolutionSize() {
+	public int getOptimalSize() {
 		return (new GlpkSolutionReader(solutionFile).getNumberOfOneVariables());
 	}
 }

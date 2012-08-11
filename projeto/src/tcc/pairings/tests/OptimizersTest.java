@@ -18,11 +18,11 @@ import tcc.pairings.io.MemoryOutputer;
 import tcc.pairings.io.MpsOutputer;
 import tcc.pairings.io.Outputer;
 import tcc.pairings.io.TimeTableReader;
-import tcc.pairings.solvers.CplexSolver;
-import tcc.pairings.solvers.GlpkSolver;
-import tcc.pairings.solvers.Solver;
+import tcc.pairings.optimizers.CplexOptimizer;
+import tcc.pairings.optimizers.GlpkOptimizer;
+import tcc.pairings.optimizers.Optimizer;
 
-public class SolversTest {
+public class OptimizersTest {
 	private FlightNetwork net;
 	private MemoryOutputer memory;
 	
@@ -42,17 +42,17 @@ public class SolversTest {
 	
 	@Test
 	public void glpkShouldGiveRightSolutionCost() {	
-		GlpkSolver solver = getGlpkSolver();
-		solver.solve();
+		GlpkOptimizer solver = getGlpkOptimizer();
+		solver.optimize();
 		itShouldGiveRightSolutionCost(solver);
 	}
 	
 	@Test
 	public void glpkShouldSolveInstance() {	
-		assertTrue(getGlpkSolver().solve());
+		assertTrue(getGlpkOptimizer().optimize());
 	}
 	
-	private GlpkSolver getGlpkSolver() {
+	private GlpkOptimizer getGlpkOptimizer() {
 		String mpsFile = FilePaths.OUTPUTS + "in.mps";
 		String solutionFile = FilePaths.OUTPUTS + "out.sol";
 		
@@ -65,34 +65,34 @@ public class SolversTest {
 		mps.writeRhsAndBounds(generator.getNumberOfPairings());
 		mps.close();
 
-		return new GlpkSolver(mpsFile, solutionFile);
+		return new GlpkOptimizer(mpsFile, solutionFile);
 	}
 	
 	@Test
 	public void cplexShouldSolveInstance() {	
-		assertTrue(getCplexSolver().solve());
+		assertTrue(getCplexOptimizer().optimize());
 	}
 	
 	@Test
 	public void cplexFromFileShouldSolveInstance() {	
-		assertTrue(getCplexSolverFromFile().solve());
+		assertTrue(getCplexOptimizerFromFile().optimize());
 	}
 	
 	@Test
 	public void cplexShouldGiveRightSolutionCost() {	
-		CplexSolver solver = getCplexSolver();
-		solver.solve();
+		CplexOptimizer solver = getCplexOptimizer();
+		solver.optimize();
 		itShouldGiveRightSolutionCost(solver);
 	}
 	
 	@Test
 	public void cplexFromFileShouldGiveRightSolutionCost() {	
-		CplexSolver solver = getCplexSolverFromFile();
-		solver.solve();
+		CplexOptimizer solver = getCplexOptimizerFromFile();
+		solver.optimize();
 		itShouldGiveRightSolutionCost(solver);
 	}
 	
-	private CplexSolver getCplexSolver() {
+	private CplexOptimizer getCplexOptimizer() {
 		CplexOutputer cplex = new CplexOutputer(net.getLegs());
 		Outputer[] outputers = new Outputer[] { memory, cplex };
 		PairingsGenerator generator = new PairingsGenerator(net, outputers);
@@ -100,10 +100,10 @@ public class SolversTest {
 		cplex.addRows();	
 		generator.generate(new Base("CGH"));
 		
-		return new CplexSolver(cplex.getModel());
+		return new CplexOptimizer(cplex.getModel());
 	}
 	
-	private CplexSolver getCplexSolverFromFile() {
+	private CplexOptimizer getCplexOptimizerFromFile() {
 		String mpsFile = FilePaths.OUTPUTS + "in.mps";
 		
 		MpsOutputer mps = new MpsOutputer(net.getLegs(), mpsFile);
@@ -115,14 +115,14 @@ public class SolversTest {
 		mps.writeRhsAndBounds(generator.getNumberOfPairings());
 		mps.close();
 		
-		return new CplexSolver(mpsFile);
+		return new CplexOptimizer(mpsFile);
 	}
 
-	private void itShouldGiveRightSolutionCost(Solver solver) {
-		List<Pairing> solution = solver.getSolution(memory.getPairings());
+	private void itShouldGiveRightSolutionCost(Optimizer optimizer) {
+		List<Pairing> solution = optimizer.getOptimalPairings(memory.getPairings());
 		double cost = 0;
 		for (Pairing pairing: solution) 
 			cost += pairing.getCost();
-		assertEquals(solver.getSolutionCost(), cost, 0.1);
+		assertEquals(optimizer.getOptimalCost(), cost, 0.1);
 	}	
 }
