@@ -2,6 +2,7 @@ package tcc.pairings.solvers;
 
 import java.util.List;
 
+import tcc.pairings.Base;
 import tcc.pairings.Leg;
 
 public class InitialSolver implements Solver {
@@ -16,7 +17,7 @@ public class InitialSolver implements Solver {
 	}
 	
 	@Override
-	public Solution getSolution() {
+	public Solution getSolution(Base... bases) {
 		return null;
 	}
 }

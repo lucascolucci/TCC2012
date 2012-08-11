@@ -1,11 +1,12 @@
 package tcc.pairings.solvers.heuristics;
 
+import tcc.pairings.Base;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.Solver;
 
 public class GeneticSolver implements Solver {
 	@Override
-	public Solution getSolution() {
+	public Solution getSolution(Base... bases) {
 		// TODO
 		return null;
 	}

@@ -8,14 +8,13 @@ import tcc.pairings.Leg;
 import tcc.pairings.PairingsGenerator;
 import tcc.pairings.Rules;
 import tcc.pairings.graph.networks.FlightNetwork;
-import tcc.pairings.io.CplexOutputer;
-import tcc.pairings.io.MemoryOutputer;
 import tcc.pairings.io.MpsOutputer;
 import tcc.pairings.io.Outputer;
-import tcc.pairings.io.TerminalOutputer;
 import tcc.pairings.io.TimeTableReader;
-import tcc.pairings.optimizers.CplexOptimizer;
 import tcc.pairings.optimizers.GlpkOptimizer;
+import tcc.pairings.solvers.Solution;
+import tcc.pairings.solvers.Solver;
+import tcc.pairings.solvers.exacts.SetPartitionSolver;
 
 public class Application {
 	private FlightNetwork net;
@@ -36,26 +35,11 @@ public class Application {
 	}
 	
 	public void doPairings() {
-		Rules.MAX_DUTIES = 4;
-		Rules.MAX_TRACKS = 2;
-		Rules.MAX_LEGS = 5;
-		Rules.MIN_SIT_TIME = 25;
-		
-		List<Leg> allLegs = getLegsFromFile("738_48.txt");
-		buildNet(allLegs);
-		MemoryOutputer memory = new MemoryOutputer();
-		CplexOutputer cplex = new CplexOutputer(net.getLegs());
-		cplex.addRows();
 		Base sao = new Base("GRU");
-		Base rio = new Base("SDU", "GIG");
-		generatePairings(new Base[] { sao, rio }, new Outputer[] { cplex, memory });
-		CplexOptimizer optimizer = new CplexOptimizer(cplex.getModel());
-		if (optimizer.optimize()) {
-			new TerminalOutputer().output(optimizer.getOptimalPairings(memory.getPairings()));
-			System.out.println("Custo = " + optimizer.getOptimalCost());
-			System.out.println("Tamanho = " + optimizer.getOptimalSize());
-		}
-		System.out.println(generator.getNumberOfPairings());
+		Solver solver = new SetPartitionSolver(TIME_TABLES_PATH + "738_48.txt");
+		Solution solution = solver.getSolution(sao);
+		if (solution != null)
+			solution.print();	
 	}
 
 	public void doNumberOfPairings() {

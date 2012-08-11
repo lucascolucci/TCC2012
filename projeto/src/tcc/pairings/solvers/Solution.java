@@ -1,9 +1,11 @@
 package tcc.pairings.solvers;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import tcc.pairings.Pairing;
+import tcc.pairings.io.TerminalOutputer;
 
 public class Solution {
 	private List<Pairing> pairings;
@@ -41,5 +43,12 @@ public class Solution {
 	
 	public int getSize() {
 		return pairings.size();
+	}
+	
+	public void print() {
+		DecimalFormat df = new DecimalFormat("#.###");
+		new TerminalOutputer().output(pairings);
+		System.out.println("Custo total = " + df.format(getCost()));
+		System.out.println("Nœmero de pairings = " + getSize());
 	}
 }

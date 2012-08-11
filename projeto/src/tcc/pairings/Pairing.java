@@ -117,15 +117,18 @@ public class Pairing {
 
 	@Override
 	public String toString() {
-		DecimalFormat df = new DecimalFormat();
-		df.applyPattern("#.###");
+		DecimalFormat df = new DecimalFormat("#.###");
 		StringBuilder sb = new StringBuilder("Pairing ");
 		sb.append(number).append(" - Cost ").append(df.format(getCost())).append('\n');
+		appendDuties(sb);
+		return sb.toString();
+	}
+
+	private void appendDuties(StringBuilder sb) {
 		int dutyNumber = 0;
 		for(Duty duty: duties) {
 			sb.append("\tDuty ").append(++dutyNumber).append('\n');
 			sb.append(duty.toString());
 		}
-		return sb.toString();
 	}
 }
