@@ -3,6 +3,8 @@ package tcc.pairings.graph;
 import java.util.ArrayList;
 import java.util.List;
 
+import tcc.pairings.graph.networks.EdgeType;
+
 public class Graph<T> {
 	protected List<Node<T>> nodes;
 	protected int numberOfNodes;

@@ -3,6 +3,8 @@ package tcc.pairings.graph;
 import java.util.ArrayList;
 import java.util.List;
 
+import tcc.pairings.graph.networks.EdgeType;
+
 public class Node<T> {
 	private T info;
 	private Label label;

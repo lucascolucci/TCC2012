@@ -1,5 +1,7 @@
 package tcc.pairings.graph;
 
+import tcc.pairings.graph.networks.EdgeType;
+
 public class Edge<T> {
 	private Node<T> out;
 	private Node<T> in;

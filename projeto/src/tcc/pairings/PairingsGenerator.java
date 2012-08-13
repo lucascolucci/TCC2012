@@ -14,9 +14,9 @@ public class PairingsGenerator {
 	private FlightNetwork net;
 	private Outputer[] outputers;
 	private CostCalculator calculator;
-	private int numberOfPairings;
+	protected int numberOfPairings;
 	private Base base;
-	private FlightNetworkPath path;
+	protected FlightNetworkPath path;
 	private SpecialNode source;
 	private SpecialNode sink;
 	
@@ -28,6 +28,10 @@ public class PairingsGenerator {
 		this.numberOfPairings = numberOfPairings;
 	}
 	
+	public PairingsGenerator(FlightNetwork net) {
+		this(net, null, null);
+	}
+	
 	public PairingsGenerator(FlightNetwork net, Outputer[] outputers) {
 		this(net, outputers, null);
 	}
@@ -37,6 +41,11 @@ public class PairingsGenerator {
 		this.outputers = outputers;
 		this.calculator = calculator;
 		numberOfPairings = 0;
+	}
+	
+	public void generate(Base... bases) {
+		for (Base base: bases)
+			generate(base);
 	}
 		
 	public void generate(Base base) {
@@ -67,12 +76,12 @@ public class PairingsGenerator {
 		net.removeNode(sink);
 	}
 
-	private void findPairings(Node<Leg> node) {
+	protected void findPairings(Node<Leg> node) {
 		for (Edge<Leg> edge: node.getEdges())
-			exploreTroughEdge(edge);		
+			exploreTrough(edge);		
 	}
 
-	private void exploreTroughEdge(Edge<Leg> edge) {
+	protected void exploreTrough(Edge<Leg> edge) {
 		switch (edge.getType()) {
 		case FROM_SOURCE:
 			exploreTroughSource(edge);
@@ -148,14 +157,15 @@ public class PairingsGenerator {
 	
 	private void incrementNumberOfPairingsAndOutput() {
 		++numberOfPairings;
-		if (outputers != null)
-			output();
+		output();
 	}
 	
-	private void output() {
-		Pairing pairing = getNewPairing();
-		for (Outputer outputer: outputers) 
-			outputer.output(pairing);
+	protected void output() {
+		if (outputers != null) {
+			Pairing pairing = getNewPairing();
+			for (Outputer outputer: outputers) 
+				outputer.output(pairing);
+		}
 	}
 
 	private Pairing getNewPairing() {

@@ -6,7 +6,7 @@ import java.util.List;
 
 import tcc.DateUtil;
 import tcc.pairings.graph.Edge;
-import tcc.pairings.graph.EdgeType;
+import tcc.pairings.graph.networks.EdgeType;
 import tcc.pairings.graph.networks.FlightNetworkPath;
 
 public class Pairing {
@@ -76,7 +76,7 @@ public class Pairing {
 		}
 		return null;
 	}
-
+	
 	public boolean contains(Leg leg) {
 		for (Duty duty: duties)
 			if(duty.contains(leg))
@@ -113,6 +113,14 @@ public class Pairing {
 		for (Duty duty: duties)
 			dutyTime += duty.getDutyTime();			
 		return dutyTime;
+	}
+	
+	public void coverOne(Leg leg) {
+		for (Duty duty: duties) {
+			for (DutyLeg dutyLeg: duty.getLegs())
+				if (!dutyLeg.isDuplicate(leg))
+					dutyLeg.setDeadHead(true);
+		}
 	}
 
 	@Override

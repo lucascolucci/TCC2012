@@ -12,6 +12,7 @@ import tcc.pairings.io.MpsOutputer;
 import tcc.pairings.io.Outputer;
 import tcc.pairings.io.TimeTableReader;
 import tcc.pairings.optimizers.GlpkOptimizer;
+import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
@@ -27,17 +28,28 @@ public class Application {
 	
 	public static void main(String[] args) {
 		Application app = new Application();
-		app.doPairings();
+		app.doInitialSolution();
+		//app.doPairings();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
 		//app.doCplexSolutionTime();
 	}
 	
+	public void doInitialSolution() {
+		Rules.MAX_DUTIES = 3;
+		Base sao = new Base("CGH");
+		Solver solver = new InitialSolver(TIME_TABLES_PATH + "cgh_sdu_62.txt");
+		Solution solution = solver.getSolution(sao);
+		if (solution != null)
+			solution.print();
+	}
+	
 	public void doPairings() {
 		Base sao = new Base("GRU");
+		Base rio = new Base("GIG", "SDU");
 		Solver solver = new SetPartitionSolver(TIME_TABLES_PATH + "738_48.txt");
-		Solution solution = solver.getSolution(sao);
+		Solution solution = solver.getSolution(sao, rio);
 		if (solution != null)
 			solution.print();	
 	}
@@ -166,8 +178,7 @@ public class Application {
 	
 	private void generatePairings(Base[] bases, Outputer[] outputers) {
 		generator = new PairingsGenerator(net, outputers);
-		for (Base base: bases)
-			generator.generate(base);
+		generator.generate(bases);
 	}
 	
 	private double getMean(double[] values) {

@@ -40,12 +40,12 @@ public class SetPartitionSolver implements Solver {
 		this.calculator = calculator;
 	}
 	
-	public SetPartitionSolver(String timeTableFile) {
-		this(timeTableFile, null);
+	public SetPartitionSolver(String timeTable) {
+		this(timeTable, null);
 	}
 	
-	public SetPartitionSolver(String timeTableFile, CostCalculator calculator) {
-		this.timeTable = timeTableFile;
+	public SetPartitionSolver(String timeTable, CostCalculator calculator) {
+		this.timeTable = timeTable;
 		this.calculator = calculator;
 	}
 	
@@ -86,8 +86,7 @@ public class SetPartitionSolver implements Solver {
 	private void generatePairings(Base... bases) {
 		Outputer[] outputers = new Outputer[] { memory, cplex };
 		PairingsGenerator generator = new PairingsGenerator(net, outputers, calculator);
-		for (Base base: bases)
-			generator.generate(base);
+		generator.generate(bases);
 	}
 	
 	private Solution getOptimalSolution() {

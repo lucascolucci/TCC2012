@@ -1,6 +1,7 @@
 package tcc.pairings;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -75,11 +76,15 @@ public class Leg {
 
 	@Override
 	public String toString() {
-		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
+		DateFormat daf = new SimpleDateFormat(Rules.DATE_FORMAT);
+		DecimalFormat def1 = new DecimalFormat("0000");
+		DecimalFormat def2 = new DecimalFormat("000");
 		StringBuilder sb = new StringBuilder();
-		sb.append(number).append("  ").append(from).append("->").append(to).append("  ");
-		sb.append(df.format(departure)).append(" - ").append(df.format(arrival));
-		sb.append("  ").append(track);
+		sb.append(def1.format(number)).append("  ");
+		sb.append(from).append("-").append(to).append("  ");
+		sb.append(daf.format(departure)).append("  ");
+		sb.append(daf.format(arrival)).append("  ");
+		sb.append(def2.format(track));
 		return sb.toString();
 	}	
 }

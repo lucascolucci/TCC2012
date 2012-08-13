@@ -6,7 +6,6 @@ import java.util.List;
 import tcc.DateUtil;
 import tcc.pairings.Leg;
 import tcc.pairings.Rules;
-import tcc.pairings.graph.EdgeType;
 import tcc.pairings.graph.Graph;
 import tcc.pairings.graph.Node;
 

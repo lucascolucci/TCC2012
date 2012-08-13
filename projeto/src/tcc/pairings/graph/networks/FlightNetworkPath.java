@@ -1,5 +1,8 @@
 package tcc.pairings.graph.networks;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tcc.pairings.DutyData;
 import tcc.pairings.Leg;
 import tcc.pairings.graph.Edge;
@@ -88,5 +91,15 @@ public class FlightNetworkPath extends Path<Leg>{
 			if (leg.isDuplicate(edge.getIn().getInfo()))
 				return true;
 		return false;
+	}
+	
+	public List<Leg> getLegs() {
+		List<Leg> legs = new ArrayList<Leg>();
+		for (Edge<Leg> edge: edges) {
+			Leg leg = edge.getIn().getInfo();
+			if (leg != null)
+				legs.add(leg);
+		}
+		return legs;
 	}
 }

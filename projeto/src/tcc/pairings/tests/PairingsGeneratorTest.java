@@ -23,6 +23,8 @@ import tcc.pairings.io.Outputer;
 import tcc.pairings.io.TimeTableReader;
 
 public class PairingsGeneratorTest {
+	private MemoryOutputer memory;
+	
 	@Test
 	public void itShouldGive2PairingsForCGH() throws ParseException {
 		Rules.MAX_DUTIES = 4;
@@ -31,7 +33,7 @@ public class PairingsGeneratorTest {
 		Rules.MAX_TRACKS = 2;
 		
 		FlightNetwork net = getFlightNetworkWith2Legs();
-		PairingsGenerator generator = new PairingsGenerator(net, null);
+		PairingsGenerator generator = new PairingsGenerator(net);
 		
 		generator.generate(new Base("CGH"));
 		assertEquals(2, generator.getNumberOfPairings());
@@ -40,7 +42,7 @@ public class PairingsGeneratorTest {
 	@Test
 	public void itShouldGive1PairingForUDI() throws ParseException {
 		FlightNetwork net = getFlightNetworkWith2Legs();
-		PairingsGenerator generator = new PairingsGenerator(net, null);
+		PairingsGenerator generator = new PairingsGenerator(net);
 		
 		generator.generate(new Base("UDI"));
 		assertEquals(1, generator.getNumberOfPairings());
@@ -49,7 +51,7 @@ public class PairingsGeneratorTest {
 	@Test
 	public void itShouldGive3PairingsForCGHAndUDI() throws ParseException {
 		FlightNetwork net = getFlightNetworkWith2Legs();
-		PairingsGenerator generator = new PairingsGenerator(net, null);
+		PairingsGenerator generator = new PairingsGenerator(net);
 		
 		generator.generate(new Base("CGH"));
 		assertEquals(2, generator.getNumberOfPairings());
@@ -81,9 +83,7 @@ public class PairingsGeneratorTest {
 	
 	@Test
 	public void itShouldGiveLegalPairingsForCGH() {
-		MemoryOutputer memory = new MemoryOutputer();
-		Outputer[] outputers = new Outputer[] { memory };
-		PairingsGenerator generator = getGeneratorForCghSdu10(outputers);
+		PairingsGenerator generator = getGeneratorForCghSdu10();
 		Base base = new Base("CGH");
 		generator.generate(base);
 		for (Pairing pairing: memory.getPairings())
@@ -92,9 +92,7 @@ public class PairingsGeneratorTest {
 	
 	@Test
 	public void itShouldGiveLegalPairingsForSDU() {
-		MemoryOutputer memory = new MemoryOutputer();
-		Outputer[] outputers = new Outputer[] { memory };
-		PairingsGenerator generator = getGeneratorForCghSdu10(outputers);
+		PairingsGenerator generator = getGeneratorForCghSdu10();
 		Base base = new Base("SDU");
 		generator.generate(base);
 		for (Pairing pairing: memory.getPairings())
@@ -103,9 +101,7 @@ public class PairingsGeneratorTest {
 	
 	@Test
 	public void itShouldGiveLegalPairingsForEachBase() {
-		MemoryOutputer memory = new MemoryOutputer();
-		Outputer[] outputers = new Outputer[] { memory };
-		PairingsGenerator generator = getGeneratorForCghSdu10(outputers);
+		PairingsGenerator generator = getGeneratorForCghSdu10();
 		
 		Base base = new Base("CGH");
 		generator.generate(base);
@@ -121,37 +117,36 @@ public class PairingsGeneratorTest {
 	
 	@Test
 	public void itShouldGivePairingsWithPositiveCosts() {
-		MemoryOutputer memory = new MemoryOutputer();
-		Outputer[] outputers = new Outputer[] { memory };
-		PairingsGenerator generator = getGeneratorForCghSdu10(outputers);
-		generator.generate(new Base("CGH"));
-		generator.generate(new Base("SDU"));
+		PairingsGenerator generator = getGeneratorForCghSdu10();
+		generator.generate(new Base("CGH"), new Base("SDU"));
 		for (Pairing pairing: memory.getPairings())
 			assertTrue(pairing.getCost() >= 0);
 	}
 	
-	private PairingsGenerator getGeneratorForCghSdu10(Outputer[] outputers) {
+	private PairingsGenerator getGeneratorForCghSdu10() {
 		TimeTableReader reader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_20.txt");
 		FlightNetwork net = new FlightNetwork(reader.getLegs());
 		net.build();
+		memory = new MemoryOutputer();
+		Outputer[] outputers = new Outputer[] { memory };
 		return new PairingsGenerator(net, outputers);
 	}
 	
 	@Test
 	public void itShouldGiveLegalPairingsFor738() {
-		MemoryOutputer memory = new MemoryOutputer();
-		Outputer[] outputers = new Outputer[] { memory };
-		PairingsGenerator generator = getGeneratorFor738(outputers);
+		PairingsGenerator generator = getGeneratorFor738();
 		Base base = new Base("GIG", "SDU");
 		generator.generate(base);
 		for (Pairing pairing: memory.getPairings())
 			assertTrue(Rules.isPairingLegal(pairing, base));
 	}
 	
-	private PairingsGenerator getGeneratorFor738(Outputer[] outputers) {
+	private PairingsGenerator getGeneratorFor738() {
 		TimeTableReader reader = new TimeTableReader(FilePaths.TIME_TABLES + "738_48.txt");
 		FlightNetwork net = new FlightNetwork(reader.getLegs());
 		net.build();
+		memory = new MemoryOutputer();
+		Outputer[] outputers = new Outputer[] { memory };
 		return new PairingsGenerator(net, outputers);
 	}
 }

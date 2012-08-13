@@ -1,4 +1,4 @@
-package tcc.pairings.graph;
+package tcc.pairings.graph.networks;
 
 public enum EdgeType {
 	OVERNIGHT,
