@@ -1,11 +1,13 @@
 package tcc.pairings.graph.networks;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import tcc.DateUtil;
 import tcc.pairings.Leg;
 import tcc.pairings.Rules;
+import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.Graph;
 import tcc.pairings.graph.Node;
 
@@ -116,5 +118,29 @@ public class FlightNetwork extends Graph<Leg> {
 		if (node.getClass() != SpecialNode.class)
 			return node.getInfo().getTo().contentEquals(airport);
 		return false;
+	}
+	
+	public void sort() {
+		for (Node<Leg> node: nodes) 
+			if (node.getClass() != SpecialNode.class) 
+				sort(node);
+	}
+	
+	private void sort(Node<Leg> node) {
+		List<Edge<Leg>> tosink = getTypeEdges(node, EdgeType.TO_SINK);
+		List<Edge<Leg>> connection = getTypeEdges(node, EdgeType.CONNECTION);
+		List<Edge<Leg>> overnight = getTypeEdges(node, EdgeType.OVERNIGHT);
+		node.getEdges().clear();
+		node.getEdges().addAll(tosink);
+		node.getEdges().addAll(connection);
+		node.getEdges().addAll(overnight);
+	}
+	
+	private List<Edge<Leg>> getTypeEdges(Node<Leg> node, EdgeType type) {
+		List<Edge<Leg>> typeEdges = new ArrayList<Edge<Leg>>();
+		for (Edge<Leg> edge: node.getEdges())
+			if (edge.getType() == type)
+				typeEdges.add(edge);
+		return typeEdges;
 	}
 }

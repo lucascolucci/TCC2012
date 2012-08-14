@@ -38,8 +38,8 @@ public class Application {
 	
 	public void doInitialSolution() {
 		Rules.MAX_DUTIES = 3;
-		Base sao = new Base("CGH");
-		Solver solver = new InitialSolver(TIME_TABLES_PATH + "cgh_sdu_62.txt");
+		Base sao = new Base("CGH", "GRU");
+		Solver solver = new InitialSolver(TIME_TABLES_PATH + "738_521.txt");
 		Solution solution = solver.getSolution(sao);
 		if (solution != null)
 			solution.print();

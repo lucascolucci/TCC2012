@@ -92,4 +92,37 @@ public class FlightNetworkTest {
 			assertEquals(EdgeType.TO_SINK, edge.getType());
 		assertEquals(4, net.numberOfInwardEdges(sink));
 	}
+	
+	@Test
+	public void itShouldSortEdges() {
+		SpecialNode source = new SpecialNode(new Base("CGH"));
+		SpecialNode sink = new SpecialNode(new Base("CGH"));
+		net.addSource(source);
+		net.addSink(sink);
+		net.sort();
+		for (Node<Leg> node: net.getNodes()) 
+			nodeEdgesShouldBeSorted(node);
+	}
+
+	private void nodeEdgesShouldBeSorted(Node<Leg> node) {
+		int[] count = getTypesCount(node);
+		for (int i = 0; i < count[0]; i++)
+			assertTrue(node.getEdges().get(i).getType() == EdgeType.TO_SINK);
+		for (int i = 0; i < count[1]; i++)
+			assertTrue(node.getEdges().get(count[0] + i).getType() == EdgeType.CONNECTION);
+		for (int i = 0; i < count[2]; i++)
+			assertTrue(node.getEdges().get(count[0] + count[1] + i).getType() == EdgeType.OVERNIGHT);
+	}
+	
+	private int[] getTypesCount(Node<Leg> node) {
+		int[] count = new int[] { 0, 0, 0 };
+		for (Edge<Leg> edge: node.getEdges())
+			if (edge.getType() == EdgeType.TO_SINK)
+				++count[0];
+			else if (edge.getType() == EdgeType.CONNECTION)
+				++count[1];
+			else if (edge.getType() == EdgeType.OVERNIGHT)
+				++count[2];
+		return count;
+	}
 }
