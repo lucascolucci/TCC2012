@@ -48,7 +48,7 @@ public class Application {
 	public void doPairings() {
 		Base sao = new Base("GRU");
 		Base rio = new Base("GIG", "SDU");
-		Solver solver = new SetPartitionSolver(TIME_TABLES_PATH + "738_48.txt");
+		SetPartitionSolver solver = new SetPartitionSolver(TIME_TABLES_PATH + "738_48.txt");
 		Solution solution = solver.getSolution(sao, rio);
 		if (solution != null)
 			solution.print();	

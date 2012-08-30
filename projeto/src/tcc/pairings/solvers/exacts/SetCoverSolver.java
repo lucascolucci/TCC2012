@@ -8,15 +8,15 @@ import tcc.pairings.io.CplexOutputer;
 import tcc.pairings.io.MemoryOutputer;
 import tcc.pairings.solvers.BasicSolver;
 
-public class SetPartitionSolver extends BasicSolver {
+public class SetCoverSolver extends BasicSolver {
 	private List<Leg> legs;
 	private CplexOutputer cplex;
 	
-	public SetPartitionSolver(String timeTable) {
+	public SetCoverSolver(String timeTable) {
 		super(timeTable);
 	}
 	
-	public SetPartitionSolver(String timeTable, CostCalculator calculator) {
+	public SetCoverSolver(String timeTable, CostCalculator calculator) {
 		super(timeTable, calculator);
 	}
 	
