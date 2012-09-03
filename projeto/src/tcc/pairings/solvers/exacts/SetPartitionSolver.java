@@ -1,15 +1,13 @@
 package tcc.pairings.solvers.exacts;
 
-import java.util.List;
-
-import tcc.pairings.Leg;
 import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.io.CplexOutputer;
 import tcc.pairings.io.MemoryOutputer;
+import tcc.pairings.io.Outputer;
+import tcc.pairings.optimizers.CplexOptimizer;
 import tcc.pairings.solvers.BasicSolver;
 
 public class SetPartitionSolver extends BasicSolver {
-	private List<Leg> legs;
 	private CplexOutputer cplex;
 	
 	public SetPartitionSolver(String timeTable) {
@@ -24,12 +22,11 @@ public class SetPartitionSolver extends BasicSolver {
 		memory = new MemoryOutputer(); 
 		cplex = new CplexOutputer(legs);
 		cplex.addRows();
+		outputers = new Outputer[] { memory, cplex }; 
 	}
-
 
 	@Override
 	protected void setOptimizer() {
-		// TODO Auto-generated method stub
-		
+		optimizer = new CplexOptimizer(cplex.getModel());
 	}
 }

@@ -28,8 +28,8 @@ public class Application {
 	
 	public static void main(String[] args) {
 		Application app = new Application();
-		app.doInitialSolution();
-		//app.doPairings();
+		//app.doInitialSolution();
+		app.doPairings();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
@@ -46,10 +46,9 @@ public class Application {
 	}
 	
 	public void doPairings() {
-		Base sao = new Base("GRU");
-		Base rio = new Base("GIG", "SDU");
-		SetPartitionSolver solver = new SetPartitionSolver(TIME_TABLES_PATH + "738_48.txt");
-		Solution solution = solver.getSolution(sao, rio);
+		Base sao = new Base("GRU", "CGH");
+		SetPartitionSolver solver = new SetPartitionSolver(TIME_TABLES_PATH + "73G_340.txt");
+		Solution solution = solver.getSolution(sao);
 		if (solution != null)
 			solution.print();	
 	}

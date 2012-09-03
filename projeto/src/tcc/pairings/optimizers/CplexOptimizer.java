@@ -58,9 +58,13 @@ public class CplexOptimizer implements Optimizer {
 	}
 
 	private boolean tryToOptimize() throws IloException {
-		if (model != null)
-			// TODO setSolutionTime()
-			return model.solve();
+		if (model != null) {
+			long before = System.currentTimeMillis();
+			boolean status = model.solve();
+			long after = System.currentTimeMillis();
+			solutionTime = after - before;
+			return status;
+		}
 		return false;
 	}
 	
