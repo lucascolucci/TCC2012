@@ -8,7 +8,7 @@ import tcc.pairings.Leg;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.TimeTableReader;
 
-public class InitialSolver implements Solver {
+public class InitialSolver {
 	private String timeTable;
 	private List<Leg> legs;
 	private FlightNetwork net;
@@ -25,7 +25,6 @@ public class InitialSolver implements Solver {
 		this.timeTable = timeTable;
 	}
 	
-	@Override
 	public Solution getSolution(Base... bases) {
 		try {
 			return tryToGetSolution(bases);

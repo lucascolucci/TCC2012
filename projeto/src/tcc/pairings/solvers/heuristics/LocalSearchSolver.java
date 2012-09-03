@@ -1,13 +1,22 @@
 package tcc.pairings.solvers.heuristics;
 
-import tcc.pairings.Base;
-import tcc.pairings.solvers.Solution;
-import tcc.pairings.solvers.Solver;
+import tcc.pairings.solvers.BasicSolver;
 
-public class LocalSearchSolver implements Solver {
-	@Override
-	public Solution getSolution(Base... bases) {
-		// TODO
-		return null;
+public class LocalSearchSolver extends BasicSolver {
+	public LocalSearchSolver(String timeTable) {
+		super(timeTable);
+		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	protected void setOutputers() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void setOptimizer() {
+		// TODO Auto-generated method stub
+		
+	}	
 }
