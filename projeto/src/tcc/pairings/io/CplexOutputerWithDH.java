@@ -13,7 +13,15 @@ public class CplexOutputerWithDH extends CplexOutputer {
 		super(legs);
 	}
 	
-	public void addDHVariables() throws IloException {
+	public void addDHVariables() {
+		try {
+			tryToAddDHVariables();
+		} catch (IloException e) {
+			System.err.println("Error: " + e.getMessage());
+		}
+	}
+
+	private void tryToAddDHVariables() throws IloException {
 		for (int i = 0; i < legs.size(); i++) {
 			IloColumn col = model.column(obj, Rules.DH_PENALTY_FACTOR * legs.get(i).getFlightTime());
 			col = col.and(model.column(range[i], 1));

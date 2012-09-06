@@ -14,6 +14,7 @@ import tcc.pairings.io.TimeTableReader;
 import tcc.pairings.optimizers.GlpkOptimizer;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
+import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
 
 public class Application {
@@ -27,8 +28,9 @@ public class Application {
 	
 	public static void main(String[] args) {
 		Application app = new Application();
-		app.doInitialSolution();
-		//app.doPairings();
+		//app.doInitialSolution();
+		app.doDHPairings();
+		app.doPairings();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
@@ -43,13 +45,25 @@ public class Application {
 		if (solution != null)
 			solution.print();
 	}
-	
-	public void doPairings() {
+
+	private void doDHPairings() {
+		Rules.MAX_DUTIES = 3;
 		Base sao = new Base("GRU", "CGH");
-		SetPartitionSolver solver = new SetPartitionSolver(TIME_TABLES_PATH + "73G_340.txt");
+		SetCoverSolver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt");
 		Solution solution = solver.getSolution(sao);
 		if (solution != null)
-			solution.print();	
+			solution.print();
+		System.out.println("Custo do otimizador = " + solver.getOptimalCost());
+	}
+	
+	public void doPairings() {
+		Rules.MAX_DUTIES = 4;
+		Base sao = new Base("GRU", "CGH");
+		SetPartitionSolver solver = new SetPartitionSolver(TIME_TABLES_PATH + "738_48.txt");
+		Solution solution = solver.getSolution(sao);
+		if (solution != null)
+			solution.print();
+		System.out.println("Custo do otimizador = " + solver.getOptimalCost());
 	}
 
 	public void doNumberOfPairings() {

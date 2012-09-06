@@ -79,7 +79,7 @@ public class CplexOptimizer implements Optimizer {
 	}
 
 	private List<Pairing> tryToGetSolution(List<Pairing> pairings) throws IloException {
-		List<Pairing> solution = new ArrayList<Pairing>(); int ncols = matrix.getNcols();
+		List<Pairing> solution = new ArrayList<Pairing>(); int ncols = pairings.size();
 		for (int i = 0; i < ncols; i++)
 			if ((int) model.getValue(matrix.getNumVar(i)) == 1)
 				solution.add(pairings.get(i));

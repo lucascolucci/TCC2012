@@ -91,4 +91,8 @@ public abstract class BasicSolver {
 		}
 		return null;
 	}
+	
+	public double getOptimalCost() {
+		return optimizer.getOptimalCost();
+	}
 }
