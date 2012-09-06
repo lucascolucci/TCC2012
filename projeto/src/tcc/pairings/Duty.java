@@ -20,7 +20,7 @@ public class Duty {
 	public int getFlightTime() {
 		int total = 0;
 		for (DutyLeg leg: legs)
-			total += DateUtil.difference(leg.getDeparture(), leg.getArrival());
+			total += leg.getFlightTime();
 		return total;
 	}
 	

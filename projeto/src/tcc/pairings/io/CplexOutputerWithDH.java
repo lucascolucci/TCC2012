@@ -6,20 +6,18 @@ import ilog.concert.IloException;
 import java.util.List;
 
 import tcc.pairings.Leg;
-import tcc.pairings.Pairing;
+import tcc.pairings.Rules;
 
 public class CplexOutputerWithDH extends CplexOutputer {
-
 	public CplexOutputerWithDH(List<Leg> legs) {
 		super(legs);
 	}
 	
-	@Override
-	protected void tryToOutput(Pairing pairing) throws IloException {
-		IloColumn col = model.column(obj, pairing.getCost());
-		for (int i = 0; i < legs.size(); i++){
+	public void addDHVariables() throws IloException {
+		for (int i = 0; i < legs.size(); i++) {
+			IloColumn col = model.column(obj, Rules.DH_PENALTY_FACTOR * legs.get(i).getFlightTime());
 			col = col.and(model.column(range[i], 1));
-			matrix.addColumn(model.boolVar(col, "X" + pairing.getNumber()));
+			matrix.addColumn(model.intVar(col, 0, Integer.MAX_VALUE, "Y" + (i + 1)));
 		}
 	}
 }

@@ -5,6 +5,8 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import tcc.DateUtil;
+
 public class Leg {
 	private short number;
 	private String from;
@@ -72,6 +74,10 @@ public class Leg {
 
 	public boolean isDuplicate(Leg leg) {
 		return number == leg.getNumber() && from.contentEquals(leg.getFrom()) && to.contentEquals(leg.getTo());
+	}
+	
+	public int getFlightTime() {
+		return DateUtil.difference(departure, arrival);
 	}
 
 	@Override
