@@ -84,6 +84,11 @@ public class Duty {
 		return 0;
 	}
 	
+	public void setAllLegsAsDH() {
+		for (DutyLeg leg: legs)
+			leg.setDeadHead(true);
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

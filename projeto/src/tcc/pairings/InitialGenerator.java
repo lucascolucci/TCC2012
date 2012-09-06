@@ -32,33 +32,29 @@ public class InitialGenerator extends PairingsGenerator {
 	protected void findPairings(Node<Leg> node) {
 		if (legs.isEmpty())
 			return;
-		
 		for (Edge<Leg> edge: node.getEdges())
 			exploreTrough(edge);
 	}
 
 	@Override
 	protected void output() {
-		Leg coverLeg = getCoverLeg();
-		if (coverLeg != null) {
-			addCoverPairing(coverLeg);
-			legs.remove(coverLeg);
+		Pairing pairing = new Pairing(numberOfPairings, path);
+		pairing.setAllDutiesAsDH();
+		List<Leg> duplicatedLegs = getDuplicatedLegs(pairing);
+		if (!duplicatedLegs.isEmpty()) {
+			legs.removeAll(duplicatedLegs);
+			pairings.add(pairing);
 		}
 	}
-	
-	private Leg getCoverLeg() {
-		List<Leg> pathLegs = path.getLegs();
-		//for (int i = pathLegs.size() - 1; i >= 0; i--)
-		for (int i = 0; i <  pathLegs.size(); i++)
+
+	private List<Leg> getDuplicatedLegs(Pairing pairing) {
+		List<Leg> duplicatedLegs = new ArrayList<Leg>();
+		for (DutyLeg pairingLeg: pairing.getLegs()) 
 			for (Leg leg: legs)
-				if (leg.isDuplicate(pathLegs.get(i)))
-					return leg;
-		return null;
-	}
-	
-	private void addCoverPairing(Leg coverLeg) {
-		Pairing pairing = new Pairing(numberOfPairings, path);
-		pairing.coverOne(coverLeg);
-		pairings.add(pairing);
+				if (leg.isDuplicate(pairingLeg)) {
+					duplicatedLegs.add(leg);
+					pairingLeg.setDeadHead(false);
+				}
+		return duplicatedLegs;
 	}
 }

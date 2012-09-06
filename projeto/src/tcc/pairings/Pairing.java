@@ -33,7 +33,7 @@ public class Pairing {
 	public Pairing() {
 		duties = new ArrayList<Duty>();
 	}
-
+	
 	public Pairing(int number, FlightNetworkPath path) {
 		this.number = number;
 		cost = 1;
@@ -115,12 +115,16 @@ public class Pairing {
 		return dutyTime;
 	}
 	
-	public void coverOne(Leg leg) {
-		for (Duty duty: duties) {
-			for (DutyLeg dutyLeg: duty.getLegs())
-				if (!dutyLeg.isDuplicate(leg))
-					dutyLeg.setDeadHead(true);
-		}
+	public void setAllDutiesAsDH() {
+		for (Duty duty: duties)
+			duty.setAllLegsAsDH();
+	}
+	
+	public List<DutyLeg> getLegs() {
+		List<DutyLeg> legs = new ArrayList<DutyLeg>();
+		for (Duty duty: duties)
+			legs.addAll(duty.getLegs());
+		return legs;
 	}
 
 	@Override
