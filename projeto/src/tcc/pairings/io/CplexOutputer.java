@@ -13,11 +13,11 @@ import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 
 public class CplexOutputer extends Outputer {
-	private List<Leg> legs;
-	private IloCplex model;
-	private IloLPMatrix matrix;
-	private IloObjective obj;
-	private IloRange[] range;
+	protected List<Leg> legs;
+	protected IloCplex model;
+	protected IloLPMatrix matrix;
+	protected IloObjective obj;
+	protected IloRange[] range;
 	
 	public IloCplex getModel() {
 		return model;
@@ -71,7 +71,7 @@ public class CplexOutputer extends Outputer {
 		}
 	}
 
-	private void tryToOutput(Pairing pairing) throws IloException {
+	protected void tryToOutput(Pairing pairing) throws IloException {
 		IloColumn col = model.column(obj, pairing.getCost());
 		for (int i = 0; i < legs.size(); i++)
 			if (pairing.contains(legs.get(i)))
