@@ -6,6 +6,7 @@ import tcc.pairings.io.MemoryOutputer;
 import tcc.pairings.io.Outputer;
 import tcc.pairings.optimizers.CplexOptimizer;
 import tcc.pairings.solvers.BasicSolver;
+import tcc.pairings.solvers.Solution;
 
 public class SetCoverSolver extends BasicSolver {
 	private DHCplexOutputer cplex;
@@ -29,5 +30,12 @@ public class SetCoverSolver extends BasicSolver {
 	protected void setOptimizer() {
 		cplex.addDHVariables();
 		optimizer = new CplexOptimizer(cplex.getModel());
+	}
+	
+	@Override
+	protected Solution getOptimalSolution() {
+		Solution solution = super.getOptimalSolution();
+		// TODO setar dead heads
+		return solution;
 	}
 }
