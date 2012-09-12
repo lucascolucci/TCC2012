@@ -9,9 +9,18 @@ import tcc.pairings.io.TerminalOutputer;
 
 public class Solution {
 	private List<Pairing> pairings;
-
+	private double cost;
+	
 	public List<Pairing> getPairings() {
 		return pairings;
+	}
+	
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 
 	public Solution() {
@@ -34,7 +43,7 @@ public class Solution {
 		pairings.clear();
 	}
 
-	public double getCost() {
+	public double getPairingsCost() {
 		double total = 0.0;
 		for (Pairing pairing: pairings)
 			total += pairing.getCost();
@@ -48,7 +57,8 @@ public class Solution {
 	public void print() {
 		DecimalFormat df = new DecimalFormat("#.###");
 		new TerminalOutputer().output(pairings);
-		System.out.println("Custo total = " + df.format(getCost()));
 		System.out.println("Nœmero de pairings = " + getSize());
+		System.out.println("Custo dos pairings = " + df.format(getPairingsCost()));
+		System.out.println("Custo da sulução = " + df.format(cost));
 	}
 }

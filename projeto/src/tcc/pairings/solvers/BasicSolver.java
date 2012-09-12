@@ -78,28 +78,27 @@ public abstract class BasicSolver {
 
 	protected abstract void setOutputers();
 
-	protected void generatePairings(Base... bases) {
+	private void generatePairings(Base... bases) {
 		PairingsGenerator generator = new PairingsGenerator(net, outputers, calculator);
 		generator.generate(bases);
 	}
 	
 	protected abstract void setOptimizer();
 	
-	private Solution getOptimalSolution() {
-		if (optimizer.optimize())
-			return new Solution(getOptimalPairings(memory.getPairings()));
+	protected Solution getOptimalSolution() {
+		if (optimizer.optimize()) {
+			Solution solution = new Solution(getOptimalPairings(memory.getPairings()));
+			solution.setCost(optimizer.getObjectiveValue());
+			return solution;
+		}
 		return null;
 	}
 	
 	private List<Pairing> getOptimalPairings(List<Pairing> pairings) {
-		List<Pairing> optimal = new ArrayList<Pairing>();
+		List<Pairing> list = new ArrayList<Pairing>();
 		List<Integer> vars = optimizer.getOptimalVariables();
 		for (int i: vars)
-			optimal.add(pairings.get(i - 1));
-		return optimal;
-	}
-
-	public double getOptimalCost() {
-		return optimizer.getObjectiveValue();
+			list.add(pairings.get(i - 1));
+		return list;
 	}
 }

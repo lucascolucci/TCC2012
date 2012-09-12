@@ -29,8 +29,8 @@ public class Application {
 	public static void main(String[] args) {
 		Application app = new Application();
 		//app.doInitialSolution();
-		app.doPairings();
-		//app.doDHPairings();
+		//app.doPairings();
+		app.doDHPairings();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
