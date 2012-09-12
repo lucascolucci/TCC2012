@@ -2,16 +2,14 @@ package tcc.pairings.optimizers;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
-import tcc.pairings.Pairing;
 import tcc.pairings.io.GlpkSolutionReader;
 
 public class GlpkOptimizer implements Optimizer {
 	private String mpsFile;
 	private String solutionFile;
-	private double solutionTime;
+	private double optmizationTime;
 	
 	private static final String GLPSOL = "/usr/local/bin/glpsol";
 	private static final String INFEASIBLE = "PROBLEM HAS NO PRIMAL FEASIBLE SOLUTION";
@@ -21,25 +19,21 @@ public class GlpkOptimizer implements Optimizer {
 		return mpsFile;
 	}
 	
-	public String getSolutionFile() {
-		return solutionFile;
-	}
-	
 	@Override
 	public double getOptimizationTime() {
-		return solutionTime;
+		return optmizationTime;
 	}
 	
 	public GlpkOptimizer(String mpsFile) {
 		this.mpsFile = mpsFile;
 		solutionFile = null;
-		solutionTime = -1;
+		optmizationTime = -1;
 	}
 	
 	public GlpkOptimizer(String mpsFile, String solutionFile) {
 		this.mpsFile = mpsFile;
 		this.solutionFile = solutionFile;
-		solutionTime = -1;
+		optmizationTime = -1;
 	}
 	
 	@Override
@@ -85,30 +79,16 @@ public class GlpkOptimizer implements Optimizer {
 	
 	private void setSolutionTime(String line) {
 		String time = line.substring(SOLUTION_TIME.length()).trim();
-		solutionTime = Double.parseDouble(time.split(" ")[0]);
+		optmizationTime = Double.parseDouble(time.split(" ")[0]);
 	}
 	
 	@Override
-	public List<Pairing> getOptimalPairings(List<Pairing> pairings) {
-		List<Integer> oneVariables = (new GlpkSolutionReader(solutionFile)).getOneVariables();
-		return getSolutionFromOneVariables(oneVariables, pairings);
-	}
-
-	private List<Pairing> getSolutionFromOneVariables(List<Integer> oneVariables, List<Pairing> pairings) {
-		List<Pairing> solution = new ArrayList<Pairing>();
-		if (oneVariables != null)
-			for (int var: oneVariables)
-				solution.add(pairings.get(var - 1));
-		return solution;
+	public List<Integer> getOptimalVariables() {
+		return (new GlpkSolutionReader(solutionFile)).getOneVariables();
 	}
 		
 	@Override
-	public double getOptimalCost() {
+	public double getObjectiveValue() {
 		return (new GlpkSolutionReader(solutionFile)).getCost();
-	}
-	
-	@Override
-	public int getOptimalSize() {
-		return (new GlpkSolutionReader(solutionFile).getNumberOfOneVariables());
 	}
 }

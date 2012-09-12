@@ -29,8 +29,8 @@ public class Application {
 	public static void main(String[] args) {
 		Application app = new Application();
 		//app.doInitialSolution();
-		app.doDHPairings();
 		app.doPairings();
+		//app.doDHPairings();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
@@ -45,16 +45,6 @@ public class Application {
 		if (solution != null)
 			solution.print();
 	}
-
-	private void doDHPairings() {
-		Rules.MAX_DUTIES = 3;
-		Base sao = new Base("GRU", "CGH");
-		SetCoverSolver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt");
-		Solution solution = solver.getSolution(sao);
-		if (solution != null)
-			solution.print();
-		System.out.println("Custo do otimizador = " + solver.getOptimalCost());
-	}
 	
 	public void doPairings() {
 		Rules.MAX_DUTIES = 4;
@@ -63,7 +53,15 @@ public class Application {
 		Solution solution = solver.getSolution(sao);
 		if (solution != null)
 			solution.print();
-		System.out.println("Custo do otimizador = " + solver.getOptimalCost());
+	}
+	
+	public void doDHPairings() {
+		Rules.MAX_DUTIES = 3;
+		Base sao = new Base("GRU", "CGH");
+		SetCoverSolver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt");
+		Solution solution = solver.getSolution(sao);
+		if (solution != null)
+			solution.print();
 	}
 
 	public void doNumberOfPairings() {

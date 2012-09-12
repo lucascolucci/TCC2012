@@ -3,6 +3,7 @@ package tcc.pairings.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -12,6 +13,7 @@ import tcc.pairings.Base;
 import tcc.pairings.Pairing;
 import tcc.pairings.PairingsGenerator;
 import tcc.pairings.Rules;
+import tcc.pairings.costs.ExcessCalculator;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.CplexOutputer;
 import tcc.pairings.io.MemoryOutputer;
@@ -25,6 +27,7 @@ import tcc.pairings.optimizers.Optimizer;
 public class OptimizersTest {
 	private FlightNetwork net;
 	private MemoryOutputer memory;
+	private Optimizer optimizer;
 	
 	@Before
 	public void setUp() {
@@ -42,9 +45,9 @@ public class OptimizersTest {
 	
 	@Test
 	public void glpkShouldGiveRightSolutionCost() {	
-		GlpkOptimizer solver = getGlpkOptimizer();
-		solver.optimize();
-		itShouldGiveRightSolutionCost(solver);
+		optimizer = getGlpkOptimizer();
+		optimizer.optimize();
+		itShouldGiveRightSolutionCost();
 	}
 	
 	@Test
@@ -58,7 +61,8 @@ public class OptimizersTest {
 		
 		MpsOutputer mps = new MpsOutputer(net.getLegs(), mpsFile);
 		Outputer[] outputers = new Outputer[] { memory, mps };
-		PairingsGenerator generator = new PairingsGenerator(net, outputers);
+		ExcessCalculator calculator = new ExcessCalculator();
+		PairingsGenerator generator = new PairingsGenerator(net, outputers, calculator);
 	
 		mps.writeUntilColumns();	
 		generator.generate(new Base("CGH"));
@@ -80,22 +84,23 @@ public class OptimizersTest {
 	
 	@Test
 	public void cplexShouldGiveRightSolutionCost() {	
-		CplexOptimizer solver = getCplexOptimizer();
-		solver.optimize();
-		itShouldGiveRightSolutionCost(solver);
+		optimizer = getCplexOptimizer();
+		optimizer.optimize();
+		itShouldGiveRightSolutionCost();
 	}
 	
 	@Test
 	public void cplexFromFileShouldGiveRightSolutionCost() {	
-		CplexOptimizer solver = getCplexOptimizerFromFile();
-		solver.optimize();
-		itShouldGiveRightSolutionCost(solver);
+		optimizer = getCplexOptimizerFromFile();
+		optimizer.optimize();
+		itShouldGiveRightSolutionCost();
 	}
 	
 	private CplexOptimizer getCplexOptimizer() {
 		CplexOutputer cplex = new CplexOutputer(net.getLegs());
 		Outputer[] outputers = new Outputer[] { memory, cplex };
-		PairingsGenerator generator = new PairingsGenerator(net, outputers);
+		ExcessCalculator calculator = new ExcessCalculator();
+		PairingsGenerator generator = new PairingsGenerator(net, outputers, calculator);
 		
 		cplex.addRows();	
 		generator.generate(new Base("CGH"));
@@ -118,11 +123,20 @@ public class OptimizersTest {
 		return new CplexOptimizer(mpsFile);
 	}
 
-	private void itShouldGiveRightSolutionCost(Optimizer optimizer) {
-		List<Pairing> solution = optimizer.getOptimalPairings(memory.getPairings());
+	private void itShouldGiveRightSolutionCost() {
+		List<Pairing> pairings = getOptimalPairings();
 		double cost = 0;
-		for (Pairing pairing: solution) 
+		for (Pairing pairing: pairings) 
 			cost += pairing.getCost();
-		assertEquals(optimizer.getOptimalCost(), cost, 0.1);
+		assertEquals(optimizer.getObjectiveValue(), cost, 0.001);
+	}
+
+	private List<Pairing> getOptimalPairings() {
+		List<Pairing> list = new ArrayList<Pairing>();
+		List<Pairing> pairings = memory.getPairings(); 
+		List<Integer> vars = optimizer.getOptimalVariables();
+		for (int i: vars)
+			list.add(pairings.get(i - 1));
+		return list;
 	}	
 }

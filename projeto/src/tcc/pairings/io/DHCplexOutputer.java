@@ -8,8 +8,8 @@ import java.util.List;
 import tcc.pairings.Leg;
 import tcc.pairings.Rules;
 
-public class CplexOutputerWithDH extends CplexOutputer {
-	public CplexOutputerWithDH(List<Leg> legs) {
+public class DHCplexOutputer extends CplexOutputer {
+	public DHCplexOutputer(List<Leg> legs) {
 		super(legs);
 	}
 	

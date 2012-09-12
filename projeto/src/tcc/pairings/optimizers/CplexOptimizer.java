@@ -6,32 +6,30 @@ import ilog.cplex.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import tcc.pairings.Pairing;
-
 public class CplexOptimizer implements Optimizer {
 	private IloCplex model;
 	private IloLPMatrix matrix;
-	private double solutionTime;
-
+	private double optimizationTime;
+	
 	public IloCplex getModel() {
 		return model;
 	}
 	
 	@Override
 	public double getOptimizationTime() {
-		return solutionTime;
+		return optimizationTime;
 	}
-	
+		
 	public CplexOptimizer(IloCplex model) {
 		this.model = model;
 		matrix = (IloLPMatrix) model.LPMatrixIterator().next();
-		solutionTime = -1;
+		optimizationTime = -1;
 	}
 	
 	public CplexOptimizer(String mpsFile) {
 		setUpModelFromFile(mpsFile);
 		matrix = (IloLPMatrix) model.LPMatrixIterator().next();
-		solutionTime = -1;
+		optimizationTime = -1;
 	}
 
 	private void setUpModelFromFile(String mpsFile) {
@@ -62,62 +60,44 @@ public class CplexOptimizer implements Optimizer {
 			long before = System.currentTimeMillis();
 			boolean status = model.solve();
 			long after = System.currentTimeMillis();
-			solutionTime = after - before;
+			optimizationTime = after - before;
 			return status;
 		}
 		return false;
 	}
 	
 	@Override
-	public List<Pairing> getOptimalPairings(List<Pairing> pairings) {
+	public List<Integer> getOptimalVariables() {
 		try {
-			return tryToGetSolution(pairings);
+			return tryToGetVariables();
 		} catch (IloException e) {
 			System.err.println("Error: " + e.getMessage());
 			return null;
 		}        
 	}
 
-	private List<Pairing> tryToGetSolution(List<Pairing> pairings) throws IloException {
-		List<Pairing> solution = new ArrayList<Pairing>(); int ncols = pairings.size();
-		for (int i = 0; i < ncols; i++)
+	private List<Integer> tryToGetVariables() throws IloException {
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 0; i < model.getNbinVars(); i++)
 			if ((int) model.getValue(matrix.getNumVar(i)) == 1)
-				solution.add(pairings.get(i));
-		return solution;
+				list.add(i + 1);
+		return list;
 	}
-	
+		
 	@Override
-	public double getOptimalCost() {
+	public double getObjectiveValue() {
 		try {
-			return tryToGetSolutionCost();
+			return tryToGetObjectiveValue();
 		} catch (IloException e) {
 			System.err.println("Error: " + e.getMessage());
 			return -1;
 		}
 	}
 
-	private double tryToGetSolutionCost() throws IloException {
+	private double tryToGetObjectiveValue() throws IloException {
 		if (model != null)
 			return model.getObjValue();
 		return -1;
-	}
-	
-	@Override
-	public int getOptimalSize() {
-		try {
-			return tryToGetOptimalSize();
-		} catch (IloException e) {
-			System.err.println("Error: " + e.getMessage());
-			return -1;
-		}
-	}
-
-	private int tryToGetOptimalSize() throws IloException {
-		int count = 0; int ncols = matrix.getNcols();
-		for (int i = 0; i < ncols; i++)
-			if (model.getValue(matrix.getNumVar(i)) == 1)
-				count++;
-		return count;
 	}
 	
 	public void endModel() {

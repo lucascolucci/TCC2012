@@ -1,5 +1,6 @@
 package tcc.pairings.solvers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import tcc.pairings.Base;
@@ -85,14 +86,20 @@ public abstract class BasicSolver {
 	protected abstract void setOptimizer();
 	
 	private Solution getOptimalSolution() {
-		if (optimizer.optimize()) {
-			List<Pairing> pairings = optimizer.getOptimalPairings(memory.getPairings());
-			return new Solution(pairings);
-		}
+		if (optimizer.optimize())
+			return new Solution(getOptimalPairings(memory.getPairings()));
 		return null;
 	}
 	
+	private List<Pairing> getOptimalPairings(List<Pairing> pairings) {
+		List<Pairing> optimal = new ArrayList<Pairing>();
+		List<Integer> vars = optimizer.getOptimalVariables();
+		for (int i: vars)
+			optimal.add(pairings.get(i - 1));
+		return optimal;
+	}
+
 	public double getOptimalCost() {
-		return optimizer.getOptimalCost();
+		return optimizer.getObjectiveValue();
 	}
 }
