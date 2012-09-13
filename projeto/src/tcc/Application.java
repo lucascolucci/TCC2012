@@ -9,8 +9,10 @@ import tcc.pairings.costs.ExcessToFlightCalculator;
 import tcc.pairings.generators.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.TimeTableReader;
+import tcc.pairings.io.outputers.CplexOutputer;
 import tcc.pairings.io.outputers.MpsOutputer;
 import tcc.pairings.io.outputers.Outputer;
+import tcc.pairings.optimizers.CplexOptimizer;
 import tcc.pairings.optimizers.GlpkOptimizer;
 import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
@@ -19,9 +21,6 @@ import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
 
 public class Application {
-	private FlightNetwork net;
-	private PairingsGenerator generator;
-	
 	private static final String TIME_TABLES_PATH = "./time_tables/";
 	private static final String OUTPUTS_PATH = "./outputs/";
 	private static final int GENERATION_TRIALS = 5;
@@ -30,12 +29,12 @@ public class Application {
 	public static void main(String[] args) {
 		Application app = new Application();
 		//app.doInitialSolution();
-		app.doPairings();
-		app.doDHPairings();
+		//app.doSetPartotion();
+		//app.doSetCover();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
-		//app.doCplexSolutionTime();
+		app.doCplexSolutionTime();
 	}
 	
 	public void doInitialSolution() {
@@ -47,7 +46,7 @@ public class Application {
 			System.out.println(solution);
 	}
 	
-	public void doPairings() {
+	public void doSetPartotion() {
 		Rules.MAX_DUTIES = 3;
 		Base sao = new Base("GRU", "CGH");
 		Base rio = new Base("GIG", "SDU");
@@ -56,7 +55,7 @@ public class Application {
 		System.out.println(solver.getSolution(sao, rio));
 	}
 	
-	public void doDHPairings() {
+	public void doSetCover() {
 		Rules.MAX_DUTIES = 3;
 		Base sao = new Base("GRU", "CGH");
 		Base rio = new Base("GIG", "SDU");
@@ -78,11 +77,13 @@ public class Application {
 	
 	private void doNumberOfpairings(int maxLegs, String dataFile) {
 		ResultsWriter writer = new ResultsWriter(dataFile);
-		List<Leg> allLegs = getLegsFromFile("cgh_sdu_notail_62.txt");
+		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
-			buildNet(getTrimmedList(allLegs, numberOfLegs));
-			Base base = new Base("GRU");
-			generatePairings(new Base[] { base }, null);
+			FlightNetwork net = new FlightNetwork(getTrimmedList(allLegs, numberOfLegs));
+			net.build();
+			Base base = new Base("CGH");
+			PairingsGenerator generator = new PairingsGenerator(net);
+			generator.generate(base);
 			writer.write(numberOfLegs + "\t" + generator.getNumberOfPairings());
 		}
 		writer.close();
@@ -90,6 +91,7 @@ public class Application {
 	
 	public void doGenerationTime() {
 		System.out.print("Generation time... ");
+		Rules.MAX_TRACKS = Rules.MAX_LEGS;
 		Rules.MAX_DUTIES = 2;
 		doGenerationTime(36, "generation_time_2.dat");
 		Rules.MAX_DUTIES = 3;
@@ -101,15 +103,17 @@ public class Application {
 	
 	private void doGenerationTime(int maxLegs, String dataFile) {
 		ResultsWriter writer = new ResultsWriter(dataFile);
-		List<Leg> allLegs = getLegsFromFile("cgh_sdu_notail_62.txt");
+		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
-			List<Leg> trimmedList = getTrimmedList(allLegs, numberOfLegs);
+			List<Leg> trimmedLegs = getTrimmedList(allLegs, numberOfLegs);
 			double[] values = new double[GENERATION_TRIALS]; 
 			for (int i = 0; i < GENERATION_TRIALS; i++) {
 				long start = System.nanoTime();
-				buildNet(trimmedList);
-				Base base = new Base("GRU");
-				generatePairings(new Base[] { base }, null);
+				FlightNetwork net = new FlightNetwork(trimmedLegs);
+				net.build();
+				Base base = new Base("CGH");
+				PairingsGenerator generator = new PairingsGenerator(net);
+				generator.generate(base);
 				long stop = System.nanoTime();
 				values[i] = (double) (stop - start) / 1000000;
 			}
@@ -121,6 +125,7 @@ public class Application {
 	
 	public void doGlpkSolutionTime() {
 		System.out.print("GLPK solution time... ");
+		Rules.MAX_TRACKS = Rules.MAX_LEGS;
 		Rules.MAX_DUTIES = 2;
 		doGlpkSolutionTime(36, "glpk_solution_time_2.dat");
 		Rules.MAX_DUTIES = 3;
@@ -132,14 +137,17 @@ public class Application {
 	
 	private void doGlpkSolutionTime(int maxLegs, String dataFile) {
 		ResultsWriter writer = new ResultsWriter(dataFile);
-		List<Leg> allLegs = getLegsFromFile("cgh_sdu_notail_62.txt");
+		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
 		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
 			List<Leg> trimmedLegs = getTrimmedList(allLegs, numberOfLegs);
-			buildNet(trimmedLegs);
+			FlightNetwork net = new FlightNetwork(trimmedLegs);
+			net.build();
 			MpsOutputer mps = new MpsOutputer(trimmedLegs, OUTPUTS_PATH + "cgh_sdu.mps");
 			mps.writeUntilColumns();
-			Base base = new Base("GRU");
-			generatePairings(new Base[] { base }, new Outputer[] { mps });
+			Base base = new Base("CGH");
+			ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
+			PairingsGenerator generator = new PairingsGenerator(net, new Outputer[] { mps }, calc);
+			generator.generate(base);
 			mps.writeRhsAndBounds(generator.getNumberOfPairings());
 			mps.close();
 			GlpkOptimizer optimizer = new GlpkOptimizer(OUTPUTS_PATH + "cgh_sdu.mps");
@@ -155,7 +163,8 @@ public class Application {
 	}
 	
 	public void doCplexSolutionTime() {
-		System.out.print("GLPK solution time... ");
+		System.out.print("Cplex solution time... ");
+		Rules.MAX_TRACKS = Rules.MAX_LEGS;
 		Rules.MAX_DUTIES = 2;
 		doCplexSolutionTime(36, "cplex_solution_time_2.dat");
 		Rules.MAX_DUTIES = 3;
@@ -166,7 +175,29 @@ public class Application {
 	}
 	
 	private void doCplexSolutionTime(int maxLegs, String dataFile) {
-		// TODO	
+		ResultsWriter writer = new ResultsWriter(dataFile);
+		List<Leg> allLegs = getLegsFromFile("cgh_sdu_62.txt");
+		for (int numberOfLegs = 2; numberOfLegs <= maxLegs; numberOfLegs += 2) {
+			List<Leg> trimmedLegs = getTrimmedList(allLegs, numberOfLegs);
+			FlightNetwork net = new FlightNetwork(trimmedLegs);
+			net.build();
+			double[] values = new double[SOLUTION_TRIALS]; 
+			for (int i = 0; i < SOLUTION_TRIALS; i++) {
+				CplexOutputer cplex = new CplexOutputer(trimmedLegs);
+				cplex.addRows();
+				Base base = new Base("CGH");
+				ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
+				PairingsGenerator generator = new PairingsGenerator(net, new Outputer[] { cplex }, calc);
+				generator.generate(base);
+				CplexOptimizer optimizer = new CplexOptimizer(cplex.getModel());
+				optimizer.optimize();
+				values[i] = optimizer.getOptimizationTime();
+				optimizer.endModel();
+			}
+			double mean = getMean(values);
+			writer.write(numberOfLegs + "\t" + mean + "\t" + getSD(values, mean));
+		}
+		writer.close();	
 	}
 	
 	private List<Leg> getLegsFromFile(String fileName) {
@@ -181,17 +212,7 @@ public class Application {
 		list.addAll(legs.subList(size/2, size/2 + half));
 		return list;
 	}
-	
-	private void buildNet(List<Leg> legs) {
-		net = new FlightNetwork(legs);
-		net.build();
-	}
-	
-	private void generatePairings(Base[] bases, Outputer[] outputers) {
-		generator = new PairingsGenerator(net, outputers);
-		generator.generate(bases);
-	}
-	
+		
 	private double getMean(double[] values) {
 		double total = 0;
 		for (double value: values)
