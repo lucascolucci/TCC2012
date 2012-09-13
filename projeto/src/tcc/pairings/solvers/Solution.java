@@ -6,7 +6,6 @@ import java.util.List;
 
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
-import tcc.pairings.io.outputers.TerminalOutputer;
 
 public class Solution {
 	private List<Pairing> pairings;
@@ -70,11 +69,15 @@ public class Solution {
 		return result;
 	}
 
-	public void print() {
+	@Override
+	public String toString() {
 		DecimalFormat df = new DecimalFormat("#.###");
-		new TerminalOutputer().output(pairings);
-		System.out.println("Número de pairings = " + getSize());
-		System.out.println("Custo dos pairings = " + df.format(getPairingsCost()));
-		System.out.println("Custo da sulução = " + df.format(cost));
+		StringBuilder sb = new StringBuilder();
+		for (Pairing pairing: pairings)
+			sb.append(pairing);
+		sb.append("Número de pairings = ").append(getSize()).append('\n');
+		sb.append("Custo dos pairings = ").append(df.format(getPairingsCost())).append('\n');
+		sb.append("Custo da sulução = ").append(df.format(cost));
+		return sb.toString();
 	}
 }
