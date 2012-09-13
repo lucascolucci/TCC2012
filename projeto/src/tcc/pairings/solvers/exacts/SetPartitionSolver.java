@@ -20,7 +20,7 @@ public class SetPartitionSolver extends BasicSolver {
 	
 	protected void setOutputers() {
 		memory = new MemoryOutputer(); 
-		cplex = new CplexOutputer(legs);
+		cplex = new CplexOutputer(getLegs());
 		cplex.addRows();
 		outputers = new Outputer[] { memory, cplex }; 
 	}

@@ -30,7 +30,7 @@ public class Application {
 	public static void main(String[] args) {
 		Application app = new Application();
 		//app.doInitialSolution();
-		//app.doPairings();
+		app.doPairings();
 		app.doDHPairings();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
@@ -50,21 +50,19 @@ public class Application {
 	public void doPairings() {
 		Rules.MAX_DUTIES = 3;
 		Base sao = new Base("GRU", "CGH");
+		Base rio = new Base("GIG", "SDU");
 		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
 		SetPartitionSolver solver = new SetPartitionSolver(TIME_TABLES_PATH + "738_48.txt", calc);
-		Solution solution = solver.getSolution(sao);
-		if (solution != null)
-			System.out.println(solution);
+		System.out.println(solver.getSolution(sao, rio));
 	}
 	
 	public void doDHPairings() {
 		Rules.MAX_DUTIES = 3;
-		Base sao = new Base("CGH");
+		Base sao = new Base("GRU", "CGH");
+		Base rio = new Base("GIG", "SDU");
 		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
-		SetCoverSolver solver = new SetCoverSolver(TIME_TABLES_PATH + "cgh_sdu_28.txt", calc);
-		Solution solution = solver.getSolution(sao);
-		if (solution != null)
-			System.out.println(solution);
+		SetCoverSolver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt", calc);
+		System.out.println(solver.getSolution(sao, rio));
 	}
 
 	public void doNumberOfPairings() {

@@ -133,4 +133,8 @@ public class Rules {
 	private static boolean numberOfDutiesCheck(FlightNetworkPath path) {
 		return path.getNumberOfDuties() + 1 <= Rules.MAX_DUTIES;
 	}
+	
+	public static double getDeadHeadCost(Leg leg) {
+		return DH_PENALTY_FACTOR * leg.getFlightTime();
+	}
 }

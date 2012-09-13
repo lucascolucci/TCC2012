@@ -17,7 +17,7 @@ import tcc.pairings.optimizers.Optimizer;
 public abstract class BasicSolver {
 	protected String timeTable;
 	protected CostCalculator calculator;
-	protected List<Leg> legs;
+	private List<Leg> legs;
 	protected FlightNetwork net;
 	protected MemoryOutputer memory;
 	protected Outputer[] outputers;
@@ -37,6 +37,10 @@ public abstract class BasicSolver {
 
 	public void setCalculator(CostCalculator calculator) {
 		this.calculator = calculator;
+	}
+	
+	public List<Leg> getLegs() {
+		return legs;
 	}
 	
 	public BasicSolver(String timeTable) {
@@ -72,7 +76,7 @@ public abstract class BasicSolver {
 	}
 
 	private void buildFlightNetwork() {
-		net = new FlightNetwork(legs);
+		net = new FlightNetwork(getLegs());
 		net.build();
 	}
 

@@ -153,4 +153,13 @@ public class Pairing {
 			sb.append(duty.toString());
 		}
 	}
+	
+	public double getCostWithDeadHeads() {
+		List<DutyLeg> legs = getLegs();
+		double total = cost;
+		for (DutyLeg leg: legs)
+			if (leg.isDeadHead())
+				total += Rules.getDeadHeadCost(leg);
+		return total;
+	}
 }
