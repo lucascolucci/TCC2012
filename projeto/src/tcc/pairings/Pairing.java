@@ -79,7 +79,7 @@ public class Pairing {
 	
 	public boolean contains(Leg leg) {
 		for (Duty duty: duties)
-			if(duty.contains(leg))
+			if (duty.contains(leg))
 				return true;
 		return false;
 	}
@@ -125,6 +125,15 @@ public class Pairing {
 		for (Duty duty: duties)
 			legs.addAll(duty.getLegs());
 		return legs;
+	}
+	
+	public void setLegAsDH(Leg dhLeg) {
+		List<DutyLeg> legs = getLegs();
+		for (DutyLeg leg: legs)
+			if (leg.isDuplicate(dhLeg)) {
+				leg.setDeadHead(true);
+				return;
+			}
 	}
 
 	@Override

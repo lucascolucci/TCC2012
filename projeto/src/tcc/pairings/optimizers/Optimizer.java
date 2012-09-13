@@ -6,5 +6,6 @@ public interface Optimizer {
 	double getOptimizationTime();
 	boolean optimize();
 	List<Integer> getOptimalVariables();
+	List<Integer> getArtificialValues();
 	double getObjectiveValue();
 }

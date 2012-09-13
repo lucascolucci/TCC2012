@@ -7,6 +7,7 @@ import tcc.pairings.Base;
 import tcc.pairings.Leg;
 import tcc.pairings.PairingsGenerator;
 import tcc.pairings.Rules;
+import tcc.pairings.costs.ExcessToFlightCalculator;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.MpsOutputer;
 import tcc.pairings.io.Outputer;
@@ -29,7 +30,7 @@ public class Application {
 	public static void main(String[] args) {
 		Application app = new Application();
 		//app.doInitialSolution();
-		//app.doPairings();
+		app.doPairings();
 		app.doDHPairings();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
@@ -49,16 +50,18 @@ public class Application {
 	public void doPairings() {
 		Rules.MAX_DUTIES = 4;
 		Base sao = new Base("GRU", "CGH");
-		SetPartitionSolver solver = new SetPartitionSolver(TIME_TABLES_PATH + "738_48.txt");
+		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
+		SetPartitionSolver solver = new SetPartitionSolver(TIME_TABLES_PATH + "738_48.txt", calc);
 		Solution solution = solver.getSolution(sao);
 		if (solution != null)
 			solution.print();
 	}
 	
 	public void doDHPairings() {
-		Rules.MAX_DUTIES = 3;
-		Base sao = new Base("GRU", "CGH");
-		SetCoverSolver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt");
+		Rules.MAX_DUTIES = 4;
+		Base sao = new Base("CGH", "GRU");
+		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
+		SetCoverSolver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt", calc);
 		Solution solution = solver.getSolution(sao);
 		if (solution != null)
 			solution.print();

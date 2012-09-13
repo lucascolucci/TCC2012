@@ -1,5 +1,7 @@
 package tcc.pairings.solvers.exacts;
 
+import java.util.List;
+
 import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.io.DHCplexOutputer;
 import tcc.pairings.io.MemoryOutputer;
@@ -29,13 +31,23 @@ public class SetCoverSolver extends BasicSolver {
 	@Override
 	protected void setOptimizer() {
 		cplex.addDHVariables();
-		optimizer = new CplexOptimizer(cplex.getModel());
+		optimizer = new CplexOptimizer(cplex.getModel());	
 	}
 	
 	@Override
 	protected Solution getOptimalSolution() {
 		Solution solution = super.getOptimalSolution();
-		// TODO setar dead heads
+		if (solution != null) 
+			setDeadHeads(solution);
 		return solution;
+	}
+
+	private void setDeadHeads(Solution solution) {
+		List<Integer> artificials = optimizer.getArtificialValues();
+		for (int i = 0; i < legs.size(); i++) {
+			int numberOfDeadHeads = artificials.get(i);
+			if (numberOfDeadHeads > 0)
+				solution.setDeadHeads(legs.get(i), numberOfDeadHeads);
+		}
 	}
 }

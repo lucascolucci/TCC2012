@@ -24,7 +24,7 @@ public class DHCplexOutputer extends CplexOutputer {
 	private void tryToAddDHVariables() throws IloException {
 		for (int i = 0; i < legs.size(); i++) {
 			IloColumn col = model.column(obj, Rules.DH_PENALTY_FACTOR * legs.get(i).getFlightTime());
-			col = col.and(model.column(range[i], 1));
+			col = col.and(model.column(range[i], -1));
 			matrix.addColumn(model.intVar(col, 0, Integer.MAX_VALUE, "Y" + (i + 1)));
 		}
 	}

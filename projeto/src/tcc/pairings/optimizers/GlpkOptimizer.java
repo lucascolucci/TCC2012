@@ -74,10 +74,10 @@ public class GlpkOptimizer implements Optimizer {
 			throw new Exception(INFEASIBLE);
 		}
 		else if (line.contains(SOLUTION_TIME))
-			setSolutionTime(line);
+			setOptimizationTime(line);
 	}
 	
-	private void setSolutionTime(String line) {
+	private void setOptimizationTime(String line) {
 		String time = line.substring(SOLUTION_TIME.length()).trim();
 		optmizationTime = Double.parseDouble(time.split(" ")[0]);
 	}
@@ -85,6 +85,12 @@ public class GlpkOptimizer implements Optimizer {
 	@Override
 	public List<Integer> getOptimalVariables() {
 		return (new GlpkSolutionReader(solutionFile)).getOneVariables();
+	}
+	
+	@Override
+	public List<Integer> getArtificialValues() {
+		// TODO
+		return null;
 	}
 		
 	@Override

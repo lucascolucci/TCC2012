@@ -77,10 +77,29 @@ public class CplexOptimizer implements Optimizer {
 	}
 
 	private List<Integer> tryToGetVariables() throws IloException {
-		List<Integer> list = new ArrayList<Integer>();
-		for (int i = 0; i < model.getNbinVars(); i++)
+		List<Integer> list = new ArrayList<Integer>(); 
+		int last =  model.getNbinVars();
+		for (int i = 0; i < last; i++)
 			if ((int) model.getValue(matrix.getNumVar(i)) == 1)
 				list.add(i + 1);
+		return list;
+	}
+	
+	@Override
+	public List<Integer> getArtificialValues() {
+		try {
+			return tryToGetArtificialValues();
+		} catch (IloException e) {
+			System.err.println("Error: " + e.getMessage());
+			return null;
+		}
+	}
+
+	private List<Integer> tryToGetArtificialValues() throws IloException {
+		List<Integer> list = new ArrayList<Integer>();
+		int first = model.getNbinVars(); int last = model.getNcols();
+		for (int i = first; i < last; i++)			
+			list.add((int) model.getValue(matrix.getNumVar(i)));
 		return list;
 	}
 		
