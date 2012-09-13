@@ -1,0 +1,29 @@
+1. Atividades Realizadas
+
+	- Definição do orientador;
+	- Criação do blog referente ao progresso do projeto;
+	- Avaliação de trabalhos de formatura anteriores;
+	- Estudo sobre o tema através da leitura de livros e publicações acadêmicas;
+	- Reuniões periódicas com o orientador;
+	- Criação da página web;
+	- Redação da parte introdutória da monografia;
+	- Contato com os diretores da companhia aérea GOL;
+	- Obtenção de dados reais junto à GOL para input do problema; 
+	- Criação do repositório online do projeto; 
+	- Estrutura de dados e arquitetura do código finalizadas;
+	- Geração de pairings implementada;
+	- Resolução do modelo Set Partition implementada;
+	- Resolução do modelo Set Cover implementada;
+	- Análise preliminar dos resultados obtidos;
+	- Atualização periódica do blog Stoa;
+	- Conversas (informais) semanais com o orientador;
+	- Reuniões para implementação de código durante as férias e breaks;
+	
+2. Próximas Atividades
+
+	- Implementação do método de busca local;
+	- Implementação do algoritmo genético;
+	- Implementação do método de geração de colunas;
+	- Análise e comparação de resultados;
+	- Criação do poster e slides para apresentação;
+	- Redação da monografia final;
