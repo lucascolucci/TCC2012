@@ -3,8 +3,8 @@ package tcc.pairings.solvers;
 import java.util.List;
 
 import tcc.pairings.Base;
-import tcc.pairings.InitialGenerator;
 import tcc.pairings.Leg;
+import tcc.pairings.generators.InitialGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.TimeTableReader;
 

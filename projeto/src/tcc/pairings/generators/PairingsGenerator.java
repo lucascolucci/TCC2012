@@ -1,5 +1,10 @@
-package tcc.pairings;
+package tcc.pairings.generators;
 
+import tcc.pairings.Base;
+import tcc.pairings.DutyData;
+import tcc.pairings.Leg;
+import tcc.pairings.Pairing;
+import tcc.pairings.Rules;
 import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.Node;

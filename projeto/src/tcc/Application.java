@@ -5,9 +5,9 @@ import java.util.List;
 
 import tcc.pairings.Base;
 import tcc.pairings.Leg;
-import tcc.pairings.PairingsGenerator;
 import tcc.pairings.Rules;
 import tcc.pairings.costs.ExcessToFlightCalculator;
+import tcc.pairings.generators.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.MpsOutputer;
 import tcc.pairings.io.Outputer;

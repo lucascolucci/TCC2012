@@ -11,9 +11,9 @@ import org.junit.Test;
 
 import tcc.pairings.Base;
 import tcc.pairings.Pairing;
-import tcc.pairings.PairingsGenerator;
 import tcc.pairings.Rules;
 import tcc.pairings.costs.ExcessCalculator;
+import tcc.pairings.generators.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.CplexOutputer;
 import tcc.pairings.io.MemoryOutputer;

@@ -1,8 +1,11 @@
-package tcc.pairings;
+package tcc.pairings.generators;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import tcc.pairings.DutyLeg;
+import tcc.pairings.Leg;
+import tcc.pairings.Pairing;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.Node;
 import tcc.pairings.graph.networks.FlightNetwork;
