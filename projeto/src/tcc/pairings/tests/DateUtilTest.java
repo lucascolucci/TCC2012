@@ -12,8 +12,8 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import tcc.DateUtil;
 import tcc.pairings.Rules;
+import tcc.util.DateUtil;
 
 public class DateUtilTest {
 	private DateFormat df; 

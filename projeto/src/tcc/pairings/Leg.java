@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import tcc.DateUtil;
+import tcc.util.DateUtil;
 
 public class Leg {
 	private short number;

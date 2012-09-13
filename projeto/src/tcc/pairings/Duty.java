@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import tcc.DateUtil;
+import tcc.util.DateUtil;
 
 public class Duty {
 	private List<DutyLeg> legs;

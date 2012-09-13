@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import tcc.DateUtil;
 import tcc.pairings.Leg;
 import tcc.pairings.Rules;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.Graph;
 import tcc.pairings.graph.Node;
+import tcc.util.DateUtil;
 
 public class FlightNetwork extends Graph<Leg> {
 	private List<Leg> legs;

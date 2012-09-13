@@ -4,10 +4,10 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import tcc.DateUtil;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.networks.EdgeType;
 import tcc.pairings.graph.networks.FlightNetworkPath;
+import tcc.util.DateUtil;
 
 public class Pairing {
 	private int number;

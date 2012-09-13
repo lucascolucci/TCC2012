@@ -1,4 +1,4 @@
-package tcc;
+package tcc.util;
 
 import java.util.Calendar;
 import java.util.Date;
