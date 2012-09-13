@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2011)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: versao_preliminar.aux
+The style file: plain.bst
+Database file #1: ../bib/crew_scheduling.bib
+Warning--can't use both author and editor fields in barnhart03
+You've used 10 entries,
+            2118 wiz_defined-function locations,
+            563 strings with 5563 characters,
+and the built_in function-call counts, 3658 in all, are:
+= -- 347
+> -- 195
+< -- 2
++ -- 77
+- -- 66
+* -- 287
+:= -- 622
+add.period$ -- 30
+call.type$ -- 10
+change.case$ -- 62
+chr.to.int$ -- 0
+cite$ -- 11
+duplicate$ -- 122
+empty$ -- 271
+format.name$ -- 66
+if$ -- 759
+int.to.chr$ -- 0
+int.to.str$ -- 10
+missing$ -- 10
+newline$ -- 52
+num.names$ -- 21
+pop$ -- 51
+preamble$ -- 1
+purify$ -- 53
+quote$ -- 0
+skip$ -- 82
+stack$ -- 0
+substring$ -- 235
+swap$ -- 22
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 37
+warning$ -- 1
+while$ -- 30
+width$ -- 12
+write$ -- 112
+(There was 1 warning)
