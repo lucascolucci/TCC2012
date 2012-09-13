@@ -1,4 +1,4 @@
-package tcc.pairings.io;
+package tcc.pairings.io.outputers;
 
 import ilog.concert.IloColumn;
 import ilog.concert.IloException;

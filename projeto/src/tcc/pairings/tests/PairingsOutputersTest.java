@@ -15,12 +15,12 @@ import org.junit.Test;
 import tcc.pairings.Base;
 import tcc.pairings.generators.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
-import tcc.pairings.io.CplexOutputer;
-import tcc.pairings.io.MpsOutputer;
-import tcc.pairings.io.Outputer;
-import tcc.pairings.io.TerminalOutputer;
-import tcc.pairings.io.TextOutputer;
 import tcc.pairings.io.TimeTableReader;
+import tcc.pairings.io.outputers.CplexOutputer;
+import tcc.pairings.io.outputers.MpsOutputer;
+import tcc.pairings.io.outputers.Outputer;
+import tcc.pairings.io.outputers.TerminalOutputer;
+import tcc.pairings.io.outputers.TextOutputer;
 import tcc.pairings.rules.Rules;
 
 public class PairingsOutputersTest {

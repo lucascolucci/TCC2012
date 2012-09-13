@@ -6,7 +6,7 @@ import java.util.List;
 
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
-import tcc.pairings.io.TerminalOutputer;
+import tcc.pairings.io.outputers.TerminalOutputer;
 
 public class Solution {
 	private List<Pairing> pairings;

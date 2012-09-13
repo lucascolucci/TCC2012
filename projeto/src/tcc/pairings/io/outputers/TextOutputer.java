@@ -1,4 +1,4 @@
-package tcc.pairings.io;
+package tcc.pairings.io.outputers;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

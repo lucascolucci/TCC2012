@@ -12,7 +12,7 @@ import tcc.pairings.graph.networks.FlightNetworkEdgeLabel;
 import tcc.pairings.graph.networks.FlightNetworkNodeLabel;
 import tcc.pairings.graph.networks.FlightNetworkPath;
 import tcc.pairings.graph.networks.SpecialNode;
-import tcc.pairings.io.Outputer;
+import tcc.pairings.io.outputers.Outputer;
 import tcc.pairings.rules.Rules;
 
 public class PairingsGenerator {

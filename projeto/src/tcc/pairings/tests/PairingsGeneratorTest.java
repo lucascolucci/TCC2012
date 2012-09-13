@@ -17,9 +17,9 @@ import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.generators.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
-import tcc.pairings.io.MemoryOutputer;
-import tcc.pairings.io.Outputer;
 import tcc.pairings.io.TimeTableReader;
+import tcc.pairings.io.outputers.MemoryOutputer;
+import tcc.pairings.io.outputers.Outputer;
 import tcc.pairings.rules.Rules;
 
 public class PairingsGeneratorTest {
