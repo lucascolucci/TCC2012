@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import tcc.pairings.rules.Rules;
 import tcc.util.DateUtil;
 
 public class Leg {

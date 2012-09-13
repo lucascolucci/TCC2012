@@ -15,12 +15,12 @@ import org.junit.Test;
 import tcc.pairings.Base;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
-import tcc.pairings.Rules;
 import tcc.pairings.generators.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.MemoryOutputer;
 import tcc.pairings.io.Outputer;
 import tcc.pairings.io.TimeTableReader;
+import tcc.pairings.rules.Rules;
 
 public class PairingsGeneratorTest {
 	private MemoryOutputer memory;

@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import tcc.pairings.Leg;
-import tcc.pairings.Rules;
+import tcc.pairings.rules.Rules;
 
 public class TimeTableReader {
 	private String fileName;

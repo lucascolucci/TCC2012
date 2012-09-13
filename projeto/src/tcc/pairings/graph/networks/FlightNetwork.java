@@ -5,10 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import tcc.pairings.Leg;
-import tcc.pairings.Rules;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.Graph;
 import tcc.pairings.graph.Node;
+import tcc.pairings.rules.Rules;
 import tcc.util.DateUtil;
 
 public class FlightNetwork extends Graph<Leg> {

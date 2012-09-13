@@ -14,12 +14,12 @@ import org.junit.Test;
 
 import tcc.pairings.Base;
 import tcc.pairings.Leg;
-import tcc.pairings.Rules;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.Node;
 import tcc.pairings.graph.networks.EdgeType;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.graph.networks.SpecialNode;
+import tcc.pairings.rules.Rules;
 import tcc.util.DateUtil;
 
 public class FlightNetworkTest {

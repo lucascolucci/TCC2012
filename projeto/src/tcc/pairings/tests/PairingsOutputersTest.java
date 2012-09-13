@@ -13,7 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import tcc.pairings.Base;
-import tcc.pairings.Rules;
 import tcc.pairings.generators.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.CplexOutputer;
@@ -22,6 +21,7 @@ import tcc.pairings.io.Outputer;
 import tcc.pairings.io.TerminalOutputer;
 import tcc.pairings.io.TextOutputer;
 import tcc.pairings.io.TimeTableReader;
+import tcc.pairings.rules.Rules;
 
 public class PairingsOutputersTest {
 	private FlightNetwork net;

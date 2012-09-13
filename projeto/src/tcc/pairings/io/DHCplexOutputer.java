@@ -6,7 +6,7 @@ import ilog.concert.IloException;
 import java.util.List;
 
 import tcc.pairings.Leg;
-import tcc.pairings.Rules;
+import tcc.pairings.rules.Rules;
 
 public class DHCplexOutputer extends CplexOutputer {
 	public DHCplexOutputer(List<Leg> legs) {

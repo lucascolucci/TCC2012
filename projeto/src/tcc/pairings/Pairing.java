@@ -7,6 +7,7 @@ import java.util.List;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.networks.EdgeType;
 import tcc.pairings.graph.networks.FlightNetworkPath;
+import tcc.pairings.rules.Rules;
 import tcc.util.DateUtil;
 
 public class Pairing {

@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import tcc.pairings.Base;
 import tcc.pairings.Pairing;
-import tcc.pairings.Rules;
 import tcc.pairings.costs.ExcessCalculator;
 import tcc.pairings.generators.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
@@ -23,6 +22,7 @@ import tcc.pairings.io.TimeTableReader;
 import tcc.pairings.optimizers.CplexOptimizer;
 import tcc.pairings.optimizers.GlpkOptimizer;
 import tcc.pairings.optimizers.Optimizer;
+import tcc.pairings.rules.Rules;
 
 public class OptimizersTest {
 	private FlightNetwork net;

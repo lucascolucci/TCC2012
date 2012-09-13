@@ -4,7 +4,6 @@ import tcc.pairings.Base;
 import tcc.pairings.DutyData;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
-import tcc.pairings.Rules;
 import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.Node;
@@ -14,6 +13,7 @@ import tcc.pairings.graph.networks.FlightNetworkNodeLabel;
 import tcc.pairings.graph.networks.FlightNetworkPath;
 import tcc.pairings.graph.networks.SpecialNode;
 import tcc.pairings.io.Outputer;
+import tcc.pairings.rules.Rules;
 
 public class PairingsGenerator {
 	private FlightNetwork net;

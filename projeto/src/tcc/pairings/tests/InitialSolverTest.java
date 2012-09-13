@@ -12,7 +12,7 @@ import tcc.pairings.Base;
 import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
-import tcc.pairings.Rules;
+import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
 

@@ -12,7 +12,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import tcc.pairings.Rules;
+import tcc.pairings.rules.Rules;
 import tcc.util.DateUtil;
 
 public class DateUtilTest {

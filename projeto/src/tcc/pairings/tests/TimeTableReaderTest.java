@@ -10,8 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import tcc.pairings.Leg;
-import tcc.pairings.Rules;
 import tcc.pairings.io.TimeTableReader;
+import tcc.pairings.rules.Rules;
 
 public class TimeTableReaderTest {
 	private TimeTableReader timeTableReader;

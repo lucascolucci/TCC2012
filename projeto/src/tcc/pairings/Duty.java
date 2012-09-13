@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import tcc.pairings.rules.Rules;
 import tcc.util.DateUtil;
 
 public class Duty {

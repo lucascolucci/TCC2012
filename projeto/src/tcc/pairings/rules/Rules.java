@@ -1,5 +1,9 @@
-package tcc.pairings;
+package tcc.pairings.rules;
 
+import tcc.pairings.Base;
+import tcc.pairings.Duty;
+import tcc.pairings.Leg;
+import tcc.pairings.Pairing;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.networks.FlightNetworkEdgeLabel;
 import tcc.pairings.graph.networks.FlightNetworkNodeLabel;

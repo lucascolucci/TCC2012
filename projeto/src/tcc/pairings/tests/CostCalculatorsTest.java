@@ -14,11 +14,11 @@ import tcc.pairings.Duty;
 import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
-import tcc.pairings.Rules;
 import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.costs.DutyToFlightCalculator;
 import tcc.pairings.costs.ExcessCalculator;
 import tcc.pairings.costs.ExcessToFlightCalculator;
+import tcc.pairings.rules.Rules;
 
 public class CostCalculatorsTest {
 	private CostCalculator calc;

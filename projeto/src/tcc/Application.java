@@ -5,7 +5,6 @@ import java.util.List;
 
 import tcc.pairings.Base;
 import tcc.pairings.Leg;
-import tcc.pairings.Rules;
 import tcc.pairings.costs.ExcessToFlightCalculator;
 import tcc.pairings.generators.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
@@ -13,6 +12,7 @@ import tcc.pairings.io.MpsOutputer;
 import tcc.pairings.io.Outputer;
 import tcc.pairings.io.TimeTableReader;
 import tcc.pairings.optimizers.GlpkOptimizer;
+import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
