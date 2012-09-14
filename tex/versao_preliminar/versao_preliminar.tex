@@ -9,7 +9,8 @@
 \usepackage{amscd}
 \usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage[pdftex]{graphicx} 
+\usepackage[pdftex]{graphicx}
+\usepackage{multirow}
 
 % Paginação
 %\textwidth 15.0cm                    % Largura
@@ -38,7 +39,7 @@
 \newcommand{\vsp}{\vspace{0.1cm}}                            % espaco vertical para fórmulas
 \newcommand{\ev}{\, ,}                                       % espaco e virgula
 \newcommand{\ep}{\, .}                                       % espaco e ponto
-\newcommand{\eg}{\emph{e.g.,}}                               % por exemplo
+\newcommand{\eg}{\emph{e.g.}}                               % por exemplo
 
 % Fontes caligráficas
 \newcommand{\calA}{\mathcal{A}} 
@@ -78,16 +79,25 @@
 
 \begin{document}
 
-\title{\bf Otimização de Viagens de Tripulantes em Companhias Aéreas}
+\title{\bf Otimização do Escalonamento de Tripulantes em Companhias Aéreas}
 \author{Daniel Augusto Cortez \\ Lucas Rodrigues Colucci \\ Renato Lerac Corrêa de Sá}
 \date{\today}
 
 \maketitle
 
 \begin{abstract}
-
+	Versão preliminar da monografia a ser apresentada como trabalho de conclusão de curso. Contém
+	uma introdução ao problema, a análise preliminar, alguns resultados obtidos até o momento e 
+	conclusões.
 \end{abstract}
 
+\vspace{2cm}
+
+\begin{center}
+	Blog Stoa: \verb|http://social.stoa.usp.br/profile/daniel-lucas-renato|
+
+	Repositório GitHub: \verb|https://github.com/bublecamp/TCC2012| 
+\end{center}
 \thispagestyle{empty}
 
 \newpage 
@@ -149,9 +159,10 @@ empregador. Dado o grande número de variáveis e restrições envolvidas, assim
 grandes ganhos econômicos, o problema torna-se bastante interessante, tanto do ponto de vista da
 indústria, quanto acadêmico.
 
-%Os objetivos deste primeiro trabalho é dar uma descrição mais precisa do problema de escalonamento
-%de tripulantes, fornecer uma formulação precisa e discutir brevemente algumas técnicas de solução já
-%aplicadas para resolução do mesmo.
+Neste trabalho focaremos justamente na parte de escalonamento de tripulantes, mais especificamente
+no chamado problema da determinação das viagens. O objetivo é apresentar, discutir e implementar 
+alguns dos métodos de solução disponíveis na literatura, apresentando alguns resultados no contexto
+das companhias aéreas brasileiras.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -165,7 +176,7 @@ amplamente utilizadas neste trabalho.
 \begin{itemize}
 	\item {\bf Etapa:} é um voo único sem paradas, também chamado de {\bf perna}, {\bf trecho} ou {\bf 
 	segmento de voo}.
-	\item {\bf Jornada:} conjunto de uma ou mais etapas seqüenciais, também chamado de {\bf jornada 
+	\item {\bf Jornada:} conjunto de uma ou mais etapas sequenciais, também chamado de {\bf jornada 
 	de trabalho}. 
 	\item {\bf Tempo Mínimo de Conexão:} menor intervalo possível de tempo entre duas etapas 
 	consecutivas em uma jornada.
@@ -203,9 +214,9 @@ amplamente utilizadas neste trabalho.
 
 A Figura~\ref{fig:viagem} apresenta o exemplo de uma viagem que ilustra alguns dos conceitos
 expostos acima. As etapas na figura estão representadas pelos retângulos mais internos. São
-indicados os aeroportos de origem e destino, e os horários de decolagem e pouso. As
-jornadas são indicadas pelos retângulos pontilhados reúnem uma cadeia de etapas. A base contratual
-considerada é CGH (São Paulo). 
+indicados os aeroportos de origem e destino, bem como os horários de decolagem e pouso. As
+jornadas são indicadas pelos retângulos pontilhados, englobando uma cadeia de etapas. A base 
+contratual considerada é CGH (São Paulo). 
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -215,16 +226,15 @@ considerada é CGH (São Paulo).
 	\end{center}
 \end{figure}
 
-A Figura~\ref{fig:escala} apresenta o exemplo de uma escala de um determinado tripulante baseado em
-GRU. O horizonte de tempo considerado é de 15 dias. Para fins de ilustração, foram alocadas as
-viagens (c), (a) e (b) do exemplo anterior nos dias 3, 5--8 e 12--14, respectivamente. Os demais
-dias foram preenchidos com períodos de folgas, sobreaviso, reserva e um curso.
+A Figura~\ref{fig:escala} apresenta o exemplo de uma escala de um determinado tripulante. O 
+horizonte de tempo considerado é de 15 dias. Para fins de ilustração, foram alocadas três 
+viagens viagens (c), (a) e (b) nos dias 3, 5--8 e 12--14, respectivamente. Os demais dias foram 
+preenchidos com períodos de folgas, sobreaviso, reserva e um curso.
 
 \begin{figure}[htbp]
 	\begin{center}
 		\includegraphics[scale=0.5]{fig/escala.eps}
-		\caption{Exemplo de uma escala com diversas atividades para um tripulante baseado em GRU. As 
-		viagens (a), (b) e (c) correspondem àquelas mostradas na figura anterior.}
+		\caption{Exemplo de uma escala com diversas atividades para um dado tripulante.}
 		\label{fig:escala}
 	\end{center}
 \end{figure}
@@ -254,10 +264,10 @@ tripulantes. Uma visão geral e esquemática dos dois problemas é apresentada n
 Figura~\ref{fig:escalonamento}.
 
 As modelagens matemáticas usuais do PDV e do PDE são semelhantes e baseiam-se em um problema de 
-programação linear inteiro conhecido como \emph{particionamento de um conjunto}. A técnica 
-de resolução comum utilizada pode ser descrita como ``gerar-e-otimizar''. Outras abordagens vem 
-sendo recentemente propostas, buscando por soluções através de métodos meta-heurísticos. Nas 
-próximas seções apresentaremos mais detalhes sobre as duas abordagens.
+programação linear inteiro conhecido como \emph{set partition problem}. A técnica de resolução comum 
+utilizada pode ser descrita como ``gerar-e-otimizar''. Outras abordagens vem sendo recentemente 
+propostas, buscando por soluções através de métodos meta-heurísticos. Nas próximas seções 
+apresentaremos mais detalhes sobre as duas abordagens.
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -274,7 +284,7 @@ próximas seções apresentaremos mais detalhes sobre as duas abordagens.
 Antes de entrarmos nos detalhes sobre a formulação do PDV e do PDE, é interessante explicitar os 
 tipos de restrições e a estrutura de custo envolvidos nos problemas, em especial no contexto 
 brasileiro, já que há uma diferença significativa com relação aos contextos norte-americano e 
-europeu, normalmente empregados nos trabalhos da literatura.
+europeu, normalmente analisados na literatura.
 
 No caso do PDV, a geração de uma viagem é regida por uma série de regras impostas pela Agência
 Nacional de Aviação Civil (ANAC), além de restrições impostas por leis trabalhistas e acordos
@@ -297,12 +307,12 @@ uma empresa de aviação regular do Brasil com voos de curto e médio alcance:
 
 O custo de uma viagem está associado à produtividade mais os custos referentes à estadia do 
 tripulante quando esse precisar pernoitar fora da base, além das diárias de alimentação. Uma 
-expressão para calcular o custo $c_p$ de uma viagem $p$ é dada por
+expressão típica para calcular o custo $c_p$ de uma viagem $p$ é dada por
 %
-\begin{equation} \label{eq:custov}
+\begin{equation} \label{eq:custov} 
 	c_p = \sum_{d \in D_p} c_d \, , \;\;
 	c_d = \alpha_0 \left[t_d - \left(tp_d - \sum_{i \in I_d} t_i\right)\right] + cp_d \ev
-\end{equation}
+\end{equation} 
 %
 onde
 %
@@ -317,9 +327,9 @@ onde
 	\item[$cp_d$:] custo do pernoite mais diárias de alimentação da jornada $d$.
 \end{itemize}
 %
-Note que a expressão multiplicando $\alpha$ em (\ref{eq:custov}) representa o tempo que o tripulante
-passou trabalhando sem estar voando, portanto representa uma medida de produtividade. Quanto mais
-cara a viagem, menor foi a produtividade do tripulante.
+Note que a expressão que multiplica $\alpha_0$ em (\ref{eq:custov}) representa o tempo que o
+tripulante passou trabalhando sem estar voando, portanto representa uma medida de produtividade.
+Quanto mais cara a viagem, menor foi a produtividade do tripulante.
 
 No PDE também aplica-se uma série de regras trabalhistas para geração de uma escala legal. Dentre 
 elas, podemos citar como mais importantes:
@@ -334,16 +344,16 @@ elas, podemos citar como mais importantes:
 
 O custo associado a uma dada escala legal montada para um tripulante é bastante dependente da
 política de pagamento da empresa. No Brasil, em geral, as companhias costumam pagar um salário fixo
-e mais um excedente se o número de horas voadas pelo tripulante extrapolar um determinado valor.
-Além disso, horas voadas no período noturno e em domingos e feriados, chamadas horas especiais, são
-pagas diretamente a partir do zero. Assim, podemos calcular o custo $c_k$ de uma escala atribuída 
+e mais um excedente por hora voada se o número de horas voadas pelo tripulante extrapolar um
+determinado valor. Além disso, horas voadas no período noturno, domingos e feriados, chamadas horas
+especiais, são pagas a partir do zero. Assim, podemos calcular o custo $c_k$ de uma escala atribuída
 a um tripulante $k$ como
 %
-\begin{equation}
+\begin{equation*}
 c_k = \alpha_1 + \alpha_2 \sum_{p \in P_k} e_p 
 	+ \alpha_3 \max\left\{0, \left(\sum_{p \in P_k} t_p\right) - mg\right\}
 	+ \sum_{p \in P_k} c_p \ev
-\end{equation}
+\end{equation*}
 %
 onde
 %
@@ -361,6 +371,8 @@ onde
 Note que consideramos apenas a atribuição de viagens na escala de tripulantes. Atividades de reserva
 e sobreaviso também entram na remuneração contando como se fossem horas de voo. No caso do
 sobreaviso, o valor deve ser multiplicado por $1/3$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Problema da Determinação das Viagens}
 \label{sec:viagens}
@@ -407,12 +419,11 @@ contendo $m$ etapas a serem cobertas. Seja $x_j \in \{0, 1\}$ uma variável de d
 valor 1 se a viagem $j$ for escolhida na solução de custo mínimo e 0 caso contrário. Então, o PDV
 pode ser modelado da seguinte forma:
 %
-\begin{equation} \label{eq:sppv}
-	\begin{array}{rl}
-		\text{minimizar} & \displaystyle \sum_{j=1}^n c_j x_j \\
-		\text{sujeito à} & \displaystyle \sum_{j=1}^n a_{ij} x_j = 1 \, , \;\; i = 1, \ldots, m \ep \\
-	\end{array}
-\end{equation}
+\begin{eqnarray} \label{eq:sppv}
+	\text{minimizar} && \displaystyle \sum_{j=1}^n c_j x_j \nonumber \\
+	\text{sujeito à} && \displaystyle \sum_{j=1}^n a_{ij} x_j = 1 \ev \;\; i = 1, \ldots, m \\
+		               && x_j \in \{0, 1\} \ev \;\; j = 1, \ldots, n \ep \nonumber
+\end{eqnarray} 
 %
 Os coeficientes $a_{ij}$ são definidos por
 %
@@ -428,12 +439,12 @@ Os coeficientes $a_{ij}$ são definidos por
 As restrições em (\ref{eq:sppv}) garantem que cada etapa seja coberta exatamente uma vez por alguma
 viagem. Existe ainda uma formulação alternativa onde as restrições são dadas por
 %
-\begin{equation} \label{eq:dh}
+\begin{equation} \label{eq:dh} 
 	\sum_{j=1}^n a_{ij} x_j \geq 1 \, , \;\; i = 1, \ldots, m \ep
-\end{equation}
+\end{equation} 
 %
-Nesse caso uma mesma etapa pode ser coberta por mais de uma viagem e o problema se torna um de
-\emph{recobrimento do conjunto}. Do ponto de vista do escalonamento, se uma etapa é coberta por mais
+Nesse caso uma mesma etapa pode ser coberta por mais de uma viagem e o problema se torna um
+\emph{set cover problem}. Do ponto de vista do escalonamento, se uma etapa é coberta por mais
 de uma viagem, então uma tripulação estará trabalhando nessa etapa e as demais viajando de
 passageiro (situação conhecida por \emph{deadheading}). As vezes essa formulação é necessária para
 que se garanta viabilidade da solução. Se o preço a se pagar pela operação com \emph{deadheading} 
@@ -447,7 +458,7 @@ problema considerado é $r$, então as \emph{restrições de bases} são express
 %
 \begin{equation} \label{eq:bases}
 	H_k^L \leq \sum_{j=1}^n h_{kj} x_j \leq H_k^U \, , \;\; k = 1, \ldots, r \ev
-\end{equation} 
+\end{equation}
 %
 onde $H_k^L$ é o número mínimo de horas disponíveis na base $k$ e $H_k^U$ é seu número máximo. 
 Note que $H_k^L$ pode ser diferente de zero desde que se exija que não mais do que um certo número 
@@ -491,10 +502,12 @@ jornadas tem um valor muito mais gerenciável.
 	\end{center}
 \end{table}
 
-Como o problema de partição é do tipo NP-difícil, a aplicação de métodos diretos de 
-otimização é impraticável para qualquer situação real. Os métodos de solução normalmente envolvem
-algum tipo de heurística e/ou algum critério de parada que leva a soluções sub-ótimas. Discutiremos
-alguns desses métodos na Seção~\ref{sec:metodos}. 
+Como o problema de partição é do tipo NP-difícil, a aplicação de métodos diretos de otimização é
+impraticável para qualquer situação real. Discutiremos esse ponto na Seção~\ref{sec:analise_p}. Os
+métodos de solução normalmente envolvem algum tipo de heurística e/ou algum critério de parada que
+leva a soluções sub-ótimas.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Gerador de Viagens}
 \label{sec:gerador_viagens}
@@ -533,11 +546,13 @@ algoritmo inicia-se no nó de origem $s$ e explora todas a conexões viáveis $(
 retroceder. O processo de busca em profundidade controla a viabilidade das viagens, levando em conta
 a duração máxima das jornadas e limites de horas de voo e de pousos.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsubsection{Exemplo}
 \label{sec:exemplo}
 
-A tabela abaixo mostra um conjunto fictício de 7 etapas operadas diariamente entre as localidades A,
-B, C e D. O exemplo é adaptado de~\cite{barnhart03}. 
+A tabela abaixo mostra um conjunto fictício (para fins pedagógicos) de 7 etapas operadas diariamente 
+entre as localidades A, B, C e D. O exemplo é adaptado de~\cite{barnhart03}. 
 
 \begin{table}[ht]
 	\begin{center}
@@ -612,11 +627,13 @@ resolução do mesmo pode ser obtido por qualquer pacote de otimização linear.
 \begin{figure}[htbp]
 	\begin{center}
 		\includegraphics[scale=0.65]{fig/rede.eps}
-		\caption{Rede de voos para a base de tripulantes A. Arcos tracejados representam conexões legais
-		entre etapas. O caminho em vermelho representa uma das viagens possíveis.}
+		\caption{Rede de voos para a base $A$ de tripulantes. Arcos tracejados representam conexões 
+		legais entre etapas. O caminho em vermelho representa uma das viagens possíveis.}
 		\label{fig:rede}
 	\end{center}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Problema da Determinação de Escalas}
 \label{sec:escalas}
@@ -647,19 +664,20 @@ acumulados, como o total de horas de vôo realizadas durante o ano corrente. Out
 interesse são, por exemplo, datas limites para treinamentos.
 
 Outro conjunto de dados de entrada é formado pelas atividades a serem cobertas, que consiste das
-viagens, reservas, sobreavisos, folgas, atividades de treinamento (\eg treinamento em simulador e
-cursos) e atividades em solo (\eg exames médico). Normalmente, na formulação mais restrita do
+viagens, reservas, sobreavisos, folgas, atividades de treinamento (\eg, treinamento em simulador e
+cursos) e atividades em solo (\eg, exames médico). Normalmente, na formulação mais restrita do
 problema, apenas as viagens devem ser atribuídas de forma automatizada e otimizada. Todas as outras
 atividades são atribuídas \emph{a priori}, individualmente para cada tripulante em dias
 pré-determinados dentro do horizonte de tempo do planejamento.
 
-As regras típicas para construção de uma escala legal incluem limites máximos para horas de vôo
-e jornadas de trabalho, número mínimo de folgas, número máximo de dias consecutivos de trabalho, etc 
+As regras típicas para construção de uma escala legal incluem limites máximos para horas de vôo e
+jornadas de trabalho, número mínimo de folgas, número máximo de dias consecutivos de trabalho, etc
 (confira Seção~\ref{sec:regras_e_custos}). Essas são conhecidas como \emph{regras horizontais} pois
-se aplicam a escalas únicas, e não considerem as outras escalas geradas na solução. Outro conjunto 
+se aplicam a escalas únicas, e não considerem as outras escalas geradas na solução. Outro conjunto
 de regras, conhecidas por \emph{regras verticais}, aplicam-se à solução como um todo. Um exemplo
-típico está na atribuição de uma atividade que necessita ser realizada por mais de um membro de uma tripulação com a mesma função. Outros exemplos de regras verticais são casos do tipo 
-``deve voar com'', ou ``não deve voar com''.
+típico está na atribuição de uma atividade que necessita ser realizada por mais de um membro de uma
+tripulação com a mesma função. Outros exemplos de regras verticais são casos do tipo ``deve voar
+com'', ou ``não deve voar com''.
  
 A função objetivo no PDE é muito dependente da política da empresa. Existem basicamente quatro 
 tipos de objetivos que podem ser encontrados em um problema desse tipo. Normalmente as empresas
@@ -702,12 +720,11 @@ com coeficientes $a_{ij}$ definidos por
 
 Com essas definições, o PDE é formulado da seguinte forma:
 %
-\begin{equation} \label{eq:sppe}
-	\begin{array}{rl}
-		\text{minimizar} & \displaystyle \sum_{j=1}^n c_j x_j \\
-		\text{sujeito à} & \displaystyle \sum_{j=1}^n a_{ij} x_j = 1 \, , \;\; i = 1, \ldots, m \ep \\
-	\end{array}
-\end{equation}
+\begin{eqnarray} \label{eq:sppe}
+	\text{minimizar} && \displaystyle \sum_{j=1}^n c_j x_j \nonumber \\
+	\text{sujeito à} && \displaystyle \sum_{j=1}^n a_{ij} x_j = 1 \ev \;\; i = 1, \ldots, m \\
+	                 && x_j \in \{0, 1\} \ev \;\; j = 1, \ldots, n \ep \nonumber
+\end{eqnarray} 
 %
 Note que para cada tripulante exatamente uma escala deve ser determinada e cada atividade deve ser
 atribuída a exatamente uma escala.
@@ -804,12 +821,14 @@ resolver instâncias práticas do problemas em tempo viável. A solução é uti
 heurística que encontre uma resposta sub-ótima para o problema, ou técnicas de otimização mais
 avançadas como a geração implícita de colunas.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Formulação Integrada}
 \label{sec:integrado}
 
 Atualmente o PDV e o PDE são eficientemente tratados por uma série de técnicas que garantem soluções
 próximas do ótimo com um tempo de processamento aceitável. Sistemas comerciais foram desenvolvidos
-em torna dessas técnicas, sendo diariamente utilizados na maioria das empresas para resolução de
+em torno dessas técnicas, sendo diariamente utilizados na maioria das empresas para resolução de
 seus problemas de escalonamento~\cite{gopalakrishnan05}.
 
 Um problema muito mais complexo seria o da integração entre o PDV e PDE, onde esses dois
@@ -844,32 +863,29 @@ utilização de meta-heurísticas como o algoritmo genético aplicado em~\cite{s
 \section{Métodos de Solução para o PDV}
 \label{sec:metodos}
 
-O PDV pode ser resolvido através de métodos exatos ou (meta) heurísticos. A seguir discorreremos
-sobre cada um dos métodos utilizados neste trabalho.
+O problema da determinação de viagens pode ser resolvido através de métodos exatos ou (meta)
+heurísticos. A seguir discorreremos sobre cada um dos métodos estudados e utilizados neste trabalho.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Métodos Exatos}
 \label{sec:metodos_exatos}
 
-Os métodos exatos buscam a solução ótima global através de técnicas de otimização que resolvem o 
-problema de programação linear inteira associado. Em nosso estudo, utilizamos os pacotes de 
-otimização GLPK (GNU Linear Programming Kit) e Cplex da IBM. 
-
-Os resultados finais foram baseados apenas na utilização da ferramenta Cplex, uma vez que a mesma
-provou-se mais eficiente, conforme discutiremos nos resultados.
+Os métodos exatos buscam a solução ótima global através de técnicas de otimização que resolvem o
+problema de programação linear inteiro associado.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Set Partition}
 \label{sec:metodos_partition}
 
-O método Set Partition consiste em resolver o problema formulado em (\ref{eq:sppv}). A resolução pelo
+No modelo {\it set partition} o problema é formulado de acordo com (\ref{eq:sppv}). A resolução pelo
 otimizador é feita inicialmente considerando uma versão relaxada do problema, \ie, permitindo que as
-variáveis $x_j$ assumam valores reais entre 0 e 1. A seguir, o problema relaxado é resolvido pelo 
-método Simplex, o que gera uma solução ótima fracionária $x^\ast$. Em seguida, a partir de $x^\ast$,
+variáveis $x_j$ assumam valores reais entre 0 e 1. A seguir, o problema relaxado é resolvido pelo
+método Simplex, o que gera uma solução ótima fracionária $x^\ast$. A partir de $x^\ast$,
 empregando-se um esquema {\it branch-and-bound}, obtém-se a melhor solução inteira. Vale ressaltar
-que o procedimento {\it branch-and-bound} consome tempo exponencial no número de variáveis.
+que o procedimento {\it branch-and-bound} consome tempo e memória exponencial no número de
+variáveis.
 
 Observe que o modelo (\ref{eq:sppv}) não admite a existência de {\it deadheading}, \ie, tripulação 
 viajando como passageiro, o que pode implicar a inviabilidade do problema.
@@ -879,28 +895,24 @@ viajando como passageiro, o que pode implicar a inviabilidade do problema.
 \subsubsection{Set Cover}
 \label{sec:metodos_cover}
 
-O método Set Cover é bastante similar ao Set Partition, porém adimite a ocorrência de 
-{\it deadheading} na solução final, podendo tornar viável um problema inviável segundo o modelo 
-Set Partition.
+O modelo {\it set cover} é bastante similar ao {\it set partition}, porém adimite a ocorrência de 
+{\it deadheading} na solução final, possibilitando a viabilidade do problema.
 
-As restrições adotadas no modelo Set Cover são dadas por (\ref{eq:dh}), onde permite-se que uma 
-etapa seja coberta mais do que uma vez. A solução é obtida através da adição de $m$ variáveis 
-artificiais $y_i$, $i = 1, \ldots, m$, que representam o número de vezes que a etapa $i$ é 
-definida como {\it deadhead}. Considerando um custo $d_i$ cada vez que a etapa $i$ é utilizada
-como {\it deadhead}, definimos o seguinte modelo
+As restrições adotadas no modelo {\it set cover} são dadas por (\ref{eq:dh}), onde permite-se que 
+uma etapa seja coberta mais do que uma vez. Sendo $m$ o número de etapas a serem cobertas, podemos 
+adicionar $m$ variáveis artificiais inteiras $y_i$, $i = 1, \ldots, m$, onde $y_i$ representa o 
+número de vezes que a etapa $i$ é coberta como {\it deadhead}. Considerando um custo $d_i$ cada vez 
+que a etapa $i$ é utilizadacomo {\it deadhead}, o problema de programação linear resultante é
 %
-\begin{equation} \label{eq:scpdv}
-	\begin{array}{rl}
-		\text{minimizar} & \displaystyle \sum_{j=1}^n c_j x_j + \sum_{i=1}^m d_i y_i \\
-		\text{sujeito à} & \displaystyle \sum_{j=1}^n a_{ij} x_j - y_i = 1 \, , \;\; i = 1, \ldots, m ,
-	\end{array}
-\end{equation}
-%
-onde $x_j \in \{0, 1\}$ e $y_i \geq 0$.
+\begin{eqnarray} \label{eq:scpdv}
+	\text{minimizar} && \displaystyle \sum_{j=1}^n c_j x_j + \sum_{i=1}^m d_i y_i \nonumber \\
+	\text{sujeito à} && \displaystyle \sum_{j=1}^n a_{ij} x_j - y_i = 1 \ev \;\; i = 1, \ldots, m \\
+	                 && x_j \in \{0, 1\} \ev \;\; j = 1, \ldots, n \nonumber \\
+	                 && y_i \geq 0 \ev \;\; i = 1, \ldots, m \ep \nonumber
+\end{eqnarray}
 
-O modelo (\ref{eq:scpdv}) é resolvido através dos mesmos procedimentos utilizados na resolução do
-Set Partition (Simplex e {\it branch-and-bound}). 
-
+O problema (\ref{eq:scpdv}) é resolvido pelo otimizador através dos mesmos procedimentos utilizados 
+na resolução do {\it set cover} (Simplex e {\it branch-and-bound}). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -928,9 +940,18 @@ Set Partition (Simplex e {\it branch-and-bound}).
 \section{Resultados Obtidos}
 \label{sec:resultados}
 
-Implementamos os métodos de solução do PDV descritos na Seção~\ref{sec:metodos}.
+Em nosso estudo, utilizamos os pacotes de otimização GLPK (GNU Linear Programming Kit) e Cplex da 
+IBM. Os resultados finais, entretanto, são baseados apenas na utilização da ferramenta Cplex, uma 
+vez que a mesma provou-se mais eficiente, conforme mostraremos mais adiante. Além disso, o 
+otimizador Cplex pôde ser utilizado diretamente a partir de nosso código, alimentando o modelo 
+gerado através da API Java fornecida pela IBM. Por outro lado, como o GLPK não fornece API 
+apropriada, sua utilização se limitou a geração do modelo em arquivo (formato mps) e posterior 
+execução do otimizador em um processo separado, sendo necessário realizer um {\it parsing} no 
+arquivo de saída gerado para obtenção dos resultados.
 
-Os parâmetros utilizados, que garantem a legalidade das viagens geradas, são apresentados na 
+Restringimos o nosso estudo de escalonamento à resolução do problema de determinação de viagens.
+Implementamos os métodos de solução do PDV descritos na Seção~\ref{sec:metodos}. Os parâmetros 
+utilizados, que garantem a legalidade das viagens geradas, são apresentados na 
 Tabela~\ref{tab:parametros} e baseiam-se na legislação brasileira para aviação comercial regular. 
 
 Todos os testes foram realizados em um computador utilizando um processador Intel Core~i3 64~bits, 
@@ -948,9 +969,11 @@ em Java (JDK~1.6.33).
 			\verb|MAX_DUTY_TIME| & Duração máxima de uma jornada & 11,5 h \\ \hline
 			\verb|MIN_SIT_TIME| & Tempo mínimo de conexão & 30 min \\ \hline
 			\verb|MAX_SIT_TIME| & Tempo máximo de conexão & 120 min \\ \hline
+			\verb|BRIEFING_TIME| & Tempo para o {\it briefing} & 0 min \\ \hline
+			\verb|DEBRIEFING_TIME| & Tempo para o {\it debriefing} & 0 min \\ \hline
 			\verb|MIN_REST_TIME| & Tempo mínimo de repouso & 12 h \\ \hline
 			\verb|MAX_REST_TIME| & Tempo máximo de repouso & 36 h \\ \hline
-			\verb|MAX_DUTIES| & Máximo de jornadas por viagem & 4 \\ \hline
+			\verb|MAX_DUTIES| & Máximo de jornadas por viagem & 2, 3 ou 4 \\ \hline
 			\end{tabular} 
 			\caption{Parâmetros utilizados na geração das viagens.}
 			\label{tab:parametros}
@@ -960,27 +983,37 @@ em Java (JDK~1.6.33).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Análise Preliminar}
-\label{sec:analise_preliminar}
+\label{sec:analise_p}
+
+O objetivo desta análise preliminar foi definir o limite de utilização do procedimento de geração
+de viagens e do otimizador na resolução exata do modelo {\it set partition} (\ref{eq:sppv}).
+Com essa finalidade, construímos alguns gráficos que relacionam o tempo de geração e otimiazação 
+utilizado em nossa implementação, em função do número de etapas dadas como entrada do problema.
 
 Para estudar a influência do número de pernas isoladamente, restringimos a entrada apenas para um
 conjunto de voos entre duas localidades, São Paulo (CGH) e Rio de Janeiro (SDU), considerando os
-trechos diárias oferecidos na ponte-aérea pela companhia GOL. Um total de 62 pernas (31 de CGH para 
-SDU e 31 de SDU para CGH) representam a instância global do problema.
+trechos diárias oferecidos na ponte-aérea pela companhia aérea Gol. Um total de 62 pernas 
+(31 de CGH para SDU e 31 de SDU para CGH) representam a instância global de entrada.
+
+Vale observar que o caso da ponte-aérea é um pouco atípico no sentido de que representa um malha 
+muito densa de voos: muitas etapas são oferecidas de ida e volta num curto intervalo de tempo, 
+criando muitas conexões legais (arcos) entre os nós da rede de voos gerada. Com isso, o número
+de viagens retornadas pela procedimento de busca no grafo explode rapidamente.
 
 O gráfico da Figura~\ref{fig:pairings} mostra o número de viagens geradas em função do número de
-pernas consideradas diariamente na ponte-aérea. As viagens foram geradas para a base CGH. São 
-apresentadas três curvas, uma para cada valor do parâmetro \verb|MAX_DUTIES| (2, 3 e 4). Observe a 
-escala logarítmica do eixo vertical. O comportamento praticamente linear das curvas indica um 
-crescimento exponencial do número de viagens que podem ser geradas. Observe ainda que a taxa de 
-crescimento é maior quanto maior o número máximo de jornadas permitidas, já que nesse caso 
-permite-se um número muito maior de combinações. Para \verb|MAX_DUTIES| = 4, encontrou-se um número 
-da ordem de $10^8$ viagens com apenas 36 pernas.
+etapas na ponte-aérea. As viagens foram geradas para a base CGH. São apresentadas três curvas, uma
+para cada valor do parâmetro \verb|MAX_DUTIES| (2, 3 e 4). Observe a escala logarítmica do eixo
+vertical. O comportamento praticamente linear das curvas indica um crescimento exponencial do número
+de viagens que podem ser geradas. Observe ainda que a taxa de crescimento é maior quanto maior o
+número máximo de jornadas permitidas, já que nesse caso permite-se um número muito maior de
+combinações. Para \verb|MAX_DUTIES| = 4, encontrou-se um número da ordem de $10^8$ viagens com
+apenas 36 pernas.
 
 \begin{figure}[htp]
 	\begin{center}
 		\includegraphics[scale=0.45,angle=-90]{fig/number_of_pairings.eps}
 		\caption{Número de viagens geradas em função do número de pernas utilizadas na construção da
-		rede de voos. Note a escala logarítmica do eixo vertical.}
+		rede de voos.}
 		\label{fig:pairings}
 	\end{center}
 \end{figure}
@@ -996,40 +1029,210 @@ para 36 pernas).
 		\includegraphics[scale=0.45,angle=-90]{fig/generation_time.eps}
 		\caption{Tempo gasto na geração das viagens em função do número de pernas utilizadas na 
 		construção da rede de voos. São apresentados valor médio $\pm$ desvio-padrão, considerando 5 
-		medidas para cada ponto. Note a escala logarítmica do eixo vertical.}
+		medidas para cada ponto.}
 		\label{fig:generation}
 	\end{center}
 \end{figure}
 
+O tempo gasto pelo otimizador GLPK para resolver o modelo proposto é apresentado no gráfico da 
+Figura~\ref{fig:glpk}. Mais uma vez, observa-se um crescimento exponencial muito forte (note a 
+escala logarítmica do eixo vertical) em função do número de etapas considerado. A 
+Figura~\ref{fig:cplex} mostra os resultados obtidos pelo otimizador Cplex. 
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.45,angle=-90]{fig/glpk_solution_time.eps}
+		\caption{Tempo utilizado pelo otimizador GLPK na obtenção de uma solução inteira, em função do 
+		número de etapas. São apresentados valor médio $\pm$ desvio-padrão, considerando 3 medidas para 
+		cada ponto. Valores medidos com tempo de execução de 0,0~s não são apresentados (número pequeno 
+		de pernas). O último ponto (36 pernas) da curva azul não pode ser estimado, mesmo após 5 horas 
+		de processamento.}
+		\label{fig:glpk}
+	\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.45,angle=-90]{fig/glpk_solution_time.eps}
+		\caption{Resultados obtidos para o otimizador Cplex. Valem as mesmas observações feitas na 
+		legenda da Figura~\ref{fig:glpk}.}
+		\label{fig:cplex}
+	\end{center}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Métodos Exatos}
 \label{sec:resultados_exatos}
 
-O custo de uma viagem foi calculado como sendo o tempo ``ocioso'' no qual o tripulante está 
+Apenas três instâncias (pequenas) puderam ser resolvidas exatamente pela solução do modelo {\it set
+partition} (\ref{eq:sppv}), com um tempo de processamento pequeno. A descrição das instâncias é
+apresentada na Tabela~\ref{tab:instancias}, as quais foram extraídas de dados reais fornecidos por
+companhias aéreas brasileiras. Na tabela são indicados o nome da instância, a companhia a qual
+pertence, a frota de aeronaves (ou parte dela) a que se refere, as bases domiciliares dos
+tripulantes, o número de etapas e o número de trilhos. O trilho identifica o conjunto de etapas que
+uma determinada aeronave da frota deve executar diariamente. No caso de uma frota com $k$ aeronaves,
+deverão ser fornecidos $k$ trilhos distintos.
+
+\begin{table}[htb]
+	\begin{center} 
+		\begin{tabular}{|l|l|l|l|l|l|}
+			\hline 
+			{\bf Instância} & {\bf Cia} & {\bf Frota} & {\bf Bases} & {\bf Etapas} & {\bf Trilhos} \\ 
+			\hline \hline
+			73H\_26 & Gol & 737-800 & GRU & 26 & 5 \\ 
+			738\_48 & WebJet & 737-800 & GRU GIG & 48 & 7 \\ 
+			733\_92 & WebJet & 737-300 & GRU GIG POA & 92 & 12 \\ \hline
+		\end{tabular}
+		\caption{Caracterização das instâncias resolvidas exatamente através dos modelos 
+		{\it set partition} e {\it set cover}. GRU = São Paulo, GIG = Rio de Janeiro e 
+		POA = Porto Alegre.}
+		\label{tab:instancias}
+	\end{center}
+\end{table}
+
+Na resolução dos problemas, utilizou-se os parâmetros da Tabela~\ref{tab:parametros}. Além disso,
+limitou-se a 1 o número máximo de trocas de aeronaves por jornada. Com isso, forçamos a tripulação
+acompanhar, na medida do possível, o trilho percorrido pela aeronave, reduzindo a possibilidade de
+conexões em cada localidade. Naturalmente os tempos de conexão serão reduzidos, tornando as 
+viagens geradas mais baratas e diminuindo o número total de variáveis geradas. Além disso, esse 
+procedimento torna a solução mais robusta, uma vez que o atraso de uma aeronave não acarretará 
+atraso na saída de outro voo que dependa daquela aeronave na troca.
+
+O custo de uma viagem foi calculado como sendo o tempo ``ocioso'' relativo no qual o tripulante está 
 trabalhando mas não está voando, ou seja, pela diferença entre o tempo total de uma viagem, menos o 
 tempo total de voo efetuado, descontando ainda os tempos mínimos regulamentares de conexão entre 
-pernas e de descanso entre jornadas. Esse custo avalia de forma estimada a produtividade de uma 
-viagem.
+pernas e de descanso entre jornadas, dividido pelo tempo total de voo. Esse custo avalia de forma 
+relativa a produtividade de uma viagem, o qual deve ser minimizado na solução final.
 
-O tempo gasto pelo otimizador para resolver o modelo proposto é apresentado no gráfico da 
-Figura~\ref{fig:solution}, variando-se o número de pernas em cada instância considerada. 
-Mais uma vez, observa-se um crescimento exponencial muito forte (note a escala logarítmica do eixo 
-vertical).
+Os resultados obtidos são apresentados e resumidos na Tabela~\ref{tab:resultados}. Nela são 
+indicadas a instância resolvida, o número total de variáveis geradas, o número de viagens na 
+solução, o custo da solução e o tempo de processamento do otimizador (Cplex).
 
-\begin{figure}[htb]
-	\begin{center}
-		\includegraphics[scale=0.45,angle=-90]{fig/glpk_solution_time.eps}
-		\caption{Tempo utilizado pelo otimizador GLPK na obtenção de uma solução inteira, em função do 
-		número de pernas utilizadas na construção da rede de voos. São apresentados valor médio $\pm$ 
-		desvio-padrão, considerando 3 medidas para cada ponto. Valores medidos com tempo de execução 
-		de 0,0~s não são apresentados (número pequeno de pernas). O último ponto (36 pernas) da curva 
-		azul não pode ser estimado, mesmo após 5 horas de processamento.}
-		\label{fig:solution}
+\begin{table}[htb]
+	\begin{center} 
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline 
+			{\bf Instância} & {\bf Variáveis} & {\bf Viagens} & {\bf Custo} & {\bf Tempo (s)} \\ 
+			\hline \hline
+			73H\_26 & 180 & 6 & 6,952 & $< 1$ \\ 
+			738\_48 & 66411 & 6 & 6,436 & 3,75 \\
+			733\_92 & 1023818 & 11 & 6,942 & 170,86 \\ \hline
+		\end{tabular}
+		\caption{Resultados obtidos na geração e otimização de viagens para as instâncias consideradas.}
+		\label{tab:resultados}
 	\end{center}
-\end{figure}
+\end{table}
 
+As mesmas instâncias 73H\_26, 738\_48, 733\_92 também foram resolvidas utilizando o modelo 
+{\it set cover}, o qual admite a existência de {\it deadheading}. Os resultados obtidos foram 
+identicos aos listados na Tabela~\ref{tab:resultados}. Em particular, todas as variáveis 
+artificiais $y_i$ receberam valor zero na solução final, indicando a não necessidade de 
+{\it deadheading}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Resultado Explícito}
+\label{sec:resultado_explicito}
+
+Para tornar mais concreto a entrada e a saída do problema, apresentamos na Tabela~\ref{tab:73H_26}
+o conjunto de etapas referentes a instância 73H\_26. A mesma representa 26 trechos oferecidos
+diariamente pela companhia aérea Gol para uma frota especial de 5 aeronaves B737-800. Para cada 
+etapa são fornecidos o seu número, aeroporto de origem, aeroporto de destino, horário local de 
+decolagem (DEP) e horário local de pouso (ARR) e o trilho correspondente.
+
+Na Tabela~\ref{tab:pairings} listamos as 6 viagens geradas como solução do problema de otimização.
+Cada etapa na tabela apresenta o número do voo, origem e destino, horário local de decolagem e 
+pouso, e o trilho executado. O custo final resultante foi de 6,952, para um total de 180 variáveis 
+geradas, considerando a base GRU (São Paulo). Observe a presença de uma viagem bate-volta (4),
+bem como uma viagem de 3 dias de duração (5).
+
+\begin{table}[!htb]
+	\begin{center}
+		\begin{tabular}{|cccccc|}
+			\hline 
+			{\bf Número} & {\bf Origem} & {\bf Destido} & {\bf DEP} & {\bf ARR} & {\bf Trilho} \\
+			\hline \hline
+			7625 & GRU &	GIG	 &  07:00	 &  08:00  & 1 \\
+			7622 & GIG &	GRU	 &  09:00	 &  09:55	 & 1 \\
+			7622 & GRU &	CCS	 &  11:00	 &  15:30	 & 1 \\
+			7622 & CCS &	AUA	 &  16:10	 &  17:55	 & 1 \\
+			7623 & AUA &	CCS	 &  21:20	 &  22:05	 & 1 \\
+			7623 & CCS &	GRU	 &  22:45	 &  06:00	 & 1 \\
+			1841 & CWB &	GRU	 &  07:52	 &  08:55	 & 2 \\
+			1902 & GRU &	NAT	 &  11:00	 &  14:20	 & 2 \\
+			1903 & NAT &	GRU	 &  15:30	 &  19:10	 & 2 \\
+			1704 & GRU &	MAO	 &  21:15	 &  00:10	 & 2 \\
+			1798 & GRU &	REC	 &  08:05	 &  11:21	 & 3 \\
+			1149 & REC &	GRU	 &  12:04	 &  15:30	 & 3 \\
+			7680 & GRU &	AEP	 &  18:25	 &  21:15	 & 3 \\
+			7681 & AEP &	GRU	 &  22:40	 &  01:30	 & 3 \\
+			1705 & MAO &	GRU	 &  03:42	 &  08:35	 & 4 \\
+			1766 & GRU &	CWB	 &  09:20	 &  10:16	 & 4 \\
+			1846 & CWB &	GRU	 &  11:13	 &  12:15	 & 4 \\
+			7480 & GRU &	ASU	 &  13:05	 &  13:50	 & 4 \\
+			1847 & GRU &	CWB	 &  18:10	 &  19:20	 & 4 \\
+			1767 & CWB &	GRU	 &  20:56	 &  21:50	 & 4 \\
+			1566 & GRU &	CWB	 &  22:35	 &  23:30	 & 4 \\
+			7481 & ASU &	GRU	 &  14:30	 &  17:25	 & 4 \\
+			7678 & GRU &	AEP	 &  08:00	 &  10:50	 & 5 \\
+			7679 & AEP &	GRU	 &  11:50	 &  14:35	 & 5 \\
+			7658 & GRU &	EZE	 &  15:15	 &  18:15	 & 5 \\
+			7659 & EZE &	GRU	 &  20:35	 &  23:25	 & 5 \\ \hline
+	\end{tabular}
+	\caption{Dados de entrada da instância 73H\_26, contendo 26 etapas e 5 trilhos.}
+	\label{tab:73H_26}
+	\end{center}
+\end{table}
+
+\begin{table}[!htb]
+	\begin{center}
+		\begin{tabular}{|c|c|ccccc|}
+			\hline
+			{\bf Viagem} & {\bf Jornada} & \multicolumn{5}{|c|}{\bf Etapa} \\ \hline \hline
+			\multirow{6}{*}{1} & \multirow{4}{*}{1}  
+			  & 7625 & GRU-GIG & 07:00 & 08:00 & 001 \\
+			& & 7622 & GIG-GRU & 09:00 & 09:55 & 001 \\
+			& & 7622 & GRU-CCS & 11:00 & 15:30 & 001 \\
+			& & 7622 & CCS-AUA & 16:10 & 17:55 & 001 \\ \cline{2-7}
+			                       & \multirow{2}{*}{2}
+				& 7623 & AUA-CCS & 21:20 & 22:05 & 001 \\
+			& &	7623 & CCS-GRU & 22:45 & 06:00 & 001 \\ \hline \hline
+			\multirow{2}{*}{2} & \multirow{2}{*}{1}  		
+				& 1902 & GRU-NAT & 11:00 & 14:20 & 002 \\
+			& & 1903 & NAT-GRU & 15:30 & 19:10 & 002 \\ \hline \hline
+			\multirow{2}{*}{3} & \multirow{1}{*}{1}  		
+				& 1704 & GRU-MAO & 21:15 & 00:10 & 002 \\ \cline{2-7}
+                           	& \multirow{1}{*}{2}
+				&	1705 & MAO-GRU & 03:42 & 08:35 & 004 \\ \hline \hline
+			\multirow{2}{*}{4} & \multirow{2}{*}{1}  		
+				& 1798 & GRU-REC & 08:05 & 11:21 & 003 \\
+			& & 1149 & REC-GRU & 12:04 & 15:30 & 003 \\ \hline \hline			
+			\multirow{10}{*}{5} & \multirow{3}{*}{1}  
+				&	1847 & GRU-CWB & 18:10 & 19:20 & 004 \\
+			& &	1767 & CWB-GRU & 20:56 & 21:50 & 004 \\
+			& &	1566 & GRU-CWB & 22:35 & 23:30 & 004 \\ \cline{2-7}
+                           		& \multirow{4}{*}{2}
+				&	1841 & CWB-GRU & 07:52 & 08:55 & 002 \\
+			&	&	1766 & GRU-CWB & 09:20 & 10:16 & 004 \\
+			&	&	1846 & CWB-GRU & 11:13 & 12:15 & 004 \\
+			&	&	7480 & GRU-ASU & 13:05 & 13:50 & 004 \\ \cline{2-7}
+                           		& \multirow{3}{*}{3}
+				&	7481 & ASU-GRU & 14:30 & 17:25 & 004 \\
+			&	&	7680 & GRU-AEP & 18:25 & 21:15 & 003 \\
+			&	&	7681 & AEP-GRU & 22:40 & 01:30 & 003 \\ \hline \hline
+			\multirow{4}{*}{6} & \multirow{3}{*}{1}  
+				& 7678 & GRU-AEP & 08:00 & 10:50 & 005 \\
+			& & 7679 & AEP-GRU & 11:50 & 14:35 & 005 \\
+			&	& 7658 & GRU-EZE & 15:15 & 18:15 & 005 \\ \cline{2-7}
+                           	 & \multirow{1}{*}{2}
+				& 7659 & EZE-GRU & 20:35 & 23:25 & 005 \\ \hline
+		\end{tabular}
+		\caption{Conjunto de viagens obtido como solução ótima da instância 73H\_26.}
+		\label{tab:pairings}
+	\end{center}
+\end{table}
+			                               
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Métodos (Meta) Heurísticos}
@@ -1051,22 +1254,36 @@ vertical).
 \section{Conclusões}
 \label{sec:conclusoes}
 
-Dos resultados apresentados, concluímos que o procedimento de geração de viagens leva a um número 
-gigantesco de variáveis, mesmo para um pequeno número de pernas. Isso porque a natureza combinatória 
-do problema leva o algoritmo de busca a explorar diversas possibilidades, principalmente em uma rede 
-como a da ponte aérea, onde existem diversas possibilidades de conexão toda vez que se chega em uma
-das localidades. Além disso, essas possibilidades se multiplicam quando consideramos um maior número
-de jornadas permitidas (\verb|MAX_DUTIES|). Apesar disso, a geração de viagens ainda se fez em tempo 
-aceitável, podendo ser aplicada para redes maiores. 
+Com relação a análise preliminar apresentada na Seção~\ref{sec:analise_p}, concluímos que o
+procedimento de geração de viagens leva a um número gigantesco de variáveis, mesmo para um pequeno
+número de pernas (Figura~\ref{fig:pairings}). Isso porque a natureza combinatória do problema leva o
+algoritmo de busca a explorar diversas possibilidades, principalmente em uma rede como a da ponte
+aérea, onde existem diversas possibilidades de conexão toda vez que se chega em uma das localidades.
+Além disso, essas possibilidades se multiplicam quando consideramos um maior número de jornadas
+permitidas (\verb|MAX_DUTIES|). Apesar disso, a geração de viagens ainda se fez em tempo aceitável,
+podendo ser aplicada para redes maiores (Figura~\ref{fig:generation}).
 
-Entretanto, quando esse número enorme de variáveis é levado ao otimizador, o tempo de processamento 
-se torna impraticável. Ainda assim, ficamos surpresos com a capacidade do otimizador resolver 
-instâncias com um número de variáveis da ordem de $10^6$ em tempo aceitável. Na verdade, após uma
-análise mais profunda, percebemos muita redundância nas colunas geradas (mesmas colunas com custos 
-diferentes), as quais eram prontamente eliminadas durante a fase de pre-processamento do otimizador.
-Além disso, apesar do número de colunas ser grande, o número de linhas ainda é bem pequeno, o que
-facilita bastante o trabalho do otimizador.
+Entretanto, quando esse número enorme de variáveis é levado ao otimizador, o tempo de processamento
+se torna impraticável. Para se certificar disso, basta extrapolar as curvas obtidas nas
+Figuras~\ref{fig:glpk} e~\ref{fig:cplex}. {\bf Uma tentativa de resolução de uma instância da
+ponte-aérea contendo 40 etapas, não pode ser resolvida mesmo após 12 horas de processamento.} Ainda
+assim, ficamos surpresos com a capacidade do otimizador resolver instâncias com um número de
+variáveis da ordem de $10^6$ em tempo aceitável (resultados da Tabela~\ref{tab:resultados}).
 
+A análise preliminar então nos mostra que o método de ``gerar-e-otimizar'' para resolver o modelo
+(\ref{eq:sppv}) não é adequado para resolver o problema de forma geral. Em particular, das milhares
+de variáveis geradas, apenas poucas delas são escolhidas para entrar na solução final, como se pode
+observar da Tabela~\ref{tab:resultados}. Isso indica que o procedimento de geração explícita de 
+variáveis não é adequado, pois muitas delas não servem para nada. Um procedimento mais inteligente
+seria o de gerar apenas variáveis ``boas'', ou seja, com grande chance de aparecerem na solução 
+final. O método de geração de colunas desenvolve essa ideia e será explorado futuramente.
+
+Com relação aos resultados obtidos utilizando o modelo {\it set cover}, observamos que como as 
+colunas associadas às variáveis $y_i$ de {\it deadheading} (reveja o folrmulação (\ref{eq:scpdv})) 
+foram ajustadas com preços altos, e como os problemas analisados eram viáveis do ponto de vista do 
+{\it set partition}, o otimizador conseguiu encontrar as mesmas soluções obitidas sem a presença de 
+{\it deadheading}. Concluímos que a utilização de {\it deadheading} só será realizada se for 
+estritamente necessária para viabilidade do problema.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

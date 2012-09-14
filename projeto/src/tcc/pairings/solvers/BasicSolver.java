@@ -22,6 +22,7 @@ public abstract class BasicSolver {
 	protected MemoryOutputer memory;
 	protected Outputer[] outputers;
 	protected Optimizer optimizer;
+	private int numberOfPairings;
 	
 	public String getTimeTable() {
 		return timeTable;
@@ -41,6 +42,10 @@ public abstract class BasicSolver {
 	
 	public List<Leg> getLegs() {
 		return legs;
+	}
+	
+	public int getNumberOfPairings() {
+		return numberOfPairings;
 	}
 	
 	public BasicSolver(String timeTable) {
@@ -85,6 +90,7 @@ public abstract class BasicSolver {
 	private void generatePairings(Base... bases) {
 		PairingsGenerator generator = new PairingsGenerator(net, outputers, calculator);
 		generator.generate(bases);
+		numberOfPairings = generator.getNumberOfPairings();
 	}
 	
 	protected abstract void setOptimizer();

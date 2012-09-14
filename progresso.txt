@@ -17,7 +17,7 @@
 	- Análise preliminar dos resultados obtidos;
 	- Atualização periódica do blog Stoa;
 	- Conversas (informais) semanais com o orientador;
-	- Reuniões para implementação de código durante as férias e breaks;
+	- Reuniões para implementação de código durante as férias e breaks.
 	
 2. Próximas Atividades
 
@@ -26,4 +26,4 @@
 	- Implementação do método de geração de colunas;
 	- Análise e comparação de resultados;
 	- Criação do poster e slides para apresentação;
-	- Redação da monografia final;
+	- Redação da monografia final.

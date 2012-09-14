@@ -29,12 +29,12 @@ public class Application {
 	public static void main(String[] args) {
 		Application app = new Application();
 		//app.doInitialSolution();
-		//app.doSetPartotion();
+		app.doSetPartition();
 		//app.doSetCover();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
-		app.doCplexSolutionTime();
+		//app.doCplexSolutionTime();
 	}
 	
 	public void doInitialSolution() {
@@ -46,13 +46,15 @@ public class Application {
 			System.out.println(solution);
 	}
 	
-	public void doSetPartotion() {
-		Rules.MAX_DUTIES = 3;
+	public void doSetPartition() {
+		Rules.MAX_DUTIES = 4;
 		Base sao = new Base("GRU", "CGH");
 		Base rio = new Base("GIG", "SDU");
+		Base poa = new Base("POA");
 		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
-		SetPartitionSolver solver = new SetPartitionSolver(TIME_TABLES_PATH + "738_48.txt", calc);
-		System.out.println(solver.getSolution(sao, rio));
+		SetPartitionSolver solver = new SetPartitionSolver(TIME_TABLES_PATH + "733_92.txt", calc);
+		System.out.println(solver.getSolution(sao, rio, poa));
+		System.out.println("Total de pairings = " + solver.getNumberOfPairings());
 	}
 	
 	public void doSetCover() {
