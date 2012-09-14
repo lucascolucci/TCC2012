@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  14 SEP 2012 14:00
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  14 SEP 2012 14:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -711,7 +711,7 @@ Here is how much of TeX's memory you used:
  6142 multiletter control sequences out of 15000+200000
  15221 words of font info for 63 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 37i,17n,24p,682b,305s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,17n,24p,689b,305s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2011/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2011/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/t
@@ -727,7 +727,7 @@ sfonts/cm/cmsy6.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmsy8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmti12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmtt12.pfb>
-Output written on versao_preliminar.pdf (33 pages, 306212 bytes).
+Output written on versao_preliminar.pdf (33 pages, 306206 bytes).
 PDF statistics:
  247 PDF objects out of 1000 (max. 8388607)
  170 compressed objects within 2 object streams
