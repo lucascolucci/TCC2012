@@ -940,14 +940,13 @@ na resolução do {\it set cover} (Simplex e {\it branch-and-bound}).
 \section{Resultados Obtidos}
 \label{sec:resultados}
 
-Em nosso estudo, utilizamos os pacotes de otimização GLPK (GNU Linear Programming Kit) e Cplex da 
-IBM. Os resultados finais, entretanto, são baseados apenas na utilização da ferramenta Cplex, uma 
-vez que a mesma provou-se mais eficiente, conforme mostraremos mais adiante. Além disso, o 
-otimizador Cplex pôde ser utilizado diretamente a partir de nosso código, alimentando o modelo 
-gerado através da API Java fornecida pela IBM. Por outro lado, como o GLPK não fornece API 
-apropriada, sua utilização se limitou a geração do modelo em arquivo (formato mps) e posterior 
-execução do otimizador em um processo separado, sendo necessário realizer um {\it parsing} no 
-arquivo de saída gerado para obtenção dos resultados.
+Em nosso estudo, utilizamos os pacotes de otimização GLPK (GNU Linear Programming Kit) e Cplex da
+IBM. Os resultados finais, entretanto, são baseados apenas na utilização da ferramenta Cplex, uma
+vez que a mesma provou ser mais eficiente. Além disso, o otimizador Cplex pôde ser utilizado
+diretamente a partir de nosso código, alimentando o modelo gerado através da API Java fornecida pela
+IBM. Por outro lado, como o GLPK não fornece API apropriada, sua utilização se limitou a geração do
+modelo em arquivo (formato mps) e posterior execução do otimizador em um processo separado, sendo
+necessário realizer um {\it parsing} no arquivo de saída gerado para obtenção dos resultados.
 
 Restringimos o nosso estudo de escalonamento à resolução do problema de determinação de viagens.
 Implementamos os métodos de solução do PDV descritos na Seção~\ref{sec:metodos}. Os parâmetros 
@@ -1037,7 +1036,7 @@ para 36 pernas).
 O tempo gasto pelo otimizador GLPK para resolver o modelo proposto é apresentado no gráfico da 
 Figura~\ref{fig:glpk}. Mais uma vez, observa-se um crescimento exponencial muito forte (note a 
 escala logarítmica do eixo vertical) em função do número de etapas considerado. A 
-Figura~\ref{fig:cplex} mostra os resultados obtidos pelo otimizador Cplex. 
+Figura~\ref{fig:cplex} mostra os resultados obtidos para o otimizador Cplex. 
 
 \begin{figure}[htb]
 	\begin{center}
@@ -1045,15 +1044,15 @@ Figura~\ref{fig:cplex} mostra os resultados obtidos pelo otimizador Cplex.
 		\caption{Tempo utilizado pelo otimizador GLPK na obtenção de uma solução inteira, em função do 
 		número de etapas. São apresentados valor médio $\pm$ desvio-padrão, considerando 3 medidas para 
 		cada ponto. Valores medidos com tempo de execução de 0,0~s não são apresentados (número pequeno 
-		de pernas). Os últimos pontos (30 pernas) da curva azul não poderam ser estimados, mesmo após 
-		5 horas de processamento.}
+		de pernas). Os últimos pontos da curva azul não puderam ser estimados, mesmo após algumas horas 
+		de processamento.}
 		\label{fig:glpk}
 	\end{center}
 \end{figure}
 
 \begin{figure}[htb]
 	\begin{center}
-		\includegraphics[scale=0.45,angle=-90]{fig/glpk_solution_time.eps}
+		\includegraphics[scale=0.45,angle=0]{fig/cplex_solution_time.eps}
 		\caption{Resultados obtidos para o otimizador Cplex. Valem as mesmas observações feitas na 
 		legenda da Figura~\ref{fig:glpk}.}
 		\label{fig:cplex}
