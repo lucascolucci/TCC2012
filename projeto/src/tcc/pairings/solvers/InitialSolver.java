@@ -4,15 +4,26 @@ import java.util.List;
 
 import tcc.pairings.Base;
 import tcc.pairings.Leg;
+import tcc.pairings.Pairing;
+import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.generators.InitialGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.TimeTableReader;
 
 public class InitialSolver implements Solver {
 	private String timeTable;
+	private CostCalculator calculator;
 	private List<Leg> legs;
 	private FlightNetwork net;
 	private int numberOfPairings;
+
+	public CostCalculator getCalculator() {
+		return calculator;
+	}
+
+	public void setCalculator(CostCalculator calculator) {
+		this.calculator = calculator;
+	}
 
 	public List<Leg> getLegs() {
 		return legs;
@@ -23,12 +34,13 @@ public class InitialSolver implements Solver {
 		return numberOfPairings;
 	}
 
-	public InitialSolver(List<Leg> legs) {
-		this.legs = legs;
+	public InitialSolver(String timeTable) {
+		this(timeTable, null);
 	}
 	
-	public InitialSolver(String timeTable) {
+	public InitialSolver(String timeTable, CostCalculator calculator) {
 		this.timeTable = timeTable;
+		this.calculator = calculator;
 	}
 	
 	public Solution getSolution(Base... bases) {
@@ -57,9 +69,19 @@ public class InitialSolver implements Solver {
 	}
 
 	private Solution getInitialSolution(Base... bases) {		
-		InitialGenerator generator = new InitialGenerator(net);
+		InitialGenerator generator = new InitialGenerator(net, calculator);
 		generator.generate(bases);
 		numberOfPairings = generator.getNumberOfPairings();
-		return new Solution(generator.getPairings());
+		Solution solution = new Solution(generator.getPairings());
+		setSolutionCost(solution);
+		return solution;
+	}
+
+	private void setSolutionCost(Solution solution) {
+		List<Pairing> pairings = solution.getPairings();
+		double cost = 0.0;
+		for (Pairing pairing: pairings)
+			cost += pairing.getCostWithDeadHeads();
+		solution.setCost(cost);
 	}
 }

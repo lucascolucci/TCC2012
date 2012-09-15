@@ -18,7 +18,7 @@ import tcc.pairings.rules.Rules;
 public class PairingsGenerator {
 	private FlightNetwork net;
 	private Outputer[] outputers;
-	private CostCalculator calculator;
+	protected CostCalculator calculator;
 	protected int numberOfPairings;
 	private Base base;
 	protected FlightNetworkPath path;
@@ -35,6 +35,10 @@ public class PairingsGenerator {
 	
 	public PairingsGenerator(FlightNetwork net) {
 		this(net, null, null);
+	}
+	
+	public PairingsGenerator(FlightNetwork net, CostCalculator calculator) {
+		this(net, null, calculator);
 	}
 	
 	public PairingsGenerator(FlightNetwork net, Outputer[] outputers) {

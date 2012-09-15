@@ -6,6 +6,7 @@ import java.util.List;
 import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
+import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.Node;
 import tcc.pairings.graph.networks.FlightNetwork;
@@ -19,7 +20,11 @@ public class InitialGenerator extends PairingsGenerator {
 	}
 	
 	public InitialGenerator(FlightNetwork net) {
-		super(net);
+		this(net, null);
+	}
+	
+	public InitialGenerator(FlightNetwork net, CostCalculator calculator) {
+		super(net, calculator);
 		pairings = new ArrayList<Pairing>();
 		setLegsList(net.getLegs());
 	}
@@ -44,12 +49,10 @@ public class InitialGenerator extends PairingsGenerator {
 		Pairing pairing = new Pairing(numberOfPairings, path);
 		pairing.setAllDutiesAsDH();
 		List<Leg> duplicatedLegs = getDuplicatedLegs(pairing);
-		if (!duplicatedLegs.isEmpty()) {
-			legs.removeAll(duplicatedLegs);
-			pairings.add(pairing);
-		}
+		if (!duplicatedLegs.isEmpty())
+			removeDuplicatedLegsAndAddPairing(pairing, duplicatedLegs);
 	}
-
+	
 	private List<Leg> getDuplicatedLegs(Pairing pairing) {
 		List<Leg> duplicatedLegs = new ArrayList<Leg>();
 		for (DutyLeg pairingLeg: pairing.getLegs()) 
@@ -59,5 +62,12 @@ public class InitialGenerator extends PairingsGenerator {
 					pairingLeg.setDeadHead(false);
 				}
 		return duplicatedLegs;
+	}
+	
+	private void removeDuplicatedLegsAndAddPairing(Pairing pairing, List<Leg> duplicatedLegs) {
+		legs.removeAll(duplicatedLegs);
+		if (calculator != null)
+			calculator.setCost(pairing);
+		pairings.add(pairing);
 	}
 }

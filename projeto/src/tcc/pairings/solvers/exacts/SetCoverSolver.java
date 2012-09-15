@@ -2,6 +2,7 @@ package tcc.pairings.solvers.exacts;
 
 import java.util.List;
 
+import tcc.pairings.Leg;
 import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.io.outputers.DHCplexOutputer;
 import tcc.pairings.io.outputers.MemoryOutputer;
@@ -12,6 +13,14 @@ import tcc.pairings.solvers.Solution;
 
 public class SetCoverSolver extends BasicSolver {
 	private DHCplexOutputer cplex;
+	
+	public SetCoverSolver(List<Leg> legs) {
+		super(legs);
+	}
+	
+	public SetCoverSolver(List<Leg> legs, CostCalculator calculator) {
+		super(legs, calculator);
+	}
 	
 	public SetCoverSolver(String timeTable) {
 		super(timeTable);

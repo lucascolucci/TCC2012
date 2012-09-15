@@ -77,7 +77,7 @@ public class Solution {
 			sb.append(pairing);
 		sb.append("Número de pairings = ").append(getSize()).append('\n');
 		sb.append("Custo dos pairings = ").append(df.format(getPairingsCost())).append('\n');
-		sb.append("Custo da sulução = ").append(df.format(cost));
+		sb.append("Custo da solução = ").append(df.format(cost));
 		return sb.toString();
 	}
 }

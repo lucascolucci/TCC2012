@@ -50,6 +50,15 @@ public abstract class BasicSolver implements Solver {
 		return numberOfPairings;
 	}
 	
+	public BasicSolver(List<Leg> legs) {
+		this(legs, null);
+	}
+	
+	public BasicSolver(List<Leg> legs, CostCalculator calculator) {
+		this.legs = legs;
+		this.calculator = calculator;
+	}
+	
 	public BasicSolver(String timeTable) {
 		this(timeTable, null);
 	}
@@ -57,6 +66,7 @@ public abstract class BasicSolver implements Solver {
 	public BasicSolver(String timeTable, CostCalculator calculator) {
 		this.timeTable = timeTable;
 		this.calculator = calculator;
+		this.legs = null;
 	}
 	
 	public Solution getSolution(Base... bases) {
@@ -78,8 +88,10 @@ public abstract class BasicSolver implements Solver {
 	}
 
 	private void setLegs() {
-		TimeTableReader reader = new TimeTableReader(timeTable);
-		legs = reader.getLegs();
+		if (legs == null) {
+			TimeTableReader reader = new TimeTableReader(timeTable);
+			legs = reader.getLegs();
+		}
 	}
 
 	private void buildFlightNetwork() {
