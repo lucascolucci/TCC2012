@@ -95,7 +95,7 @@ public abstract class BasicSolver implements Solver {
 	}
 
 	private void buildFlightNetwork() {
-		net = new FlightNetwork(getLegs());
+		net = new FlightNetwork(legs);
 		net.build();
 	}
 

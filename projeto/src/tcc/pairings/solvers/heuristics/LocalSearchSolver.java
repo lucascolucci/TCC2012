@@ -117,7 +117,7 @@ public class LocalSearchSolver implements Solver {
 		for (int i = 0; i < solutionSize; i++)
 			allIndexes.add(i);
 		for (int i = 0; i < sampleSize; i++) {
-			int r= random.nextInt(allIndexes.size());
+			int r = random.nextInt(allIndexes.size());
 			randomIndexes[i] = allIndexes.get(r);
 			allIndexes.remove(r);
 		}
@@ -126,7 +126,8 @@ public class LocalSearchSolver implements Solver {
 	
 	private List<Leg> getOldPairingsLegs() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Leg> legs = new ArrayList<Leg>();	
+		return legs;
 	}
 	
 	private void setNewPairingsDeadHeads() {

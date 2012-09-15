@@ -71,6 +71,8 @@ public class InitialSolver implements Solver {
 	private Solution getInitialSolution(Base... bases) {		
 		InitialGenerator generator = new InitialGenerator(net, calculator);
 		generator.generate(bases);
+		if (!generator.isAllLegsCovered())
+			return null;
 		numberOfPairings = generator.getNumberOfPairings();
 		Solution solution = new Solution(generator.getPairings());
 		setSolutionCost(solution);

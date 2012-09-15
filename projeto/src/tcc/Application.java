@@ -15,7 +15,6 @@ import tcc.pairings.optimizers.CplexOptimizer;
 import tcc.pairings.optimizers.GlpkOptimizer;
 import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
-import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
@@ -29,10 +28,10 @@ public class Application {
 	
 	public static void main(String[] args) {
 		Application app = new Application();
-		//app.doInitialSolution();
+		app.doInitialSolution();
 		//app.doSetPartition();
 		//app.doSetCover();
-		app.doLocalSearch();
+		//app.doLocalSearch();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
@@ -42,10 +41,8 @@ public class Application {
 	public void doInitialSolution() {
 		Rules.MAX_DUTIES = 3;
 		Base sao = new Base("CGH", "GRU");
-		InitialSolver solver = new InitialSolver(TIME_TABLES_PATH + "738_48.txt");
-		Solution solution = solver.getSolution(sao);
-		if (solution != null)
-			System.out.println(solution);
+		Solver solver = new InitialSolver(TIME_TABLES_PATH + "738_521.txt");
+		System.out.println(solver.getSolution(sao));
 	}
 	
 	public void doSetPartition() {

@@ -70,4 +70,8 @@ public class InitialGenerator extends PairingsGenerator {
 			calculator.setCost(pairing);
 		pairings.add(pairing);
 	}
+	
+	public boolean isAllLegsCovered() {
+		return legs.isEmpty();
+	}
 }
