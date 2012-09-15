@@ -14,7 +14,7 @@ import tcc.pairings.io.outputers.MemoryOutputer;
 import tcc.pairings.io.outputers.Outputer;
 import tcc.pairings.optimizers.Optimizer;
 
-public abstract class BasicSolver {
+public abstract class BasicSolver implements Solver {
 	protected String timeTable;
 	protected CostCalculator calculator;
 	private List<Leg> legs;
@@ -40,10 +40,12 @@ public abstract class BasicSolver {
 		this.calculator = calculator;
 	}
 	
+	@Override
 	public List<Leg> getLegs() {
 		return legs;
 	}
 	
+	@Override
 	public int getNumberOfPairings() {
 		return numberOfPairings;
 	}

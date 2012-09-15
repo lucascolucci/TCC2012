@@ -28,8 +28,8 @@ public class Application {
 	public static void main(String[] args) {
 		Application app = new Application();
 		//app.doInitialSolution();
-		app.doSetPartition();
-		//app.doSetCover();
+		//app.doSetPartition();
+		app.doSetCover();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
@@ -61,7 +61,7 @@ public class Application {
 		Base sao = new Base("GRU", "CGH");
 		Base rio = new Base("GIG", "SDU");
 		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
-		SetCoverSolver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt", calc);
+		SetCoverSolver solver = new SetCoverSolver(TIME_TABLES_PATH + "73G_340.txt", calc);
 		System.out.println(solver.getSolution(sao, rio));
 	}
 

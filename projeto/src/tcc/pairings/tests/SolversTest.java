@@ -14,14 +14,15 @@ import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.costs.ExcessToFlightCalculator;
 import tcc.pairings.rules.Rules;
-import tcc.pairings.solvers.BasicSolver;
 import tcc.pairings.solvers.Solution;
+import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
 
 public class SolversTest {
 	private Base base;
 	private Solution solution;
+	private Solver solver;
 	
 	@Before
 	public void setUp() {
@@ -31,23 +32,21 @@ public class SolversTest {
 
 	@Test
 	public void setPartitionShouldCoverAllLegs() {
-		SetPartitionSolver solver;
 		solver = new SetPartitionSolver(FilePaths.TIME_TABLES + "73H_26.txt");
-		legCoverageTest(solver);
+		legCoverageTest();
 		solver = new SetPartitionSolver(FilePaths.TIME_TABLES + "cgh_sdu_10.txt");
-		legCoverageTest(solver);
+		legCoverageTest();
 	}
 	
 	@Test
 	public void setCoverShouldCoverAllLegs() {
-		SetCoverSolver solver;
 		solver = new SetCoverSolver(FilePaths.TIME_TABLES + "73H_26.txt");
-		legCoverageTest(solver);
+		legCoverageTest();
 		solver = new SetCoverSolver(FilePaths.TIME_TABLES + "cgh_sdu_10.txt");
-		legCoverageTest(solver);
+		legCoverageTest();
 	}
 
-	private void legCoverageTest(BasicSolver solver) {
+	private void legCoverageTest() {
 		solution = solver.getSolution(base);
 		List<DutyLeg> nonDHLegs = getNonDHLegs();
 		assertEquals(solver.getLegs().size(), nonDHLegs.size());
@@ -74,24 +73,22 @@ public class SolversTest {
 	@Test
 	public void setPartitionShouldGiveTheRightCost() {
 		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
-		SetPartitionSolver solver;
 		solver = new SetPartitionSolver(FilePaths.TIME_TABLES + "73H_26.txt", calc);
-		costTest(solver);
+		costTest();
 		solver = new SetPartitionSolver(FilePaths.TIME_TABLES + "cgh_sdu_10.txt", calc);
-		costTest(solver);
+		costTest();
 	}
 	
 	@Test
 	public void setCoverShouldGiveTheRightCost() {
 		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
-		SetCoverSolver solver;
 		solver = new SetCoverSolver(FilePaths.TIME_TABLES + "73H_26.txt", calc);
-		costTest(solver);
+		costTest();
 		solver = new SetCoverSolver(FilePaths.TIME_TABLES + "cgh_sdu_10.txt", calc);
-		costTest(solver);
+		costTest();
 	}
 
-	private void costTest(BasicSolver solver) {
+	private void costTest() {
 		solution = solver.getSolution(base);
 		double plainCost = 0.0;
 		double costWithDeadHeads = 0.0;

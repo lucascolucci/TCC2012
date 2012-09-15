@@ -1,22 +1,36 @@
 package tcc.pairings.solvers.heuristics;
 
-import tcc.pairings.solvers.BasicSolver;
+import java.util.List;
 
-public class LocalSearchSolver extends BasicSolver {
+import tcc.pairings.Base;
+import tcc.pairings.Leg;
+import tcc.pairings.solvers.InitialSolver;
+import tcc.pairings.solvers.Solution;
+import tcc.pairings.solvers.Solver;
+
+public class LocalSearchSolver implements Solver {
+	private InitialSolver initialSolver;
+	private Solution currentSolution;
+	
+	@Override
+	public List<Leg> getLegs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public int getNumberOfPairings() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	public LocalSearchSolver(String timeTable) {
-		super(timeTable);
-		// TODO Auto-generated constructor stub
+		initialSolver = new InitialSolver(timeTable);
 	}
 
 	@Override
-	protected void setOutputers() {
+	public Solution getSolution(Base... bases) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
-
-	@Override
-	protected void setOptimizer() {
-		// TODO Auto-generated method stub
-		
-	}	
 }

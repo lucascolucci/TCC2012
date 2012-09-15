@@ -8,13 +8,19 @@ import tcc.pairings.generators.InitialGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.TimeTableReader;
 
-public class InitialSolver {
+public class InitialSolver implements Solver {
 	private String timeTable;
 	private List<Leg> legs;
 	private FlightNetwork net;
+	private int numberOfPairings;
 
 	public List<Leg> getLegs() {
 		return legs;
+	}
+	
+	@Override
+	public int getNumberOfPairings() {
+		return numberOfPairings;
 	}
 
 	public InitialSolver(List<Leg> legs) {
@@ -53,6 +59,7 @@ public class InitialSolver {
 	private Solution getInitialSolution(Base... bases) {		
 		InitialGenerator generator = new InitialGenerator(net);
 		generator.generate(bases);
+		numberOfPairings = generator.getNumberOfPairings();
 		return new Solution(generator.getPairings());
 	}
 }
