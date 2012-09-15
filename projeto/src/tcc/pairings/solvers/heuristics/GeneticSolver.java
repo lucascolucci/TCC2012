@@ -1,22 +1,28 @@
 package tcc.pairings.solvers.heuristics;
 
-import tcc.pairings.solvers.BasicSolver;
+import java.util.List;
 
-public class GeneticSolver extends BasicSolver {
-	public GeneticSolver(String timeTable) {
-		super(timeTable);
-		// TODO Auto-generated constructor stub
+import tcc.pairings.Base;
+import tcc.pairings.Leg;
+import tcc.pairings.solvers.Solution;
+import tcc.pairings.solvers.Solver;
+
+public class GeneticSolver implements Solver {
+	@Override
+	public List<Leg> getLegs() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	protected void setOutputers() {
+	public int getNumberOfPairings() {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	@Override
-	protected void setOptimizer() {
+	public Solution getSolution(Base... bases) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 }
