@@ -16,8 +16,10 @@ import tcc.pairings.optimizers.GlpkOptimizer;
 import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
+import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
+import tcc.pairings.solvers.heuristics.LocalSearchSolver;
 
 public class Application {
 	private static final String TIME_TABLES_PATH = "./time_tables/";
@@ -29,7 +31,8 @@ public class Application {
 		Application app = new Application();
 		//app.doInitialSolution();
 		//app.doSetPartition();
-		app.doSetCover();
+		//app.doSetCover();
+		app.doLocalSearch();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
@@ -51,18 +54,31 @@ public class Application {
 		Base rio = new Base("GIG", "SDU");
 		Base poa = new Base("POA");
 		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
-		SetPartitionSolver solver = new SetPartitionSolver(TIME_TABLES_PATH + "733_92.txt", calc);
+		Solver solver = new SetPartitionSolver(TIME_TABLES_PATH + "733_92.txt", calc);
 		System.out.println(solver.getSolution(sao, rio, poa));
 		System.out.println("Total de pairings = " + solver.getNumberOfPairings());
 	}
 	
 	public void doSetCover() {
+		Rules.MAX_DUTIES = 2;
+		Base sao = new Base("GRU", "CGH");
+		Base rio = new Base("GIG", "SDU");
+		Base poa = new Base("POA");
+		Base ssa = new Base("SSA");
+		Base cnf = new Base("CNF");
+		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
+		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "733_92.txt", calc);
+		System.out.println(solver.getSolution(sao, rio, poa, ssa, cnf));
+	}
+	
+	public void doLocalSearch() {
 		Rules.MAX_DUTIES = 3;
 		Base sao = new Base("GRU", "CGH");
 		Base rio = new Base("GIG", "SDU");
 		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
-		SetCoverSolver solver = new SetCoverSolver(TIME_TABLES_PATH + "73G_340.txt", calc);
+		Solver solver = new LocalSearchSolver(TIME_TABLES_PATH + "738_48.txt", calc);
 		System.out.println(solver.getSolution(sao, rio));
+		System.out.println("Total de pairings = " + solver.getNumberOfPairings());	
 	}
 
 	public void doNumberOfPairings() {
