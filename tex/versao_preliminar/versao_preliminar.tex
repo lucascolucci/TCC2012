@@ -119,7 +119,7 @@
 
 Métodos de otimização no planejamento das operações de uma empresa aérea têm sido aplicados a várias
 décadas~\cite{yu}. Tal planejamento envolve diversos problemas que normalmente são resolvidos de
-forma separada e seqüencial devido ao tamanho e a complexibilidade de cada problema individual,
+forma separada e sequencial devido ao tamanho e a complexibilidade de cada problema individual,
 embora eles estejam intimamente relacionados~\cite{barnhart03} (veja Figura~\ref{fig:planejamento}).
 
 Primeiro, resolve-se o problema da \emph{malha de voos}, que consiste em determinar todos os trechos
@@ -130,7 +130,7 @@ Segundo, trata-se do problema da \emph{atribuição de frotas}. Nele, determina-
 aeronave (tal como Boeing 737, Boeing 767, Airbus 320, etc) deve ser atribuído para efetuar cada
 trecho da malha de voos. O objetivo é maximizar os lucros de venda, em função da demanda prevista e
 do custo de se operar determinada frota em determinado trecho, sujeito à restrição de que todos os
-voos da malha sejam cobertos com as frotas disponíveis.
+voos da malha sejam cobertos com a frota disponível.
 
 Terceiro, considera-se o problema do \emph{roteamento de aeronaves}, que envolve a escolha das
 aeronaves de uma frota que vão realizar determinados voos de forma que cada aeronave passe um tempo
@@ -191,11 +191,12 @@ amplamente utilizadas neste trabalho.
 	jornada, necessário para o {\it briefing} da tripulação.
 	\item {\bf Tempo de Debriefing:} tempo mínimo que sucede o término da último etapa de uma jornada,
 	necessário para o {\it debriefing} da tripulação.
-	\item {\bf Início da Jornada:} horário em que a tripulação deve se apresentar para o inicio de
-	uma jornada. Corresponde ao horário da decolagem da primeira etapa menos o tempo de briefing. 
+	\item {\bf Início da Jornada:} horário em que a tripulação deve se apresentar para o início de
+	uma jornada. Corresponde ao horário da decolagem da primeira etapa menos o tempo de 
+	{\it briefing}. 
 	Também chamado de {\bf checkin}.
 	\item {\bf Término da Jornada:} horário em que a tripulação encerra suas atividade em uma 
-	jornada. Corresponde ao horário de pouso da última etapa mais o tempo de debriefing.
+	jornada. Corresponde ao horário de pouso da última etapa mais o tempo de {\it debriefing}.
 	Também chamado de {\bf checkout}.
 	\item {\bf Base Contratual:} cidade onde uma dado tripulante está domiciliado, também chamada 
 	simplesmente de {\bf base}.
@@ -262,7 +263,7 @@ uniforme de trabalho. A atribuição das viagens também está sujeita a uma sé
 reguladoras.
 
 Tanto o PDV quanto o PDE têm sido extensamente estudados na literatura~\cite{gopalakrishnan05}. Em
-especial, o primeiro deles recebeu mais atenção, principalmente no contexto norte-americado, dada o
+especial, o primeiro deles recebeu mais atenção, principalmente no contexto norte-americano, dada o
 seu potencial em produzir economia significativa de custos. No problema da determinação de escalas,
 além de minimizar custos, é importante também levar em conta aspectos da qualidade de vida dos
 tripulantes. Uma visão geral e esquemática dos dois problemas é apresentada na
@@ -326,8 +327,8 @@ onde
 	\item[$c_d$:] custo da jornada $d$;
 	\item[$\alpha_0$:] custo da hora de trabalho do tripulante;
 	\item[$t_d$:] duração da jornada $d$ (em horas);	
-	\item[$tp_d$:] tempo de preparação (briefing mais debriefing) usado na jornada $d$;
-	\item[$I_d$:] conjunto de etapas que compõem a jornada $d$;
+	\item[$tp_d$:] tempo de preparação ({\it briefing} mais {\it debriefing}) usado na jornada $d$;
+	\item[$I_d$:] conjunto de etapas que compõe a jornada $d$;
 	\item[$t_i$:] duração da etapa $i$, incluindo o tempo mínimo de conexão;
 	\item[$cp_d$:] custo do pernoite mais diárias de alimentação da jornada $d$.
 \end{itemize}
@@ -376,6 +377,22 @@ onde
 Note que consideramos apenas a atribuição de viagens na escala de tripulantes. Atividades de reserva
 e sobreaviso também entram na remuneração contando como se fossem horas de voo. No caso do
 sobreaviso, o valor deve ser multiplicado por $1/3$.
+
+A estrutura descrita acima se refere a um modelo padrão para companhias aéreas brasileiras.
+Fora do Brasil, entretanto, a estrutura do custos pode ser diferente. Nos Estados Unidos, por 
+exemplo, o custo de uma viagem é dado por uma função não-linear de diferentes custos. 
+Especificamente, o custo de uma viagem $p$ é dado por
+%
+\begin{equation*}
+	c_p = \max\left\{\sum_{d \in D_p} MIN\_GRT_d \ev \sum_{d \in D_p} FLY\_TIME_d \ev 
+	TIME\_AWAY_p \right\} \ev
+\end{equation*}
+%
+onde $MIN\_GRT_d$ é o mínimo de garantia oferecido ao tripulante ao voar a jornada $d$, 
+$FLY\_TIME_d$ é o tempo de voo da jornada $d$ (pode ser multiplicado por algum fator) e
+$TIME\_AWAY_p$ é o tempo total que o tripulante passa fora de sua base na viagem $p$ (também pode
+ser multiplicado por algum fator). Observe assim, que nesse modelo, o custo de cada etapa depende da
+viagem em ela está incluída.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -556,8 +573,8 @@ a duração máxima das jornadas e limites de horas de voo e de pousos.
 \subsubsection{Exemplo}
 \label{sec:exemplo}
 
-A tabela abaixo mostra um conjunto fictício (para fins pedagógicos) de 7 etapas operadas diariamente 
-entre as localidades A, B, C e D. O exemplo é adaptado de~\cite{barnhart03}. 
+A tabela abaixo mostra um conjunto fictício (para fins de ilustração) de 7 etapas operadas 
+diariamente entre as localidades A, B, C e D. O exemplo é adaptado de~\cite{barnhart03}. 
 
 \begin{table}[ht]
 	\begin{center}
@@ -613,9 +630,8 @@ $i=1, \ldots, 5$):
 	\end{array}
 \end{equation*}
 
-Se for requerido que pelo menos 3 horas e no máximo 6 horas estejam 
-disponíveis nas bases A e D, e no máximo 5 horas na base C, então as restrições de bases
-(\ref{eq:bases}) são
+Se pelo menos 3 horas e no máximo 6 horas estejam disponíveis nas bases A e D, e no máximo 5 horas 
+na base C, então as restrições de bases (\ref{eq:bases}) são
 %
 \begin{equation*}
 	\begin{array}{ll}
@@ -665,7 +681,7 @@ qualificações, atividades pré-atribuídas, férias, etc. As qualificações c
 exemplo, sobre os equipamentos nos quais o tripulante está habilitado, ou sobre destinos onde ele
 não pode operar devido a alguma restrição operacional. Atividades pré-atribuídas podem ser
 folgas pedidas, exames médico, cursos, etc. Os registros de um tripulante também incluem atributos
-acumulados, como o total de horas de vôo realizadas durante o ano corrente. Outros dados de
+acumulados, como o total de horas de voo realizadas durante o ano corrente. Outros dados de
 interesse são, por exemplo, datas limites para treinamentos.
 
 Outro conjunto de dados de entrada é formado pelas atividades a serem cobertas, que consiste das
@@ -675,7 +691,7 @@ problema, apenas as viagens devem ser atribuídas de forma automatizada e otimiz
 atividades são atribuídas \emph{a priori}, individualmente para cada tripulante em dias
 pré-determinados dentro do horizonte de tempo do planejamento.
 
-As regras típicas para construção de uma escala legal incluem limites máximos para horas de vôo e
+As regras típicas para construção de uma escala legal incluem limites máximos para horas de voo e
 jornadas de trabalho, número mínimo de folgas, número máximo de dias consecutivos de trabalho, etc
 (confira Seção~\ref{sec:regras_e_custos}). Essas são conhecidas como \emph{regras horizontais} pois
 se aplicam a escalas únicas, e não considerem as outras escalas geradas na solução. Outro conjunto
@@ -900,14 +916,14 @@ viajando como passageiro, o que pode implicar a inviabilidade do problema.
 \subsubsection{Set Cover}
 \label{sec:metodos_cover}
 
-O modelo {\it set cover} é bastante similar ao {\it set partition}, porém adimite a ocorrência de 
+O modelo {\it set cover} é bastante similar ao {\it set partition}, porém admite a ocorrência de 
 {\it deadheading} na solução final, possibilitando a viabilidade do problema.
 
 As restrições adotadas no modelo {\it set cover} são dadas por (\ref{eq:dh}), onde permite-se que 
 uma etapa seja coberta mais do que uma vez. Sendo $m$ o número de etapas a serem cobertas, podemos 
 adicionar $m$ variáveis artificiais inteiras $y_i$, $i = 1, \ldots, m$, onde $y_i$ representa o 
 número de vezes que a etapa $i$ é coberta como {\it deadhead}. Considerando um custo $d_i$ cada vez 
-que a etapa $i$ é utilizadacomo {\it deadhead}, o problema de programação linear resultante é
+que a etapa $i$ é utilizada como {\it deadhead}, o problema de programação linear resultante é
 %
 \begin{eqnarray} \label{eq:scpdv}
 	\text{minimizar} && \displaystyle \sum_{j=1}^n c_j x_j + \sum_{i=1}^m d_i y_i \nonumber \\
@@ -924,6 +940,30 @@ na resolução do {\it set cover} (Simplex e {\it branch-and-bound}).
 \subsubsection{Geração de Colunas}
 \label{sec:metodos_colunas}
 
+Nesta seção descreveremos o método de geração de colunas para obtenção de uma solução ótima 
+associada ao problema em (\ref{eq:scpdv}), chamado de problema mestre.
+
+A ideia básica consiste em não gerar explicitamente todas as $n$ viagens possíveis do problema. 
+Ao invés disso, começamos com um número reduzido de colunas que forneça ao menos uma solução viável
+(o chamado problema restrito). Essas variáveis são levadas ao otimizador considerando a versão 
+relaxada de (\ref{eq:scpdv}). Para determinar se o problema original com todas as $n$ variáveis 
+está resolvido otimamente, solucionamos o seguinte subproblema:
+%
+\begin{equation} \label{eq:sub}
+	w^\ast = \min_{j = 1, \ldots, n} \left[ c_j - \sum_{i=1}^m \pi_i a_{ij} \right] \ev
+\end{equation} 
+%
+onde $\pi_i$, $i = 1, \ldots, m$ são as variáveis duais ótimas associadas ao problema restrito.
+Da teoria da programação linear, sabemos que se $w^\ast \geq 0$ então o problema restrito é ótimo
+ao problema mestre. Por outro lado, se  $w^\ast < 0$, a coluna $k$ (com custo reduzido 
+$\bar{c}_k < 0$) é identificada e é adicionada ao problema restrito. O problema restrito é 
+resolvido novamente e o processo se repete até que nenhuma variável de custo reduzido negativo 
+seja encontrada.
+
+Ocorre que o subproblema (\ref{eq:sub}) pode ser traduzido como um problema de caminho mais curto 
+no grafo da rede de voos, o qual pode ser resolvido de forma eficiente. Mostraremos isso com mais 
+detalhes na próxima versão deste trabalho.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Métodos (Meta) Heurísticos}
@@ -934,10 +974,26 @@ na resolução do {\it set cover} (Simplex e {\it branch-and-bound}).
 \subsubsection{Busca Local}
 \label{sec:metodos_busca}
 
+O método de busca local é bastante simples e foi um dos primeiros a ser utilizado na tentativa de 
+melhorar uma solução viável do problema (\ref{eq:scpdv}). 
+
+A busca local consiste em escolher aleatoriamente duas ou três viagens da solução viável inicial e, 
+a partir da lista de etapas cobertas por essas viagens, gerar explicitamente todas as possíveis 
+viagens legais usando o gerador. Como o número de etapas não é muito grande, o número de variáveis 
+geradas é gerenciável. O modelo (\ref{eq:scpdv}) é então resolvido para todas essas variáveis, 
+obtendo um novo conjunto de viagens que cobre o lista de etapas inicial. 
+
+Se o custo desse novo conjunto de viagens for menor do que o original, então as viagens originais
+serão substituídas na solução global. O processo é iterado um número máximo de vezes (ou um tempo 
+máximo de execução), ou até que não haja variação significativa do custo (mínimo local), de tal 
+forma que o custo sempre seja reduzido a cada passo.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Algoritmo Genético}
 \label{sec:metodos_genetico}
+
+Daremos aqui a formulação de um algoritmo genético para o problema (\ref{eq:scpdv}). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1002,7 +1058,7 @@ trechos diárias oferecidos na ponte-aérea pela companhia aérea Gol. Um total 
 Vale observar que o caso da ponte-aérea é um pouco atípico no sentido de que representa um malha 
 muito densa de voos: muitas etapas são oferecidas de ida e volta num curto intervalo de tempo, 
 criando muitas conexões legais (arcos) entre os nós da rede de voos gerada. Com isso, o número
-de viagens retornadas pela procedimento de busca no grafo explode rapidamente.
+de viagens dado pela procedimento de busca no grafo explode rapidamente.
 
 O gráfico da Figura~\ref{fig:pairings} mostra o número de viagens geradas em função do número de
 etapas na ponte-aérea. As viagens foram geradas para a base CGH. São apresentadas três curvas, uma
@@ -1033,7 +1089,8 @@ para 36 pernas).
 		\includegraphics[scale=0.45,angle=-90]{fig/generation_time.eps}
 		\caption{Tempo gasto na geração das viagens em função do número de pernas utilizadas na 
 		construção da rede de voos. São apresentados valor médio $\pm$ desvio-padrão, considerando 5 
-		medidas para cada ponto.}
+		medidas para cada ponto. O primeiro ponto da curva verde encontra-se um pouco fora provavelmente
+		devido a algum transiente da máquina, visto que ele foi o primeiro a ser processado.}
 		\label{fig:generation}
 	\end{center}
 \end{figure}
@@ -1095,13 +1152,13 @@ deverão ser fornecidos $k$ trilhos distintos.
 	\end{center}
 \end{table}
 
-Na resolução dos problemas, utilizou-se os parâmetros da Tabela~\ref{tab:parametros}. Além disso,
-limitou-se a 1 o número máximo de trocas de aeronaves por jornada. Com isso, forçamos a tripulação
-acompanhar, na medida do possível, o trilho percorrido pela aeronave, reduzindo a possibilidade de
-conexões em cada localidade. Naturalmente os tempos de conexão serão reduzidos, tornando as 
-viagens geradas mais baratas e diminuindo o número total de variáveis geradas. Além disso, esse 
-procedimento torna a solução mais robusta, uma vez que o atraso de uma aeronave não acarretará 
-atraso na saída de outro voo que dependa daquela aeronave na troca.
+Na resolução dos problemas, foram utilizados os parâmetros da Tabela~\ref{tab:parametros}. Além
+disso, limitou-se a 1 o número máximo de trocas de aeronaves por jornada. Com isso, forçamos a
+tripulação acompanhar, na medida do possível, o trilho percorrido pela aeronave, reduzindo a
+possibilidade de conexões em cada localidade. Naturalmente os tempos de conexão serão reduzidos,
+tornando as viagens geradas mais baratas e diminuindo o número total de variáveis geradas. Além
+disso, esse procedimento torna a solução mais robusta, uma vez que o atraso de uma aeronave não
+acarretará atraso na saída de outro voo que dependa daquela aeronave na troca.
 
 O custo de uma viagem foi calculado como sendo o tempo ``ocioso'' relativo no qual o tripulante está 
 trabalhando mas não está voando, ou seja, pela diferença entre o tempo total de uma viagem, menos o 
@@ -1130,7 +1187,7 @@ solução, o custo da solução e o tempo de processamento do otimizador (Cplex)
 
 As mesmas instâncias 73H\_26, 738\_48, 733\_92 também foram resolvidas utilizando o modelo 
 {\it set cover}, o qual admite a existência de {\it deadheading}. Os resultados obtidos foram 
-identicos aos listados na Tabela~\ref{tab:resultados}. Em particular, todas as variáveis 
+idênticos aos listados na Tabela~\ref{tab:resultados}. Em particular, todas as variáveis 
 artificiais $y_i$ receberam valor zero na solução final, indicando a não necessidade de 
 {\it deadheading}.
 
@@ -1139,11 +1196,12 @@ artificiais $y_i$ receberam valor zero na solução final, indicando a não nece
 \subsubsection{Resultado Explícito}
 \label{sec:resultado_explicito}
 
-Para tornar mais concreto a entrada e a saída do problema, apresentamos na Tabela~\ref{tab:73H_26}
-o conjunto de etapas referentes a instância 73H\_26. A mesma representa 26 trechos oferecidos
-diariamente pela companhia aérea Gol para uma frota especial de 5 aeronaves B737-800. Para cada 
-etapa são fornecidos o seu número, aeroporto de origem, aeroporto de destino, horário local de 
-decolagem (DEP) e horário local de pouso (ARR) e o trilho correspondente.
+Para tornar mais concreto a entrada e a saída do problema, apresentamos na Tabela~\ref{tab:73H_26} o
+conjunto de etapas referentes a instância 73H\_26\footnote{Não há problema de confidencialidade nos
+dados apresentados.}. A mesma representa 26 trechos oferecidos diariamente pela companhia aérea Gol
+para uma frota especial de 5 aeronaves B737-800. Para cada etapa são fornecidos o seu número,
+aeroporto de origem, aeroporto de destino, horário local de decolagem (DEP) e horário local de pouso
+(ARR) e o trilho correspondente.
 
 Na Tabela~\ref{tab:pairings} listamos as 6 viagens geradas como solução do problema de otimização.
 Cada etapa na tabela apresenta o número do voo, origem e destino, horário local de decolagem e 
@@ -1247,10 +1305,21 @@ bem como uma viagem de 3 dias de duração (5).
 \subsubsection{Busca Local}
 \label{sec:resultados_busca}
 
+Após a implementação mostraremos os resultados obtidos pelo método da busca local para as instâncias 
+maiores do problema, com alguns gráficos do custo em função do número de iterações, para diversas 
+escolhas dos parâmetros do algoritmo. 
+
+A ideia também é aplicar o método para as instâncias que puderam ser resolvidas otimamente, com o 
+intuito de se avaliar o quão perto do ótimo o método pode ser capaz de chegar nesses casos.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Algoritmo Genético}
 \label{sec:resultados_genetico}
+
+Após a implementação mostraremos os resultados obtidos pelo método da busca local para as instâncias 
+maiores do problema, com alguns gráficos do custo em função do número de iterações, para diversas 
+escolhas dos parâmetros do algoritmo. Faremos também a comparação com o método da busca local.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1283,7 +1352,7 @@ seria o de gerar apenas variáveis ``boas'', ou seja, com grande chance de apare
 final. O método de geração de colunas desenvolve essa ideia e será explorado futuramente.
 
 Com relação aos resultados obtidos utilizando o modelo {\it set cover}, observamos que como as 
-colunas associadas às variáveis $y_i$ de {\it deadheading} (reveja o folrmulação (\ref{eq:scpdv})) 
+colunas associadas às variáveis $y_i$ de {\it deadheading} (reveja o formulação (\ref{eq:scpdv})) 
 foram ajustadas com preços altos, e como os problemas analisados eram viáveis do ponto de vista do 
 {\it set partition}, o otimizador conseguiu encontrar as mesmas soluções obitidas sem a presença de 
 {\it deadheading}. Concluímos que a utilização de {\it deadheading} só será realizada se for 
