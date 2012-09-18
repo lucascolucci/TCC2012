@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import tcc.pairings.Base;
+import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
@@ -14,14 +15,14 @@ import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 
 public class LocalSearchSolver implements Solver {
-	private static final int MAX_ITERATIONS = 100;
+	private static final int MAX_ITERATIONS = 3000;
 	private static final int SAMPLE_SIZE = 3;
 	
 	private CostCalculator calculator;
 	private int maxIterations = MAX_ITERATIONS;
 	private int sampleSize = SAMPLE_SIZE;
 	private InitialSolver initialSolver;
-	private SetCoverSolver coverSover;
+	private SetCoverSolver coverSolver;
 	private Solution currentSolution;
 	private Random random;
 	private List<Pairing> oldPairings;
@@ -74,32 +75,38 @@ public class LocalSearchSolver implements Solver {
 	@Override
 	public Solution getSolution(Base... bases) {
 		currentSolution = initialSolver.getSolution(bases);
-		improveCurrentSolution(bases);
+		if (currentSolution != null)
+			improveCurrentSolution(bases);
 		return currentSolution;
 	}
 
 	private void improveCurrentSolution(Base... bases) {
 		int iteration = 0;
-		System.out.println(iteration + '\t' + currentSolution.getCost());
+		System.out.println(iteration + "\t" + currentSolution.getCost());
 		while (iteration++ < maxIterations) {
 			doIteration(bases);
-			System.out.println(iteration + '\t' + currentSolution.getCost());
+			System.out.println(iteration + "\t" + currentSolution.getCost());
 		}
 	}
 
 	private void doIteration(Base... bases) {
 		setOldAndNewPairings(bases);
-		double oldCost = getCost(oldPairings);
-		double newCost = getCost(newPairings);
-		if (newCost < oldCost)
-			updateCurrentSolution(oldCost, newCost);
+		if (newPairings != null) {
+			double oldCost = getCost(oldPairings);
+			double newCost = getCost(newPairings);
+			if (newCost < oldCost)
+				updateCurrentSolution(oldCost, newCost);
+		}
 	}
 
 	private void setOldAndNewPairings(Base... bases) {
 		oldPairings = getRandomSample();
-		coverSover = new SetCoverSolver(getOldPairingsLegs(), calculator);
-		newPairings = coverSover.getSolution(bases).getPairings();
-		setNewPairingsDeadHeads();
+		coverSolver = new SetCoverSolver(getOldPairingsLegs(), calculator);
+		Solution newSolution = coverSolver.getSolution(bases);
+		if (newSolution != null) 
+			newPairings = newSolution.getPairings();
+		else
+			newPairings = null;
 	}
 
 	private List<Pairing> getRandomSample() {
@@ -125,13 +132,30 @@ public class LocalSearchSolver implements Solver {
 	}
 	
 	private List<Leg> getOldPairingsLegs() {
-		// TODO Auto-generated method stub
-		List<Leg> legs = new ArrayList<Leg>();	
+		List<DutyLeg> oldLegs = getOldLegs();
+		List<Leg> originalLegs = initialSolver.getLegs();
+		List<Leg> clonedLegs = new ArrayList<Leg>();
+		for (Leg oringinal: originalLegs)
+			for (Leg leg: oldLegs)
+				if (oringinal.isDuplicate(leg))
+					clonedLegs.add(oringinal.clone());
+		return clonedLegs;
+	}
+
+	private List<DutyLeg> getOldLegs() {
+		List<DutyLeg> legs = new ArrayList<DutyLeg>();	
+		for (Pairing pairing: oldPairings)
+			legs.addAll(pairing.getLegs());
+		legs.removeAll(getRemovableLegs(legs));
 		return legs;
 	}
-	
-	private void setNewPairingsDeadHeads() {
-		// TODO Auto-generated method stub	
+
+	private List<DutyLeg> getRemovableLegs(List<DutyLeg> legs) {
+		List<DutyLeg> removedLegs = new ArrayList<DutyLeg>(); 
+		for (DutyLeg leg: legs)
+			if (leg.isDeadHead())
+				removedLegs.add(leg);
+		return removedLegs;
 	}
 	
 	private double getCost(List<Pairing> pairings) {

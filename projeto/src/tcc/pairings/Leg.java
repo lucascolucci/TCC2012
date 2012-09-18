@@ -8,7 +8,7 @@ import java.util.Date;
 import tcc.pairings.rules.Rules;
 import tcc.util.DateUtil;
 
-public class Leg {
+public class Leg implements Cloneable {
 	private short number;
 	private String from;
 	private String to;
@@ -79,6 +79,11 @@ public class Leg {
 	
 	public int getFlightTime() {
 		return DateUtil.difference(departure, arrival);
+	}
+	
+	@Override
+	public Leg clone() {
+		return new Leg(number, from, to, departure, arrival, track);
 	}
 
 	@Override

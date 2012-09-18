@@ -5,6 +5,8 @@ import java.util.List;
 
 import tcc.pairings.Base;
 import tcc.pairings.Leg;
+import tcc.pairings.costs.CostCalculator;
+import tcc.pairings.costs.ExcessCalculator;
 import tcc.pairings.costs.ExcessToFlightCalculator;
 import tcc.pairings.generators.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
@@ -28,10 +30,10 @@ public class Application {
 	
 	public static void main(String[] args) {
 		Application app = new Application();
-		app.doInitialSolution();
+		//app.doInitialSolution();
 		//app.doSetPartition();
 		//app.doSetCover();
-		//app.doLocalSearch();
+		app.doLocalSearch();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
@@ -57,25 +59,20 @@ public class Application {
 	}
 	
 	public void doSetCover() {
-		Rules.MAX_DUTIES = 2;
+		Rules.MAX_DUTIES = 4;
 		Base sao = new Base("GRU", "CGH");
-		Base rio = new Base("GIG", "SDU");
-		Base poa = new Base("POA");
-		Base ssa = new Base("SSA");
-		Base cnf = new Base("CNF");
-		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
+		CostCalculator calc = new ExcessCalculator();
 		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "733_92.txt", calc);
-		System.out.println(solver.getSolution(sao, rio, poa, ssa, cnf));
+		System.out.println(solver.getSolution(sao));
 	}
 	
 	public void doLocalSearch() {
-		Rules.MAX_DUTIES = 3;
+		Rules.MAX_DUTIES = 4;
 		Base sao = new Base("GRU", "CGH");
-		Base rio = new Base("GIG", "SDU");
-		ExcessToFlightCalculator calc = new ExcessToFlightCalculator();
-		Solver solver = new LocalSearchSolver(TIME_TABLES_PATH + "738_48.txt", calc);
-		System.out.println(solver.getSolution(sao, rio));
-		System.out.println("Total de pairings = " + solver.getNumberOfPairings());	
+		Base rio = new Base("SDU", "GIG");
+		CostCalculator calc = new ExcessCalculator();
+		Solver solver = new LocalSearchSolver(TIME_TABLES_PATH + "73G_340.txt", calc);
+		System.out.println(solver.getSolution(sao, rio));	
 	}
 
 	public void doNumberOfPairings() {
