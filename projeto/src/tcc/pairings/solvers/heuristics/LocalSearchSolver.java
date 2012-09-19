@@ -9,13 +9,14 @@ import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
+import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 
 public class LocalSearchSolver implements Solver {
-	private static final int MAX_ITERATIONS = 3000;
+	private static final int MAX_ITERATIONS = 1000;
 	private static final int SAMPLE_SIZE = 3;
 	
 	private CostCalculator calculator;
@@ -68,13 +69,14 @@ public class LocalSearchSolver implements Solver {
 	
 	public LocalSearchSolver(String timeTable, CostCalculator calculator) {
 		initialSolver = new InitialSolver(timeTable, calculator);
-		random = new Random();
+		random = new Random(0);
 		this.calculator = calculator;
 	}
 
 	@Override
 	public Solution getSolution(Base... bases) {
 		currentSolution = initialSolver.getSolution(bases);
+		Rules.MAX_DUTIES = 4;
 		if (currentSolution != null)
 			improveCurrentSolution(bases);
 		return currentSolution;
@@ -82,10 +84,11 @@ public class LocalSearchSolver implements Solver {
 
 	private void improveCurrentSolution(Base... bases) {
 		int iteration = 0;
-		System.out.println(iteration + "\t" + currentSolution.getCost());
+		double firstCost = currentSolution.getCost();
+		System.out.println(iteration + "\t" + firstCost + "\t" + currentSolution.getCost());
 		while (iteration++ < maxIterations) {
 			doIteration(bases);
-			System.out.println(iteration + "\t" + currentSolution.getCost());
+			System.out.println(iteration + "\t" + firstCost + "\t" + currentSolution.getCost());
 		}
 	}
 

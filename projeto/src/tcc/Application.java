@@ -21,6 +21,7 @@ import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
 import tcc.pairings.solvers.heuristics.LocalSearchSolver;
+import tcc.util.ResultsWriter;
 
 public class Application {
 	private static final String TIME_TABLES_PATH = "./time_tables/";
@@ -30,10 +31,10 @@ public class Application {
 	
 	public static void main(String[] args) {
 		Application app = new Application();
-		//app.doInitialSolution();
+		app.doInitialSolution();
 		//app.doSetPartition();
 		//app.doSetCover();
-		app.doLocalSearch();
+		//app.doLocalSearch();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
@@ -41,10 +42,14 @@ public class Application {
 	}
 	
 	public void doInitialSolution() {
-		Rules.MAX_DUTIES = 3;
+		Rules.MAX_DUTIES = 4;
 		Base sao = new Base("CGH", "GRU");
-		Solver solver = new InitialSolver(TIME_TABLES_PATH + "738_521.txt");
-		System.out.println(solver.getSolution(sao));
+		Base rio = new Base("SDU", "GIG");
+		Base poa = new Base("POA");
+		Base cnf = new Base("CNF");
+		Base ssa = new Base("SSAV");
+		Solver solver = new InitialSolver(TIME_TABLES_PATH + "73G_340.txt");
+		System.out.println(solver.getSolution(sao, rio, poa, cnf, ssa));
 	}
 	
 	public void doSetPartition() {
@@ -62,17 +67,16 @@ public class Application {
 		Rules.MAX_DUTIES = 4;
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new ExcessCalculator();
-		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "733_92.txt", calc);
+		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "73H_26.txt", calc);
 		System.out.println(solver.getSolution(sao));
 	}
 	
 	public void doLocalSearch() {
-		Rules.MAX_DUTIES = 4;
+		Rules.MAX_DUTIES = 3;
 		Base sao = new Base("GRU", "CGH");
-		Base rio = new Base("SDU", "GIG");
 		CostCalculator calc = new ExcessCalculator();
-		Solver solver = new LocalSearchSolver(TIME_TABLES_PATH + "73G_340.txt", calc);
-		System.out.println(solver.getSolution(sao, rio));	
+		Solver solver = new LocalSearchSolver(TIME_TABLES_PATH + "73H_26.txt", calc);
+		System.out.println(solver.getSolution(sao));	
 	}
 
 	public void doNumberOfPairings() {

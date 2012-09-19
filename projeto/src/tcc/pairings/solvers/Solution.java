@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 
@@ -67,6 +68,43 @@ public class Solution {
 				result.add(pairing);
 		}
 		return result;
+	}
+	
+	public boolean isAllLegsCovered(List<Leg> legs) {
+		List<DutyLeg> nonDHLegs = getNonDHLegs();
+		if (legs.size() != nonDHLegs.size())
+			return false;
+		for (Leg leg: legs) {
+			boolean legFound = false;
+			for (DutyLeg dutyLeg: nonDHLegs) 
+				if (dutyLeg.isDuplicate(leg)) {
+					legFound = true;
+					break;
+				}
+			if (!legFound)
+				return false;
+		}
+		return true;
+	}
+		
+	private List<DutyLeg> getNonDHLegs() {
+		List<DutyLeg> nonDHLegs = new ArrayList<DutyLeg>();
+		for (Pairing pairing: pairings)
+			for (DutyLeg leg: pairing.getLegs()) 
+				if (!leg.isDeadHead())
+					nonDHLegs.add(leg);
+		return nonDHLegs;
+	}
+	
+	public boolean isCostRight() {
+		double plainCost = 0.0;
+		double costWithDeadHeads = 0.0;
+		for (Pairing pairing: pairings) {
+			plainCost += pairing.getCost();
+			costWithDeadHeads += pairing.getCostWithDeadHeads();
+		}
+		return (Math.abs(plainCost - this.getPairingsCost()) <=  0.001) 
+				&& (Math.abs(costWithDeadHeads - cost) <= 0.001);
 	}
 
 	@Override
