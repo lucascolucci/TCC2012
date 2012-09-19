@@ -9,15 +9,14 @@ import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
-import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 
 public class LocalSearchSolver implements Solver {
-	private static final int MAX_ITERATIONS = 1000;
-	private static final int SAMPLE_SIZE = 3;
+	private static final int MAX_ITERATIONS = 10000;
+	private static final int SAMPLE_SIZE = 6;
 	private static final int SAMPLE_MAX_DUTIES = 4;
 	
 	private CostCalculator calculator;
@@ -86,7 +85,6 @@ public class LocalSearchSolver implements Solver {
 	@Override
 	public Solution getSolution(Base... bases) {
 		currentSolution = initialSolver.getSolution(bases);
-		Rules.MAX_DUTIES = sampleMaxDuties;
 		if (currentSolution != null)
 			improveCurrentSolution(bases);
 		return currentSolution;
@@ -114,10 +112,18 @@ public class LocalSearchSolver implements Solver {
 
 	private void setOldAndNewPairings(Base... bases) {
 		oldPairings = getRandomSample();
-		coverSolver = new SetCoverSolver(getOldPairingsLegs(), calculator);
+		List<Leg> oldLegs = getOldLegsToBeCovered();
+		coverSolver = new SetCoverSolver(oldLegs, calculator);
 		Solution newSolution = coverSolver.getSolution(bases);
-		if (newSolution != null) 
+		if (newSolution != null) {
+			// Para fins de testes
+			if (!newSolution.isAllLegsCovered(oldLegs))
+				throw new RuntimeException("Pernas n‹o cobertas.");	
+			// Para finst de testes
+			if (!newSolution.isCostRight())
+				throw new RuntimeException("Custo incorreto.");
 			newPairings = newSolution.getPairings();
+		}
 		else
 			newPairings = null;
 	}
@@ -144,7 +150,7 @@ public class LocalSearchSolver implements Solver {
 		return randomIndexes;
 	}
 	
-	private List<Leg> getOldPairingsLegs() {
+	private List<Leg> getOldLegsToBeCovered() {
 		List<DutyLeg> oldLegs = getOldLegs();
 		List<Leg> originalLegs = initialSolver.getLegs();
 		List<Leg> clonedLegs = new ArrayList<Leg>();

@@ -80,7 +80,7 @@ public class CplexOptimizer implements Optimizer {
 		List<Integer> list = new ArrayList<Integer>(); 
 		int last =  model.getNbinVars();
 		for (int i = 0; i < last; i++)
-			if ((int) model.getValue(matrix.getNumVar(i)) == 1)
+			if (Math.round(model.getValue(matrix.getNumVar(i))) == 1)
 				list.add(i + 1);
 		return list;
 	}
@@ -99,7 +99,7 @@ public class CplexOptimizer implements Optimizer {
 		List<Integer> list = new ArrayList<Integer>();
 		int first = model.getNbinVars(); int last = model.getNcols();
 		for (int i = first; i < last; i++)			
-			list.add((int) model.getValue(matrix.getNumVar(i)));
+			list.add((int) Math.round(model.getValue(matrix.getNumVar(i))));
 		return list;
 	}
 		
