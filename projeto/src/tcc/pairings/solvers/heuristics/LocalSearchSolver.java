@@ -18,10 +18,12 @@ import tcc.pairings.solvers.exacts.SetCoverSolver;
 public class LocalSearchSolver implements Solver {
 	private static final int MAX_ITERATIONS = 1000;
 	private static final int SAMPLE_SIZE = 3;
+	private static final int SAMPLE_MAX_DUTIES = 4;
 	
 	private CostCalculator calculator;
 	private int maxIterations = MAX_ITERATIONS;
 	private int sampleSize = SAMPLE_SIZE;
+	private int sampleMaxDuties = SAMPLE_MAX_DUTIES;
 	private InitialSolver initialSolver;
 	private SetCoverSolver coverSolver;
 	private Solution currentSolution;
@@ -52,6 +54,14 @@ public class LocalSearchSolver implements Solver {
 	public void setSampleSize(int sampleSize) {
 		this.sampleSize = sampleSize;
 	}
+	
+	public int getSampleMaxDuties() {
+		return sampleMaxDuties;
+	}
+
+	public void setSampleMaxDuties(int sampleMaxDuties) {
+		this.sampleMaxDuties = sampleMaxDuties;
+	}
 
 	@Override
 	public List<Leg> getLegs() {
@@ -76,7 +86,7 @@ public class LocalSearchSolver implements Solver {
 	@Override
 	public Solution getSolution(Base... bases) {
 		currentSolution = initialSolver.getSolution(bases);
-		Rules.MAX_DUTIES = 4;
+		Rules.MAX_DUTIES = sampleMaxDuties;
 		if (currentSolution != null)
 			improveCurrentSolution(bases);
 		return currentSolution;

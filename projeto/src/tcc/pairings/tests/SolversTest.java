@@ -14,14 +14,14 @@ import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
 
 public class SolversTest {
-	private Base base;
+	private Base[] bases;
 	private Solution solution;
 	private Solver solver;
 	
 	@Before
 	public void setUp() {
 		Rules.MAX_DUTIES = 3;
-		base = new Base("CGH", "GRU");
+		bases = new Base[] { new Base("CGH", "GRU"), new Base("SDU", "GIG") };
 	}
 
 	@Test
@@ -38,10 +38,12 @@ public class SolversTest {
 		legCoverageTest();
 		solver = new SetCoverSolver(FilePaths.TIME_TABLES + "cgh_sdu_10.txt");
 		legCoverageTest();
+		solver = new SetCoverSolver(FilePaths.TIME_TABLES + "738_48.txt");
+		legCoverageTest();
 	}
 
 	private void legCoverageTest() {
-		solution = solver.getSolution(base);
+		solution = solver.getSolution(bases);
 		assertTrue(solution.isAllLegsCovered(solver.getLegs()));
 	}
 		
@@ -64,7 +66,7 @@ public class SolversTest {
 	}
 
 	private void costTest() {
-		solution = solver.getSolution(base);
+		solution = solver.getSolution(bases);
 		assertTrue(solution.isCostRight());
 	}
 }
