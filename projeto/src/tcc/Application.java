@@ -57,10 +57,10 @@ public class Application {
 	}
 	
 	public void doSetCover() {
-		Rules.MAX_DUTIES = 4;
+		Rules.MAX_DUTIES = 3;
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new ExcessCalculator();
-		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "733_92.txt", calc);
+		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "73G_340.txt", calc);
 		System.out.println(solver.getSolution(sao));
 	}
 	
@@ -68,7 +68,7 @@ public class Application {
 		Rules.MAX_DUTIES = 4;
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new ExcessCalculator();
-		Solver solver = new LocalSearchSolver(TIME_TABLES_PATH + "733_92.txt", calc);
+		Solver solver = new LocalSearchSolver(TIME_TABLES_PATH + "73G_340.txt", calc);
 		System.out.println(solver.getSolution(sao));	
 	}
 

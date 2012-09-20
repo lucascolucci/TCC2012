@@ -15,8 +15,8 @@ import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 
 public class LocalSearchSolver implements Solver {
-	private static final int MAX_ITERATIONS = 10000;
-	private static final int SAMPLE_SIZE = 6;
+	private static final int MAX_ITERATIONS = 1000;
+	private static final int SAMPLE_SIZE = 2;
 	private static final int SAMPLE_MAX_DUTIES = 4;
 	
 	private CostCalculator calculator;
