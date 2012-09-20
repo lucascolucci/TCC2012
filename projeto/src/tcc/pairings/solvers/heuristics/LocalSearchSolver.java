@@ -15,8 +15,8 @@ import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 
 public class LocalSearchSolver implements Solver {
-	private static final int MAX_ITERATIONS = 1000;
-	private static final int SAMPLE_SIZE = 2;
+	private static final int MAX_ITERATIONS = 5000;
+	private static final int SAMPLE_SIZE = 3;
 	private static final int SAMPLE_MAX_DUTIES = 4;
 	
 	private CostCalculator calculator;
@@ -115,6 +115,7 @@ public class LocalSearchSolver implements Solver {
 		List<Leg> oldLegs = getOldLegsToBeCovered();
 		coverSolver = new SetCoverSolver(oldLegs, calculator);
 		Solution newSolution = coverSolver.getSolution(bases);
+		coverSolver.endOptimizerModel();
 		if (newSolution != null) {
 			// Para fins de testes
 			if (!newSolution.isAllLegsCovered(oldLegs))

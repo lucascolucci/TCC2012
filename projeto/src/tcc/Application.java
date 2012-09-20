@@ -59,9 +59,17 @@ public class Application {
 	public void doSetCover() {
 		Rules.MAX_DUTIES = 3;
 		Base sao = new Base("GRU", "CGH");
+		Base rio = new Base("SDU", "GIG");
+		Base poa = new Base("POA");
+		Base cnf = new Base("CNF");
+		Base ssa = new Base("SSA");
+		Base bsb = new Base("BSB");
+		Base cwb = new Base("CWB");
+		Base mao = new Base("MAO");
+		Base rec = new Base("REC");
 		CostCalculator calc = new ExcessCalculator();
 		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "73G_340.txt", calc);
-		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getSolution(sao, rio, poa, cnf, ssa, bsb, cwb, mao, rec));
 	}
 	
 	public void doLocalSearch() {

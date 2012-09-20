@@ -12,7 +12,7 @@ import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.io.TimeTableReader;
 import tcc.pairings.io.outputers.MemoryOutputer;
 import tcc.pairings.io.outputers.Outputer;
-import tcc.pairings.optimizers.Optimizer;
+import tcc.pairings.optimizers.CplexOptimizer;
 
 public abstract class BasicSolver implements Solver {
 	protected String timeTable;
@@ -21,7 +21,7 @@ public abstract class BasicSolver implements Solver {
 	protected FlightNetwork net;
 	protected MemoryOutputer memory;
 	protected Outputer[] outputers;
-	protected Optimizer optimizer;
+	protected CplexOptimizer optimizer;
 	private int numberOfPairings;
 	
 	public String getTimeTable() {
@@ -124,5 +124,9 @@ public abstract class BasicSolver implements Solver {
 		for (int i: vars)
 			list.add(pairings.get(i - 1));
 		return list;
+	}
+	
+	public void endOptimizerModel() {
+		optimizer.endModel();
 	}
 }
