@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tcc.pairings.Base;
+import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
@@ -17,12 +18,12 @@ import tcc.pairings.optimizers.CplexOptimizer;
 public abstract class BasicSolver implements Solver {
 	protected String timeTable;
 	protected CostCalculator calculator;
-	private List<Leg> legs;
+	protected List<Leg> legs;
 	protected FlightNetwork net;
 	protected MemoryOutputer memory;
 	protected Outputer[] outputers;
 	protected CplexOptimizer optimizer;
-	private int numberOfPairings;
+	protected int numberOfPairings;
 	
 	public String getTimeTable() {
 		return timeTable;
@@ -69,6 +70,7 @@ public abstract class BasicSolver implements Solver {
 		this.legs = null;
 	}
 	
+	@Override
 	public Solution getSolution(Base... bases) {
 		try {
 			return tryToGetSolution(bases);
@@ -78,7 +80,7 @@ public abstract class BasicSolver implements Solver {
 		}
 	}
 	
-	private Solution tryToGetSolution(Base... bases) {
+	protected Solution tryToGetSolution(Base... bases) {
 		setLegs();
 		buildFlightNetwork();
 		setOutputers();
@@ -87,14 +89,14 @@ public abstract class BasicSolver implements Solver {
 		return getOptimalSolution();
 	}
 
-	private void setLegs() {
+	protected void setLegs() {
 		if (legs == null) {
 			TimeTableReader reader = new TimeTableReader(timeTable);
 			legs = reader.getLegs();
 		}
 	}
 
-	private void buildFlightNetwork() {
+	protected void buildFlightNetwork() {
 		net = new FlightNetwork(legs);
 		net.build();
 	}
@@ -128,5 +130,24 @@ public abstract class BasicSolver implements Solver {
 	
 	public void endOptimizerModel() {
 		optimizer.endModel();
+	}
+	
+	protected void setCostsWithDeadHeads(List<Pairing> pairings) {
+		for (Pairing pairing: pairings) {
+			double cost1 = getDeadHeadsCost(pairing.getLegs());
+			double cost2 = pairing.getCost();
+			pairing.setCostWithDeadHeads(cost1 + cost2);
+		}
+	}
+	
+	private double getDeadHeadsCost(List<DutyLeg> legs) {
+		double cost = 0.0;
+		for (DutyLeg leg: legs)
+			if (leg.isDeadHead())
+				if (calculator != null)
+					cost += calculator.getDeadHeadingCost(leg);
+				else
+					cost += 1.0;
+		return cost;
 	}
 }

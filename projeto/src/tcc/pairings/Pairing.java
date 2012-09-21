@@ -13,6 +13,7 @@ import tcc.util.DateUtil;
 public class Pairing {
 	private int number;
 	private double cost;
+	private double costWithDeadHeads;
 	private List<Duty> duties;
 	
 	public int getNumber() {
@@ -26,6 +27,15 @@ public class Pairing {
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
+	
+	public double getCostWithDeadHeads() {
+		return costWithDeadHeads;
+	}
+
+	public void setCostWithDeadHeads(double costWithDeadHeads) {
+		this.costWithDeadHeads = costWithDeadHeads;
+	}
+
 	
 	public List<Duty> getDuties() {
 		return duties;
@@ -137,15 +147,6 @@ public class Pairing {
 			}
 	}
 
-	@Override
-	public String toString() {
-		DecimalFormat df = new DecimalFormat("#.###");
-		StringBuilder sb = new StringBuilder("Pairing ");
-		sb.append(number).append(" - Cost ").append(df.format(getCost())).append('\n');
-		appendDuties(sb);
-		return sb.toString();
-	}
-
 	private void appendDuties(StringBuilder sb) {
 		int dutyNumber = 0;
 		for(Duty duty: duties) {
@@ -154,12 +155,21 @@ public class Pairing {
 		}
 	}
 	
-	public double getCostWithDeadHeads() {
-		List<DutyLeg> legs = getLegs();
-		double total = cost;
-		for (DutyLeg leg: legs)
-			if (leg.isDeadHead())
-				total += Rules.getDeadHeadCost(leg);
-		return total;
+	//public double getCostWithDeadHeads() {
+	//	List<DutyLeg> legs = getLegs();
+	//	double total = cost;
+	//	for (DutyLeg leg: legs)
+	//		if (leg.isDeadHead())
+	//			total += Rules.getDeadHeadCost(leg);
+	//	return total;
+	//}
+		
+	@Override
+	public String toString() {
+		DecimalFormat df = new DecimalFormat("#.###");
+		StringBuilder sb = new StringBuilder("Pairing ");
+		sb.append(number).append(" - Cost ").append(df.format(getCost())).append('\n');
+		appendDuties(sb);
+		return sb.toString();
 	}
 }

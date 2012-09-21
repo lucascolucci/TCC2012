@@ -49,8 +49,10 @@ public class InitialGenerator extends PairingsGenerator {
 		Pairing pairing = new Pairing(numberOfPairings, path);
 		pairing.setAllDutiesAsDH();
 		List<Leg> duplicatedLegs = getDuplicatedLegs(pairing);
-		if (!duplicatedLegs.isEmpty())
-			removeDuplicatedLegsAndAddPairing(pairing, duplicatedLegs);
+		if (!duplicatedLegs.isEmpty()) {
+			legs.removeAll(duplicatedLegs);
+			setCostAndAddPairing(pairing);
+		}
 	}
 	
 	private List<Leg> getDuplicatedLegs(Pairing pairing) {
@@ -64,8 +66,7 @@ public class InitialGenerator extends PairingsGenerator {
 		return duplicatedLegs;
 	}
 	
-	private void removeDuplicatedLegsAndAddPairing(Pairing pairing, List<Leg> duplicatedLegs) {
-		legs.removeAll(duplicatedLegs);
+	private void setCostAndAddPairing(Pairing pairing) {
 		if (calculator != null)
 			calculator.setCost(pairing);
 		pairings.add(pairing);

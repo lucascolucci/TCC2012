@@ -9,20 +9,19 @@ import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
+import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 
 public class LocalSearchSolver implements Solver {
-	private static final int MAX_ITERATIONS = 5000;
-	private static final int SAMPLE_SIZE = 3;
-	private static final int SAMPLE_MAX_DUTIES = 4;
+	private static final int MAX_ITERATIONS = 250000;
+	private static final int SAMPLE_SIZE = 6;
 	
 	private CostCalculator calculator;
 	private int maxIterations = MAX_ITERATIONS;
 	private int sampleSize = SAMPLE_SIZE;
-	private int sampleMaxDuties = SAMPLE_MAX_DUTIES;
 	private InitialSolver initialSolver;
 	private SetCoverSolver coverSolver;
 	private Solution currentSolution;
@@ -54,14 +53,6 @@ public class LocalSearchSolver implements Solver {
 		this.sampleSize = sampleSize;
 	}
 	
-	public int getSampleMaxDuties() {
-		return sampleMaxDuties;
-	}
-
-	public void setSampleMaxDuties(int sampleMaxDuties) {
-		this.sampleMaxDuties = sampleMaxDuties;
-	}
-
 	@Override
 	public List<Leg> getLegs() {
 		return initialSolver.getLegs();
@@ -85,8 +76,13 @@ public class LocalSearchSolver implements Solver {
 	@Override
 	public Solution getSolution(Base... bases) {
 		currentSolution = initialSolver.getSolution(bases);
-		if (currentSolution != null)
+		Rules.MAX_DUTIES = 4;
+		if (currentSolution != null) {
 			improveCurrentSolution(bases);
+			System.out.println("*** CHECK ***");
+			System.out.println(currentSolution.isAllLegsCovered(initialSolver.getLegs()));
+			System.out.println(currentSolution.isCostRight());
+		}
 		return currentSolution;
 	}
 
@@ -118,11 +114,11 @@ public class LocalSearchSolver implements Solver {
 		coverSolver.endOptimizerModel();
 		if (newSolution != null) {
 			// Para fins de testes
-			if (!newSolution.isAllLegsCovered(oldLegs))
-				throw new RuntimeException("Pernas n‹o cobertas.");	
+			//if (!newSolution.isAllLegsCovered(oldLegs))
+			//	throw new RuntimeException("Pernas n‹o cobertas.");	
 			// Para finst de testes
-			if (!newSolution.isCostRight())
-				throw new RuntimeException("Custo incorreto.");
+			//if (!newSolution.isCostRight())
+			//	throw new RuntimeException("Custo incorreto.");
 			newPairings = newSolution.getPairings();
 		}
 		else

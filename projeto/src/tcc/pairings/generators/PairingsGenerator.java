@@ -181,6 +181,7 @@ public class PairingsGenerator {
 		Pairing pairing = new Pairing(numberOfPairings, path);
 		if (calculator != null)
 			calculator.setCost(pairing);
+		pairing.setCostWithDeadHeads(pairing.getCost());
 		return pairing;
 	}
 }

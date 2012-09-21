@@ -57,26 +57,18 @@ public class Application {
 	}
 	
 	public void doSetCover() {
-		Rules.MAX_DUTIES = 3;
+		Rules.MAX_DUTIES = 4;
 		Base sao = new Base("GRU", "CGH");
-		Base rio = new Base("SDU", "GIG");
-		Base poa = new Base("POA");
-		Base cnf = new Base("CNF");
-		Base ssa = new Base("SSA");
-		Base bsb = new Base("BSB");
-		Base cwb = new Base("CWB");
-		Base mao = new Base("MAO");
-		Base rec = new Base("REC");
-		CostCalculator calc = new ExcessCalculator();
-		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "73G_340.txt", calc);
-		System.out.println(solver.getSolution(sao, rio, poa, cnf, ssa, bsb, cwb, mao, rec));
+		//CostCalculator calc = new ExcessCalculator();
+		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "733_92.txt", null);
+		System.out.println(solver.getSolution(sao));
 	}
 	
 	public void doLocalSearch() {
-		Rules.MAX_DUTIES = 4;
+		Rules.MAX_DUTIES = 3;
 		Base sao = new Base("GRU", "CGH");
-		CostCalculator calc = new ExcessCalculator();
-		Solver solver = new LocalSearchSolver(TIME_TABLES_PATH + "73G_340.txt", calc);
+		//CostCalculator calc = new ExcessCalculator();
+		Solver solver = new LocalSearchSolver(TIME_TABLES_PATH + "738_521.txt", null);
 		System.out.println(solver.getSolution(sao));	
 	}
 

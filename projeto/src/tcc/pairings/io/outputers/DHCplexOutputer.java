@@ -6,11 +6,14 @@ import ilog.concert.IloException;
 import java.util.List;
 
 import tcc.pairings.Leg;
-import tcc.pairings.rules.Rules;
+import tcc.pairings.costs.CostCalculator;
 
 public class DHCplexOutputer extends CplexOutputer {
-	public DHCplexOutputer(List<Leg> legs) {
+	private CostCalculator calculator;
+	
+	public DHCplexOutputer(List<Leg> legs, CostCalculator calculator) {
 		super(legs);
+		this.calculator = calculator;
 	}
 	
 	public void addDHVariables() {
@@ -22,10 +25,16 @@ public class DHCplexOutputer extends CplexOutputer {
 	}
 
 	private void tryToAddDHVariables() throws IloException {
-		for (int i = 0; i < legs.size(); i++) {
-			IloColumn col = model.column(obj, Rules.getDeadHeadCost(legs.get(i)));
+		for (int i = 0; i < legs.size(); i++) { 
+			IloColumn col = getColWithObjSet(i);
 			col = col.and(model.column(range[i], -1));
 			matrix.addColumn(model.intVar(col, 0, Integer.MAX_VALUE, "Y" + (i + 1)));
 		}
+	}
+
+	private IloColumn getColWithObjSet(int index) throws IloException {
+		if (calculator != null)
+			return model.column(obj, calculator.getDeadHeadingCost(legs.get(index)));
+		return model.column(obj, 1.0);
 	}
 }

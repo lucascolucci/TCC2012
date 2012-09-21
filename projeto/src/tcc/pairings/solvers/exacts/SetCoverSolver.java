@@ -32,7 +32,7 @@ public class SetCoverSolver extends BasicSolver {
 	
 	protected void setOutputers() {
 		memory = new MemoryOutputer(); 
-		cplex = new DHCplexOutputer(getLegs());
+		cplex = new DHCplexOutputer(getLegs(), calculator);
 		cplex.addRows();
 		outputers = new Outputer[] { memory, cplex }; 
 	}
@@ -58,5 +58,6 @@ public class SetCoverSolver extends BasicSolver {
 			if (numberOfDeadHeads > 0)
 				solution.setDeadHeads(getLegs().get(i), numberOfDeadHeads);
 		}
+		setCostsWithDeadHeads(solution.getPairings());
 	}
 }
