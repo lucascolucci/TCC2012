@@ -5,8 +5,6 @@ import java.util.List;
 
 import tcc.pairings.Base;
 import tcc.pairings.Leg;
-import tcc.pairings.costs.CostCalculator;
-import tcc.pairings.costs.ExcessCalculator;
 import tcc.pairings.costs.ExcessToFlightCalculator;
 import tcc.pairings.generators.PairingsGenerator;
 import tcc.pairings.graph.networks.FlightNetwork;
@@ -21,6 +19,7 @@ import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
 import tcc.pairings.solvers.heuristics.LocalSearchSolver;
+import tcc.pairings.solvers.heuristics.genetic.GeneticSolver;
 import tcc.util.ResultsWriter;
 
 public class Application {
@@ -35,6 +34,7 @@ public class Application {
 		//app.doSetPartition();
 		//app.doSetCover();
 		app.doLocalSearch();
+		//app.doGeneticSolver();
 		//app.doNumberOfPairings();
 		//app.doGenerationTime();
 		//app.doGlpkSolutionTime();
@@ -42,33 +42,33 @@ public class Application {
 	}
 	
 	public void doInitialSolution() {
-		Rules.MAX_DUTIES = 4;
 		Base sao = new Base("CGH", "GRU");
-		Solver solver = new InitialSolver(TIME_TABLES_PATH + "73G_340.txt");
+		Solver solver = new InitialSolver(TIME_TABLES_PATH + "73H_26.txt");
 		System.out.println(solver.getSolution(sao));
 	}
 	
 	public void doSetPartition() {
-		Rules.MAX_DUTIES = 4;
 		Base sao = new Base("GRU", "CGH");
-		CostCalculator calc = new ExcessCalculator();
-		Solver solver = new SetPartitionSolver(TIME_TABLES_PATH + "733_92.txt", calc);
+		Solver solver = new SetPartitionSolver(TIME_TABLES_PATH + "73H_26.txt");
 		System.out.println(solver.getSolution(sao));
 	}
 	
 	public void doSetCover() {
-		Rules.MAX_DUTIES = 4;
 		Base sao = new Base("GRU", "CGH");
-		//CostCalculator calc = new ExcessCalculator();
-		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "733_92.txt", null);
+		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "73H_26.txt");
 		System.out.println(solver.getSolution(sao));
 	}
 	
 	public void doLocalSearch() {
-		Rules.MAX_DUTIES = 3;
 		Base sao = new Base("GRU", "CGH");
-		//CostCalculator calc = new ExcessCalculator();
-		Solver solver = new LocalSearchSolver(TIME_TABLES_PATH + "738_521.txt", null);
+		Solver solver = new LocalSearchSolver(TIME_TABLES_PATH + "73H_26.txt");
+		System.out.println(solver.getSolution(sao));	
+	}
+	
+	public void doGeneticSolver() {
+		Rules.MAX_DUTIES = 1;
+		Base sao = new Base("GRU", "CGH");
+		Solver solver = new GeneticSolver(TIME_TABLES_PATH + "73H_26.txt");
 		System.out.println(solver.getSolution(sao));	
 	}
 

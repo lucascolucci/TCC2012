@@ -103,7 +103,7 @@ public abstract class BasicSolver implements Solver {
 
 	protected abstract void setOutputers();
 
-	private void generatePairings(Base... bases) {
+	protected void generatePairings(Base... bases) {
 		PairingsGenerator generator = new PairingsGenerator(net, outputers, calculator);
 		generator.generate(bases);
 		numberOfPairings = generator.getNumberOfPairings();
