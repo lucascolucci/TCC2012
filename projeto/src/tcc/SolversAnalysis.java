@@ -1,6 +1,7 @@
 package tcc;
 
 import tcc.pairings.Base;
+import tcc.pairings.costs.*;
 import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solver;
@@ -35,8 +36,9 @@ public class SolversAnalysis {
 	
 	public void doSetCover() {
 		Base sao = new Base("GRU", "CGH");
-		Base rio = new Base("GIG", "SDU");
-		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt");
+		Base rio = new Base("SDU", "GIG");
+		CostCalculator calc = new MeanFlightPerDutyCalculator();
+		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt", calc);
 		System.out.println(solver.getSolution(sao, rio));
 	}
 	

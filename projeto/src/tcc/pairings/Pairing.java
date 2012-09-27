@@ -126,6 +126,12 @@ public class Pairing {
 		return dutyTime;
 	}
 	
+	public int getDuration() {
+		Leg first = getFirstLeg();
+		Leg last = getLastLeg();
+		return DateUtil.difference(first.getDeparture(), last.getArrival());
+	}
+	
 	public void setAllDutiesAsDH() {
 		for (Duty duty: duties)
 			duty.setAllLegsAsDH();
