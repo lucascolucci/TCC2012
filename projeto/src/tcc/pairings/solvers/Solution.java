@@ -106,6 +106,20 @@ public class Solution {
 		return (Math.abs(plainCost - this.getPairingsCost()) <=  0.001) 
 				&& (Math.abs(costWithDeadHeads - cost) <= 0.001);
 	}
+	
+	public double getMeanLegsPerDuty() {
+		double total = 0.0;
+		for (Pairing pairing: pairings)
+			total += (double) pairing.getNumberOfLegs() / pairing.getNumberOfDuties();
+		return (total / pairings.size());
+	}
+	
+	public double getMeanFlightTimePerDuty() {
+		double total = 0.0;
+		for (Pairing pairing: pairings)
+			total += (double) pairing.getFlightTime() / pairing.getNumberOfDuties();
+		return ((total / 60.0) / pairings.size());
+	}
 
 	@Override
 	public String toString() {
@@ -115,7 +129,9 @@ public class Solution {
 			sb.append(pairing);
 		sb.append("Nœmero de pairings = ").append(getSize()).append('\n');
 		sb.append("Custo dos pairings = ").append(df.format(getPairingsCost())).append('\n');
-		sb.append("Custo da solu‹o = ").append(df.format(cost));
+		sb.append("Custo da solu‹o = ").append(df.format(cost)).append('\n');
+		sb.append("Nœmero mŽdio de pernas por jornada = ").append(df.format(getMeanLegsPerDuty())).append('\n');
+		sb.append("Tempo de voo mŽdio por jornada = ").append(df.format(getMeanFlightTimePerDuty()));
 		return sb.toString();
 	}
 }

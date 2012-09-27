@@ -131,6 +131,10 @@ public class Pairing {
 			duty.setAllLegsAsDH();
 	}
 	
+	public int getNumberOfLegs() {
+		return getLegs().size();
+	}
+	
 	public List<DutyLeg> getLegs() {
 		List<DutyLeg> legs = new ArrayList<DutyLeg>();
 		for (Duty duty: duties)

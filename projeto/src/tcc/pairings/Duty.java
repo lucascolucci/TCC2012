@@ -21,7 +21,8 @@ public class Duty {
 	public int getFlightTime() {
 		int total = 0;
 		for (DutyLeg leg: legs)
-			total += leg.getFlightTime();
+			if (!leg.isDeadHead())
+				total += leg.getFlightTime();
 		return total;
 	}
 	
