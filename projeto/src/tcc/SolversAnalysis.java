@@ -17,8 +17,8 @@ public class SolversAnalysis {
 		SolversAnalysis sa = new SolversAnalysis();
 		//sa.doInitialSolution();
 		//sa.doSetPartition();
-		sa.doSetCover();
-		//sa.doLocalSearch();
+		//sa.doSetCover();
+		sa.doLocalSearch();
 		//sa.doGeneticSolver();
 	}
 	

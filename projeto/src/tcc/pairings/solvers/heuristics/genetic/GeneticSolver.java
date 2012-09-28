@@ -14,11 +14,27 @@ import tcc.pairings.solvers.BasicSolver;
 import tcc.pairings.solvers.Solution;
 
 public class GeneticSolver extends BasicSolver {
-	private static final int INITIAL_POPULATION_SIZE = 100; 
-	private static final int MAX_GENERATIONS = 1000;
-
+	private int populationSize = 10;
+	private int maxGenerations = 1000;
 	private HashMap<Leg, List<Pairing>> hash;
 	private Population population;
+	
+	public int getPopulationSize() {
+		return populationSize;
+	}
+
+	public void setPopulationSize(int populationSize) {
+		this.populationSize = populationSize;
+	}
+
+	public int getMaxGenerations() {
+		return maxGenerations;
+	}
+
+	public void setMaxGenerations(int maxGenerations) {
+		this.maxGenerations = maxGenerations;
+	}
+
 	
 	public GeneticSolver(String timeTable) {
 		this(timeTable, null);
@@ -69,16 +85,16 @@ public class GeneticSolver extends BasicSolver {
 	}
 	
 	private void fillPopulation() {
-		for (int i = 0; i < INITIAL_POPULATION_SIZE; i++) {
+		for (int i = 0; i < populationSize; i++) {
 			Individue individue = new Individue(legs, memory.getPairings());
-			individue.born();
+			individue.generateChromosome();
 			individue.turnFeasible(hash);
 			population.add(individue);
 		}
 	}
 	
 	private void doGenerations() {
-		for (int i = 0; i < MAX_GENERATIONS; i++) {
+		for (int i = 0; i < maxGenerations; i++) {
 			
 		}
 	}

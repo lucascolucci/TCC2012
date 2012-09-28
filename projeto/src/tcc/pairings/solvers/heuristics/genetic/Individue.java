@@ -24,7 +24,7 @@ public class Individue {
 		chromosome = new boolean[size];
 	}
 	
-	public void born() {
+	public void generateChromosome() {
 		for (int i = 0; i < size; i++)
 			chromosome[i] = random.nextBoolean();
 	}

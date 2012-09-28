@@ -9,32 +9,23 @@ import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
+import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 
 public class LocalSearchSolver implements Solver {
-	private static final int MAX_ITERATIONS = 1000;
-	private static final int SAMPLE_SIZE = 2;
-	
+	private int maxIterations = 1000;
+	private int sampleSize = 3;
+	private int initialSolverMaxDuties = 3;
 	private CostCalculator calculator;
-	private int maxIterations = MAX_ITERATIONS;
-	private int sampleSize = SAMPLE_SIZE;
 	private InitialSolver initialSolver;
 	private SetCoverSolver coverSolver;
-	private Solution currentSolution;
+	private Solution solution;
 	private Random random;
 	private List<Pairing> oldPairings;
 	private List<Pairing> newPairings;
-	
-	public CostCalculator getCalculator() {
-		return calculator;
-	}
-
-	public void setCalculator(CostCalculator calculator) {
-		this.calculator = calculator;
-	}
 	
 	public int getMaxIterations() {
 		return maxIterations;
@@ -52,6 +43,22 @@ public class LocalSearchSolver implements Solver {
 		this.sampleSize = sampleSize;
 	}
 	
+	public int getInitialSolverMaxDuties() {
+		return initialSolverMaxDuties;
+	}
+
+	public void setInitialSolverMaxDuties(int initialSolverMaxDuties) {
+		this.initialSolverMaxDuties = initialSolverMaxDuties;
+	}
+	
+	public CostCalculator getCalculator() {
+		return calculator;
+	}
+
+	public void setCalculator(CostCalculator calculator) {
+		this.calculator = calculator;
+	}
+		
 	@Override
 	public List<Leg> getLegs() {
 		return initialSolver.getLegs();
@@ -74,17 +81,24 @@ public class LocalSearchSolver implements Solver {
 
 	@Override
 	public Solution getSolution(Base... bases) {
-		currentSolution = initialSolver.getSolution(bases);
-		if (currentSolution != null)
-			improveCurrentSolution(bases);
-		return currentSolution;
+		setInitialSolution(bases);
+		if (solution != null)
+			improveSolution(bases);
+		return solution;
 	}
 
-	private void improveCurrentSolution(Base... bases) {
+	private void setInitialSolution(Base... bases) {
+		int maxDuties = Rules.MAX_DUTIES;
+		Rules.MAX_DUTIES = initialSolverMaxDuties;
+		solution = initialSolver.getSolution(bases);
+		Rules.MAX_DUTIES = maxDuties;
+	}
+
+	private void improveSolution(Base... bases) {
 		int iteration = 0;
 		while (iteration++ < maxIterations) {
 			doIteration(bases);
-			System.out.println(iteration + "\t" + "\t" + currentSolution.getCost());
+			System.out.println(iteration + "\t" + "\t" + solution.getCost());
 		}
 	}
 
@@ -94,7 +108,7 @@ public class LocalSearchSolver implements Solver {
 			double oldCost = getCost(oldPairings);
 			double newCost = getCost(newPairings);
 			if (newCost < oldCost)
-				updateCurrentSolution(oldCost, newCost);
+				updateSolution(oldCost, newCost);
 		}
 	}
 
@@ -104,15 +118,8 @@ public class LocalSearchSolver implements Solver {
 		coverSolver = new SetCoverSolver(oldLegs, calculator);
 		Solution newSolution = coverSolver.getSolution(bases);
 		coverSolver.endOptimizerModel();
-		if (newSolution != null) {
-			// Para fins de testes
-			//if (!newSolution.isAllLegsCovered(oldLegs))
-			//	throw new RuntimeException("Pernas n‹o cobertas.");	
-			// Para finst de testes
-			//if (!newSolution.isCostRight())
-			//	throw new RuntimeException("Custo incorreto.");
+		if (newSolution != null)
 			newPairings = newSolution.getPairings();
-		}
 		else
 			newPairings = null;
 	}
@@ -121,13 +128,13 @@ public class LocalSearchSolver implements Solver {
 		List<Pairing> list = new ArrayList<Pairing>();
 		int[] randomIndexes = getRandomIndexes();
 		for (int i: randomIndexes)
-			list.add(currentSolution.getPairings().get(i));
+			list.add(solution.getPairings().get(i));
 		return list;
 	}
 	
 	private int[] getRandomIndexes() {
 		List<Integer> allIndexes = new ArrayList<Integer>();
-		int solutionSize = currentSolution.getPairings().size();
+		int solutionSize = solution.getPairings().size();
 		int[] randomIndexes = new int[sampleSize];
 		for (int i = 0; i < solutionSize; i++)
 			allIndexes.add(i);
@@ -173,10 +180,10 @@ public class LocalSearchSolver implements Solver {
 		return cost;
 	}
 	
-	private void updateCurrentSolution(double oldCost, double newCost) {
-		double cost = currentSolution.getCost() - oldCost + newCost;
-		currentSolution.setCost(cost);
-		currentSolution.getPairings().removeAll(oldPairings);
-		currentSolution.getPairings().addAll(newPairings);
+	private void updateSolution(double oldCost, double newCost) {
+		double cost = solution.getCost() - oldCost + newCost;
+		solution.setCost(cost);
+		solution.getPairings().removeAll(oldPairings);
+		solution.getPairings().addAll(newPairings);
 	}
 }
