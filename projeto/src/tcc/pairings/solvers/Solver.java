@@ -9,4 +9,5 @@ public interface Solver {
 	public List<Leg> getLegs();
 	public int getNumberOfPairings();
 	public Solution getSolution(Base... bases);
+	public double getSolutionTime();
 }

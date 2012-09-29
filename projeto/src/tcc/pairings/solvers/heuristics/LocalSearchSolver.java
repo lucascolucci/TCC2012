@@ -11,14 +11,17 @@ import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
+import tcc.pairings.solvers.ResultsBuffer;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 
 public class LocalSearchSolver implements Solver {
-	private int maxIterations = 1000;
-	private int sampleSize = 3;
-	private int initialSolverMaxDuties = 3;
+	private int maxIterations = 100;
+	private int sampleSize = 2;
+	private int initialMaxDuties = 3;
+	private int outputStep = 10;
+	private ResultsBuffer buffer;
 	private CostCalculator calculator;
 	private InitialSolver initialSolver;
 	private SetCoverSolver coverSolver;
@@ -26,6 +29,9 @@ public class LocalSearchSolver implements Solver {
 	private Random random;
 	private List<Pairing> oldPairings;
 	private List<Pairing> newPairings;
+	private int numberOfPairings;
+	private int infeasibleCount;
+	private double solutionTime;
 	
 	public int getMaxIterations() {
 		return maxIterations;
@@ -43,12 +49,28 @@ public class LocalSearchSolver implements Solver {
 		this.sampleSize = sampleSize;
 	}
 	
-	public int getInitialSolverMaxDuties() {
-		return initialSolverMaxDuties;
+	public int getInitialMaxDuties() {
+		return initialMaxDuties;
 	}
 
-	public void setInitialSolverMaxDuties(int initialSolverMaxDuties) {
-		this.initialSolverMaxDuties = initialSolverMaxDuties;
+	public void setInitialMaxDuties(int initialMaxDuties) {
+		this.initialMaxDuties = initialMaxDuties;
+	}
+	
+	public int getOutputStep() {
+		return outputStep;
+	}
+
+	public void setOutputStep(int outputStep) {
+		this.outputStep = outputStep;
+	}
+	
+	public ResultsBuffer getBuffer() {
+		return buffer;
+	}
+
+	public void setBuffer(ResultsBuffer buffer) {
+		this.buffer = buffer;
 	}
 	
 	public CostCalculator getCalculator() {
@@ -66,40 +88,58 @@ public class LocalSearchSolver implements Solver {
 	
 	@Override
 	public int getNumberOfPairings() {
-		return initialSolver.getNumberOfPairings();
+		return numberOfPairings;
 	}
 	
 	public LocalSearchSolver(String timeTable) {
-		this(timeTable, null);
+		this(timeTable, null, null);
 	}
 	
 	public LocalSearchSolver(String timeTable, CostCalculator calculator) {
+		this(timeTable, calculator, null);
+	}
+	
+	public LocalSearchSolver(String timeTable, CostCalculator calculator, ResultsBuffer buffer) {
 		initialSolver = new InitialSolver(timeTable, calculator);
 		this.calculator = calculator;
 		random = new Random(0);
+		this.buffer = buffer;
+		numberOfPairings = 0;
 	}
-
+	
 	@Override
 	public Solution getSolution(Base... bases) {
 		setInitialSolution(bases);
+		long start = System.currentTimeMillis();
 		if (solution != null)
 			improveSolution(bases);
+		long finish = System.currentTimeMillis();
+		solutionTime = (finish - start) / 1000.0; 
 		return solution;
 	}
 
 	private void setInitialSolution(Base... bases) {
 		int maxDuties = Rules.MAX_DUTIES;
-		Rules.MAX_DUTIES = initialSolverMaxDuties;
+		Rules.MAX_DUTIES = initialMaxDuties;
 		solution = initialSolver.getSolution(bases);
+		numberOfPairings += initialSolver.getNumberOfPairings();
 		Rules.MAX_DUTIES = maxDuties;
 	}
-
+	
 	private void improveSolution(Base... bases) {
+		infeasibleCount = 0;
 		int iteration = 0;
+		outputToBuffer(iteration);
 		while (iteration++ < maxIterations) {
 			doIteration(bases);
-			System.out.println(iteration + "\t" + "\t" + solution.getCost());
+			outputToBuffer(iteration);
 		}
+	}
+	
+	private void outputToBuffer(int iteration) {
+		if (buffer != null)
+			if (iteration % outputStep == 0)
+				buffer.output(iteration + "\t" + solution.getCost());
 	}
 
 	private void doIteration(Base... bases) {
@@ -118,9 +158,11 @@ public class LocalSearchSolver implements Solver {
 		coverSolver = new SetCoverSolver(oldLegs, calculator);
 		Solution newSolution = coverSolver.getSolution(bases);
 		coverSolver.endOptimizerModel();
-		if (newSolution != null)
+		if (newSolution != null) {
 			newPairings = newSolution.getPairings();
-		else
+			numberOfPairings += coverSolver.getNumberOfPairings();
+			infeasibleCount++;
+		} else
 			newPairings = null;
 	}
 
@@ -185,5 +227,20 @@ public class LocalSearchSolver implements Solver {
 		solution.setCost(cost);
 		solution.getPairings().removeAll(oldPairings);
 		solution.getPairings().addAll(newPairings);
+	}
+
+	@Override
+	public double getSolutionTime() {
+		return solutionTime;
+	}
+	
+	public double getInitialSolutionTime() {
+		if (initialSolver != null)
+			return initialSolver.getSolutionTime();
+		return 0.0;
+	}
+	
+	public double getInfeasiblesRelation() {
+		return (double) infeasibleCount / maxIterations;
 	}
 }

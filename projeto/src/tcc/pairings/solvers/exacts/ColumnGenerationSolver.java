@@ -25,4 +25,10 @@ public class ColumnGenerationSolver implements Solver {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public double getSolutionTime() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

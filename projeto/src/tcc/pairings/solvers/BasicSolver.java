@@ -24,6 +24,7 @@ public abstract class BasicSolver implements Solver {
 	protected Outputer[] outputers;
 	protected CplexOptimizer optimizer;
 	protected int numberOfPairings;
+	protected double solutionTime;
 	
 	public String getTimeTable() {
 		return timeTable;
@@ -67,13 +68,17 @@ public abstract class BasicSolver implements Solver {
 	public BasicSolver(String timeTable, CostCalculator calculator) {
 		this.timeTable = timeTable;
 		this.calculator = calculator;
-		this.legs = null;
+		legs = null;
 	}
 	
 	@Override
 	public Solution getSolution(Base... bases) {
 		try {
-			return tryToGetSolution(bases);
+			long start = System.currentTimeMillis();
+			Solution solution = tryToGetSolution(bases);
+			long finish = System.currentTimeMillis();
+			solutionTime = (finish - start) / 1000.0;
+			return solution;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -149,5 +154,10 @@ public abstract class BasicSolver implements Solver {
 				else
 					cost += 1.0;
 		return cost;
+	}
+	
+	@Override
+	public double getSolutionTime() {
+		return solutionTime;
 	}
 }

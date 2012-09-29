@@ -17,10 +17,10 @@ import tcc.pairings.rules.Rules;
 import tcc.util.ResultsWriter;
 
 public class PreliminaryAnalysis {
-	private static final String TIME_TABLES_PATH = "./time_tables/";
-	private static final String OUTPUTS_PATH = "./outputs/";
-	private static final int GENERATION_TRIALS = 5;
-	private static final int SOLUTION_TRIALS = 3;
+	public static final String TIME_TABLES_PATH = "./time_tables/";
+	public static final String OUTPUTS_PATH = "./outputs/";
+	public static final int GENERATION_TRIALS = 5;
+	public static final int SOLUTION_TRIALS = 3;
 	
 	public static void main(String[] args) {
 		//PreliminaryAnalysis pa = new PreliminaryAnalysis();
