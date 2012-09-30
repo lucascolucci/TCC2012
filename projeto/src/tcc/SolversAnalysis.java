@@ -2,9 +2,7 @@ package tcc;
 
 import tcc.pairings.Base;
 import tcc.pairings.costs.*;
-import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
-import tcc.pairings.solvers.ResultsBuffer;
 import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
@@ -20,8 +18,8 @@ public class SolversAnalysis {
 		//sa.doInitialSolution();
 		//sa.doSetPartition();
 		//sa.doSetCover();
-		sa.doLocalSearch();
-		//sa.doGeneticSolver();
+		//sa.doLocalSearch();
+		sa.doGeneticSolver();
 	}
 	
 	public void doInitialSolution() {
@@ -38,30 +36,23 @@ public class SolversAnalysis {
 	
 	public void doSetCover() {
 		Base sao = new Base("GRU", "CGH");
-		Base rio = new Base("SDU", "GIG");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
 		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt", calc);
-		System.out.println(solver.getSolution(sao, rio));
+		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getNumberOfPairings());
 	}
 	
 	public void doLocalSearch() {
 		Base sao = new Base("GRU", "CGH");
-		Base rio = new Base("SDU", "GIG");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
-		ResultsBuffer buffer = new ResultsBuffer();
-		LocalSearchSolver solver = new LocalSearchSolver(TIME_TABLES_PATH + "733_92.txt", calc, buffer);
-		solver.setMaxIterations(5000);
-		solver.setSampleSize(4);
-		solver.setOutputStep(100);
-		System.out.println(solver.getSolution(sao, rio));
-		System.out.println(solver.getSolutionTime());
-		System.out.println(buffer);
+		Solver solver = new LocalSearchSolver(TIME_TABLES_PATH + "73H_26.txt", calc);
+		System.out.println(solver.getSolution(sao));
 	}
 	
 	public void doGeneticSolver() {
-		Rules.MAX_DUTIES = 1;
 		Base sao = new Base("GRU", "CGH");
-		Solver solver = new GeneticSolver(TIME_TABLES_PATH + "73H_26.txt");
-		System.out.println(solver.getSolution(sao));	
+		CostCalculator calc = new MeanFlightPerDutyCalculator();
+		GeneticSolver solver = new GeneticSolver(TIME_TABLES_PATH + "738_48.txt", calc);
+		System.out.println(solver.getSolution(sao));
 	}
 }

@@ -30,6 +30,7 @@ public class SetCoverSolver extends BasicSolver {
 		super(timeTable, calculator);
 	}
 	
+	@Override
 	protected void setOutputers() {
 		memory = new MemoryOutputer(); 
 		cplex = new DHCplexOutputer(getLegs(), calculator);
@@ -53,10 +54,10 @@ public class SetCoverSolver extends BasicSolver {
 
 	private void setDeadHeads(Solution solution) {
 		List<Integer> artificials = optimizer.getArtificialValues();
-		for (int i = 0; i < getLegs().size(); i++) {
+		for (int i = 0; i < legs.size(); i++) {
 			int numberOfDeadHeads = artificials.get(i);
 			if (numberOfDeadHeads > 0)
-				solution.setDeadHeads(getLegs().get(i), numberOfDeadHeads);
+				solution.setDeadHeads(legs.get(i), numberOfDeadHeads);
 		}
 		setCostsWithDeadHeads(solution.getPairings());
 	}

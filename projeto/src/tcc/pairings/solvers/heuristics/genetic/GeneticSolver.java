@@ -8,16 +8,21 @@ import tcc.pairings.Base;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
+import tcc.pairings.generators.PairingsGenerator;
 import tcc.pairings.io.outputers.MemoryOutputer;
 import tcc.pairings.io.outputers.Outputer;
 import tcc.pairings.solvers.BasicSolver;
 import tcc.pairings.solvers.Solution;
 
 public class GeneticSolver extends BasicSolver {
+	public static double DEADHEADING_PENALTY = 4.0;
+	public static int MUTATION_SIZE = 3;
+	
 	private int populationSize = 10;
-	private int maxGenerations = 1000;
-	private HashMap<Leg, List<Pairing>> hash;
+	private int maxGenerations = 100;
+	private int maxPairings = 5000;
 	private Population population;
+	private static HashMap<Leg, List<Pairing>> hash;
 	
 	public int getPopulationSize() {
 		return populationSize;
@@ -34,8 +39,23 @@ public class GeneticSolver extends BasicSolver {
 	public void setMaxGenerations(int maxGenerations) {
 		this.maxGenerations = maxGenerations;
 	}
-
 	
+	public int getMaxPairings() {
+		return maxPairings;
+	}
+
+	public void setMaxPairings(int maxPairings) {
+		this.maxPairings = maxPairings;
+	}
+	
+	public Population getPopulation() {
+		return population;
+	}
+	
+	public static HashMap<Leg, List<Pairing>> getHash() {
+		return hash;
+	}
+
 	public GeneticSolver(String timeTable) {
 		this(timeTable, null);
 	}
@@ -52,7 +72,10 @@ public class GeneticSolver extends BasicSolver {
 	
 	@Override
 	protected void generatePairings(Base... bases) {
-		// TODO gerar um nœmero limitado de pairings
+		PairingsGenerator generator = new PairingsGenerator(net, outputers, calculator);
+		generator.setMaxPairings(maxPairings);
+		generator.generate(bases);
+		numberOfPairings = generator.getNumberOfPairings();
 	}
 	
 	@Override
@@ -62,13 +85,17 @@ public class GeneticSolver extends BasicSolver {
 	
 	@Override
 	protected Solution getOptimalSolution() {
-		createHash();
-		createInitialPopulation();
+		buildHash();
+		buildInitialPopulation();
 		doGenerations();
-		return null;
+		Solution solution = getSolutionFromPopulation();
+		// Para fins de testes
+		System.out.println(solution.isAllLegsCovered(legs));
+		System.out.println(solution.isCostRight());
+		return solution;
 	}
 	
-	private void createHash() {
+	private void buildHash() {
 		hash = new HashMap<Leg, List<Pairing>>();
 		for (Leg leg: legs)
 			for (Pairing pairing: memory.getPairings())
@@ -79,7 +106,7 @@ public class GeneticSolver extends BasicSolver {
 				}		
 	}
 	
-	private void createInitialPopulation() {
+	private void buildInitialPopulation() {
 		population = new Population();
 		fillPopulation();
 	}
@@ -88,14 +115,47 @@ public class GeneticSolver extends BasicSolver {
 		for (int i = 0; i < populationSize; i++) {
 			Individue individue = new Individue(legs, memory.getPairings());
 			individue.generateChromosome();
-			individue.turnFeasible(hash);
+			individue.turnFeasible();
+			individue.calculateFitness();
 			population.add(individue);
 		}
 	}
 	
 	private void doGenerations() {
 		for (int i = 0; i < maxGenerations; i++) {
-			
+			System.out.println("Gera‹o " + i);
+			population.sort();
+			Individue[] parents = population.getParents();
+			Individue child = parents[0].doCrossover(parents[1]);
+			child.doMutation(population.getTheFittest());
+			child.turnFeasible();
+			child.calculateFitness();
+			population.replace(child);
 		}
+	}
+	
+	private Solution getSolutionFromPopulation() {
+		List<Pairing> pairings = population.getTheFittest().getSelectedPairings();
+		Solution solution = new Solution(pairings);
+		setDeadHeads(solution);
+		setSolutionCost(solution);
+		return solution;
+	}
+	
+	private void setDeadHeads(Solution solution) {
+		for (Leg leg: legs) {
+			int numberOfDeadHeads = getNumberOfDeadHeads(solution, leg);
+			if (numberOfDeadHeads > 0)
+				solution.setDeadHeads(leg, numberOfDeadHeads);
+		}
+		setCostsWithDeadHeads(solution.getPairings());
+	}
+
+	private int getNumberOfDeadHeads(Solution solution, Leg leg) {
+		int count = 0;
+		for (Pairing pairing: solution.getPairings())
+			if (pairing.contains(leg))
+				count++;
+		return count - 1;
 	}
 }

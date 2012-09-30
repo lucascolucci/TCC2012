@@ -52,6 +52,11 @@ public abstract class BasicSolver implements Solver {
 		return numberOfPairings;
 	}
 	
+	@Override
+	public double getSolutionTime() {
+		return solutionTime;
+	}
+	
 	public BasicSolver(List<Leg> legs) {
 		this(legs, null);
 	}
@@ -156,8 +161,11 @@ public abstract class BasicSolver implements Solver {
 		return cost;
 	}
 	
-	@Override
-	public double getSolutionTime() {
-		return solutionTime;
+	protected void setSolutionCost(Solution solution) {
+		List<Pairing> pairings = solution.getPairings();
+		double cost = 0.0;
+		for (Pairing pairing: pairings)
+			cost += pairing.getCostWithDeadHeads();
+		solution.setCost(cost);
 	}
 }

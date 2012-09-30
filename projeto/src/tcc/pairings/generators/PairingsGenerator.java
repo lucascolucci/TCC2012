@@ -19,6 +19,7 @@ public class PairingsGenerator {
 	private FlightNetwork net;
 	private Outputer[] outputers;
 	protected CostCalculator calculator;
+	private int maxPairings;
 	protected int numberOfPairings;
 	private Base base;
 	protected FlightNetworkPath path;
@@ -31,6 +32,14 @@ public class PairingsGenerator {
 	
 	public void setNumberOfPairings(int numberOfPairings) {
 		this.numberOfPairings = numberOfPairings;
+	}
+	
+	public int getMaxPairings() {
+		return maxPairings;
+	}
+
+	public void setMaxPairings(int maxPairings) {
+		this.maxPairings = maxPairings;
 	}
 	
 	public PairingsGenerator(FlightNetwork net) {
@@ -49,6 +58,7 @@ public class PairingsGenerator {
 		this.net = net;
 		this.outputers = outputers;
 		this.calculator = calculator;
+		maxPairings = 0;
 		numberOfPairings = 0;
 	}
 	
@@ -86,6 +96,8 @@ public class PairingsGenerator {
 	}
 
 	protected void findPairings(Node<Leg> node) {
+		if (maxPairings > 0 && numberOfPairings >= maxPairings)
+			return;
 		for (Edge<Leg> edge: node.getEdges())
 			exploreTrough(edge);		
 	}

@@ -14,14 +14,13 @@ public class ResultsBuffer {
 	
 	public void output(String line) {
 		sb.append(line).append('\n');
-		System.out.println(line);
 	}
 	
 	public void writeToFile(String file) {
 		try {
 			tryToWriteToFile(file);
 		} catch (IOException e) {
-			System.out.println("Error: " + e.getMessage());
+			System.err.println("Error: " + e.getMessage());
 			writer = null;
 		}
 	}

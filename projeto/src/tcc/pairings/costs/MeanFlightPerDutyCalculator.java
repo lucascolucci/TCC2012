@@ -15,6 +15,6 @@ public class MeanFlightPerDutyCalculator implements CostCalculator {
 
 	@Override
 	public double getDeadHeadingCost(Leg leg) {
-		return Rules.DH_PENALTY_FACTOR;
+		return Rules.DH_PENALTY_FACTOR / leg.getFlightTime();
 	}
 }

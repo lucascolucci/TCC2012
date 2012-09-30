@@ -1,9 +1,6 @@
 package tcc.pairings.solvers;
 
-import java.util.List;
-
 import tcc.pairings.Base;
-import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.generators.InitialGenerator;
 
@@ -22,6 +19,16 @@ public class InitialSolver extends BasicSolver {
 		buildFlightNetwork();
 		return getInitialSolution(bases);
 	}
+	
+	@Override
+	protected void setOutputers() {
+		outputers = null;
+	}
+
+	@Override
+	protected void setOptimizer() {
+		optimizer = null;
+	}
 
 	private Solution getInitialSolution(Base... bases) {		
 		InitialGenerator generator = new InitialGenerator(net, calculator);
@@ -33,23 +40,5 @@ public class InitialSolver extends BasicSolver {
 		setCostsWithDeadHeads(solution.getPairings());
 		setSolutionCost(solution);
 		return solution;
-	}
-	
-	private void setSolutionCost(Solution solution) {
-		List<Pairing> pairings = solution.getPairings();
-		double cost = 0.0;
-		for (Pairing pairing: pairings)
-			cost += pairing.getCostWithDeadHeads();
-		solution.setCost(cost);
-	}
-
-	@Override
-	protected void setOutputers() {
-		outputers = null;
-	}
-
-	@Override
-	protected void setOptimizer() {
-		optimizer = null;
 	}
 }
