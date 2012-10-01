@@ -87,16 +87,12 @@ public class Individue {
 	// TODO - Gargalo
 	private int getNumberOfDeadheadedFlights() {
 		int total = 0;
-		List<Leg> legs = getLegs();
-		for (Leg toCoverLeg: toCoverLegs) { 
-			List<Leg> duplicatedLegs = new ArrayList<Leg>();
-			for (Leg leg: legs)
-				if (toCoverLeg.isDuplicate(leg))
-					duplicatedLegs.add(leg);
-			total += duplicatedLegs.size() - 1;
-			legs.removeAll(duplicatedLegs); // Pode dar problema.
-		}
-		return total;
+		List<Pairing> selected = getSelectedPairings();
+		for (Leg leg: toCoverLegs)
+			for (Pairing pairing: selected)
+				if (pairing.contains(leg))
+					total++;
+		return total - toCoverLegs.size();
 	}
 	
 	private List<Leg> getLegs() {

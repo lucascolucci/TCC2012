@@ -20,7 +20,7 @@ public class GeneticSolver extends BasicSolver {
 	
 	private int populationSize = 10;
 	private int maxGenerations = 100;
-	private int maxPairings = 5000;
+	private int maxPairings = 100000;
 	private Population population;
 	private static HashMap<Leg, List<Pairing>> hash;
 	
@@ -123,8 +123,8 @@ public class GeneticSolver extends BasicSolver {
 	
 	private void doGenerations() {
 		for (int i = 0; i < maxGenerations; i++) {
-			System.out.println("Gera‹o " + i);
 			population.sort();
+			System.out.println("Gera‹o " + i + ", Best Fitness = " + population.getTheFittest().getFitness());
 			Individue[] parents = population.getParents();
 			Individue child = parents[0].doCrossover(parents[1]);
 			child.doMutation(population.getTheFittest());
