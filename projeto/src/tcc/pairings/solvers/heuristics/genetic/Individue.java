@@ -12,15 +12,15 @@ public class Individue {
 	private int size;
 	private List<Leg> toCoverLegs;
 	private List<Pairing> pairings;
-	private boolean[] chromosome;
+	private List<Pairing> chromosome;
 	private double fitness;
 	private static Random random = new Random(0);
 	
-	public boolean[] getChromosome() {
+	public List<Pairing> getChromosome() {
 		return chromosome;
 	}
 
-	public void setChromosome(boolean[] chromosome) {
+	public void setChromosome(List<Pairing> chromosome) {
 		this.chromosome = chromosome;
 	}
 	
@@ -32,26 +32,27 @@ public class Individue {
 		this.toCoverLegs = toCoverLegs;
 		this.pairings = pairings;
 		size = pairings.size();
-		chromosome = new boolean[size];
+		chromosome = new ArrayList<Pairing>();
 		fitness = -1.0;
 	}
 	
+	// TODO Aplicar heur’stica melhor
 	public void generateChromosome() {
 		for (int i = 0; i < size; i++)
-			chromosome[i] = random.nextBoolean();
+			if (random.nextBoolean())
+				chromosome.add(pairings.get(i));
 	}
 	
 	public void turnFeasible() {
 		List<Leg> uncoveredLegs = getUncoveredLegs();
 		for (Leg uncoveredLeg: uncoveredLegs) {
-			Pairing chosen = selectPairing(GeneticSolver.getHash().get(uncoveredLeg));
-			int index = pairings.indexOf(chosen);
-			chromosome[index] = true;
+			Pairing chosen = selectPairingToCoverLeg(GeneticSolver.getHash().get(uncoveredLeg));
+			chromosome.add(chosen);
 		}
 	}
 	
 	// TODO Aplicar heur’stica melhor
-	private Pairing selectPairing(List<Pairing> pairings) {
+	private Pairing selectPairingToCoverLeg(List<Pairing> pairings) {
 		int size = pairings.size();
 		return pairings.get(random.nextInt(size));
 	}
@@ -62,45 +63,32 @@ public class Individue {
 	
 	public List<Leg> getUncoveredLegs() {
 		List<Leg> uncoveredLegs = new ArrayList<Leg>();
-		List<Leg> legs = getLegs();
-		for (Leg toCoverLeg: toCoverLegs) {
+		for (Leg leg: toCoverLegs) {
 			boolean isCovered = false;
-			for (Leg leg: legs)
-				if (toCoverLeg.isDuplicate(leg)) {
+			for (Pairing pairing: chromosome)
+				if (pairing.contains(leg)) {
 					isCovered = true;
 					break;
 				}
 			if (!isCovered)
-				uncoveredLegs.add(toCoverLeg);
+				uncoveredLegs.add(leg);
 		}
 		return uncoveredLegs;
 	}
 	
 	public void calculateFitness() {
-		fitness = 0.0;
-		for (int i = 0; i < size; i++)
-			if (chromosome[i])
-				fitness += pairings.get(i).getCost(); 
+		for (Pairing pairing: chromosome)
+			fitness += pairing.getCost(); 
 		fitness += GeneticSolver.DEADHEADING_PENALTY * getNumberOfDeadheadedFlights(); 
 	}
 	
-	// TODO - Gargalo
 	private int getNumberOfDeadheadedFlights() {
 		int total = 0;
-		List<Pairing> selected = getSelectedPairings();
 		for (Leg leg: toCoverLegs)
-			for (Pairing pairing: selected)
+			for (Pairing pairing: chromosome)
 				if (pairing.contains(leg))
 					total++;
 		return total - toCoverLegs.size();
-	}
-	
-	private List<Leg> getLegs() {
-		List<Leg> legs = new ArrayList<Leg>();
-		for (int i = 0; i < size; i++)
-			if (chromosome[i])
-				legs.addAll(pairings.get(i).getLegs());
-		return legs;
 	}
 	
 	public Individue doCrossover(Individue other) {
@@ -109,43 +97,35 @@ public class Individue {
 		return individue;
 	}
 
-	private boolean[] getCrossoverChromosome(Individue other) {
-		boolean[] crossover = new boolean[size]; 
-		for (int i = 0; i < size; i++)
-			if (chromosome[i] == other.getChromosome()[i])
-				crossover[i] = chromosome[i];
+	private List<Pairing> getCrossoverChromosome(Individue other) {
+		List<Pairing> crossover = new ArrayList<Pairing>(); 
+		for (Pairing pairing: chromosome)
+			if (other.getChromosome().contains(pairing))
+				crossover.add(pairing);
 			else
-				crossover[i] = random.nextBoolean();
+				if (random.nextBoolean())
+					crossover.add(pairing);
 		return crossover;
 	}
 	
 	public void doMutation(Individue theFittest) {
 		double prob = theFittest.getOnesDensity();
-		for (int i = 0; i < GeneticSolver.MUTATION_SIZE; i++) {
-			int index = random.nextInt(size);
-			double r = random.nextDouble();
-			if (r < prob) 
-				chromosome[index] = true;
-			else
-				chromosome[index] = false;		
-		}
+		for (int i = 0; i < GeneticSolver.MUTATION_SIZE; i++)
+			mutatePairing(pairings.get(random.nextInt(size)), prob);
+	}
+
+	private void mutatePairing(Pairing pairing, double prob) {
+		double r = random.nextDouble();
+		if (r < prob) 
+			if (!chromosome.contains(pairing))
+				chromosome.add(pairing);
+		else
+			if (chromosome.contains(pairing))
+				chromosome.remove(pairing);
 	}
 	
 	public double getOnesDensity() {
-		int count = 0;
-		for (boolean gene: chromosome) {
-			if (gene)
-				count++;
-		}
-		return (double) count / size;
-	}
-	
-	public List<Pairing> getSelectedPairings() {
-		List<Pairing> selected = new ArrayList<Pairing>();
-		for (int i = 0; i < size ; i++)
-			if (chromosome[i])
-				selected.add(this.pairings.get(i));
-		return selected;
+		return (double) chromosome.size() / size;
 	}
 	
 	@Override

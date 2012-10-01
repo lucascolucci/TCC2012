@@ -15,12 +15,12 @@ import tcc.pairings.solvers.BasicSolver;
 import tcc.pairings.solvers.Solution;
 
 public class GeneticSolver extends BasicSolver {
-	public static double DEADHEADING_PENALTY = 4.0;
+	public static double DEADHEADING_PENALTY = 5.0;
 	public static int MUTATION_SIZE = 3;
 	
-	private int populationSize = 10;
-	private int maxGenerations = 100;
-	private int maxPairings = 100000;
+	private int populationSize = 100;
+	private int maxGenerations = 100000;
+	private int maxPairings = 50000;
 	private Population population;
 	private static HashMap<Leg, List<Pairing>> hash;
 	
@@ -113,6 +113,7 @@ public class GeneticSolver extends BasicSolver {
 	
 	private void fillPopulation() {
 		for (int i = 0; i < populationSize; i++) {
+			System.err.println("Individuo " + i);
 			Individue individue = new Individue(legs, memory.getPairings());
 			individue.generateChromosome();
 			individue.turnFeasible();
@@ -135,8 +136,8 @@ public class GeneticSolver extends BasicSolver {
 	}
 	
 	private Solution getSolutionFromPopulation() {
-		List<Pairing> pairings = population.getTheFittest().getSelectedPairings();
-		Solution solution = new Solution(pairings);
+		Individue theFittest = population.getTheFittest();
+		Solution solution = new Solution(theFittest.getChromosome());
 		setDeadHeads(solution);
 		setSolutionCost(solution);
 		return solution;
