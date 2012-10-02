@@ -88,13 +88,20 @@ public class Pairing {
 		return null;
 	}
 	
+	public boolean containsSome(List<DutyLeg> legs) {
+		for (Leg leg: legs)
+			if (contains(leg))
+				return true;
+		return false;
+	}
+
 	public boolean contains(Leg leg) {
 		for (Duty duty: duties)
 			if (duty.contains(leg))
 				return true;
 		return false;
 	}
-	
+		
 	public int getExcessTime() {
 		int excess = 0;
 		for (int i = 0; i < duties.size(); i++)

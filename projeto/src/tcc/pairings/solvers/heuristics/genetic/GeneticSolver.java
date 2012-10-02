@@ -113,19 +113,21 @@ public class GeneticSolver extends BasicSolver {
 	
 	private void fillPopulation() {
 		for (int i = 0; i < populationSize; i++) {
-			System.err.println("Individuo " + i);
 			Individue individue = new Individue(legs, memory.getPairings());
 			individue.generateChromosome();
 			individue.turnFeasible();
 			individue.calculateFitness();
 			population.add(individue);
+			System.out.println("Indiv’duo " + (i + 1));
+			System.out.println(individue);
 		}
 	}
 	
 	private void doGenerations() {
 		for (int i = 0; i < maxGenerations; i++) {
+			if (i % 100 == 0)
+				System.out.println("Gera‹o " + i + ", Best Fitness = " + population.getTheFittest().getFitness());
 			population.sort();
-			System.out.println("Gera‹o " + i + ", Best Fitness = " + population.getTheFittest().getFitness());
 			Individue[] parents = population.getParents();
 			Individue child = parents[0].doCrossover(parents[1]);
 			child.doMutation(population.getTheFittest());

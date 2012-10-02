@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 
@@ -33,16 +34,26 @@ public class Individue {
 		this.pairings = pairings;
 		size = pairings.size();
 		chromosome = new ArrayList<Pairing>();
-		fitness = -1.0;
 	}
 	
-	// TODO Aplicar heur’stica melhor
 	public void generateChromosome() {
-		for (int i = 0; i < size; i++)
-			if (random.nextBoolean())
-				chromosome.add(pairings.get(i));
+		List<Pairing> possiblePairings = new ArrayList<Pairing>(pairings);
+		while (!possiblePairings.isEmpty()) {
+			int size = possiblePairings.size();
+			Pairing selected = possiblePairings.get(random.nextInt(size));
+			chromosome.add(selected);
+			trimPossiblePairings(possiblePairings, selected.getLegs());
+		}
 	}
 	
+	private void trimPossiblePairings(List<Pairing> possiblePairings, List<DutyLeg> legs) {
+		List<Pairing> toBeRemoved = new ArrayList<Pairing>();
+		for (Pairing pairing: possiblePairings)
+			if (pairing.containsSome(legs))
+				toBeRemoved.add(pairing);
+		possiblePairings.removeAll(toBeRemoved);
+	}
+
 	public void turnFeasible() {
 		List<Leg> uncoveredLegs = getUncoveredLegs();
 		for (Leg uncoveredLeg: uncoveredLegs) {
@@ -55,10 +66,6 @@ public class Individue {
 	private Pairing selectPairingToCoverLeg(List<Pairing> pairings) {
 		int size = pairings.size();
 		return pairings.get(random.nextInt(size));
-	}
-	
-	public boolean isFeasible() {
-		return getUncoveredLegs().size() == 0;
 	}
 	
 	public List<Leg> getUncoveredLegs() {
@@ -77,6 +84,7 @@ public class Individue {
 	}
 	
 	public void calculateFitness() {
+		fitness = 0.0;
 		for (Pairing pairing: chromosome)
 			fitness += pairing.getCost(); 
 		fitness += GeneticSolver.DEADHEADING_PENALTY * getNumberOfDeadheadedFlights(); 
@@ -131,6 +139,9 @@ public class Individue {
 	@Override
 	public String toString() {
 		DecimalFormat df = new DecimalFormat("#.###");
-		return "Fitness do indiv’duo = " + df.format(getFitness()); 
+		StringBuilder sb = new StringBuilder();
+		sb.append("- Fitness do indiv’duo = ").append(df.format(getFitness())).append('\n');
+		sb.append("- Tamanho do cromossomo = ").append(chromosome.size());
+		return sb.toString(); 
 	}
 }
