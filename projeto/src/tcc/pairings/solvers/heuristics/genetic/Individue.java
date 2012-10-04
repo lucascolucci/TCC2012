@@ -113,6 +113,10 @@ public class Individue {
 			else
 				if (random.nextBoolean())
 					crossover.add(pairing);
+		for (Pairing pairing: other.getChromosome())
+			if (!chromosome.contains(pairing))
+				if (random.nextBoolean())
+					crossover.add(pairing);
 		return crossover;
 	}
 	
@@ -124,10 +128,10 @@ public class Individue {
 
 	private void mutatePairing(Pairing pairing, double prob) {
 		double r = random.nextDouble();
-		if (r < prob) 
+		if (r < prob) {
 			if (!chromosome.contains(pairing))
 				chromosome.add(pairing);
-		else
+		} else
 			if (chromosome.contains(pairing))
 				chromosome.remove(pairing);
 	}

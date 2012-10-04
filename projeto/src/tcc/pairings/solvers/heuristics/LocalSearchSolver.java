@@ -138,8 +138,10 @@ public class LocalSearchSolver implements Solver {
 	
 	private void outputToBuffer(int iteration) {
 		if (buffer != null)
-			if (iteration % outputStep == 0)
+			if (iteration % outputStep == 0) {
 				buffer.output(iteration + "\t" + solution.getCost());
+				System.out.println(iteration + "\t" + solution.getCost());
+			}
 	}
 
 	private void doIteration(Base... bases) {

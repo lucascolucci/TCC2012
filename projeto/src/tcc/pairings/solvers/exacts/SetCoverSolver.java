@@ -41,6 +41,7 @@ public class SetCoverSolver extends BasicSolver {
 	@Override
 	protected void setOptimizer() {
 		cplex.addDHVariables();
+		cplex.getModel().setOut(null);
 		optimizer = new CplexOptimizer(cplex.getModel());	
 	}
 	
