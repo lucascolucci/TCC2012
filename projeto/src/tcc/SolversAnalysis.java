@@ -2,6 +2,7 @@ package tcc;
 
 import tcc.pairings.Base;
 import tcc.pairings.costs.*;
+import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.ResultsBuffer;
 import tcc.pairings.solvers.Solver;
@@ -44,12 +45,13 @@ public class SolversAnalysis {
 	}
 	
 	public void doLocalSearch() {
+		Rules.MAX_DUTIES = 5;
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
 		LocalSearchSolver solver = new LocalSearchSolver(TIME_TABLES_PATH + "738_521.txt", calc);
 		ResultsBuffer buffer = new ResultsBuffer();
 		solver.setBuffer(buffer);
-		solver.setMaxIterations(200000);
+		solver.setMaxIterations(5000);
 		solver.setOutputStep(100);
 		solver.setInitialMaxDuties(3);
 		solver.setSampleSize(3);

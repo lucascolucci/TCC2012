@@ -121,6 +121,15 @@ public class Solution {
 		return ((total / 60.0) / pairings.size());
 	}
 
+	private int getNumberOfDeadHeads() {
+		int cont = 0;
+		for (Pairing pairing: pairings)
+			for (DutyLeg leg: pairing.getLegs()) 
+				if (leg.isDeadHead())
+					cont++;
+		return cont;		
+	}
+	
 	@Override
 	public String toString() {
 		DecimalFormat df = new DecimalFormat("#.###");
@@ -131,7 +140,8 @@ public class Solution {
 		sb.append("Custo dos pairings = ").append(df.format(getPairingsCost())).append('\n');
 		sb.append("Custo da solução = ").append(df.format(cost)).append('\n');
 		sb.append("Número médio de pernas por jornada = ").append(df.format(getMeanLegsPerDuty())).append('\n');
-		sb.append("Tempo de voo médio por jornada = ").append(df.format(getMeanFlightTimePerDuty()));
+		sb.append("Tempo de voo médio por jornada = ").append(df.format(getMeanFlightTimePerDuty())).append('\n');
+		sb.append("Número de deadheads = ").append(getNumberOfDeadHeads());
 		return sb.toString();
 	}
 }

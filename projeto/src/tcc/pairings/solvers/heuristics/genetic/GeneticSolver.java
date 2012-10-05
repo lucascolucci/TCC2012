@@ -18,7 +18,7 @@ public class GeneticSolver extends BasicSolver {
 	public static double DEADHEADING_PENALTY = 5.0;
 	public static int MUTATION_SIZE = 8;
 	
-	private int populationSize = 50;
+	private int populationSize = 10;
 	private int maxGenerations = 1000000;
 	private int maxPairings = 50000;
 	private Population population;
