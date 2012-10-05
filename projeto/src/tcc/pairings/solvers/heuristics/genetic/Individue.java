@@ -2,6 +2,9 @@ package tcc.pairings.solvers.heuristics.genetic;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -62,10 +65,50 @@ public class Individue {
 		}
 	}
 	
-	// TODO Aplicar heur’stica melhor
 	private Pairing selectPairingToCoverLeg(List<Pairing> pairings) {
-		int size = pairings.size();
-		return pairings.get(random.nextInt(size));
+//		int size = pairings.size();
+//		return pairings.get(random.nextInt(size));
+		
+		List<PairPairingValue> list = new ArrayList<PairPairingValue>();
+		for (int i = 0; i < pairings.size(); i++) {
+			Pairing pairing = pairings.get(i);
+			int value = 0;
+			for (Leg leg: pairing.getLegs())
+				for (Pairing chromosomePairing: chromosome)
+					if (chromosomePairing.contains(leg))
+						value++;
+			list.add(new PairPairingValue(pairing, value));
+		}
+		
+		Collections.sort(list, new Comparator<PairPairingValue>() {  
+            public int compare(PairPairingValue ppv1, PairPairingValue ppv2) {  
+                return ppv1.getValue() < ppv2.getValue() ? -1 : 1;  
+            }  
+        }); 	
+		
+		
+		int size = list.size();
+		int fromIndex = size / 2;
+		for (int i = fromIndex; i < size; i++)
+			list.remove(list.size() - 1);
+		
+		PairPairingValue max = new PairPairingValue(null, 0);
+		List<Leg> uncoveredLegs = getUncoveredLegs();
+
+		for (PairPairingValue ppv: list) {
+			int cont = 0;
+			Pairing ppvPairing = ppv.getPairing();
+			for (Leg leg: uncoveredLegs) {
+				if (ppvPairing.contains(leg))
+					cont++;
+			}
+			if (cont >= max.getValue()) {
+				max.setValue(cont);
+				max.setPairing(ppvPairing);
+			}
+		}
+		//TODO PROBLEMA AQUI!
+		return max.getPairing();
 	}
 	
 	public List<Leg> getUncoveredLegs() {
