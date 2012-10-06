@@ -36,7 +36,6 @@ public class Pairing {
 		this.costWithDeadHeads = costWithDeadHeads;
 	}
 
-	
 	public List<Duty> getDuties() {
 		return duties;
 	}
@@ -88,7 +87,7 @@ public class Pairing {
 		return null;
 	}
 	
-	public boolean containsSome(List<DutyLeg> legs) {
+	public boolean containsAny(List<DutyLeg> legs) {
 		for (Leg leg: legs)
 			if (contains(leg))
 				return true;
@@ -172,15 +171,27 @@ public class Pairing {
 		}
 	}
 	
-	//public double getCostWithDeadHeads() {
-	//	List<DutyLeg> legs = getLegs();
-	//	double total = cost;
-	//	for (DutyLeg leg: legs)
-	//		if (leg.isDeadHead())
-	//			total += Rules.getDeadHeadCost(leg);
-	//	return total;
-	//}
-		
+	public double getMeanLegsPerDuty() {
+		int total = 0;
+		for (Duty duty: duties)
+			total += duty.getNumberOfNonDHLegs();
+		return (double) total / duties.size();
+	}
+	
+	public double getMeanFlightTimePerDuty() {
+		double total = 0.0;
+		for (Duty duty: duties)
+			total += duty.getFlightTime() / 60.0;
+		return total / duties.size();
+	}
+	
+	public int getNumberOfDHLegs() {
+		int total = 0;
+		for (Duty duty: duties)
+			total += duty.getNumberOfDHLegs();
+		return total;
+	}
+			
 	@Override
 	public String toString() {
 		DecimalFormat df = new DecimalFormat("#.###");

@@ -2,11 +2,12 @@ package tcc.pairings.solvers.heuristics.genetic;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
+
+import com.sun.tools.javac.util.Pair;
 
 import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
@@ -18,6 +19,7 @@ public class Individue {
 	private List<Pairing> pairings;
 	private List<Pairing> chromosome;
 	private double fitness;
+	private static long number = 0;
 	private static Random random = new Random(0);
 	
 	public List<Pairing> getChromosome() {
@@ -37,6 +39,7 @@ public class Individue {
 		this.pairings = pairings;
 		size = pairings.size();
 		chromosome = new ArrayList<Pairing>();
+		number++;
 	}
 	
 	public void generateChromosome() {
@@ -52,7 +55,7 @@ public class Individue {
 	private void trimPossiblePairings(List<Pairing> possiblePairings, List<DutyLeg> legs) {
 		List<Pairing> toBeRemoved = new ArrayList<Pairing>();
 		for (Pairing pairing: possiblePairings)
-			if (pairing.containsSome(legs))
+			if (pairing.containsAny(legs))
 				toBeRemoved.add(pairing);
 		possiblePairings.removeAll(toBeRemoved);
 	}
@@ -60,55 +63,10 @@ public class Individue {
 	public void turnFeasible() {
 		List<Leg> uncoveredLegs = getUncoveredLegs();
 		for (Leg uncoveredLeg: uncoveredLegs) {
-			Pairing chosen = selectPairingToCoverLeg(GeneticSolver.getHash().get(uncoveredLeg));
-			chromosome.add(chosen);
+			List<Pairing> pairings = GeneticSolver.getHash().get(uncoveredLeg);
+			Pairing selected = selectPairingToCoverLeg(pairings, uncoveredLegs);
+			chromosome.add(selected);
 		}
-	}
-	
-	private Pairing selectPairingToCoverLeg(List<Pairing> pairings) {
-//		int size = pairings.size();
-//		return pairings.get(random.nextInt(size));
-		
-		List<PairPairingValue> list = new ArrayList<PairPairingValue>();
-		for (int i = 0; i < pairings.size(); i++) {
-			Pairing pairing = pairings.get(i);
-			int value = 0;
-			for (Leg leg: pairing.getLegs())
-				for (Pairing chromosomePairing: chromosome)
-					if (chromosomePairing.contains(leg))
-						value++;
-			list.add(new PairPairingValue(pairing, value));
-		}
-		
-		Collections.sort(list, new Comparator<PairPairingValue>() {  
-            public int compare(PairPairingValue ppv1, PairPairingValue ppv2) {  
-                return ppv1.getValue() < ppv2.getValue() ? -1 : 1;  
-            }  
-        }); 	
-		
-		
-		int size = list.size();
-		int fromIndex = size / 2;
-		for (int i = fromIndex; i < size; i++)
-			list.remove(list.size() - 1);
-		
-		PairPairingValue max = new PairPairingValue(null, 0);
-		List<Leg> uncoveredLegs = getUncoveredLegs();
-
-		for (PairPairingValue ppv: list) {
-			int cont = 0;
-			Pairing ppvPairing = ppv.getPairing();
-			for (Leg leg: uncoveredLegs) {
-				if (ppvPairing.contains(leg))
-					cont++;
-			}
-			if (cont >= max.getValue()) {
-				max.setValue(cont);
-				max.setPairing(ppvPairing);
-			}
-		}
-		//TODO PROBLEMA AQUI!
-		return max.getPairing();
 	}
 	
 	public List<Leg> getUncoveredLegs() {
@@ -126,6 +84,57 @@ public class Individue {
 		return uncoveredLegs;
 	}
 	
+	private Pairing selectPairingToCoverLeg(List<Pairing> pairings, List<Leg> uncoveredLegs) {
+		List<Pair<Pairing, Integer>> list = getPairsList(pairings);
+		sortPairs(list); 	
+		cutoffPairs(list);                    
+		return getPairingThatCoversMostLegs(list, uncoveredLegs);		
+	}
+
+	private List<Pair<Pairing, Integer>> getPairsList(List<Pairing> pairings) {
+		List<Pair<Pairing, Integer>> list = new ArrayList<Pair<Pairing, Integer>>();
+		for (Pairing pairing: pairings)
+			list.add(new Pair<Pairing, Integer>(pairing, getNumberOfRepeatedLegs(pairing)));
+		return list;
+	}
+		
+	private int getNumberOfRepeatedLegs(Pairing pairing) {
+		int total = 0;
+		for (Leg leg: pairing.getLegs())
+			for (Pairing chromosomePairing: chromosome)
+				if (chromosomePairing.contains(leg))
+					total++;
+		return total;
+	}
+	
+	private void sortPairs(List<Pair<Pairing, Integer>> list) {
+		Collections.sort(list, new Comparator<Pair<Pairing, Integer>>() {  
+            public int compare(Pair<Pairing, Integer> p1, Pair<Pairing, Integer> p2) {  
+                return p1.snd < p2.snd ? -1 : 1;  
+            }  
+        });
+	}
+	
+	private void cutoffPairs(List<Pair<Pairing, Integer>> list) {
+		int cutoffSize = (int) Math.round(list.size() * GeneticSolver.CUTOFF_FACTOR);
+		int size = Math.min(list.size() - 1, cutoffSize);
+		for (int i = 0; i < size; i++)
+			list.remove(list.size() - 1);
+	}
+	
+	private Pairing getPairingThatCoversMostLegs(List<Pair<Pairing, Integer>> list, List<Leg> uncoveredLegs) {
+		Pair<Pairing, Integer> maxPair = new Pair<Pairing, Integer>(null, 0);
+		for (Pair<Pairing, Integer> pair: list) {
+			int count = 0;
+			for (Leg leg: uncoveredLegs)
+				if (pair.fst.contains(leg))
+					count++;
+			if (count > maxPair.snd)
+				maxPair = new Pair<Pairing, Integer>(pair.fst, count);
+		}
+		return maxPair.fst;
+	}
+		
 	public void calculateFitness() {
 		fitness = 0.0;
 		for (Pairing pairing: chromosome)
@@ -187,8 +196,9 @@ public class Individue {
 	public String toString() {
 		DecimalFormat df = new DecimalFormat("#.###");
 		StringBuilder sb = new StringBuilder();
-		sb.append("- Fitness do indiv’duo = ").append(df.format(getFitness())).append('\n');
-		sb.append("- Tamanho do cromossomo = ").append(chromosome.size());
+		sb.append("Indiv’duo ").append(number).append('\n');
+		sb.append("- Cromossomo = ").append(chromosome.size()).append('\n');
+		sb.append("- Fitness = ").append(df.format(getFitness()));
 		return sb.toString(); 
 	}
 }

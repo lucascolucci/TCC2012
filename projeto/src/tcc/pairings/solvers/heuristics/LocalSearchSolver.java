@@ -129,19 +129,19 @@ public class LocalSearchSolver implements Solver {
 	private void improveSolution(Base... bases) {
 		infeasibleCount = 0;
 		int iteration = 0;
-		outputToBuffer(iteration);
+		output(iteration);
 		while (iteration++ < maxIterations) {
 			doIteration(bases);
-			outputToBuffer(iteration);
+			output(iteration);
 		}
 	}
 	
-	private void outputToBuffer(int iteration) {
-		if (buffer != null)
-			if (iteration % outputStep == 0) {
+	private void output(int iteration) {
+		if (iteration % outputStep == 0) {
+			System.out.println(iteration + "\t" + solution.getCost());
+			if (buffer != null)
 				buffer.output(iteration + "\t" + solution.getCost());
-				System.out.println(iteration + "\t" + solution.getCost());
-			}
+		}
 	}
 
 	private void doIteration(Base... bases) {

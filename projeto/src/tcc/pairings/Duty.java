@@ -91,6 +91,22 @@ public class Duty {
 			leg.setDeadHead(true);
 	}
 	
+	public int getNumberOfDHLegs() {
+		int total = 0;
+		for (DutyLeg leg: legs)
+			if (leg.isDeadHead())
+				total++;
+		return total;
+	}
+	
+	public int getNumberOfNonDHLegs() {
+		int total = 0;
+		for (DutyLeg leg: legs)
+			if (!leg.isDeadHead())
+				total++;
+		return total;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

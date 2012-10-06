@@ -17,13 +17,15 @@ import tcc.pairings.solvers.BasicSolver;
 import tcc.pairings.solvers.Solution;
 
 public class GeneticSolver extends BasicSolver {
-	public static double DEADHEADING_PENALTY = 0.01;
-	public static int MUTATION_SIZE = 2;
+	public static double DEADHEADING_PENALTY = 1.0;
+	public static int MUTATION_SIZE = 10;
+	public static double CUTOFF_FACTOR = 0.25;
 	
-	private int populationSize = 10;
-	private int maxGenerations = 1000000;
+	private int populationSize = 100;
+	private int maxGenerations = 5000000;
 	private int maxPairings = 50000;
-	private double trimFactor = 0.15;
+	private int outputStep = 1000;
+	
 	private Population population;
 	private static HashMap<Leg, List<Pairing>> hash;
 	
@@ -88,19 +90,18 @@ public class GeneticSolver extends BasicSolver {
 	
 	@Override
 	protected Solution getOptimalSolution() {
-		buildHash();
-		sortHash();
-		trimHash();
+		preprocessHash();
 		buildInitialPopulation();
 		doGenerations();
-		Solution solution = getSolutionFromPopulation();
-		// Para fins de testes
-		System.out.println(solution.isAllLegsCovered(legs));
-		System.out.println(solution.isCostRight());
-		return solution;
+		return getSolutionFromPopulation();
+	}
+
+	private void preprocessHash() {
+		buildHash();
+		sortHash();
+		cutoffHash();
 	}
 	
-
 	private void buildHash() {
 		hash = new HashMap<Leg, List<Pairing>>();
 		for (Leg leg: legs)
@@ -114,10 +115,10 @@ public class GeneticSolver extends BasicSolver {
 	
 	private void sortHash() {
 		for (List<Pairing> pairings: hash.values())
-			sortPerCost(pairings);
+			sortByCost(pairings);
 	}
 
-	private void sortPerCost(List<Pairing> pairings) {
+	private void sortByCost(List<Pairing> pairings) {
 		Collections.sort(pairings, new Comparator<Pairing>() {  
             public int compare(Pairing p1, Pairing p2) {  
                 return p1.getCost() < p2.getCost() ? -1 : 1;  
@@ -125,11 +126,11 @@ public class GeneticSolver extends BasicSolver {
         });  
 	}
 	
-	private void trimHash() {
+	private void cutoffHash() {
 		for (List<Pairing> pairings: hash.values()) {
-			int size = pairings.size();
-			int fromIndex = (int) Math.round(size * trimFactor);;
-			for (int i = fromIndex; i < size; i++)
+			int cutoffSize = (int) Math.round(pairings.size() * CUTOFF_FACTOR);
+			int size = Math.min(pairings.size() - 1, cutoffSize);
+			for (int i = 0; i < size; i++)
 				pairings.remove(pairings.size() - 1);
 		}
 	}
@@ -146,16 +147,14 @@ public class GeneticSolver extends BasicSolver {
 			individue.turnFeasible();
 			individue.calculateFitness();
 			population.add(individue);
-			System.out.println("Indiv’duo " + (i + 1));
 			System.out.println(individue);
 		}
 	}
 	
 	private void doGenerations() {
-		for (int i = 0; i < maxGenerations; i++) {
+		for (int generation = 0; generation < maxGenerations; generation++) {
 			population.sort();
-			if (i % 100 == 0)
-				System.out.println("Gera‹o " + i + ", Best Fitness = " + population.getTheFittest().getFitness());
+			output(generation);
 			Individue[] parents = population.getParents();
 			Individue child = parents[0].doCrossover(parents[1]);
 			child.doMutation(population.getTheFittest());
@@ -163,6 +162,11 @@ public class GeneticSolver extends BasicSolver {
 			child.calculateFitness();
 			population.replace(child);
 		}
+	}
+	
+	private void output(int generation) {
+		if (generation % outputStep == 0)
+			System.out.println(generation + "\t" + population.getTheFittest().getFitness());
 	}
 	
 	private Solution getSolutionFromPopulation() {
@@ -193,10 +197,8 @@ public class GeneticSolver extends BasicSolver {
 	public void printHash() {
 		for (Leg leg: hash.keySet()) {
 			System.out.println(leg);
-			for (Pairing pairing: hash.get(leg)) {
+			for (Pairing pairing: hash.get(leg))
 				System.out.println(pairing.getCost());
-			}
-			System.out.println("------------------------------------------------------------------");
 		}
 	}
 }

@@ -110,24 +110,22 @@ public class Solution {
 	public double getMeanLegsPerDuty() {
 		double total = 0.0;
 		for (Pairing pairing: pairings)
-			total += (double) pairing.getNumberOfLegs() / pairing.getNumberOfDuties();
-		return (total / pairings.size());
+			total += pairing.getMeanLegsPerDuty();
+		return total / pairings.size();
 	}
 	
 	public double getMeanFlightTimePerDuty() {
 		double total = 0.0;
 		for (Pairing pairing: pairings)
-			total += (double) pairing.getFlightTime() / pairing.getNumberOfDuties();
-		return ((total / 60.0) / pairings.size());
+			total += pairing.getMeanFlightTimePerDuty();
+		return total / pairings.size();
 	}
 
 	private int getNumberOfDeadHeads() {
-		int cont = 0;
+		int total = 0;
 		for (Pairing pairing: pairings)
-			for (DutyLeg leg: pairing.getLegs()) 
-				if (leg.isDeadHead())
-					cont++;
-		return cont;		
+			total += pairing.getNumberOfDHLegs();
+		return total;		
 	}
 	
 	@Override

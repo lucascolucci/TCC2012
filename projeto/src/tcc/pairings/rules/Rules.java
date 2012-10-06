@@ -12,7 +12,7 @@ import tcc.util.DateUtil;
 
 public class Rules {
 	public static final String DATE_FORMAT = "dd/MM/yyyy HH:mm";
-	public static final double DH_PENALTY_FACTOR = 1.0;
+	public static double DH_PENALTY_FACTOR = 1.0;
 	public static int MAX_DUTIES = 4;
 	public static int MIN_SIT_TIME = 25;
 	public static int MAX_SIT_TIME = 120; // 02 horas
