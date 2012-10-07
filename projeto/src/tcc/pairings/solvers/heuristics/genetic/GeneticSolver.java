@@ -19,11 +19,11 @@ import tcc.pairings.solvers.Solution;
 public class GeneticSolver extends BasicSolver {
 	public static double DEADHEADING_PENALTY = 1.0;
 	public static int MUTATION_SIZE = 10;
-	public static double CUTOFF_FACTOR = 0.25;
+	public static double CUTOFF_FACTOR = 0.50;
 	
-	private int populationSize = 100;
-	private int maxGenerations = 5000000;
-	private int maxPairings = 50000;
+	private int populationSize = 10;
+	private int maxGenerations = 500000;
+	private int maxPairings = 500000;
 	private int outputStep = 1000;
 	
 	private Population population;

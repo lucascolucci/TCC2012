@@ -38,9 +38,10 @@ public class SolversAnalysis {
 	
 	public void doSetCover() {
 		Base sao = new Base("GRU", "CGH");
-		//CostCalculator calc = new MeanFlightPerDutyCalculator();
-		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt", null);
+		CostCalculator calc = new MeanFlightPerDutyCalculator();
+		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "733_92.txt", calc);
 		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getNumberOfPairings());
 	}
 	
 	public void doLocalSearch() {
@@ -62,7 +63,8 @@ public class SolversAnalysis {
 	public void doGeneticSolver() {
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
-		Solver solver = new GeneticSolver(TIME_TABLES_PATH + "738_48.txt", calc);
+		Solver solver = new GeneticSolver(TIME_TABLES_PATH + "733_92.txt", calc);
 		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getSolutionTime());
 	}
 }
