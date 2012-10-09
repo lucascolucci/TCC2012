@@ -144,7 +144,7 @@ public class Individue {
 	}
 	
 	private void cutoffPairs(List<Pair<Pairing, Integer>> list) {
-		int cutoffSize = (int) Math.round(list.size() * GeneticSolver.cutoffFactor);
+		int cutoffSize = (int) Math.round(list.size() * GeneticSolver.getCutoffFactor());
 		int size = Math.min(list.size() - 1, cutoffSize);
 		for (int i = 0; i < size; i++)
 			list.remove(list.size() - 1);
@@ -157,22 +157,6 @@ public class Individue {
 				uncoveredLegs.remove(leg);
 	}
 			
-	public void calculateFitness() {
-		fitness = 0.0;
-		for (Pairing pairing: chromosome)
-			fitness += pairing.getCost(); 
-		fitness += GeneticSolver.deadheadingPenalty * getNumberOfDeadheadedFlights(); 
-	}
-	
-	private int getNumberOfDeadheadedFlights() {
-		int total = 0;
-		for (Leg leg: toCoverLegs)
-			for (Pairing pairing: chromosome)
-				if (pairing.contains(leg))
-					total++;			
-		return total - toCoverLegs.size();
-	}
-	
 	public Individue doCrossover(Individue other) {
 		Individue individue = new Individue(toCoverLegs, pairings);
 		individue.setChromosome(getCrossoverChromosome(other));
@@ -196,7 +180,7 @@ public class Individue {
 	
 	public void doMutation(Individue theFittest) {
 		double prob = theFittest.getOnesDensity();
-		for (int i = 0; i < GeneticSolver.mutationSize; i++)
+		for (int i = 0; i < GeneticSolver.getMutationSize(); i++)
 			mutatePairing(pairings.get(random.nextInt(size)), prob);
 	}
 
@@ -213,13 +197,29 @@ public class Individue {
 	public double getOnesDensity() {
 		return (double) chromosome.size() / size;
 	}
+	
+	public void calculateFitness() {
+		fitness = 0.0;
+		for (Pairing pairing: chromosome)
+			fitness += pairing.getCost(); 
+		fitness += GeneticSolver.getDeadheadingPenalty() * getNumberOfDeadheadedFlights(); 
+	}
+	
+	private int getNumberOfDeadheadedFlights() {
+		int total = 0;
+		for (Leg leg: toCoverLegs)
+			for (Pairing pairing: chromosome)
+				if (pairing.contains(leg))
+					total++;			
+		return total - toCoverLegs.size();
+	}
 		
 	@Override
 	public String toString() {
 		DecimalFormat df = new DecimalFormat("#.###");
 		StringBuilder sb = new StringBuilder();
 		sb.append("Indiv’duo ").append(number).append('\n');
-		sb.append("- Pairings no cromossomo = ").append(chromosome.size()).append('\n');
+		sb.append("- Colunas = ").append(chromosome.size()).append('\n');
 		sb.append("- Fitness = ").append(df.format(getFitness()));
 		return sb.toString(); 
 	}

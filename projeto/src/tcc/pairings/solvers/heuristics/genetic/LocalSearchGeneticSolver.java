@@ -12,10 +12,17 @@ import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 
 public class LocalSearchGeneticSolver extends GeneticSolver {
-	public static int SAMPLE_SIZE = 3;
-	
+	private static int sampleSize = 3;
 	private static Random random = new Random(0);
 	
+	public static int getSampleSize() {
+		return sampleSize;
+	}
+
+	public static void setSampleSize(int sampleSize) {
+		LocalSearchGeneticSolver.sampleSize = sampleSize;
+	}
+
 	public LocalSearchGeneticSolver(String timeTable) {
 		super(timeTable);
 	}
@@ -26,7 +33,7 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 		
 	@Override
 	protected void doGenerations() {
-		for (int generation = 0; generation < maxGenerations; generation++) {
+		for (long generation = 0; generation < maxGenerations; generation++) {
 			population.sort();
 			output(generation);
 			Individue[] parents = population.getParents();
@@ -45,7 +52,7 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 		setSolutionCost(solution);
 		
 		List<Pairing> pairings = new ArrayList<Pairing>();
-		for (int i = 0; i < SAMPLE_SIZE; i++) {
+		for (int i = 0; i < sampleSize; i++) {
 			int randomIndex = random.nextInt(individue.getChromosome().size());
 			Pairing selected = individue.getChromosome().get(randomIndex);
 			if (!pairings.contains(selected))

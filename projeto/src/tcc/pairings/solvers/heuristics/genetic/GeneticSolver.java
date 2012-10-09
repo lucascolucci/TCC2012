@@ -16,11 +16,11 @@ import tcc.pairings.solvers.BasicSolver;
 import tcc.pairings.solvers.Solution;
 
 public class GeneticSolver extends BasicSolver {
-	public static double deadheadingPenalty = 1.0;
-	public static int mutationSize = 5;
-	public static double cutoffFactor = 0.25;
+	protected static double deadheadingPenalty = 1.0;
+	protected static int mutationSize = 5;
+	protected static double cutoffFactor = 0.25;
 	protected int populationSize = 10;
-	protected long maxGenerations = 1000000;
+	protected long maxGenerations = 100000;
 	protected int maxPairings = 500000;
 	protected int outputStep = 1000;
 	protected Population population;
