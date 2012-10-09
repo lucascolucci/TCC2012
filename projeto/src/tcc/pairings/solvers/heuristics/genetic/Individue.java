@@ -62,10 +62,13 @@ public class Individue {
 
 	public void turnFeasible() {
 		List<Leg> uncoveredLegs = getUncoveredLegs();
-		for (Leg uncoveredLeg: uncoveredLegs) {
+		while (!uncoveredLegs.isEmpty()) {
+			int randomIndex = random.nextInt(uncoveredLegs.size());
+			Leg uncoveredLeg = uncoveredLegs.get(randomIndex);
 			List<Pairing> pairings = GeneticSolver.getHash().get(uncoveredLeg);
 			Pairing selected = selectPairingToCoverLeg(pairings, uncoveredLegs);
 			chromosome.add(selected);
+			updateUncoveredLegs(uncoveredLegs, selected);
 		}
 	}
 	
@@ -85,26 +88,35 @@ public class Individue {
 	}
 	
 	private Pairing selectPairingToCoverLeg(List<Pairing> pairings, List<Leg> uncoveredLegs) {
-		List<Pair<Pairing, Integer>> list = getPairsList(pairings);
+		List<Pair<Pairing, Integer>> list = getDHCountList(pairings);
 		sortPairs(list); 	
-		cutoffPairs(list);                    
-		return getPairingThatCoversMostLegs(list, uncoveredLegs);		
+		cutoffPairs(list);
+		list = getCoverageCountList(getListPairings(list), uncoveredLegs);
+		sortPairs(list);
+		cutoffPairs(list);
+		return list.get(random.nextInt(list.size())).fst;		
 	}
-
-	private List<Pair<Pairing, Integer>> getPairsList(List<Pairing> pairings) {
+	
+	private List<Pairing> getListPairings(List<Pair<Pairing, Integer>> list) {
+		List<Pairing> listPairings = new ArrayList<Pairing>();
+		for (Pair<Pairing, Integer> pair: list)
+			listPairings.add(pair.fst);
+		return listPairings;
+	}
+	
+	private List<Pair<Pairing, Integer>> getCoverageCountList(List<Pairing> pairings, List<Leg> uncoveredLegs) {
 		List<Pair<Pairing, Integer>> list = new ArrayList<Pair<Pairing, Integer>>();
 		for (Pairing pairing: pairings)
-			list.add(new Pair<Pairing, Integer>(pairing, getNumberOfRepeatedLegs(pairing)));
+			list.add(new Pair<Pairing, Integer>(pairing, getNumberOfCoveredLegs(uncoveredLegs, pairing)));
 		return list;
 	}
-		
-	private int getNumberOfRepeatedLegs(Pairing pairing) {
-		int total = 0;
-		for (Leg leg: pairing.getLegs())
-			for (Pairing chromosomePairing: chromosome)
-				if (chromosomePairing.contains(leg))
-					total++;
-		return total;
+
+	private int getNumberOfCoveredLegs(List<Leg> uncoveredLegs, Pairing pairing) {
+		int count = 0;
+		for (Leg leg: uncoveredLegs)
+			if (pairing.contains(leg))
+				count++;
+		return count;
 	}
 	
 	private void sortPairs(List<Pair<Pairing, Integer>> list) {
@@ -121,20 +133,30 @@ public class Individue {
 		for (int i = 0; i < size; i++)
 			list.remove(list.size() - 1);
 	}
-	
-	private Pairing getPairingThatCoversMostLegs(List<Pair<Pairing, Integer>> list, List<Leg> uncoveredLegs) {
-		Pair<Pairing, Integer> maxPair = new Pair<Pairing, Integer>(null, 0);
-		for (Pair<Pairing, Integer> pair: list) {
-			int count = 0;
-			for (Leg leg: uncoveredLegs)
-				if (pair.fst.contains(leg))
-					count++;
-			if (count > maxPair.snd)
-				maxPair = new Pair<Pairing, Integer>(pair.fst, count);
-		}
-		return maxPair.fst;
+
+	private List<Pair<Pairing, Integer>> getDHCountList(List<Pairing> pairings) {
+		List<Pair<Pairing, Integer>> list = new ArrayList<Pair<Pairing, Integer>>();
+		for (Pairing pairing: pairings)
+			list.add(new Pair<Pairing, Integer>(pairing, getNumberOfRepeatedLegs(pairing)));
+		return list;
 	}
 		
+	private int getNumberOfRepeatedLegs(Pairing pairing) {
+		int total = 0;
+		for (Leg leg: pairing.getLegs())
+			for (Pairing chromosomePairing: chromosome)
+				if (chromosomePairing.contains(leg))
+					total++;
+		return total;
+	}
+	
+	private void updateUncoveredLegs(List<Leg> uncoveredLegs, Pairing selected) {
+		List<Leg> clone = new ArrayList<Leg>(uncoveredLegs);
+		for (Leg leg: clone)
+			if (selected.contains(leg))
+				uncoveredLegs.remove(leg);
+	}
+			
 	public void calculateFitness() {
 		fitness = 0.0;
 		for (Pairing pairing: chromosome)

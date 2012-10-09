@@ -18,13 +18,13 @@ import tcc.pairings.solvers.Solution;
 
 public class GeneticSolver extends BasicSolver {
 	public static double DEADHEADING_PENALTY = 1.0;
-	public static int MUTATION_SIZE = 10;
-	public static double CUTOFF_FACTOR = 0.50;
+	public static int MUTATION_SIZE = 3;
+	public static double CUTOFF_FACTOR = 0.3;
 	
-	private int populationSize = 10;
-	private int maxGenerations = 500000;
+	private int populationSize = 20;
+	private int maxGenerations = 1000000;
 	private int maxPairings = 500000;
-	private int outputStep = 1000;
+	private int outputStep = 10000;
 	
 	private Population population;
 	private static HashMap<Leg, List<Pairing>> hash;
