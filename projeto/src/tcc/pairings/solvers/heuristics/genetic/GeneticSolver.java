@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-import tcc.pairings.Base;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
@@ -17,17 +16,39 @@ import tcc.pairings.solvers.BasicSolver;
 import tcc.pairings.solvers.Solution;
 
 public class GeneticSolver extends BasicSolver {
-	public static double DEADHEADING_PENALTY = 1.0;
-	public static int MUTATION_SIZE = 3;
-	public static double CUTOFF_FACTOR = 0.3;
-	
-	protected int populationSize = 20;
-	protected int maxGenerations = 10000;
+	public static double deadheadingPenalty = 1.0;
+	public static int mutationSize = 5;
+	public static double cutoffFactor = 0.25;
+	protected int populationSize = 10;
+	protected long maxGenerations = 1000000;
 	protected int maxPairings = 500000;
-	protected int outputStep = 1;
-	
+	protected int outputStep = 1000;
 	protected Population population;
 	protected static HashMap<Leg, List<Pairing>> hash;
+	
+	public static double getDeadheadingPenalty() {
+		return deadheadingPenalty;
+	}
+
+	public static void setDeadheadingPenalty(double deadheadingPenalty) {
+		GeneticSolver.deadheadingPenalty = deadheadingPenalty;
+	}
+
+	public static int getMutationSize() {
+		return mutationSize;
+	}
+
+	public static void setMutationSize(int mutationSize) {
+		GeneticSolver.mutationSize = mutationSize;
+	}
+
+	public static double getCutoffFactor() {
+		return cutoffFactor;
+	}
+
+	public static void setCutoffFactor(double cutoffFactor) {
+		GeneticSolver.cutoffFactor = cutoffFactor;
+	}
 	
 	public int getPopulationSize() {
 		return populationSize;
@@ -37,11 +58,11 @@ public class GeneticSolver extends BasicSolver {
 		this.populationSize = populationSize;
 	}
 
-	public int getMaxGenerations() {
+	public long getMaxGenerations() {
 		return maxGenerations;
 	}
 
-	public void setMaxGenerations(int maxGenerations) {
+	public void setMaxGenerations(long maxGenerations) {
 		this.maxGenerations = maxGenerations;
 	}
 	
@@ -76,7 +97,7 @@ public class GeneticSolver extends BasicSolver {
 	}
 	
 	@Override
-	protected void generatePairings(Base... bases) {
+	protected void generatePairings() {
 		PairingsGenerator generator = new PairingsGenerator(net, outputers, calculator);
 		generator.setMaxPairings(maxPairings);
 		generator.generate(bases);
@@ -128,7 +149,7 @@ public class GeneticSolver extends BasicSolver {
 	
 	private void cutoffHash() {
 		for (List<Pairing> pairings: hash.values()) {
-			int cutoffSize = (int) Math.round(pairings.size() * CUTOFF_FACTOR);
+			int cutoffSize = (int) Math.round(pairings.size() * cutoffFactor);
 			int size = Math.min(pairings.size() - 1, cutoffSize);
 			for (int i = 0; i < size; i++)
 				pairings.remove(pairings.size() - 1);
@@ -152,7 +173,7 @@ public class GeneticSolver extends BasicSolver {
 	}
 	
 	protected void doGenerations() {
-		for (int generation = 0; generation < maxGenerations; generation++) {
+		for (long generation = 0; generation < maxGenerations; generation++) {
 			population.sort();
 			output(generation);
 			Individue[] parents = population.getParents();
@@ -164,7 +185,7 @@ public class GeneticSolver extends BasicSolver {
 		}
 	}
 	
-	protected void output(int generation) {
+	protected void output(long generation) {
 		if (generation % outputStep == 0)
 			System.out.println(generation + "\t" + population.getTheFittest().getFitness());
 	}
@@ -173,6 +194,7 @@ public class GeneticSolver extends BasicSolver {
 		Individue theFittest = population.getTheFittest();
 		Solution solution = new Solution(theFittest.getChromosome());
 		setDeadHeads(solution);
+		setCostsWithDeadHeads(solution.getPairings());
 		setSolutionCost(solution);
 		return solution;
 	}
@@ -183,7 +205,6 @@ public class GeneticSolver extends BasicSolver {
 			if (numberOfDeadHeads > 0)
 				solution.setDeadHeads(leg, numberOfDeadHeads);
 		}
-		setCostsWithDeadHeads(solution.getPairings());
 	}
 
 	private int getNumberOfDeadHeads(Solution solution, Leg leg) {
@@ -192,13 +213,5 @@ public class GeneticSolver extends BasicSolver {
 			if (pairing.contains(leg))
 				count++;
 		return count - 1;
-	}
-	
-	public void printHash() {
-		for (Leg leg: hash.keySet()) {
-			System.out.println(leg);
-			for (Pairing pairing: hash.get(leg))
-				System.out.println(pairing.getCost());
-		}
 	}
 }

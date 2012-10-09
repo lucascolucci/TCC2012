@@ -21,17 +21,18 @@ public class LocalSearchSolver implements Solver {
 	private int sampleSize = 2;
 	private int initialMaxDuties = 3;
 	private int outputStep = 10;
+	private Base[] bases;
 	private ResultsBuffer buffer;
 	private CostCalculator calculator;
 	private InitialSolver initialSolver;
 	private SetCoverSolver coverSolver;
 	private Solution solution;
-	private Random random;
 	private List<Pairing> oldPairings;
 	private List<Pairing> newPairings;
 	private int numberOfPairings;
 	private int infeasibleCount;
 	private double solutionTime;
+	private static Random random = new Random(0);
 	
 	public int getMaxIterations() {
 		return maxIterations;
@@ -102,23 +103,23 @@ public class LocalSearchSolver implements Solver {
 	public LocalSearchSolver(String timeTable, CostCalculator calculator, ResultsBuffer buffer) {
 		initialSolver = new InitialSolver(timeTable, calculator);
 		this.calculator = calculator;
-		random = new Random(0);
 		this.buffer = buffer;
 		numberOfPairings = 0;
 	}
 	
 	@Override
 	public Solution getSolution(Base... bases) {
-		setInitialSolution(bases);
+		this.bases = bases;
+		setInitialSolution();
 		long start = System.currentTimeMillis();
 		if (solution != null)
-			improveSolution(bases);
+			improveSolution();
 		long finish = System.currentTimeMillis();
 		solutionTime = (finish - start) / 1000.0; 
 		return solution;
 	}
 
-	private void setInitialSolution(Base... bases) {
+	private void setInitialSolution() {
 		int maxDuties = Rules.MAX_DUTIES;
 		Rules.MAX_DUTIES = initialMaxDuties;
 		solution = initialSolver.getSolution(bases);
@@ -126,12 +127,12 @@ public class LocalSearchSolver implements Solver {
 		Rules.MAX_DUTIES = maxDuties;
 	}
 	
-	private void improveSolution(Base... bases) {
+	private void improveSolution() {
 		infeasibleCount = 0;
 		int iteration = 0;
 		output(iteration);
 		while (iteration++ < maxIterations) {
-			doIteration(bases);
+			doIteration();
 			output(iteration);
 		}
 	}
@@ -144,7 +145,7 @@ public class LocalSearchSolver implements Solver {
 		}
 	}
 
-	private void doIteration(Base... bases) {
+	private void doIteration() {
 		setOldAndNewPairings(bases);
 		if (newPairings != null) {
 			double oldCost = getCost(oldPairings);
@@ -163,31 +164,21 @@ public class LocalSearchSolver implements Solver {
 		if (newSolution != null) {
 			newPairings = newSolution.getPairings();
 			numberOfPairings += coverSolver.getNumberOfPairings();
-			infeasibleCount++;
-		} else
+		} else {
 			newPairings = null;
+			infeasibleCount++;
+		}
 	}
 
 	private List<Pairing> getRandomSample() {
 		List<Pairing> list = new ArrayList<Pairing>();
-		int[] randomIndexes = getRandomIndexes();
-		for (int i: randomIndexes)
-			list.add(solution.getPairings().get(i));
-		return list;
-	}
-	
-	private int[] getRandomIndexes() {
-		List<Integer> allIndexes = new ArrayList<Integer>();
-		int solutionSize = solution.getPairings().size();
-		int[] randomIndexes = new int[sampleSize];
-		for (int i = 0; i < solutionSize; i++)
-			allIndexes.add(i);
 		for (int i = 0; i < sampleSize; i++) {
-			int r = random.nextInt(allIndexes.size());
-			randomIndexes[i] = allIndexes.get(r);
-			allIndexes.remove(r);
+			int randomIndex = random.nextInt(solution.getPairings().size());
+			Pairing selected = solution.getPairings().get(randomIndex);
+			if (!list.contains(selected))
+				list.add(selected);
 		}
-		return randomIndexes;
+		return list;
 	}
 	
 	private List<Leg> getOldLegsToBeCovered() {
@@ -204,17 +195,10 @@ public class LocalSearchSolver implements Solver {
 	private List<DutyLeg> getOldLegs() {
 		List<DutyLeg> legs = new ArrayList<DutyLeg>();	
 		for (Pairing pairing: oldPairings)
-			legs.addAll(pairing.getLegs());
-		legs.removeAll(getRemovableLegs(legs));
+			for (DutyLeg leg: pairing.getLegs())
+				if (!leg.isDeadHead())
+					legs.add(leg);
 		return legs;
-	}
-
-	private List<DutyLeg> getRemovableLegs(List<DutyLeg> legs) {
-		List<DutyLeg> removedLegs = new ArrayList<DutyLeg>(); 
-		for (DutyLeg leg: legs)
-			if (leg.isDeadHead())
-				removedLegs.add(leg);
-		return removedLegs;
 	}
 	
 	private double getCost(List<Pairing> pairings) {
@@ -242,7 +226,7 @@ public class LocalSearchSolver implements Solver {
 		return 0.0;
 	}
 	
-	public double getInfeasiblesRelation() {
+	public double getInfeasibility() {
 		return (double) infeasibleCount / maxIterations;
 	}
 }

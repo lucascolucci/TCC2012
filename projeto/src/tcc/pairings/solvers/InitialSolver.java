@@ -1,6 +1,5 @@
 package tcc.pairings.solvers;
 
-import tcc.pairings.Base;
 import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.generators.InitialGenerator;
 
@@ -14,10 +13,10 @@ public class InitialSolver extends BasicSolver {
 	}
 	
 	@Override
-	protected Solution tryToGetSolution(Base... bases) {
+	protected Solution tryToGetSolution() {
 		setLegs();
 		buildFlightNetwork();
-		return getInitialSolution(bases);
+		return getInitialSolution();
 	}
 	
 	@Override
@@ -30,7 +29,7 @@ public class InitialSolver extends BasicSolver {
 		optimizer = null;
 	}
 
-	private Solution getInitialSolution(Base... bases) {		
+	private Solution getInitialSolution() {		
 		InitialGenerator generator = new InitialGenerator(net, calculator);
 		generator.generate(bases);
 		if (!generator.isAllLegsCovered())

@@ -48,8 +48,10 @@ public class SetCoverSolver extends BasicSolver {
 	@Override
 	protected Solution getOptimalSolution() {
 		Solution solution = super.getOptimalSolution();
-		if (solution != null) 
+		if (solution != null) {
 			setDeadHeads(solution);
+			setCostsWithDeadHeads(solution.getPairings());
+		}
 		return solution;
 	}
 
@@ -60,6 +62,5 @@ public class SetCoverSolver extends BasicSolver {
 			if (numberOfDeadHeads > 0)
 				solution.setDeadHeads(legs.get(i), numberOfDeadHeads);
 		}
-		setCostsWithDeadHeads(solution.getPairings());
 	}
 }

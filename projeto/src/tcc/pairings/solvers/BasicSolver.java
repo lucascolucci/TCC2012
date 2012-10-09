@@ -79,10 +79,10 @@ public abstract class BasicSolver implements Solver {
 	
 	@Override
 	public Solution getSolution(Base... bases) {
+		this.bases = bases;
 		try {
 			long start = System.currentTimeMillis();
-			this.bases = bases;
-			Solution solution = tryToGetSolution(bases);
+			Solution solution = tryToGetSolution();
 			long finish = System.currentTimeMillis();
 			solutionTime = (finish - start) / 1000.0;
 			return solution;
@@ -92,11 +92,11 @@ public abstract class BasicSolver implements Solver {
 		}
 	}
 	
-	protected Solution tryToGetSolution(Base... bases) {
+	protected Solution tryToGetSolution() {
 		setLegs();
 		buildFlightNetwork();
 		setOutputers();
-		generatePairings(bases);
+		generatePairings();
 		setOptimizer();
 		return getOptimalSolution();
 	}
@@ -115,7 +115,7 @@ public abstract class BasicSolver implements Solver {
 
 	protected abstract void setOutputers();
 
-	protected void generatePairings(Base... bases) {
+	protected void generatePairings() {
 		PairingsGenerator generator = new PairingsGenerator(net, outputers, calculator);
 		generator.generate(bases);
 		numberOfPairings = generator.getNumberOfPairings();
