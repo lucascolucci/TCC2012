@@ -169,7 +169,7 @@ public class Individue {
 		for (Leg leg: toCoverLegs)
 			for (Pairing pairing: chromosome)
 				if (pairing.contains(leg))
-					total++;
+					total++;			
 		return total - toCoverLegs.size();
 	}
 	
@@ -213,7 +213,7 @@ public class Individue {
 	public double getOnesDensity() {
 		return (double) chromosome.size() / size;
 	}
-	
+		
 	@Override
 	public String toString() {
 		DecimalFormat df = new DecimalFormat("#.###");

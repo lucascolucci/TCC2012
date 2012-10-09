@@ -25,6 +25,7 @@ public abstract class BasicSolver implements Solver {
 	protected CplexOptimizer optimizer;
 	protected int numberOfPairings;
 	protected double solutionTime;
+	protected Base[] bases;
 	
 	public String getTimeTable() {
 		return timeTable;
@@ -80,6 +81,7 @@ public abstract class BasicSolver implements Solver {
 	public Solution getSolution(Base... bases) {
 		try {
 			long start = System.currentTimeMillis();
+			this.bases = bases;
 			Solution solution = tryToGetSolution(bases);
 			long finish = System.currentTimeMillis();
 			solutionTime = (finish - start) / 1000.0;

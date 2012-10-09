@@ -21,13 +21,13 @@ public class GeneticSolver extends BasicSolver {
 	public static int MUTATION_SIZE = 3;
 	public static double CUTOFF_FACTOR = 0.3;
 	
-	private int populationSize = 20;
-	private int maxGenerations = 1000000;
-	private int maxPairings = 500000;
-	private int outputStep = 10000;
+	protected int populationSize = 20;
+	protected int maxGenerations = 10000;
+	protected int maxPairings = 500000;
+	protected int outputStep = 1;
 	
-	private Population population;
-	private static HashMap<Leg, List<Pairing>> hash;
+	protected Population population;
+	protected static HashMap<Leg, List<Pairing>> hash;
 	
 	public int getPopulationSize() {
 		return populationSize;
@@ -151,7 +151,7 @@ public class GeneticSolver extends BasicSolver {
 		}
 	}
 	
-	private void doGenerations() {
+	protected void doGenerations() {
 		for (int generation = 0; generation < maxGenerations; generation++) {
 			population.sort();
 			output(generation);
@@ -164,7 +164,7 @@ public class GeneticSolver extends BasicSolver {
 		}
 	}
 	
-	private void output(int generation) {
+	protected void output(int generation) {
 		if (generation % outputStep == 0)
 			System.out.println(generation + "\t" + population.getTheFittest().getFitness());
 	}
@@ -177,7 +177,7 @@ public class GeneticSolver extends BasicSolver {
 		return solution;
 	}
 	
-	private void setDeadHeads(Solution solution) {
+	protected void setDeadHeads(Solution solution) {
 		for (Leg leg: legs) {
 			int numberOfDeadHeads = getNumberOfDeadHeads(solution, leg);
 			if (numberOfDeadHeads > 0)
