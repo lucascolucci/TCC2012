@@ -17,12 +17,11 @@ import tcc.pairings.solvers.Solution;
 
 public class GeneticSolver extends BasicSolver {
 	protected static double deadheadingPenalty = 1.0;
-	protected static int mutationSize = 5;
-	protected static double cutoffFactor = 0.25;
+	protected static int mutationSize = 3;
 	protected int populationSize = 10;
 	protected long maxGenerations = 100000;
 	protected int maxPairings = 500000;
-	protected int outputStep = 1000;
+	protected int outputStep = 100;
 	protected Population population;
 	protected static HashMap<Leg, List<Pairing>> hash;
 	
@@ -40,14 +39,6 @@ public class GeneticSolver extends BasicSolver {
 
 	public static void setMutationSize(int mutationSize) {
 		GeneticSolver.mutationSize = mutationSize;
-	}
-
-	public static double getCutoffFactor() {
-		return cutoffFactor;
-	}
-
-	public static void setCutoffFactor(double cutoffFactor) {
-		GeneticSolver.cutoffFactor = cutoffFactor;
 	}
 	
 	public int getPopulationSize() {
@@ -111,18 +102,24 @@ public class GeneticSolver extends BasicSolver {
 	
 	@Override
 	protected Solution getOptimalSolution() {
-		preprocessHash();
+		sort(memory.getPairings());
+		buildHash();
 		buildInitialPopulation();
 		doGenerations();
 		return getSolutionFromPopulation();
 	}
 
-	private void preprocessHash() {
-		buildHash();
-		sortHash();
-		cutoffHash();
+	private void sort(List<Pairing> pairings) {
+		Collections.sort(pairings, new Comparator<Pairing>() {  
+            public int compare(Pairing p1, Pairing p2) {
+            	if (Math.abs(p1.getCost() - p2.getCost()) < 0.000001)
+            		return p1.getNumberOfLegs() > p2.getNumberOfLegs() ? -1 : 1;
+            	return p1.getCost() < p2.getCost() ? -1 : 1;
+            }  
+        });
+		
 	}
-	
+
 	private void buildHash() {
 		hash = new HashMap<Leg, List<Pairing>>();
 		for (Leg leg: legs)
@@ -134,28 +131,6 @@ public class GeneticSolver extends BasicSolver {
 				}	
 	}
 	
-	private void sortHash() {
-		for (List<Pairing> pairings: hash.values())
-			sortByCost(pairings);
-	}
-
-	private void sortByCost(List<Pairing> pairings) {
-		Collections.sort(pairings, new Comparator<Pairing>() {  
-            public int compare(Pairing p1, Pairing p2) {  
-                return p1.getCost() < p2.getCost() ? -1 : 1;  
-            }  
-        });  
-	}
-	
-	private void cutoffHash() {
-		for (List<Pairing> pairings: hash.values()) {
-			int cutoffSize = (int) Math.round(pairings.size() * cutoffFactor);
-			int size = Math.min(pairings.size() - 1, cutoffSize);
-			for (int i = 0; i < size; i++)
-				pairings.remove(pairings.size() - 1);
-		}
-	}
-
 	private void buildInitialPopulation() {
 		population = new Population();
 		fillPopulation();
@@ -196,6 +171,10 @@ public class GeneticSolver extends BasicSolver {
 		setDeadHeads(solution);
 		setCostsWithDeadHeads(solution.getPairings());
 		setSolutionCost(solution);
+		
+		System.out.println(solution.isAllLegsCovered(legs));
+		System.out.println(solution.isCostRight());
+		
 		return solution;
 	}
 	
