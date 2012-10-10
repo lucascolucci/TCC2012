@@ -18,10 +18,10 @@ import tcc.pairings.solvers.Solution;
 public class GeneticSolver extends BasicSolver {
 	protected static double deadheadingPenalty = 1.0;
 	protected static int mutationSize = 3;
-	protected int populationSize = 10;
+	protected int populationSize = 1000;
 	protected long maxGenerations = 100000;
 	protected int maxPairings = 500000;
-	protected int outputStep = 100;
+	protected int outputStep = 1000;
 	protected Population population;
 	protected static HashMap<Leg, List<Pairing>> hash;
 	
@@ -117,7 +117,6 @@ public class GeneticSolver extends BasicSolver {
             	return p1.getCost() < p2.getCost() ? -1 : 1;
             }  
         });
-		
 	}
 
 	private void buildHash() {
@@ -148,21 +147,29 @@ public class GeneticSolver extends BasicSolver {
 	}
 	
 	protected void doGenerations() {
+		population.sort();
 		for (long generation = 0; generation < maxGenerations; generation++) {
-			population.sort();
 			output(generation);
-			Individue[] parents = population.getParents();
-			Individue child = parents[0].doCrossover(parents[1]);
-			child.doMutation(population.getTheFittest());
-			child.turnFeasible();
+			Individue child;
+			while (true) {
+				Individue[] parents = population.getParents();
+				child = parents[0].doCrossover(parents[1]);
+				child.doMutation(population.getTheFittest());
+				child.turnFeasible();
+				if (!population.contains(child)) {
+					break;
+				}
+			}
 			child.calculateFitness();
 			population.replace(child);
 		}
 	}
 	
 	protected void output(long generation) {
+//		if (generation % outputStep == 0)
+//			System.out.println(generation + "\t" + population.getTheFittest().getFitness());
 		if (generation % outputStep == 0)
-			System.out.println(generation + "\t" + population.getTheFittest().getFitness());
+			System.out.println(generation + "\t" + population.getAverageFitness());
 	}
 	
 	private Solution getSolutionFromPopulation() {

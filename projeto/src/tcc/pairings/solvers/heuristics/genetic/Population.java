@@ -57,23 +57,36 @@ public class Population {
 	}
 	
 	public void replace(Individue child) {
-		individues.remove(getWeakest());
-		individues.add(child);
+		individues.remove(getRandomAboveAverageIndex());
+		int i;
+		for (i = 0; i < individues.size(); i++)
+			if (individues.get(i).getFitness() > child.getFitness())
+				break;
+		individues.add(i, child);
 	}
 	
-	private Individue getWeakest() { 
-		int n = individues.size();
-		int tot = n * (n + 1) / 2; 
-		double r = random.nextDouble();
-		double pk = 0.0;
-		int k;
-		for (k = 1; k <= n; k++) {
-			pk += (double) k / tot;
-			if (r < pk)
+	private int getRandomAboveAverageIndex() {
+		double average = getAverageFitness();
+		int i;
+		for (i = 0; i < individues.size(); i++) 
+			if (individues.get(i).getFitness() >= average) 
 				break;
-		}
-		return individues.get(k - 1);
+		return i + random.nextInt(individues.size() - i);
 	}
+
+//	private Individue getWeakest() { 
+//		int n = individues.size();
+//		int tot = n * (n + 1) / 2; 
+//		double r = random.nextDouble();
+//		double pk = 0.0;
+//		int k;
+//		for (k = 1; k <= n; k++) {
+//			pk += (double) k / tot;
+//			if (r < pk)
+//				break;
+//		}
+//		return individues.get(k - 1);
+//	}
 	
 	@Override
 	public String toString() {
@@ -82,5 +95,19 @@ public class Population {
 			sb.append(individue).append('\n');
 		sb.deleteCharAt(sb.length() - 1);
 		return sb.toString();
+	}
+
+	public boolean contains(Individue individue) {
+		for (Individue populationIndividue: individues)
+			if (populationIndividue.isDuplicate(individue))
+				return true;
+		return false;
+	}
+	
+	public double getAverageFitness() {
+		double total = 0.0;
+		for (Individue individue: individues)
+			total += individue.getFitness();
+		return total / individues.size();
 	}
 }
