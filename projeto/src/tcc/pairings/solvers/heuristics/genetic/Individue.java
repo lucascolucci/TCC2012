@@ -141,7 +141,10 @@ public class Individue {
 		Pairing selected = null; double min = Double.MAX_VALUE;
 		for (Pairing pairing : GeneticSolver.getCoveringPairings().get(leg)) {
 			int numberOfCoveredLegs = getNumberOfCoveredLegs(pairing, uncoveredLegs);
-			double ratio = pairing.getCost() / numberOfCoveredLegs;
+			int numberOfRepeatedLegs = getNumberOfRepeatedLegs(pairing);
+			//double ratio = pairing.getCost() / numberOfCoveredLegs;
+			//double ratio = pairing.getCost() * numberOfRepeatedLegs;
+			double ratio = (double) (numberOfRepeatedLegs / numberOfCoveredLegs) * pairing.getCost();
 			if (ratio < min) {
 				selected = pairing; min = ratio;
 			}
@@ -154,6 +157,15 @@ public class Individue {
 		for (Leg leg : uncoveredLegs)
 			if (pairing.contains(leg))
 				count++;
+		return count;
+	}
+	
+	private int getNumberOfRepeatedLegs(Pairing pairing) {
+		int count = 0;
+		for (Pairing chromosomePairng: chromosome.getGenes())
+			for (Leg leg: pairing.getLegs())
+				if (chromosomePairng.contains(leg))
+					count++;
 		return count;
 	}
 
@@ -212,6 +224,10 @@ public class Individue {
 
 	public double getOnesDensity() {
 		return (double) chromosome.size() / size;
+	}
+	
+	public void doMutation() {
+		// TODO
 	}
 
 	public void calculateFitness() {
