@@ -1,14 +1,11 @@
 package tcc.pairings.solvers.heuristics.genetic;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 
 public class Population {
 	private List<Individue> individues;
-	private static Random random = new Random(0);
 
 	public Population() {
 		individues = new ArrayList<Individue>();
@@ -19,7 +16,11 @@ public class Population {
 	}
 	
 	public void add(Individue individue) {
-		individues.add(individue);
+		int i;
+		for (i = 0; i < individues.size(); i++)
+			if (individues.get(i).getFitness() > individue.getFitness())
+				break;
+		individues.add(i, individue);
 	}
 	
 	public Individue[] getParents() {
@@ -30,18 +31,10 @@ public class Population {
 		return new Individue[] { parent1, parent2 };
 	}
 	
-	public void sort() {
-		Collections.sort(individues, new Comparator<Individue>() {  
-            public int compare(Individue i1, Individue i2) {  
-                return i1.getFitness() < i2.getFitness() ? -1 : 1;  
-            }  
-        });  
-	}
-	
 	private Individue getFittest() { 
 		int n = individues.size();
 		int tot = n * (n + 1) / 2; 
-		double r = random.nextDouble();
+		double r = GeneticSolver.random.nextDouble();
 		double pk = 0.0;
 		int k;
 		for (k = 1; k <= n; k++) {
@@ -58,11 +51,7 @@ public class Population {
 	
 	public void replace(Individue child) {
 		individues.remove(getRandomAboveAverageIndex());
-		int i;
-		for (i = 0; i < individues.size(); i++)
-			if (individues.get(i).getFitness() > child.getFitness())
-				break;
-		individues.add(i, child);
+		add(child);
 	}
 	
 	private int getRandomAboveAverageIndex() {
@@ -71,7 +60,7 @@ public class Population {
 		for (i = 0; i < individues.size(); i++) 
 			if (individues.get(i).getFitness() >= average) 
 				break;
-		return i + random.nextInt(individues.size() - i);
+		return i + GeneticSolver.random.nextInt(individues.size() - i);
 	}
 
 //	private Individue getWeakest() { 
@@ -88,15 +77,6 @@ public class Population {
 //		return individues.get(k - 1);
 //	}
 	
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		for (Individue individue: individues)
-			sb.append(individue).append('\n');
-		sb.deleteCharAt(sb.length() - 1);
-		return sb.toString();
-	}
-
 	public boolean contains(Individue individue) {
 		for (Individue populationIndividue: individues)
 			if (populationIndividue.isDuplicate(individue))
@@ -109,5 +89,15 @@ public class Population {
 		for (Individue individue: individues)
 			total += individue.getFitness();
 		return total / individues.size();
+	}
+	
+	@Override
+	public String toString() {
+		DecimalFormat df = new DecimalFormat("#.###");
+		StringBuilder sb = new StringBuilder("População:\n");
+		for (Individue individue: individues)
+			sb.append(individue).append('\n');
+		sb.append("Fitness médio = ").append(df.format(getAverageFitness()));
+		return sb.toString();
 	}
 }

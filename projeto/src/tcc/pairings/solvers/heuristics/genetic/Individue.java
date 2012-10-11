@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
@@ -13,17 +12,14 @@ public class Individue {
 	private int size;
 	private List<Leg> toCoverLegs;
 	private List<Pairing> pairings;
-	private List<Pairing> chromosome;
+	private Chromosome chromosome;
 	private double fitness;
-	private static long number = 0;
-	private static Random random = new Random(0);
-	private int newIndividueCutoff = 5;
 
-	public List<Pairing> getChromosome() {
+	public Chromosome getChromosome() {
 		return chromosome;
 	}
 
-	public void setChromosome(List<Pairing> chromosome) {
+	public void setChromosome(Chromosome chromosome) {
 		this.chromosome = chromosome;
 	}
 
@@ -35,117 +31,122 @@ public class Individue {
 		this.toCoverLegs = toCoverLegs;
 		this.pairings = pairings;
 		size = pairings.size();
-		chromosome = new ArrayList<Pairing>();
-		number++;
+		chromosome = new Chromosome();
 	}
 
 	public void generateChromosome() {
+		HashMap<Leg, Integer> legCoverageCount = getNewLegCoverageCount();
+		addPairingsToCoverLegs(legCoverageCount);
+		removeRedundantPairingsRandomly(legCoverageCount);
+	}
+
+	private HashMap<Leg, Integer> getNewLegCoverageCount() {
 		HashMap<Leg, Integer> legCoverageCount = new HashMap<Leg, Integer>();
 		for (Leg leg : toCoverLegs)
 			legCoverageCount.put(leg, 0);
-
+		return legCoverageCount;
+	}
+	
+	private void addPairingsToCoverLegs(HashMap<Leg, Integer> legCoverageCount) {
 		for (Leg leg : toCoverLegs) {
-			int size = Math.min(newIndividueCutoff, GeneticSolver.getHash()
-					.get(leg).size());
-			int randomIndex = random.nextInt(size);
-			Pairing selected = GeneticSolver.getHash().get(leg)
-					.get(randomIndex);
-			addGene(selected);
-			for (Leg selectedLeg : selected.getLegs())
-				for (Leg countLeg : legCoverageCount.keySet())
-					if (countLeg.isDuplicate(selectedLeg)) {
-						int value = legCoverageCount.get(countLeg);
-						legCoverageCount.put(countLeg, value + 1);
-						break;
-					}
+			Pairing selected = getRandomPairingToCoverLeg(leg);
+			chromosome.add(selected);
+			incrementLegCoverageCount(legCoverageCount, selected);
 		}
+	}
 
-		List<Pairing> cloned = new ArrayList<Pairing>(chromosome);
+	private Pairing getRandomPairingToCoverLeg(Leg leg) {
+		List<Pairing> coveringPairings = GeneticSolver.getCoveringPairings().get(leg);
+		int size = Math.min(GeneticSolver.getCutoff(), coveringPairings.size());
+		int randomIndex = GeneticSolver.random.nextInt(size);
+		return coveringPairings.get(randomIndex);
+	}
+	
+	private void incrementLegCoverageCount(HashMap<Leg, Integer> legCoverageCount, Pairing pairing) {
+		for (Leg leg : pairing.getLegs())
+			for (Leg countLeg : legCoverageCount.keySet())
+				if (countLeg.isDuplicate(leg)) {
+					int value = legCoverageCount.get(countLeg);
+					legCoverageCount.put(countLeg, value + 1);
+					break;
+				}
+	}
+	
+	private void removeRedundantPairingsRandomly(HashMap<Leg, Integer> legCoverageCount) {
+		Chromosome cloned = chromosome.clone();
 		while (!cloned.isEmpty()) {
-			int randomIndex = random.nextInt(cloned.size());
+			int randomIndex = GeneticSolver.random.nextInt(cloned.size());
 			Pairing selected = cloned.get(randomIndex);
 			cloned.remove(selected);
-			boolean isRedundant = true;
-			for (Leg selectedLeg : selected.getLegs())
-				for (Leg countLeg : legCoverageCount.keySet())
-					if (countLeg.isDuplicate(selectedLeg))
-						if (legCoverageCount.get(countLeg) < 2) {
-							isRedundant = false;
-							break;
-						}
-			if (isRedundant) {
+			if (isRedundant(legCoverageCount, selected)) {
 				chromosome.remove(selected);
-				for (Leg selectedLeg : selected.getLegs())
-					for (Leg countLeg : legCoverageCount.keySet())
-						if (countLeg.isDuplicate(selectedLeg)) {
-							int value = legCoverageCount.get(countLeg);
-							legCoverageCount.put(countLeg, value - 1);
-						}
+				decrementLegCoverageCount(legCoverageCount, selected);
 			}
 		}
 	}
 
+	private boolean isRedundant(HashMap<Leg, Integer> legCoverageCount, Pairing pairing) {
+		for (Leg leg : pairing.getLegs())
+			for (Leg countLeg : legCoverageCount.keySet())
+				if (countLeg.isDuplicate(leg))
+					if (legCoverageCount.get(countLeg) < 2)
+						return false;
+		return true;
+	}
+	
+	private void decrementLegCoverageCount(HashMap<Leg, Integer> legCoverageCount, Pairing pairing) {
+		for (Leg leg : pairing.getLegs())
+			for (Leg countLeg : legCoverageCount.keySet())
+				if (countLeg.isDuplicate(leg)) {
+					int value = legCoverageCount.get(countLeg);
+					legCoverageCount.put(countLeg, value - 1);
+					break;
+				}
+	}
+
 	public void turnFeasible() {
+		HashMap<Leg, Integer> legCoverageCount = getLegCovereageCount();
+		List<Leg> uncoveredLegs = getUncoveredLegs(legCoverageCount);
+		while (!uncoveredLegs.isEmpty()) {
+			Pairing selected = getMinRatioPairing(uncoveredLegs);
+			chromosome.add(selected);
+			incrementLegCoverageCount(legCoverageCount, selected);
+			updateUncoveredLegs(selected, uncoveredLegs);
+			removeRedundatPairings(legCoverageCount);
+		}
+	}
+
+	private HashMap<Leg, Integer> getLegCovereageCount() {
 		HashMap<Leg, Integer> legCoverageCount = new HashMap<Leg, Integer>();
 		for (Leg leg : toCoverLegs) {
 			int value = 0;
-			for (Pairing pairing : chromosome)
+			for (Pairing pairing : chromosome.getGenes())
 				if (pairing.contains(leg))
 					value++;
 			legCoverageCount.put(leg, value);
 		}
-
+		return legCoverageCount;
+	}
+	
+	private List<Leg> getUncoveredLegs(HashMap<Leg, Integer> legCoverageCount) {
 		List<Leg> uncoveredLegs = new ArrayList<Leg>();
 		for (Leg leg : legCoverageCount.keySet())
 			if (legCoverageCount.get(leg) == 0)
 				uncoveredLegs.add(leg);
-
-		while (!uncoveredLegs.isEmpty()) {
-			Leg leg = uncoveredLegs.get(0);
-			Pairing selected = null;
-			double min = Double.MAX_VALUE;
-			for (Pairing pairing : GeneticSolver.getHash().get(leg)) {
-				int numberOfCoveredLegs = getNumberOfCoveredLegs(pairing,
-						uncoveredLegs);
-				double ratio = pairing.getCost() / numberOfCoveredLegs;
-				if (ratio < min) {
-					selected = pairing;
-					min = ratio;
-				}
-			}
-
-			addGene(selected);
-
-			for (Leg selectedLeg : selected.getLegs())
-				for (Leg countLeg : legCoverageCount.keySet())
-					if (countLeg.isDuplicate(selectedLeg)) {
-						int value = legCoverageCount.get(countLeg);
-						legCoverageCount.put(countLeg, value + 1);
-						break;
-					}
-			updateUncoveredLegs(selected, uncoveredLegs);
-
-			List<Pairing> cloned = new ArrayList<Pairing>(chromosome);
-			for (int i = cloned.size() - 1; i >= 0; i--) {
-				boolean isDuplicated = true;
-				for (Leg clonedLeg : cloned.get(i).getLegs())
-					for (Leg countLeg : legCoverageCount.keySet())
-						if (countLeg.isDuplicate(clonedLeg))
-							if (legCoverageCount.get(countLeg) < 2) {
-								isDuplicated = false;
-								break;
-							}
-				if (isDuplicated) {
-					chromosome.remove(cloned.get(i));
-					for (Leg clonedLeg : cloned.get(i).getLegs())
-						for (Leg countLeg : legCoverageCount.keySet())
-							if (countLeg.isDuplicate(clonedLeg)) {
-								int value = legCoverageCount.get(countLeg);
-								legCoverageCount.put(countLeg, value - 1);
-							}
-				}
+		return uncoveredLegs;
+	}
+	
+	private Pairing getMinRatioPairing(List<Leg> uncoveredLegs) {
+		Leg leg = uncoveredLegs.get(0);
+		Pairing selected = null; double min = Double.MAX_VALUE;
+		for (Pairing pairing : GeneticSolver.getCoveringPairings().get(leg)) {
+			int numberOfCoveredLegs = getNumberOfCoveredLegs(pairing, uncoveredLegs);
+			double ratio = pairing.getCost() / numberOfCoveredLegs;
+			if (ratio < min) {
+				selected = pairing; min = ratio;
 			}
 		}
+		return selected;
 	}
 
 	private int getNumberOfCoveredLegs(Pairing pairing, List<Leg> uncoveredLegs) {
@@ -162,6 +163,17 @@ public class Individue {
 			if (pairing.contains(leg))
 				uncoveredLegs.remove(leg);
 	}
+	
+	private void removeRedundatPairings(HashMap<Leg, Integer> legCoverageCount) {
+		Chromosome cloned = chromosome.clone();
+		for (int i = cloned.size() - 1; i >= 0; i--) {
+			Pairing selected = cloned.get(i); 
+			if (isRedundant(legCoverageCount, selected)) {
+				chromosome.remove(selected);
+				decrementLegCoverageCount(legCoverageCount, selected);
+			}
+		}
+	}
 
 	public Individue doCrossover(Individue other) {
 		Individue individue = new Individue(toCoverLegs, pairings);
@@ -169,31 +181,31 @@ public class Individue {
 		return individue;
 	}
 
-	private List<Pairing> getCrossoverChromosome(Individue other) {
-		List<Pairing> crossover = new ArrayList<Pairing>();
-		for (Pairing pairing : chromosome)
+	private Chromosome getCrossoverChromosome(Individue other) {
+		Chromosome crossover = new Chromosome(); 
+		for (Pairing pairing : chromosome.getGenes())
 			if (other.getChromosome().contains(pairing))
-				addGene(crossover, pairing);
-			else if (random.nextBoolean())
-				addGene(crossover, pairing);
-		for (Pairing pairing : other.getChromosome())
+				crossover.add(pairing);
+			else if (GeneticSolver.random.nextBoolean())
+				crossover.add(pairing);
+		for (Pairing pairing : other.getChromosome().getGenes())
 			if (!chromosome.contains(pairing))
-				if (random.nextBoolean())
-					addGene(crossover, pairing);
+				if (GeneticSolver.random.nextBoolean())
+					crossover.add(pairing);
 		return crossover;
 	}
 
 	public void doMutation(Individue theFittest) {
 		double prob = theFittest.getOnesDensity();
 		for (int i = 0; i < GeneticSolver.getMutationSize(); i++)
-			mutatePairing(pairings.get(random.nextInt(size)), prob);
+			mutatePairing(pairings.get(GeneticSolver.random.nextInt(size)), prob);
 	}
 
 	private void mutatePairing(Pairing pairing, double prob) {
-		double r = random.nextDouble();
+		double r = GeneticSolver.random.nextDouble();
 		if (r < prob) {
 			if (!chromosome.contains(pairing))
-				addGene(pairing);
+				chromosome.add(pairing);
 		} else if (chromosome.contains(pairing))
 			chromosome.remove(pairing);
 	}
@@ -204,54 +216,32 @@ public class Individue {
 
 	public void calculateFitness() {
 		fitness = 0.0;
-		for (Pairing pairing : chromosome)
+		for (Pairing pairing : chromosome.getGenes())
 			fitness += pairing.getCost();
-		fitness += GeneticSolver.getDeadheadingPenalty()
-				* getNumberOfDeadheadedFlights();
+		fitness += GeneticSolver.getDeadheadingPenalty() * getNumberOfDeadheadedFlights();
 	}
 
 	private int getNumberOfDeadheadedFlights() {
 		int total = 0;
 		for (Leg leg : toCoverLegs)
-			for (Pairing pairing : chromosome)
+			for (Pairing pairing : chromosome.getGenes())
 				if (pairing.contains(leg))
 					total++;
 		return total - toCoverLegs.size();
 	}
 
 	public boolean isDuplicate(Individue other) {
-		List<Pairing> otherChromosome = other.getChromosome();
-		if (this.chromosome.size() != otherChromosome.size())
-			return false;
-		for (Pairing pairing : this.chromosome)
-			if (!otherChromosome.contains(pairing))
-				return false;
-		return true;
-	}
-
-	private void addGene(Pairing gene) {
-		int i;
-		for (i = 0; i < chromosome.size(); i++)
-			if (chromosome.get(i).getCost() > gene.getCost())
-				break;
-		chromosome.add(i, gene);
-	}
-
-	private void addGene(List<Pairing> chromosome, Pairing gene) {
-		int i;
-		for (i = 0; i < chromosome.size(); i++)
-			if (chromosome.get(i).getCost() > gene.getCost())
-				break;
-		chromosome.add(i, gene);
+		Chromosome otherChromosome = other.getChromosome();
+		return chromosome.isDuplicate(otherChromosome);
 	}
 
 	@Override
 	public String toString() {
 		DecimalFormat df = new DecimalFormat("#.###");
 		StringBuilder sb = new StringBuilder();
-		sb.append("Indiv’duo ").append(number).append('\n');
-		sb.append("- Colunas = ").append(chromosome.size()).append('\n');
-		sb.append("- Fitness = ").append(df.format(getFitness()));
+		sb.append("\tIndiv’duo:\n");
+		sb.append("\t\tColunas = ").append(chromosome.size()).append('\n');
+		sb.append("\t\tFitness = ").append(df.format(getFitness()));
 		return sb.toString();
 	}
 }

@@ -34,7 +34,6 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	@Override
 	protected void doGenerations() {
 		for (long generation = 0; generation < maxGenerations; generation++) {
-			population.sort();
 			output(generation);
 			Individue[] parents = population.getParents();
 			Individue child = parents[0].doCrossover(parents[1]);
@@ -47,7 +46,7 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	}
 	
 	public void localOptimize(Individue individue) {
-		Solution solution = new Solution(individue.getChromosome());
+		Solution solution = new Solution(individue.getChromosome().getGenes());
 		setDeadHeads(solution);
 		setSolutionCost(solution);
 		
@@ -73,11 +72,11 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 			individue.getChromosome().addAll(sampleSolution.getPairings());
 		}
 		
-		for (Pairing pairing: individue.getChromosome())
+		for (Pairing pairing: individue.getChromosome().getGenes())
 			for (DutyLeg leg: pairing.getLegs())
 				leg.setDeadHead(false);
 					
-		Solution newSolution = new Solution(individue.getChromosome());
+		Solution newSolution = new Solution(individue.getChromosome().getGenes());
 		System.out.println(newSolution.isAllLegsCovered(legs));
 	}
 }

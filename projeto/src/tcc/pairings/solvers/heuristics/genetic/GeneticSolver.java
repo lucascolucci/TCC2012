@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
@@ -17,13 +18,15 @@ import tcc.pairings.solvers.Solution;
 
 public class GeneticSolver extends BasicSolver {
 	protected static double deadheadingPenalty = 1.0;
-	protected static int mutationSize = 3;
-	protected int populationSize = 1000;
-	protected long maxGenerations = 100000;
+	protected static int mutationSize = 5;
+	protected int populationSize = 100;
+	protected long maxGenerations = 10000;
 	protected int maxPairings = 500000;
 	protected int outputStep = 1000;
+	protected static int cutoff = 5;
 	protected Population population;
-	protected static HashMap<Leg, List<Pairing>> hash;
+	protected static HashMap<Leg, List<Pairing>> coveringPairings;
+	public static Random random = new Random(0);
 	
 	public static double getDeadheadingPenalty() {
 		return deadheadingPenalty;
@@ -65,12 +68,20 @@ public class GeneticSolver extends BasicSolver {
 		this.maxPairings = maxPairings;
 	}
 	
+	public static int getCutoff() {
+		return cutoff;
+	}
+	
+	public static void setCutOff(int cutoff) {
+		GeneticSolver.cutoff = cutoff;
+	}
+	
 	public Population getPopulation() {
 		return population;
 	}
 	
-	public static HashMap<Leg, List<Pairing>> getHash() {
-		return hash;
+	public static HashMap<Leg, List<Pairing>> getCoveringPairings() {
+		return coveringPairings;
 	}
 
 	public GeneticSolver(String timeTable) {
@@ -102,17 +113,17 @@ public class GeneticSolver extends BasicSolver {
 	
 	@Override
 	protected Solution getOptimalSolution() {
-		sort(memory.getPairings());
+		sortGeneratedPairings();
 		buildHash();
 		buildInitialPopulation();
 		doGenerations();
 		return getSolutionFromPopulation();
 	}
 
-	private void sort(List<Pairing> pairings) {
-		Collections.sort(pairings, new Comparator<Pairing>() {  
+	private void sortGeneratedPairings() {
+		Collections.sort(memory.getPairings(), new Comparator<Pairing>() {  
             public int compare(Pairing p1, Pairing p2) {
-            	if (Math.abs(p1.getCost() - p2.getCost()) < 0.000001)
+            	if (Math.abs(p1.getCost() - p2.getCost()) < 0.00001)
             		return p1.getNumberOfLegs() > p2.getNumberOfLegs() ? -1 : 1;
             	return p1.getCost() < p2.getCost() ? -1 : 1;
             }  
@@ -120,13 +131,13 @@ public class GeneticSolver extends BasicSolver {
 	}
 
 	private void buildHash() {
-		hash = new HashMap<Leg, List<Pairing>>();
+		coveringPairings = new HashMap<Leg, List<Pairing>>();
 		for (Leg leg: legs)
 			for (Pairing pairing: memory.getPairings())
 				if (pairing.contains(leg)) {
-					if (!hash.containsKey(leg))
-						hash.put(leg, new ArrayList<Pairing>());
-					hash.get(leg).add(pairing);
+					if (!coveringPairings.containsKey(leg))
+						coveringPairings.put(leg, new ArrayList<Pairing>());
+					coveringPairings.get(leg).add(pairing);
 				}	
 	}
 	
@@ -142,46 +153,41 @@ public class GeneticSolver extends BasicSolver {
 			individue.turnFeasible();
 			individue.calculateFitness();
 			population.add(individue);
-			System.out.println(individue);
 		}
+		System.out.println(population);
 	}
 	
 	protected void doGenerations() {
-		population.sort();
 		for (long generation = 0; generation < maxGenerations; generation++) {
 			output(generation);
-			Individue child;
-			while (true) {
-				Individue[] parents = population.getParents();
-				child = parents[0].doCrossover(parents[1]);
-				child.doMutation(population.getTheFittest());
-				child.turnFeasible();
-				if (!population.contains(child)) {
-					break;
-				}
-			}
+			Individue child = getChild();
 			child.calculateFitness();
 			population.replace(child);
 		}
 	}
+
+	private Individue getChild() {
+		while (true) {
+			Individue[] parents = population.getParents();
+			Individue child = parents[0].doCrossover(parents[1]);
+			child.doMutation(population.getTheFittest());
+			child.turnFeasible();
+			if (!population.contains(child))
+				return child;
+		}
+	}
 	
 	protected void output(long generation) {
-//		if (generation % outputStep == 0)
-//			System.out.println(generation + "\t" + population.getTheFittest().getFitness());
 		if (generation % outputStep == 0)
 			System.out.println(generation + "\t" + population.getAverageFitness());
 	}
 	
 	private Solution getSolutionFromPopulation() {
 		Individue theFittest = population.getTheFittest();
-		Solution solution = new Solution(theFittest.getChromosome());
+		Solution solution = new Solution(theFittest.getChromosome().getGenes());
 		setDeadHeads(solution);
 		setCostsWithDeadHeads(solution.getPairings());
-		setSolutionCost(solution);
-		
-		System.out.println(solution.isAllLegsCovered(legs));
-		System.out.println(solution.isCostRight());
-		
+		setSolutionCost(solution);		
 		return solution;
 	}
 	
