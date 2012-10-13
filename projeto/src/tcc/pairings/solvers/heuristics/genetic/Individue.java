@@ -9,7 +9,6 @@ import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 
 public class Individue {
-	private int size;
 	private List<Leg> toCoverLegs;
 	private List<Pairing> pairings;
 	private Chromosome chromosome;
@@ -30,7 +29,6 @@ public class Individue {
 	public Individue(List<Leg> toCoverLegs, List<Pairing> pairings) {
 		this.toCoverLegs = toCoverLegs;
 		this.pairings = pairings;
-		size = pairings.size();
 		chromosome = new Chromosome();
 	}
 
@@ -56,7 +54,7 @@ public class Individue {
 	}
 
 	private Pairing getRandomPairingToCoverLeg(Leg leg) {
-		List<Pairing> coveringPairings = GeneticSolver.getCoveringPairings().get(leg);
+		List<Pairing> coveringPairings = GeneticSolver.getCoverPairings().get(leg);
 		int size = Math.min(GeneticSolver.getCutoff(), coveringPairings.size());
 		int randomIndex = GeneticSolver.random.nextInt(size);
 		return coveringPairings.get(randomIndex);
@@ -139,12 +137,14 @@ public class Individue {
 	private Pairing getMinRatioPairing(List<Leg> uncoveredLegs) {
 		Leg leg = uncoveredLegs.get(0);
 		Pairing selected = null; double min = Double.MAX_VALUE;
-		for (Pairing pairing : GeneticSolver.getCoveringPairings().get(leg)) {
+		List<Pairing> coverPairings = GeneticSolver.getCoverPairings().get(leg);
+		for (Pairing pairing : coverPairings) {
 			int numberOfCoveredLegs = getNumberOfCoveredLegs(pairing, uncoveredLegs);
-			int numberOfRepeatedLegs = getNumberOfRepeatedLegs(pairing);
+			//int numberOfRepeatedLegs = getNumberOfRepeatedLegs(pairing);
 			//double ratio = pairing.getCost() / numberOfCoveredLegs;
+			double ratio = pairing.getCost() * (pairing.getNumberOfLegs() / numberOfCoveredLegs);
 			//double ratio = pairing.getCost() * numberOfRepeatedLegs;
-			double ratio = (double) (numberOfRepeatedLegs / numberOfCoveredLegs) * pairing.getCost();
+			//double ratio = (double) (numberOfRepeatedLegs / numberOfCoveredLegs) * pairing.getCost();
 			if (ratio < min) {
 				selected = pairing; min = ratio;
 			}
@@ -160,14 +160,14 @@ public class Individue {
 		return count;
 	}
 	
-	private int getNumberOfRepeatedLegs(Pairing pairing) {
-		int count = 0;
-		for (Pairing chromosomePairng: chromosome.getGenes())
-			for (Leg leg: pairing.getLegs())
-				if (chromosomePairng.contains(leg))
-					count++;
-		return count;
-	}
+//	private int getNumberOfRepeatedLegs(Pairing pairing) {
+//		int count = 0;
+//		for (Pairing chromosomePairng: chromosome.getGenes())
+//			for (Leg leg: pairing.getLegs())
+//				if (chromosomePairng.contains(leg))
+//					count++;
+//		return count;
+//	}
 
 	private void updateUncoveredLegs(Pairing pairing, List<Leg> uncoveredLegs) {
 		List<Leg> clonedLegs = new ArrayList<Leg>(uncoveredLegs);
@@ -195,24 +195,27 @@ public class Individue {
 
 	private Chromosome getCrossoverChromosome(Individue other) {
 		Chromosome crossover = new Chromosome(); 
-		for (Pairing pairing : chromosome.getGenes())
+		for (Pairing pairing: chromosome.getGenes())
 			if (other.getChromosome().contains(pairing))
 				crossover.add(pairing);
 			else if (GeneticSolver.random.nextBoolean())
 				crossover.add(pairing);
-		for (Pairing pairing : other.getChromosome().getGenes())
+		for (Pairing pairing: other.getChromosome().getGenes())
 			if (!chromosome.contains(pairing))
 				if (GeneticSolver.random.nextBoolean())
 					crossover.add(pairing);
 		return crossover;
 	}
-
-	public void doMutation(Individue theFittest) {
-		double prob = theFittest.getOnesDensity();
-		for (int i = 0; i < GeneticSolver.getMutationSize(); i++)
-			mutatePairing(pairings.get(GeneticSolver.random.nextInt(size)), prob);
+	
+	public void doMutation(Individue theFittest, int k) {
+		double prob = (double) chromosome.size() / pairings.size();
+		for (int i = 0; i < k; i++) {
+			List<Pairing> elite = GeneticSolver.getElite();
+			int randomIndex = GeneticSolver.random.nextInt(elite.size());
+			mutatePairing(elite.get(randomIndex), prob);
+		}
 	}
-
+	
 	private void mutatePairing(Pairing pairing, double prob) {
 		double r = GeneticSolver.random.nextDouble();
 		if (r < prob) {
@@ -221,15 +224,22 @@ public class Individue {
 		} else if (chromosome.contains(pairing))
 			chromosome.remove(pairing);
 	}
-
-	public double getOnesDensity() {
-		return (double) chromosome.size() / size;
+	
+	public void doMutation(int k) {
+		for (int i = 0; i < k; i++)
+			mutateRandomElitePairing();
 	}
 	
-	public void doMutation() {
-		// TODO
+	private void mutateRandomElitePairing() {
+		List<Pairing> elite = GeneticSolver.getElite();
+		int randomIndex = GeneticSolver.random.nextInt(elite.size());
+		Pairing mutating = elite.get(randomIndex);
+		if (chromosome.contains(mutating))
+			chromosome.remove(mutating);
+		else
+			chromosome.add(mutating);
 	}
-
+	
 	public void calculateFitness() {
 		fitness = 0.0;
 		for (Pairing pairing : chromosome.getGenes())

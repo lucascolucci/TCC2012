@@ -18,15 +18,21 @@ import tcc.pairings.solvers.Solution;
 
 public class GeneticSolver extends BasicSolver {
 	protected static double deadheadingPenalty = 1.0;
-	protected static int mutationSize = 5;
 	protected int populationSize = 100;
 	protected long maxGenerations = 10000;
 	protected int maxPairings = 500000;
-	protected int outputStep = 1000;
+	protected int outputStep = 100;
 	protected static int cutoff = 5;
+	protected int mutationSize = 5;
+	protected int mf = 5;
+	protected int mc = 200; 
+	protected double mg = 2.0;
 	protected Population population;
-	protected static HashMap<Leg, List<Pairing>> coveringPairings;
-	public static Random random = new Random(0);
+	protected Individue best;
+	protected static List<Pairing> pairings;
+	protected static HashMap<Leg, List<Pairing>> coverPairings;
+	protected static List<Pairing> elite;
+	public static final Random random = new Random(0);
 	
 	public static double getDeadheadingPenalty() {
 		return deadheadingPenalty;
@@ -34,14 +40,6 @@ public class GeneticSolver extends BasicSolver {
 
 	public static void setDeadheadingPenalty(double deadheadingPenalty) {
 		GeneticSolver.deadheadingPenalty = deadheadingPenalty;
-	}
-
-	public static int getMutationSize() {
-		return mutationSize;
-	}
-
-	public static void setMutationSize(int mutationSize) {
-		GeneticSolver.mutationSize = mutationSize;
 	}
 	
 	public int getPopulationSize() {
@@ -76,12 +74,48 @@ public class GeneticSolver extends BasicSolver {
 		GeneticSolver.cutoff = cutoff;
 	}
 	
+	public int getMutationSize() {
+		return mutationSize;
+	}
+
+	public void setMutationSize(int mutationSize) {
+		this.mutationSize = mutationSize;
+	}
+	
+	public int getMf() {
+		return mf;
+	}
+
+	public void setMf(int mf) {
+		this.mf = mf;
+	}
+
+	public int getMc() {
+		return mc;
+	}
+
+	public void setMc(int mc) {
+		this.mc = mc;
+	}
+
+	public double getMg() {
+		return mg;
+	}
+
+	public void setMg(double mg) {
+		this.mg = mg;
+	}
+	
 	public Population getPopulation() {
 		return population;
 	}
 	
-	public static HashMap<Leg, List<Pairing>> getCoveringPairings() {
-		return coveringPairings;
+	public static HashMap<Leg, List<Pairing>> getCoverPairings() {
+		return coverPairings;
+	}
+	
+	public static List<Pairing> getElite() {
+		return elite;
 	}
 
 	public GeneticSolver(String timeTable) {
@@ -101,7 +135,6 @@ public class GeneticSolver extends BasicSolver {
 	@Override
 	protected void generatePairings() {
 		PairingsGenerator generator = new PairingsGenerator(net, outputers, calculator);
-		generator.setMaxPairings(maxPairings);
 		generator.generate(bases);
 		numberOfPairings = generator.getNumberOfPairings();
 	}
@@ -114,10 +147,17 @@ public class GeneticSolver extends BasicSolver {
 	@Override
 	protected Solution getOptimalSolution() {
 		sortGeneratedPairings();
+		setPairings();
 		buildHash();
+		buildElite();
 		buildInitialPopulation();
 		doGenerations();
 		return getSolutionFromPopulation();
+	}
+
+	private void setPairings() {
+		int size = Math.min(maxPairings, numberOfPairings) - 1;	
+		pairings = memory.getPairings().subList(0, size);
 	}
 
 	private void sortGeneratedPairings() {
@@ -131,14 +171,22 @@ public class GeneticSolver extends BasicSolver {
 	}
 
 	private void buildHash() {
-		coveringPairings = new HashMap<Leg, List<Pairing>>();
+		coverPairings = new HashMap<Leg, List<Pairing>>();
 		for (Leg leg: legs)
-			for (Pairing pairing: memory.getPairings())
+			for (Pairing pairing: pairings)
 				if (pairing.contains(leg)) {
-					if (!coveringPairings.containsKey(leg))
-						coveringPairings.put(leg, new ArrayList<Pairing>());
-					coveringPairings.get(leg).add(pairing);
+					if (!coverPairings.containsKey(leg))
+						coverPairings.put(leg, new ArrayList<Pairing>());
+					coverPairings.get(leg).add(pairing);
 				}	
+	}
+	
+	private void buildElite() {
+		elite = new ArrayList<Pairing>();
+		for (List<Pairing> pairings: coverPairings.values()) {
+			int maxIndex = Math.min(cutoff, pairings.size()) - 1;
+			elite.addAll(pairings.subList(0, maxIndex));
+		}
 	}
 	
 	private void buildInitialPopulation() {
@@ -148,33 +196,42 @@ public class GeneticSolver extends BasicSolver {
 	
 	private void fillPopulation() {
 		for (int i = 0; i < populationSize; i++) {
-			Individue individue = new Individue(legs, memory.getPairings());
+			Individue individue = new Individue(legs, pairings);
 			individue.generateChromosome();
 			individue.turnFeasible();
 			individue.calculateFitness();
 			population.add(individue);
 		}
+		best = population.getTheFittest();
 		System.out.println(population);
 	}
 	
 	protected void doGenerations() {
 		for (long generation = 0; generation < maxGenerations; generation++) {
 			output(generation);
-			Individue child = getChild();
+			Individue child = getChild(generation);
 			child.calculateFitness();
 			population.replace(child);
+			if (population.getTheFittest().getFitness() < best.getFitness())
+				best = population.getTheFittest();
 		}
 	}
 
-	private Individue getChild() {
+	private Individue getChild(long generation) {
 		while (true) {
 			Individue[] parents = population.getParents();
 			Individue child = parents[0].doCrossover(parents[1]);
-			child.doMutation(population.getTheFittest());
+			//child.doMutation(population.getTheFittest(), getNumberOfMutationGenes(generation));
+			child.doMutation(getNumberOfMutatingGenes(generation));
 			child.turnFeasible();
 			if (!population.contains(child))
 				return child;
 		}
+	}
+	
+	private int getNumberOfMutatingGenes(long t) {
+		double k = (double) mf / (1.0 + Math.exp(-4.0 * mg * (t - mc) / mf));
+		return (int) Math.ceil(k);
 	}
 	
 	protected void output(long generation) {
@@ -183,8 +240,8 @@ public class GeneticSolver extends BasicSolver {
 	}
 	
 	private Solution getSolutionFromPopulation() {
-		Individue theFittest = population.getTheFittest();
-		Solution solution = new Solution(theFittest.getChromosome().getGenes());
+		//Individue theFittest = population.getTheFittest();
+		Solution solution = new Solution(best.getChromosome().getGenes());
 		setDeadHeads(solution);
 		setCostsWithDeadHeads(solution.getPairings());
 		setSolutionCost(solution);		

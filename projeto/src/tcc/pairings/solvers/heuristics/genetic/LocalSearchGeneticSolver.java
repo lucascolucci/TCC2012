@@ -37,7 +37,7 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 			output(generation);
 			Individue[] parents = population.getParents();
 			Individue child = parents[0].doCrossover(parents[1]);
-			child.doMutation(population.getTheFittest());
+			child.doMutation(population.getTheFittest(), mutationSize);
 			child.turnFeasible();
 			localOptimize(child);
 			child.calculateFitness();
