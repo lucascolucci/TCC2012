@@ -1,4 +1,4 @@
-package tcc.pairings.solvers;
+package tcc.util;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

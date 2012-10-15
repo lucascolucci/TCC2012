@@ -15,6 +15,7 @@ import tcc.pairings.io.outputers.MemoryOutputer;
 import tcc.pairings.io.outputers.Outputer;
 import tcc.pairings.solvers.BasicSolver;
 import tcc.pairings.solvers.Solution;
+import tcc.util.ResultsBuffer;
 
 public class GeneticSolver extends BasicSolver {
 	protected static double deadheadingPenalty = 1.0;
@@ -27,6 +28,7 @@ public class GeneticSolver extends BasicSolver {
 	protected int mf = 5;
 	protected int mc = 200; 
 	protected double mg = 2.0;
+	private ResultsBuffer buffer;
 	protected Population population;
 	protected Individue best;
 	protected static List<Pairing> pairings;
@@ -106,6 +108,14 @@ public class GeneticSolver extends BasicSolver {
 		this.mg = mg;
 	}
 	
+	public ResultsBuffer getBuffer() {
+		return buffer;
+	}
+
+	public void setBuffer(ResultsBuffer buffer) {
+		this.buffer = buffer;
+	}
+	
 	public Population getPopulation() {
 		return population;
 	}
@@ -135,6 +145,7 @@ public class GeneticSolver extends BasicSolver {
 	@Override
 	protected void generatePairings() {
 		PairingsGenerator generator = new PairingsGenerator(net, outputers, calculator);
+		generator.setMaxPairings(maxPairings);
 		generator.generate(bases);
 		numberOfPairings = generator.getNumberOfPairings();
 	}
@@ -155,11 +166,6 @@ public class GeneticSolver extends BasicSolver {
 		return getSolutionFromPopulation();
 	}
 
-	private void setPairings() {
-		int size = Math.min(maxPairings, numberOfPairings) - 1;	
-		pairings = memory.getPairings().subList(0, size);
-	}
-
 	private void sortGeneratedPairings() {
 		Collections.sort(memory.getPairings(), new Comparator<Pairing>() {  
             public int compare(Pairing p1, Pairing p2) {
@@ -168,6 +174,12 @@ public class GeneticSolver extends BasicSolver {
             	return p1.getCost() < p2.getCost() ? -1 : 1;
             }  
         });
+	}
+	
+	private void setPairings() {
+		//int size = Math.min(maxPairings, numberOfPairings) - 1;	
+		//pairings = memory.getPairings().subList(0, size);
+		pairings = memory.getPairings();
 	}
 
 	private void buildHash() {
@@ -195,12 +207,16 @@ public class GeneticSolver extends BasicSolver {
 	}
 	
 	private void fillPopulation() {
-		for (int i = 0; i < populationSize; i++) {
+		int i = 0;
+		while (i < populationSize) {
 			Individue individue = new Individue(legs, pairings);
 			individue.generateChromosome();
 			individue.turnFeasible();
-			individue.calculateFitness();
-			population.add(individue);
+			if (!population.contains(individue)) {
+				individue.calculateFitness();
+				population.add(individue);
+				i++;
+			}		
 		}
 		best = population.getTheFittest();
 		System.out.println(population);
@@ -235,8 +251,12 @@ public class GeneticSolver extends BasicSolver {
 	}
 	
 	protected void output(long generation) {
-		if (generation % outputStep == 0)
-			System.out.println(generation + "\t" + population.getAverageFitness());
+		if (generation % outputStep == 0) {
+			double average = population.getAverageFitness();
+			System.out.println(generation + "\t" + average);
+			if (buffer != null)
+				buffer.output(generation + "\t" + average);
+		}
 	}
 	
 	private Solution getSolutionFromPopulation() {

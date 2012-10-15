@@ -3,12 +3,12 @@ package tcc;
 import tcc.pairings.Base;
 import tcc.pairings.costs.*;
 import tcc.pairings.solvers.InitialSolver;
-import tcc.pairings.solvers.ResultsBuffer;
 import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
 import tcc.pairings.solvers.heuristics.LocalSearchSolver;
 import tcc.pairings.solvers.heuristics.genetic.GeneticSolver;
+import tcc.util.ResultsBuffer;
 
 public class SolversAnalysis {
 	public static final String TIME_TABLES_PATH = "./time_tables/";

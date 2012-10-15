@@ -11,10 +11,10 @@ import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
-import tcc.pairings.solvers.ResultsBuffer;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
+import tcc.util.ResultsBuffer;
 
 public class LocalSearchSolver implements Solver {
 	private int maxIterations = 100;
