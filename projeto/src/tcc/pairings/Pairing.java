@@ -191,7 +191,37 @@ public class Pairing {
 			total += duty.getNumberOfDHLegs();
 		return total;
 	}
-			
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(cost);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((duties == null) ? 0 : duties.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pairing other = (Pairing) obj;
+		if (Double.doubleToLongBits(cost) != Double.doubleToLongBits(other.cost))
+			return false;
+		if (duties == null) {
+			if (other.duties != null)
+				return false;
+		} else if (!duties.equals(other.duties))
+			return false;
+		return true;
+	}
+	
 	@Override
 	public String toString() {
 		DecimalFormat df = new DecimalFormat("#.###");

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
@@ -35,7 +36,7 @@ public class UtilTest {
 			result = prime * result + value;
 			return result;
 		}
-
+		
 		@Override
 		public boolean equals(Object obj) {
 			if (this == obj)
@@ -51,7 +52,7 @@ public class UtilTest {
 				return false;
 			return true;
 		}
-
+		
 		private UtilTest getOuterType() {
 			return UtilTest.this;
 		}
@@ -80,7 +81,17 @@ public class UtilTest {
 	}
 	
 	@Test
-	public void testHashContains() {
+	public void testHashSetContains() {
+		TestClass t1 = new TestClass(0);
+		TestClass t2 = new TestClass(0);
+		assertTrue(t1 != t2);
+		HashSet<TestClass> hash = new HashSet<TestClass>();
+		hash.add(t1);
+		assertTrue(hash.contains(t2));
+	}
+	
+	@Test
+	public void testHashMapContains() {
 		TestClass t1 = new TestClass(0);
 		TestClass t2 = new TestClass(0);
 		assertTrue(t1 != t2);
@@ -88,6 +99,21 @@ public class UtilTest {
 		hash.put(t1, "t1");
 		assertTrue(hash.containsKey(t2));
 		assertTrue(hash.keySet().contains(t2));
+	}
+	
+	@Test
+	public void testListEquals() {
+		TestClass t1 = new TestClass(0);
+		TestClass t2 = new TestClass(1);
+		List<TestClass> list1 = new ArrayList<TestClass>();
+		list1.add(t1); list1.add(t2);
+
+		TestClass t3 = new TestClass(0);
+		TestClass t4 = new TestClass(1);
+		List<TestClass> list2 = new ArrayList<TestClass>();
+		list2.add(t3); list2.add(t4);
+		
+		assertTrue(list1.equals(list2));
 	}
 	
 	@Test

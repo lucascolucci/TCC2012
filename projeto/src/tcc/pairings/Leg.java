@@ -75,6 +75,12 @@ public class Leg implements Cloneable {
 	public int getFlightTime() {
 		return DateUtil.difference(departure, arrival);
 	}
+	
+	@Override
+	public Leg clone() {
+		return new Leg(number, from, to, departure, arrival, track);
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -88,14 +94,26 @@ public class Leg implements Cloneable {
 
 	@Override
 	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != Leg.class && getClass() != DutyLeg.class)
+			return false;
 		Leg other = (Leg) obj;
-		return number == other.number && from.contentEquals(other.from) 
-				&& to.contentEquals(other.to);
-	}
-	
-	@Override
-	public Leg clone() {
-		return new Leg(number, from, to, departure, arrival, track);
+		if (number != other.number)
+			return false;
+		if (from == null) {
+			if (other.from != null)
+				return false;
+		} else if (!from.contentEquals(other.from))
+			return false;
+		if (to == null) {
+			if (other.to != null)
+				return false;
+		} else if (!to.contentEquals(other.to))
+			return false;
+		return true;
 	}
 
 	@Override
