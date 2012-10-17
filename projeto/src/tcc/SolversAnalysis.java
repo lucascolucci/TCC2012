@@ -60,5 +60,6 @@ public class SolversAnalysis {
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
 		Solver solver = new GeneticSolver(TIME_TABLES_PATH + "738_48.txt", calc);
 		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getSolutionTime());
 	}
 }

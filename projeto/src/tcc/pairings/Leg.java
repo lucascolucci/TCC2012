@@ -98,7 +98,8 @@ public class Leg implements Cloneable {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != Leg.class && getClass() != DutyLeg.class)
+		Class<? extends Leg> myClass = getClass();
+		if (myClass != Leg.class && myClass != DutyLeg.class)
 			return false;
 		Leg other = (Leg) obj;
 		if (number != other.number)

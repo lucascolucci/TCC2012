@@ -159,7 +159,7 @@ public class GeneticSolver extends BasicSolver {
 	protected Solution getOptimalSolution() {
 		sortGeneratedPairings();
 		setPairings();
-		buildHash();
+		buildCoverPairings();
 		buildElite();
 		buildInitialPopulation();
 		doGenerations();
@@ -177,12 +177,11 @@ public class GeneticSolver extends BasicSolver {
 	}
 	
 	private void setPairings() {
-		//int size = Math.min(maxPairings, numberOfPairings) - 1;	
-		//pairings = memory.getPairings().subList(0, size);
+		//pairings = new HashSet<Pairing>(memory.getPairings());
 		pairings = memory.getPairings();
 	}
 
-	private void buildHash() {
+	private void buildCoverPairings() {
 		coverPairings = new HashMap<Leg, List<Pairing>>();
 		for (Leg leg: legs)
 			for (Pairing pairing: pairings)
