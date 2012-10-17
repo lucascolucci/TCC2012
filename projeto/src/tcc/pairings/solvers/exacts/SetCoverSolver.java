@@ -7,7 +7,6 @@ import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.io.outputers.DHCplexOutputer;
 import tcc.pairings.io.outputers.MemoryOutputer;
 import tcc.pairings.io.outputers.Outputer;
-import tcc.pairings.io.outputers.TerminalOutputer;
 import tcc.pairings.optimizers.CplexOptimizer;
 import tcc.pairings.solvers.BasicSolver;
 import tcc.pairings.solvers.Solution;
@@ -36,13 +35,13 @@ public class SetCoverSolver extends BasicSolver {
 		memory = new MemoryOutputer(); 
 		cplex = new DHCplexOutputer(getLegs(), calculator);
 		cplex.addRows();
-		outputers = new Outputer[] { memory, cplex, new TerminalOutputer() }; 
+		outputers = new Outputer[] { memory, cplex }; 
 	}
 
 	@Override
 	protected void setOptimizer() {
 		cplex.addDHVariables();
-		//cplex.getModel().setOut(null);
+		cplex.getModel().setOut(null);
 		optimizer = new CplexOptimizer(cplex.getModel());	
 	}
 	

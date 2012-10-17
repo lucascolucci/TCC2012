@@ -186,9 +186,8 @@ public class LocalSearchSolver implements Solver {
 		List<Leg> originalLegs = initialSolver.getLegs();
 		List<Leg> clonedLegs = new ArrayList<Leg>();
 		for (Leg oringinal: originalLegs)
-			for (Leg leg: oldLegs)
-				if (oringinal.isDuplicate(leg))
-					clonedLegs.add(oringinal.clone());
+			if (oldLegs.contains(oringinal))
+				clonedLegs.add(oringinal.clone());
 		return clonedLegs;
 	}
 

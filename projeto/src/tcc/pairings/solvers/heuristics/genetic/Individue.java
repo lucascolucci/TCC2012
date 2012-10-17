@@ -61,13 +61,10 @@ public class Individue {
 	}
 	
 	private void incrementLegCoverageCount(HashMap<Leg, Integer> legCoverageCount, Pairing pairing) {
-		for (Leg leg : pairing.getLegs())
-			for (Leg countLeg : legCoverageCount.keySet())
-				if (countLeg.isDuplicate(leg)) {
-					int value = legCoverageCount.get(countLeg);
-					legCoverageCount.put(countLeg, value + 1);
-					break;
-				}
+		for (Leg leg : pairing.getLegs()) {
+			int value = legCoverageCount.get(leg);
+			legCoverageCount.put(leg, value + 1);
+		}
 	}
 	
 	private void removeRedundantPairingsRandomly(HashMap<Leg, Integer> legCoverageCount) {
@@ -85,21 +82,16 @@ public class Individue {
 
 	private boolean isRedundant(HashMap<Leg, Integer> legCoverageCount, Pairing pairing) {
 		for (Leg leg : pairing.getLegs())
-			for (Leg countLeg : legCoverageCount.keySet())
-				if (countLeg.isDuplicate(leg))
-					if (legCoverageCount.get(countLeg) < 2)
-						return false;
+			if (legCoverageCount.get(leg) < 2)
+				return false;
 		return true;
 	}
 	
 	private void decrementLegCoverageCount(HashMap<Leg, Integer> legCoverageCount, Pairing pairing) {
-		for (Leg leg : pairing.getLegs())
-			for (Leg countLeg : legCoverageCount.keySet())
-				if (countLeg.isDuplicate(leg)) {
-					int value = legCoverageCount.get(countLeg);
-					legCoverageCount.put(countLeg, value - 1);
-					break;
-				}
+		for (Leg leg : pairing.getLegs()) {
+			int value = legCoverageCount.get(leg);
+			legCoverageCount.put(leg, value - 1);
+		}
 	}
 
 	public void turnFeasible() {

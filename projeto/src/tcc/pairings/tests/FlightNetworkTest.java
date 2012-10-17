@@ -32,7 +32,7 @@ public class FlightNetworkTest {
 		Rules.MAX_LEGS = 5;
 		Rules.MAX_TRACKS = 2;
 		
-		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
+		DateFormat df = new SimpleDateFormat(DateUtil.DATE_FORMAT);
 		List<Leg> legsList = new ArrayList<Leg>();
 		
 		Date dep1 = (Date) df.parse("27/08/2012 06:10");

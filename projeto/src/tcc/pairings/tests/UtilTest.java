@@ -3,6 +3,7 @@ package tcc.pairings.tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -27,12 +28,32 @@ public class UtilTest {
 		}
 		
 		@Override
-		public boolean equals(Object o) {
-			if (o == null || o.getClass() != TestClass.class)
-				return false;
-			if (this.value == ((TestClass) o).value)
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getOuterType().hashCode();
+			result = prime * result + value;
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
 				return true;
-			return false;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			TestClass other = (TestClass) obj;
+			if (!getOuterType().equals(other.getOuterType()))
+				return false;
+			if (value != other.value)
+				return false;
+			return true;
+		}
+
+		private UtilTest getOuterType() {
+			return UtilTest.this;
 		}
 	}
 	
@@ -48,9 +69,25 @@ public class UtilTest {
 	public void testListContains() {
 		TestClass t1 = new TestClass(0);
 		TestClass t2 = new TestClass(0);
+		assertTrue(t1 != t2);
 		List<TestClass> list = new ArrayList<TestClass>();
 		list.add(t1);
 		assertTrue(list.contains(t2));
+		list.remove(t2);
+		assertTrue(!list.contains(t2));
+		assertTrue(!list.contains(t1));
+		assertTrue(list.isEmpty());
+	}
+	
+	@Test
+	public void testHashContains() {
+		TestClass t1 = new TestClass(0);
+		TestClass t2 = new TestClass(0);
+		assertTrue(t1 != t2);
+		HashMap<TestClass, String> hash = new HashMap<TestClass, String>();
+		hash.put(t1, "t1");
+		assertTrue(hash.containsKey(t2));
+		assertTrue(hash.keySet().contains(t2));
 	}
 	
 	@Test

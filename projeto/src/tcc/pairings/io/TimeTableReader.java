@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import tcc.pairings.Leg;
-import tcc.pairings.rules.Rules;
+import tcc.util.DateUtil;
 
 public class TimeTableReader {
 	private String fileName;
@@ -51,7 +51,7 @@ public class TimeTableReader {
 	}
 
 	private Leg getLeg(String line) throws ParseException {
-		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
+		DateFormat df = new SimpleDateFormat(DateUtil.DATE_FORMAT);
 		String[] fields = line.split("\t");
 		short number = Short.parseShort(fields[0]);
 		String from = fields[1];

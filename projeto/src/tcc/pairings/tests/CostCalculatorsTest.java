@@ -19,6 +19,7 @@ import tcc.pairings.costs.DutyToFlightCalculator;
 import tcc.pairings.costs.ExcessCalculator;
 import tcc.pairings.costs.ExcessToFlightCalculator;
 import tcc.pairings.rules.Rules;
+import tcc.util.DateUtil;
 
 public class CostCalculatorsTest {
 	private CostCalculator calc;
@@ -54,7 +55,7 @@ public class CostCalculatorsTest {
 	}
 	
 	private Pairing get1DayPairing() throws ParseException {
-		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
+		DateFormat df = new SimpleDateFormat(DateUtil.DATE_FORMAT);
 		Date dep1 = (Date) df.parse("27/08/2012 06:10");
 		Date arr1 = (Date) df.parse("27/08/2012 07:08");
 		Date dep2 = (Date) df.parse("27/08/2012 09:00");
@@ -98,7 +99,7 @@ public class CostCalculatorsTest {
 	}
 	
 	private Pairing get2DaysPairing() throws ParseException {
-		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
+		DateFormat df = new SimpleDateFormat(DateUtil.DATE_FORMAT);
 		Date dep1 = (Date) df.parse("27/08/2012 06:10");
 		Date arr1 = (Date) df.parse("27/08/2012 07:08");
 		Date dep2 = (Date) df.parse("28/08/2012 09:00");

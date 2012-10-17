@@ -21,6 +21,7 @@ import tcc.pairings.io.TimeTableReader;
 import tcc.pairings.io.outputers.MemoryOutputer;
 import tcc.pairings.io.outputers.Outputer;
 import tcc.pairings.rules.Rules;
+import tcc.util.DateUtil;
 
 public class PairingsGeneratorTest {
 	private MemoryOutputer memory;
@@ -61,7 +62,7 @@ public class PairingsGeneratorTest {
 	}
 	
 	private FlightNetwork getFlightNetworkWith2Legs() throws ParseException {
-		DateFormat df = new SimpleDateFormat(Rules.DATE_FORMAT);
+		DateFormat df = new SimpleDateFormat(DateUtil.DATE_FORMAT);
 		List<Leg> legsList = new ArrayList<Leg>();
 		
 		Date dep1 = (Date) df.parse("27/08/2012 06:10");

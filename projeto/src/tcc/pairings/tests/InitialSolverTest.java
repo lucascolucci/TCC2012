@@ -39,15 +39,8 @@ public class InitialSolverTest {
 		solution = solver.getSolution(base);
 		List<DutyLeg> nonDHLegs = getNonDHLegs();
 		assertEquals(solver.getLegs().size(), nonDHLegs.size());
-		for (Leg leg: solver.getLegs()) {
-			boolean duplicatedLegFound = false;
-			for (DutyLeg dutyLeg: nonDHLegs) 
-				if (dutyLeg.isDuplicate(leg)) {
-					duplicatedLegFound = true;
-					break;
-				}
-			assertTrue(duplicatedLegFound);
-		}
+		for (Leg leg: solver.getLegs())
+			assertTrue(nonDHLegs.contains(leg));
 	}
 		
 	private List<DutyLeg> getNonDHLegs() {

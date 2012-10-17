@@ -58,7 +58,7 @@ public class Solution {
 	public void setDeadHeads(Leg leg, int numberOfDeadHeads) {
 		List<Pairing> list = getPairingsContaining(leg);
 		for (int i = 0; i < numberOfDeadHeads; i++)
-			list.get(i).setLegAsDH(leg);
+			list.get(i).setDHIfContains(leg);
 	}
 	
 	private List<Pairing> getPairingsContaining(Leg leg) {
@@ -74,16 +74,9 @@ public class Solution {
 		List<DutyLeg> nonDHLegs = getNonDHLegs();
 		if (legs.size() != nonDHLegs.size())
 			return false;
-		for (Leg leg: legs) {
-			boolean legFound = false;
-			for (DutyLeg dutyLeg: nonDHLegs) 
-				if (dutyLeg.isDuplicate(leg)) {
-					legFound = true;
-					break;
-				}
-			if (!legFound)
+		for (Leg leg: legs)
+			if (!nonDHLegs.contains(leg))
 				return false;
-		}
 		return true;
 	}
 		

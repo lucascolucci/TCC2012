@@ -11,7 +11,6 @@ import tcc.pairings.graph.networks.FlightNetworkPath;
 import tcc.util.DateUtil;
 
 public class Rules {
-	public static final String DATE_FORMAT = "dd/MM/yyyy HH:mm";
 	public static double DH_PENALTY_FACTOR = 1.0;
 	public static int MAX_DUTIES = 4;
 	public static int MIN_SIT_TIME = 25;

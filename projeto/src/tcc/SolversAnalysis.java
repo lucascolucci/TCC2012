@@ -48,7 +48,7 @@ public class SolversAnalysis {
 		LocalSearchSolver solver = new LocalSearchSolver(TIME_TABLES_PATH + "738_48.txt", calc);
 		ResultsBuffer buffer = new ResultsBuffer();
 		solver.setBuffer(buffer);
-		solver.setMaxIterations(5000);
+		solver.setMaxIterations(2000);
 		solver.setOutputStep(100);
 		solver.setInitialMaxDuties(4);
 		solver.setSampleSize(3);

@@ -138,7 +138,7 @@ public class Pairing {
 		return DateUtil.difference(first.getDeparture(), last.getArrival());
 	}
 	
-	public void setAllDutiesAsDH() {
+	public void setAllLegsAsDH() {
 		for (Duty duty: duties)
 			duty.setAllLegsAsDH();
 	}
@@ -154,11 +154,11 @@ public class Pairing {
 		return legs;
 	}
 	
-	public void setLegAsDH(Leg dhLeg) {
+	public void setDHIfContains(Leg leg) {
 		List<DutyLeg> legs = getLegs();
-		for (DutyLeg leg: legs)
-			if (leg.isDuplicate(dhLeg)) {
-				leg.setDeadHead(true);
+		for (DutyLeg dutyLeg: legs)
+			if (dutyLeg.equals(leg)) {
+				dutyLeg.setDeadHead(true);
 				return;
 			}
 	}

@@ -237,8 +237,8 @@ public class GeneticSolver extends BasicSolver {
 		while (true) {
 			Individue[] parents = population.getParents();
 			Individue child = parents[0].doCrossover(parents[1]);
-			//child.doMutation(population.getTheFittest(), getNumberOfMutationGenes(generation));
-			child.doMutation(getNumberOfMutatingGenes(generation));
+			child.doMutation(population.getTheFittest(), getNumberOfMutatingGenes(generation));
+			//child.doMutation(getNumberOfMutatingGenes(generation));
 			child.turnFeasible();
 			if (!population.contains(child))
 				return child;

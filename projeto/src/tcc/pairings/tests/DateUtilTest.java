@@ -12,7 +12,6 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import tcc.pairings.rules.Rules;
 import tcc.util.DateUtil;
 
 public class DateUtilTest {
@@ -22,7 +21,7 @@ public class DateUtilTest {
 	
 	@Before
 	public void setUp() {
-		df = new SimpleDateFormat(Rules.DATE_FORMAT);
+		df = new SimpleDateFormat(DateUtil.DATE_FORMAT);
 	}
 	
 	@Test

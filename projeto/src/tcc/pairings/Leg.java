@@ -5,7 +5,6 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import tcc.pairings.rules.Rules;
 import tcc.util.DateUtil;
 
 public class Leg implements Cloneable {
@@ -72,13 +71,26 @@ public class Leg implements Cloneable {
 		this.arrival = arrival;
 		this.track = track;
 	}
-
-	public boolean isDuplicate(Leg leg) {
-		return number == leg.getNumber() && from.contentEquals(leg.getFrom()) && to.contentEquals(leg.getTo());
-	}
 	
 	public int getFlightTime() {
 		return DateUtil.difference(departure, arrival);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((from == null) ? 0 : from.hashCode());
+		result = prime * result + number;
+		result = prime * result + ((to == null) ? 0 : to.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Leg other = (Leg) obj;
+		return number == other.number && from.contentEquals(other.from) 
+				&& to.contentEquals(other.to);
 	}
 	
 	@Override
@@ -88,7 +100,7 @@ public class Leg implements Cloneable {
 
 	@Override
 	public String toString() {
-		DateFormat daf = new SimpleDateFormat(Rules.DATE_FORMAT);
+		DateFormat daf = new SimpleDateFormat(DateUtil.DATE_FORMAT);
 		DecimalFormat def1 = new DecimalFormat("0000");
 		DecimalFormat def2 = new DecimalFormat("000");
 		StringBuilder sb = new StringBuilder();

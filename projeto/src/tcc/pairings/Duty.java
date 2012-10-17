@@ -63,10 +63,7 @@ public class Duty {
 	}
 
 	public boolean contains(Leg leg) {
-		for (DutyLeg dutyLeg: legs)
-			if (dutyLeg.isDuplicate(leg))
-				return true;
-		return false;
+		return legs.contains(leg);
 	}
 	
 	public int getExcessTime() {

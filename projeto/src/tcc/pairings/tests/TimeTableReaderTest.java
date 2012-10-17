@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import tcc.pairings.Leg;
 import tcc.pairings.io.TimeTableReader;
-import tcc.pairings.rules.Rules;
+import tcc.util.DateUtil;
 
 public class TimeTableReaderTest {
 	private TimeTableReader timeTableReader;
@@ -20,7 +20,7 @@ public class TimeTableReaderTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		df = new SimpleDateFormat(Rules.DATE_FORMAT);
+		df = new SimpleDateFormat(DateUtil.DATE_FORMAT);
 		timeTableReader = new TimeTableReader(FilePaths.TIME_TABLES + "cgh_sdu_62.txt");		
 		legs = timeTableReader.getLegs();
 	}
