@@ -31,7 +31,7 @@ public class GeneticSolver extends BasicSolver {
 	protected ResultsBuffer buffer;
 	protected Population population;
 	protected Individue best;
-	protected static List<Pairing> pairings;
+	protected List<Pairing> pairings;
 	protected static HashMap<Leg, List<Pairing>> coverPairings;
 	protected static List<Pairing> elite;
 	protected static final Random random = new Random(0);
@@ -192,7 +192,7 @@ public class GeneticSolver extends BasicSolver {
 				}	
 	}
 	
-	private void setElite() {
+	protected void setElite() {
 		elite = new ArrayList<Pairing>();
 		for (List<Pairing> pairings: coverPairings.values()) {
 			int maxIndex = Math.min(cutoff, pairings.size()) - 1;
@@ -207,7 +207,7 @@ public class GeneticSolver extends BasicSolver {
 		System.out.println(population);
 	}
 	
-	private void fillPopulation() {
+	protected void fillPopulation() {
 		int i = 0;
 		while (i < populationSize) {
 			Individue individue = new Individue(legs, pairings);
@@ -246,7 +246,6 @@ public class GeneticSolver extends BasicSolver {
 			Individue[] parents = population.getParents();
 			Individue child = parents[0].doCrossover(parents[1]);
 			child.doMutation(population.getTheFittest(), getNumberOfMutatingGenes(generation));
-			child.doMutation(getNumberOfMutatingGenes(generation));
 			child.turnFeasible();
 			if (!population.contains(child))
 				return child;
@@ -259,8 +258,7 @@ public class GeneticSolver extends BasicSolver {
 	}
 	
 	private Solution getSolutionFromPopulation() {
-		//Individue theFittest = population.getTheFittest();
-		Solution solution = new Solution(best.getChromosome().getGenes());
+		Solution solution = new Solution(best.getChromosome());
 		setDeadHeads(solution);
 		setCostsWithDeadHeads(solution.getPairings());
 		setSolutionCost(solution);		

@@ -56,11 +56,14 @@ public class Population {
 	
 	private int getRandomAboveAverageIndex() {
 		double average = getAverageFitness();
+		int size = individues.size();
 		int i;
-		for (i = 0; i < individues.size(); i++) 
+		for (i = 0; i < size; i++) 
 			if (individues.get(i).getFitness() >= average) 
 				break;
-		return i + GeneticSolver.random.nextInt(individues.size() - i);
+		if (i >= size)
+			return size - 1;
+		return i + GeneticSolver.random.nextInt(size - i);
 	}
 
 //	private Individue getWeakest() { 

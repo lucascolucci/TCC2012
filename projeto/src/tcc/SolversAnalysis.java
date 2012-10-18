@@ -9,7 +9,6 @@ import tcc.pairings.solvers.exacts.SetPartitionSolver;
 import tcc.pairings.solvers.heuristics.LocalSearchSolver;
 import tcc.pairings.solvers.heuristics.genetic.GeneticSolver;
 import tcc.pairings.solvers.heuristics.genetic.LocalSearchGeneticSolver;
-import tcc.util.ResultsBuffer;
 
 public class SolversAnalysis {
 	public static final String TIME_TABLES_PATH = "./time_tables/";
@@ -40,8 +39,9 @@ public class SolversAnalysis {
 	public void doSetCover() {
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
-		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "73H_26.txt", calc);
+		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt", calc);
 		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getSolutionTime());
 		System.out.println(solver.getNumberOfPairings());
 	}
 	
@@ -49,19 +49,15 @@ public class SolversAnalysis {
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
 		LocalSearchSolver solver = new LocalSearchSolver(TIME_TABLES_PATH + "738_48.txt", calc);
-		ResultsBuffer buffer = new ResultsBuffer();
-		solver.setBuffer(buffer);
 		solver.setMaxIterations(2000);
-		solver.setOutputStep(100);
-		solver.setInitialMaxDuties(4);
-		solver.setSampleSize(3);
 		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getSolutionTime());
 	}
 	
 	public void doGeneticSolver() {
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
-		Solver solver = new GeneticSolver(TIME_TABLES_PATH + "738_48.txt", calc);
+		GeneticSolver solver = new GeneticSolver(TIME_TABLES_PATH + "738_48.txt", calc);
 		System.out.println(solver.getSolution(sao));
 		System.out.println(solver.getSolutionTime());
 	}
@@ -70,7 +66,7 @@ public class SolversAnalysis {
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
 		LocalSearchGeneticSolver solver = new LocalSearchGeneticSolver(TIME_TABLES_PATH + "738_48.txt", calc);
-		solver.setMaxPairings(5000);
+		solver.setMaxPairings(3000);
 		System.out.println(solver.getSolution(sao));
 		System.out.println(solver.getSolutionTime());
 	}

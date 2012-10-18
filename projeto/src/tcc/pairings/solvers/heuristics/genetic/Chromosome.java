@@ -1,78 +1,40 @@
 package tcc.pairings.solvers.heuristics.genetic;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import tcc.pairings.Pairing;
+import java.util.ArrayList;
+import java.util.Collection;
 
-public class Chromosome implements Cloneable {
-	private List<Pairing> genes;
-
-	public List<Pairing> getGenes() {
-		return genes;
-	}
-
-	public void setGenes(List<Pairing> genes) {
-		this.genes = genes;
-	}
+public class Chromosome extends ArrayList<Pairing> implements Cloneable {
+	private static final long serialVersionUID = 1L;
 	
 	public Chromosome() {
-		genes = new ArrayList<Pairing>();
-	}
-
-	public Chromosome(List<Pairing> genes) {
-		this.genes = genes;
+		super();
 	}
 	
-	public void addAll(List<Pairing> genes) {
-		for (Pairing gene: genes)
-			add(gene);
+	public Chromosome(Collection<? extends Pairing> collection) {
+		super(collection);
 	}
 	
-	public void add(Pairing gene) {
+	@Override
+	public boolean addAll(Collection<? extends Pairing> collection) {
+		for (Pairing pairing: collection)
+			this.add(pairing);
+		return true;
+	}
+	
+	@Override
+	public boolean add(Pairing pairing) {
 		int i;
-		for (i = 0; i < genes.size(); i++)
-			if (genes.get(i).getCost() > gene.getCost())
+		for (i = 0; i < size(); i++)
+			if (get(i).getCost() > pairing.getCost())
 				break;
-		genes.add(i, gene);
-	}
-	
-	public void remove(Pairing gene) {
-		genes.remove(gene);
-	}
-	
-	public void removeAll(List<Pairing> genes) {
-		this.genes.removeAll(genes);
-	}
-	
-	public boolean isEmpty() {
-		return genes.isEmpty();
-	}
-	
-	public int size() {
-		return genes.size();
-	}
-	
-	public Pairing get(int index) {
-		return genes.get(index);
-	}
-	
-	public boolean contains(Pairing gene) {
-		return genes.contains(gene);
-	}
-	
-	public boolean isDuplicate(Chromosome other) {
-		if (size() != other.size())
-			return false;
-		for (Pairing gene : genes)
-			if (!other.contains(gene))
-				return false;
+		add(i, pairing);
 		return true;
 	}
 	
 	@Override
 	public Chromosome clone() {
-		List<Pairing> clonedGenes = new ArrayList<Pairing>(genes);
-		return new Chromosome(clonedGenes);
+		Chromosome clone = new Chromosome(this);
+		return clone;
 	}
 }

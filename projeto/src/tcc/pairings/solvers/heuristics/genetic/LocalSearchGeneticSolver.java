@@ -9,11 +9,15 @@ import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
+import tcc.pairings.solvers.heuristics.Subproblem;
+import tcc.pairings.solvers.heuristics.History;
 
 public class LocalSearchGeneticSolver extends GeneticSolver {
 	private int sampleSize = 3;
 	private Solution individueSolution;
 	private Solution sampleSolution;
+	private List<Pairing> samplePairings;
+	private History history;
 	
 	public int getSampleSize() {
 		return sampleSize;
@@ -24,11 +28,32 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	}
 
 	public LocalSearchGeneticSolver(String timeTable) {
-		super(timeTable);
+		this(timeTable, null);
 	}
 	
 	public LocalSearchGeneticSolver(String timeTable, CostCalculator calculator) {
 		super(timeTable, calculator);
+		history = new History();
+	}
+	
+	@Override
+	protected void fillPopulation() {
+		int i = 0;
+		while (i < populationSize) {
+			Individue individue = new Individue(legs, pairings);
+			individue.generateChromosome();
+			individue.turnFeasible();
+			
+			//history.clear();
+			//for (int j = 0; j < 20; j++)
+			//	doLocalOptimization(individue);
+			
+			if (!population.contains(individue)) {
+				individue.calculateFitness();
+				population.add(individue);
+				i++;
+			}		
+		}
 	}
 		
 	@Override
@@ -36,7 +61,6 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 		for (long generation = 0; generation < maxGenerations; generation++) {
 			output(generation);
 			Individue child = getChild(generation);
-			//doLocalOptimization(child);
 			child.calculateFitness();
 			population.replace(child);
 			if (population.getTheFittest().getFitness() < best.getFitness())
@@ -51,7 +75,10 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 			Individue child = parents[0].doCrossover(parents[1]);
 			child.doMutation(population.getTheFittest(), getNumberOfMutatingGenes(generation));
 			child.turnFeasible();
-			doLocalOptimization(child);
+			
+			if (random.nextDouble() < 0.10)
+				doLocalOptimization(child);
+			
 			if (!population.contains(child))
 				return child;
 		}
@@ -59,13 +86,20 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	
 	private void doLocalOptimization(Individue individue) {
 		setIndividueSolution(individue);
-		setSampleSolution();
-		replacePairingsIfImproved(individue);
-		setAllDeadheadsToFalse(individue.getChromosome().getGenes());
+		setSamplePairings(individueSolution.getPairings());
+		List<Leg> sampleLegs = getSampleLegs();
+		Subproblem subproblem = new Subproblem(sampleLegs);
+		if (!history.contains(subproblem)) {
+			history.add(subproblem);
+			setSampleSolution(sampleLegs);
+			replacePairingsIfImproved(individue);
+		}
+		setAllDeadheadsToFalse(samplePairings);
+		setAllDeadheadsToFalse(individue.getChromosome());
 	}
 	
 	private void setIndividueSolution(Individue individue) {
-		individueSolution = new Solution(individue.getChromosome().getGenes());
+		individueSolution = new Solution(individue.getChromosome());
 		setDeadheadsAndCosts(individueSolution);
 	}
 	
@@ -75,28 +109,19 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 		setSolutionCost(solution);
 	}
 	
-	private void setSampleSolution() {
-		List<Pairing> samplePairings = getSamplePairings(individueSolution.getPairings());
-		List<Leg> sampleLegs = getSampleLegs(samplePairings);
-		SetCoverSolver solver = new SetCoverSolver(sampleLegs, calculator);
-		sampleSolution = solver.getSolution(bases);
-		solver.endOptimizerModel();
-	}
-	
-	private List<Pairing> getSamplePairings(List<Pairing> pairings) {
-		List<Pairing> sample = new ArrayList<Pairing>();
+	private void setSamplePairings(List<Pairing> pairings) {
+		samplePairings = new ArrayList<Pairing>();
 		for (int i = 0; i < sampleSize; i++) {
 			int randomIndex = random.nextInt(pairings.size());
 			Pairing selected = pairings.get(randomIndex);
-			if (!sample.contains(selected)) 
-				sample.add(selected);	
+			if (!samplePairings.contains(selected)) 
+				samplePairings.add(selected);	
 		}
-		return sample;
 	}
-
-	private List<Leg> getSampleLegs(List<Pairing> pairings) {
+	
+	private List<Leg> getSampleLegs() {
 		List<Leg> cloned = new ArrayList<Leg>();
-		for (Pairing pairing: pairings)
+		for (Pairing pairing: samplePairings)
 			for (DutyLeg dutyLeg: pairing.getLegs())
 				for (Leg leg: legs)
 					if (leg.equals(dutyLeg) && !dutyLeg.isDeadHead()) {
@@ -106,11 +131,16 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 		return cloned;
 	}
 	
+	private void setSampleSolution(List<Leg> sampleLegs) {
+		SetCoverSolver solver = new SetCoverSolver(sampleLegs, calculator);
+		sampleSolution = solver.getSolution(bases);
+		solver.endOptimizerModel();
+	}
+	
 	private void replacePairingsIfImproved(Individue individue) {
 		if (sampleSolution != null) {
 			setDeadheadsAndCosts(sampleSolution);
 			if (sampleSolution.getCost() < getSampleCost()) {
-				setAllDeadheadsToFalse(sampleSolution.getPairings());
 				updateChromossome(individue);
 				updatePairings();
 			}
@@ -119,39 +149,36 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 
 	private double getSampleCost() {
 		double cost = 0.0;
-		for (Pairing pairing: sampleSolution.getPairings()) 
+		for (Pairing pairing: samplePairings) 
 			cost += pairing.getCostWithDeadHeads();
 		return cost;
 	}
 	
-	private void updateChromossome(Individue individue) {
-		List<Pairing> samplePairings = sampleSolution.getPairings(); 
+	private void updateChromossome(Individue individue) { 
 		individue.getChromosome().removeAll(samplePairings);		
-		individue.getChromosome().addAll(samplePairings);
+		individue.getChromosome().addAll(sampleSolution.getPairings());
 	}
 
 	private void updatePairings() {
 		for (Pairing pairing: sampleSolution.getPairings())
 			if (!pairings.contains(pairing)) {
-				pairings.add(pairing);
+				addToSortedList(pairing, pairings);
 				updateCoverPairings(pairing);
-				updateElite(pairing);
+				setElite();
 			}
 	}
 	
 	private void updateCoverPairings(Pairing pairing) {
-		for (Leg leg: pairing.getLegs()) {
-			List<Pairing> coverList = coverPairings.get(leg);
-			int i;
-			for (i = 0; i < coverList.size(); i++)
-				if (pairing.getCost() > coverList.get(i).getCost())
-					break;
-			coverList.add(i, pairing);
-		}
+		for (Leg leg: pairing.getLegs())
+			addToSortedList(pairing, coverPairings.get(leg));
 	}
 	
-	private void updateElite(Pairing pairing) {
-		
+	private void addToSortedList(Pairing pairing, List<Pairing> pairings) {
+		int i;
+		for (i = 0; i < pairings.size(); i++)
+			if (pairing.getCost() > pairings.get(i).getCost())
+				break;
+		pairings.add(i, pairing);
 	}
 
 	private void setAllDeadheadsToFalse(List<Pairing> pairings) {

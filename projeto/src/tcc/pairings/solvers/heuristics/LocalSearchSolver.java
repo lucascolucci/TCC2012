@@ -17,10 +17,10 @@ import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.util.ResultsBuffer;
 
 public class LocalSearchSolver implements Solver {
-	private int maxIterations = 100;
-	private int sampleSize = 2;
-	private int initialMaxDuties = 3;
-	private int outputStep = 10;
+	private int maxIterations = 1000;
+	private int sampleSize = 3;
+	private int initialMaxDuties = 4;
+	private int outputStep = 100;
 	private Base[] bases;
 	private ResultsBuffer buffer;
 	private CostCalculator calculator;
@@ -32,6 +32,7 @@ public class LocalSearchSolver implements Solver {
 	private int numberOfPairings;
 	private int infeasibleCount;
 	private double solutionTime;
+	private History history;
 	private static Random random = new Random(0);
 	
 	public int getMaxIterations() {
@@ -105,6 +106,7 @@ public class LocalSearchSolver implements Solver {
 		this.calculator = calculator;
 		this.buffer = buffer;
 		numberOfPairings = 0;
+		history = new History();
 	}
 	
 	@Override
@@ -157,19 +159,22 @@ public class LocalSearchSolver implements Solver {
 
 	private void setOldAndNewPairings(Base... bases) {
 		oldPairings = getRandomSample();
+		newPairings = null;
 		List<Leg> oldLegs = getOldLegsToBeCovered();
-		coverSolver = new SetCoverSolver(oldLegs, calculator);
-		Solution newSolution = coverSolver.getSolution(bases);
-		coverSolver.endOptimizerModel();
-		if (newSolution != null) {
-			newPairings = newSolution.getPairings();
-			numberOfPairings += coverSolver.getNumberOfPairings();
-		} else {
-			newPairings = null;
-			infeasibleCount++;
+		Subproblem subproblem = new Subproblem(oldLegs);
+		if (!history.contains(subproblem)) {
+			history.add(subproblem);
+			coverSolver = new SetCoverSolver(oldLegs, calculator);
+			Solution newSolution = coverSolver.getSolution(bases);
+			coverSolver.endOptimizerModel();
+			if (newSolution != null) {
+				newPairings = newSolution.getPairings();
+				numberOfPairings += coverSolver.getNumberOfPairings();
+			} else
+				infeasibleCount++;
 		}
 	}
-
+	
 	private List<Pairing> getRandomSample() {
 		List<Pairing> list = new ArrayList<Pairing>();
 		for (int i = 0; i < sampleSize; i++) {
@@ -226,6 +231,12 @@ public class LocalSearchSolver implements Solver {
 	}
 	
 	public double getInfeasibility() {
-		return (double) infeasibleCount / maxIterations;
+		if (history.size() > 0)
+			return (double) infeasibleCount / history.size();
+		return -1.0;
+	}
+	
+	public int getNumberOfSolvedSubproblem() {
+		return history.size();
 	}
 }

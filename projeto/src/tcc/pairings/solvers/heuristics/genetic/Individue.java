@@ -115,7 +115,7 @@ public class Individue {
 		HashMap<Leg, Integer> legCoverageCount = new HashMap<Leg, Integer>();
 		for (Leg leg : toCoverLegs) {
 			int value = 0;
-			for (Pairing pairing : chromosome.getGenes())
+			for (Pairing pairing : chromosome)
 				if (pairing.contains(leg))
 					value++;
 			legCoverageCount.put(leg, value);
@@ -192,12 +192,12 @@ public class Individue {
 
 	private Chromosome getCrossoverChromosome(Individue other) {
 		Chromosome crossover = new Chromosome(); 
-		for (Pairing pairing: chromosome.getGenes())
+		for (Pairing pairing: chromosome)
 			if (other.getChromosome().contains(pairing))
 				crossover.add(pairing);
 			else if (GeneticSolver.random.nextBoolean())
 				crossover.add(pairing);
-		for (Pairing pairing: other.getChromosome().getGenes())
+		for (Pairing pairing: other.getChromosome())
 			if (!chromosome.contains(pairing))
 				if (GeneticSolver.random.nextBoolean())
 					crossover.add(pairing);
@@ -213,6 +213,14 @@ public class Individue {
 		}
 	}
 	
+//	public void doMutation(Individue theFittest, int k) {
+//		double prob = (double) chromosome.size() / pairings.size();
+//		for (int i = 0; i < k; i++) {
+//			int randomIndex = GeneticSolver.random.nextInt(pairings.size());
+//			mutatePairing(pairings.get(randomIndex), prob);
+//		}
+//	}
+	
 	private void mutatePairing(Pairing pairing, double prob) {
 		double r = GeneticSolver.random.nextDouble();
 		if (r < prob) {
@@ -222,24 +230,9 @@ public class Individue {
 			chromosome.remove(pairing);
 	}
 	
-	public void doMutation(int k) {
-		for (int i = 0; i < k; i++)
-			mutateRandomElitePairing();
-	}
-	
-	private void mutateRandomElitePairing() {
-		List<Pairing> elite = GeneticSolver.getElite();
-		int randomIndex = GeneticSolver.random.nextInt(elite.size());
-		Pairing mutating = elite.get(randomIndex);
-		if (chromosome.contains(mutating))
-			chromosome.remove(mutating);
-		else
-			chromosome.add(mutating);
-	}
-	
 	public void calculateFitness() {
 		fitness = 0.0;
-		for (Pairing pairing : chromosome.getGenes())
+		for (Pairing pairing : chromosome)
 			fitness += pairing.getCost();
 		fitness += GeneticSolver.getDeadheadingPenalty() * getNumberOfDeadheadedFlights();
 	}
@@ -247,7 +240,7 @@ public class Individue {
 	private int getNumberOfDeadheadedFlights() {
 		int total = 0;
 		for (Leg leg : toCoverLegs)
-			for (Pairing pairing : chromosome.getGenes())
+			for (Pairing pairing : chromosome)
 				if (pairing.contains(leg))
 					total++;
 		return total - toCoverLegs.size();
@@ -255,7 +248,7 @@ public class Individue {
 
 	public boolean isDuplicate(Individue other) {
 		Chromosome otherChromosome = other.getChromosome();
-		return chromosome.isDuplicate(otherChromosome);
+		return chromosome.equals(otherChromosome);
 	}
 
 	@Override
