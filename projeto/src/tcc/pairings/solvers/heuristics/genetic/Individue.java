@@ -3,7 +3,6 @@ package tcc.pairings.solvers.heuristics.genetic;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 import tcc.pairings.Leg;
@@ -93,6 +92,11 @@ public class Individue {
 			int value = legCoverageCount.get(leg);
 			legCoverageCount.put(leg, value - 1);
 		}
+	}
+	
+	public boolean isFeasible() {
+		HashMap<Leg, Integer> legCoverageCount = getLegCovereageCount();
+		return getUncoveredLegs(legCoverageCount).isEmpty();
 	}
 
 	public void turnFeasible() {

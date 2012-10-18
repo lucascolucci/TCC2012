@@ -8,6 +8,7 @@ import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
 import tcc.pairings.solvers.heuristics.LocalSearchSolver;
 import tcc.pairings.solvers.heuristics.genetic.GeneticSolver;
+import tcc.pairings.solvers.heuristics.genetic.LocalSearchGeneticSolver;
 import tcc.util.ResultsBuffer;
 
 public class SolversAnalysis {
@@ -20,7 +21,8 @@ public class SolversAnalysis {
 		//sa.doSetPartition();
 		//sa.doSetCover();
 		//sa.doLocalSearch();
-		sa.doGeneticSolver();
+		//sa.doGeneticSolver();
+		sa.doLocalSearchGeneticSolver();
 	}
 	
 	public void doInitialSolution() {
@@ -38,8 +40,9 @@ public class SolversAnalysis {
 	public void doSetCover() {
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
-		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt", calc);
+		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "73H_26.txt", calc);
 		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getNumberOfPairings());
 	}
 	
 	public void doLocalSearch() {
@@ -59,6 +62,15 @@ public class SolversAnalysis {
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
 		Solver solver = new GeneticSolver(TIME_TABLES_PATH + "738_48.txt", calc);
+		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getSolutionTime());
+	}
+	
+	public void doLocalSearchGeneticSolver() {
+		Base sao = new Base("GRU", "CGH");
+		CostCalculator calc = new MeanFlightPerDutyCalculator();
+		LocalSearchGeneticSolver solver = new LocalSearchGeneticSolver(TIME_TABLES_PATH + "738_48.txt", calc);
+		solver.setMaxPairings(5000);
 		System.out.println(solver.getSolution(sao));
 		System.out.println(solver.getSolutionTime());
 	}

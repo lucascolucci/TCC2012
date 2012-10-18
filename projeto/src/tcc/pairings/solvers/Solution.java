@@ -63,10 +63,9 @@ public class Solution {
 	
 	private List<Pairing> getPairingsContaining(Leg leg) {
 		List<Pairing> result = new ArrayList<Pairing>();
-		for (Pairing pairing: pairings) {
+		for (Pairing pairing: pairings)
 			if (pairing.contains(leg))
 				result.add(pairing);
-		}
 		return result;
 	}
 	

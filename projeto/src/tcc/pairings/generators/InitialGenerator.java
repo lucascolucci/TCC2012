@@ -47,7 +47,7 @@ public class InitialGenerator extends PairingsGenerator {
 	@Override
 	protected void output() {
 		Pairing pairing = new Pairing(numberOfPairings, path);
-		pairing.setAllLegsAsDH();
+		pairing.setAllDeadHeads(true);
 		List<Leg> duplicatedLegs = getDuplicatedLegs(pairing);
 		if (!duplicatedLegs.isEmpty()) {
 			legs.removeAll(duplicatedLegs);

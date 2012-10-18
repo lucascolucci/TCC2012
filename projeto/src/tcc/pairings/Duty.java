@@ -83,9 +83,9 @@ public class Duty {
 		return 0;
 	}
 	
-	public void setAllLegsAsDH() {
+	public void setAllDeadHeads(boolean deadHead) {
 		for (DutyLeg leg: legs)
-			leg.setDeadHead(true);
+			leg.setDeadHead(deadHead);
 	}
 	
 	public int getNumberOfDHLegs() {

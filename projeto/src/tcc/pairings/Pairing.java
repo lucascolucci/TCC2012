@@ -138,11 +138,11 @@ public class Pairing {
 		return DateUtil.difference(first.getDeparture(), last.getArrival());
 	}
 	
-	public void setAllLegsAsDH() {
+	public void setAllDeadHeads(boolean deadHead) {
 		for (Duty duty: duties)
-			duty.setAllLegsAsDH();
+			duty.setAllDeadHeads(deadHead);
 	}
-	
+		
 	public int getNumberOfLegs() {
 		return getLegs().size();
 	}
@@ -163,14 +163,6 @@ public class Pairing {
 			}
 	}
 
-	private void appendDuties(StringBuilder sb) {
-		int dutyNumber = 0;
-		for(Duty duty: duties) {
-			sb.append("\tDuty ").append(++dutyNumber).append('\n');
-			sb.append(duty.toString());
-		}
-	}
-	
 	public double getMeanLegsPerDuty() {
 		int total = 0;
 		for (Duty duty: duties)
@@ -196,9 +188,6 @@ public class Pairing {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(cost);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((duties == null) ? 0 : duties.hashCode());
 		return result;
 	}
@@ -212,8 +201,6 @@ public class Pairing {
 		if (getClass() != obj.getClass())
 			return false;
 		Pairing other = (Pairing) obj;
-		if (Double.doubleToLongBits(cost) != Double.doubleToLongBits(other.cost))
-			return false;
 		if (duties == null) {
 			if (other.duties != null)
 				return false;
@@ -221,7 +208,7 @@ public class Pairing {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		DecimalFormat df = new DecimalFormat("#.###");
@@ -229,5 +216,13 @@ public class Pairing {
 		sb.append(number).append(" - Cost ").append(df.format(getCost())).append('\n');
 		appendDuties(sb);
 		return sb.toString();
+	}
+	
+	private void appendDuties(StringBuilder sb) {
+		int dutyNumber = 0;
+		for(Duty duty: duties) {
+			sb.append("\tDuty ").append(++dutyNumber).append('\n');
+			sb.append(duty.toString());
+		}
 	}
 }

@@ -24,16 +24,17 @@ public class Chromosome implements Cloneable {
 		this.genes = genes;
 	}
 	
+	public void addAll(List<Pairing> genes) {
+		for (Pairing gene: genes)
+			add(gene);
+	}
+	
 	public void add(Pairing gene) {
 		int i;
 		for (i = 0; i < genes.size(); i++)
 			if (genes.get(i).getCost() > gene.getCost())
 				break;
 		genes.add(i, gene);
-	}
-	
-	public void addAll(List<Pairing> genes) {
-		this.genes.addAll(genes);
 	}
 	
 	public void remove(Pairing gene) {
