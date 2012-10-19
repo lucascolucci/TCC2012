@@ -7,6 +7,8 @@ import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
+import tcc.pairings.rules.Rules;
+import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.heuristics.Subproblem;
@@ -14,6 +16,11 @@ import tcc.pairings.solvers.heuristics.History;
 
 public class LocalSearchGeneticSolver extends GeneticSolver {
 	private int sampleSize = 3;
+	private int initialMaxDuties = 4;
+	private int individueImprovements = 100;
+	private double optimizationProbability = 0.01;
+	private InitialSolver initialSolver;
+	private Solution initialSolution;
 	private Solution individueSolution;
 	private Solution sampleSolution;
 	private List<Pairing> samplePairings;
@@ -26,6 +33,30 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	public void setSampleSize(int sampleSize) {
 		this.sampleSize = sampleSize;
 	}
+	
+	public int getInitialMaxDuties() {
+		return initialMaxDuties;
+	}
+
+	public void setInitialMaxDuties(int initialMaxDuties) {
+		this.initialMaxDuties = initialMaxDuties;
+	}
+	
+	public int getIndividueImprovements() {
+		return individueImprovements;
+	}
+
+	public void setIndividueImprovements(int individueImprovements) {
+		this.individueImprovements = individueImprovements;
+	}
+
+	public double getOptimizationProbability() {
+		return optimizationProbability;
+	}
+
+	public void setOptimizationProbability(double optimizationProbability) {
+		this.optimizationProbability = optimizationProbability;
+	}
 
 	public LocalSearchGeneticSolver(String timeTable) {
 		this(timeTable, null);
@@ -33,58 +64,80 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	
 	public LocalSearchGeneticSolver(String timeTable, CostCalculator calculator) {
 		super(timeTable, calculator);
+		initialSolver = new InitialSolver(timeTable, calculator);
 		history = new History();
+	}
+	
+	@Override
+	protected void setOutputers() { 
+		memory = null;
+		outputers = null;
+	}
+	
+	@Override
+	protected void generatePairings() {
+		int maxDuties = Rules.MAX_DUTIES;
+		Rules.MAX_DUTIES = initialMaxDuties;
+		initialSolution = initialSolver.getSolution(bases);
+		Rules.MAX_DUTIES = maxDuties;
+		numberOfPairings = initialSolver.getNumberOfPairings();
+	}
+	
+	@Override
+	protected void setOptimizer() {
+		optimizer = null;
+	}
+	
+	@Override
+	protected Solution getOptimalSolution() {
+		if (initialSolution != null) {
+			System.out.println(initialSolution);
+			return super.getOptimalSolution();
+		}
+		return null;
+	}
+	
+	@Override
+	protected void setPairings() {
+		pairings = initialSolution.getPairings();
+		setAllDeadheadsToFalse(pairings);
+	}
+	
+	private void setAllDeadheadsToFalse(List<Pairing> pairings) {
+		for (Pairing pairing: pairings)
+			pairing.setAllDeadHeads(false);
 	}
 	
 	@Override
 	protected void fillPopulation() {
 		int i = 0;
 		while (i < populationSize) {
-			Individue individue = new Individue(legs, pairings);
-			individue.generateChromosome();
-			individue.turnFeasible();
-			
-			//history.clear();
-			//for (int j = 0; j < 20; j++)
-			//	doLocalOptimization(individue);
-			
-			if (!population.contains(individue)) {
-				individue.calculateFitness();
-				population.add(individue);
-				i++;
-			}		
+			Individue individue = getFeasibleIndividue();
+			optimizeInitialIndividue(individue);
+			if (!population.contains(individue))	
+				addIndividueToPopulation(++i, individue);
 		}
+		System.out.println("Nœmero de pairings antes da evolu‹o = " + pairings.size());
+	}
+
+	private void optimizeInitialIndividue(Individue individue) {
+		history.clear();
+		for (int i = 0; i < individueImprovements; i++)
+			doOptimization(individue);
 	}
 		
 	@Override
-	protected void doGenerations() {
-		for (long generation = 0; generation < maxGenerations; generation++) {
-			output(generation);
-			Individue child = getChild(generation);
-			child.calculateFitness();
-			population.replace(child);
-			if (population.getTheFittest().getFitness() < best.getFitness())
-				best = population.getTheFittest();
-		}
-	}
-	
-	@Override
 	protected Individue getChild(long generation) {
 		while (true) {
-			Individue[] parents = population.getParents();
-			Individue child = parents[0].doCrossover(parents[1]);
-			child.doMutation(population.getTheFittest(), getNumberOfMutatingGenes(generation));
-			child.turnFeasible();
-			
-			if (random.nextDouble() < 0.10)
-				doLocalOptimization(child);
-			
+			Individue child = getFeasibleChild(generation);		
+			if (random.nextDouble() < optimizationProbability)
+				doOptimization(child);
 			if (!population.contains(child))
 				return child;
 		}
 	}
 	
-	private void doLocalOptimization(Individue individue) {
+	private void doOptimization(Individue individue) {
 		setIndividueSolution(individue);
 		setSamplePairings(individueSolution.getPairings());
 		List<Leg> sampleLegs = getSampleLegs();
@@ -134,6 +187,7 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	private void setSampleSolution(List<Leg> sampleLegs) {
 		SetCoverSolver solver = new SetCoverSolver(sampleLegs, calculator);
 		sampleSolution = solver.getSolution(bases);
+		numberOfPairings += solver.getNumberOfPairings();
 		solver.endOptimizerModel();
 	}
 	
@@ -180,9 +234,8 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 				break;
 		pairings.add(i, pairing);
 	}
-
-	private void setAllDeadheadsToFalse(List<Pairing> pairings) {
-		for (Pairing pairing: pairings)
-			pairing.setAllDeadHeads(false);
+	
+	public double getInitialSolutionTime() {
+		return initialSolver.getSolutionTime();
 	}
 }

@@ -33,7 +33,7 @@ public class LocalSearchSolver implements Solver {
 	private int infeasibleCount;
 	private double solutionTime;
 	private History history;
-	private static Random random = new Random(0);
+	private static final Random random = new Random(0);
 	
 	public int getMaxIterations() {
 		return maxIterations;
@@ -78,11 +78,7 @@ public class LocalSearchSolver implements Solver {
 	public CostCalculator getCalculator() {
 		return calculator;
 	}
-
-	public void setCalculator(CostCalculator calculator) {
-		this.calculator = calculator;
-	}
-		
+	
 	@Override
 	public List<Leg> getLegs() {
 		return initialSolver.getLegs();
@@ -102,9 +98,9 @@ public class LocalSearchSolver implements Solver {
 	}
 	
 	public LocalSearchSolver(String timeTable, CostCalculator calculator, ResultsBuffer buffer) {
-		initialSolver = new InitialSolver(timeTable, calculator);
 		this.calculator = calculator;
 		this.buffer = buffer;
+		initialSolver = new InitialSolver(timeTable, calculator);
 		numberOfPairings = 0;
 		history = new History();
 	}
@@ -112,10 +108,12 @@ public class LocalSearchSolver implements Solver {
 	@Override
 	public Solution getSolution(Base... bases) {
 		this.bases = bases;
-		setInitialSolution();
 		long start = System.currentTimeMillis();
-		if (solution != null)
+		setInitialSolution();
+		if (solution != null) {
+			System.out.println(solution);
 			improveSolution();
+		}
 		long finish = System.currentTimeMillis();
 		solutionTime = (finish - start) / 1000.0; 
 		return solution;
@@ -166,6 +164,7 @@ public class LocalSearchSolver implements Solver {
 			history.add(subproblem);
 			coverSolver = new SetCoverSolver(oldLegs, calculator);
 			Solution newSolution = coverSolver.getSolution(bases);
+			numberOfPairings += coverSolver.getNumberOfPairings();
 			coverSolver.endOptimizerModel();
 			if (newSolution != null) {
 				newPairings = newSolution.getPairings();
@@ -225,9 +224,7 @@ public class LocalSearchSolver implements Solver {
 	}
 	
 	public double getInitialSolutionTime() {
-		if (initialSolver != null)
-			return initialSolver.getSolutionTime();
-		return 0.0;
+		return initialSolver.getSolutionTime();
 	}
 	
 	public double getInfeasibility() {

@@ -31,16 +31,8 @@ public abstract class BasicSolver implements Solver {
 		return timeTable;
 	}
 
-	public void setTimeTable(String timeTable) {
-		this.timeTable = timeTable;
-	}
-	
 	public CostCalculator getCalculator() {
 		return calculator;
-	}
-
-	public void setCalculator(CostCalculator calculator) {
-		this.calculator = calculator;
 	}
 	
 	@Override
@@ -141,7 +133,8 @@ public abstract class BasicSolver implements Solver {
 	}
 	
 	public void endOptimizerModel() {
-		optimizer.endModel();
+		if (optimizer != null)
+			optimizer.endModel();
 	}
 	
 	protected void setCostsWithDeadHeads(List<Pairing> pairings) {

@@ -39,7 +39,7 @@ public class SolversAnalysis {
 	public void doSetCover() {
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
-		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "738_48.txt", calc);
+		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + "733_92.txt", calc);
 		System.out.println(solver.getSolution(sao));
 		System.out.println(solver.getSolutionTime());
 		System.out.println(solver.getNumberOfPairings());
@@ -48,7 +48,7 @@ public class SolversAnalysis {
 	public void doLocalSearch() {
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
-		LocalSearchSolver solver = new LocalSearchSolver(TIME_TABLES_PATH + "738_48.txt", calc);
+		LocalSearchSolver solver = new LocalSearchSolver(TIME_TABLES_PATH + "73H_26.txt", calc);
 		solver.setMaxIterations(2000);
 		System.out.println(solver.getSolution(sao));
 		System.out.println(solver.getSolutionTime());
@@ -65,8 +65,12 @@ public class SolversAnalysis {
 	public void doLocalSearchGeneticSolver() {
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
-		LocalSearchGeneticSolver solver = new LocalSearchGeneticSolver(TIME_TABLES_PATH + "738_48.txt", calc);
-		solver.setMaxPairings(3000);
+		LocalSearchGeneticSolver solver = new LocalSearchGeneticSolver(TIME_TABLES_PATH + "738_521.txt", calc);
+		solver.setSampleSize(3);
+		solver.setInitialMaxDuties(3);
+		solver.setIndividueImprovements(10000);
+		solver.setOptimizationProbability(0.05);
+		solver.setMaxGenerations(20000);
 		System.out.println(solver.getSolution(sao));
 		System.out.println(solver.getSolutionTime());
 	}
