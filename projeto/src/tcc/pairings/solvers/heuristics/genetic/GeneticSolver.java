@@ -128,7 +128,6 @@ public class GeneticSolver extends BasicSolver {
 	protected void generatePairings() {
 		PairingsGenerator generator = new PairingsGenerator(net, outputers, calculator);
 		generator.generate(bases);
-		numberOfPairings = generator.getNumberOfPairings();
 	}
 	
 	@Override
@@ -144,6 +143,7 @@ public class GeneticSolver extends BasicSolver {
 		setElite();
 		setInitialPopulation();
 		doGenerations();
+		numberOfPairings = pairings.size();
 		System.out.println("Número de pairings depois da evolução = " + pairings.size());
 		return getSolutionFromPopulation();
 	}

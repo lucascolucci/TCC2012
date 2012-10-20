@@ -15,9 +15,9 @@ import tcc.pairings.solvers.heuristics.Subproblem;
 import tcc.pairings.solvers.heuristics.History;
 
 public class LocalSearchGeneticSolver extends GeneticSolver {
-	private int sampleSize = 3;
+	private int sampleSize = 2;
 	private int initialMaxDuties = 4;
-	private int individueImprovements = 100;
+	private int individueImprovements = 25;
 	private double optimizationProbability = 0.01;
 	private InitialSolver initialSolver;
 	private Solution initialSolution;
@@ -113,17 +113,17 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 		int i = 0;
 		while (i < populationSize) {
 			Individue individue = getFeasibleIndividue();
-			optimizeInitialIndividue(individue);
+			improve(individue);
 			if (!population.contains(individue))	
 				addIndividueToPopulation(++i, individue);
 		}
 		System.out.println("Nœmero de pairings antes da evolu‹o = " + pairings.size());
 	}
 
-	private void optimizeInitialIndividue(Individue individue) {
-		history.clear();
+	private void improve(Individue individue) {
 		for (int i = 0; i < individueImprovements; i++)
 			doOptimization(individue);
+		history.clear();
 	}
 		
 	@Override
@@ -131,7 +131,7 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 		while (true) {
 			Individue child = getFeasibleChild(generation);		
 			if (random.nextDouble() < optimizationProbability)
-				doOptimization(child);
+				improve(child);
 			if (!population.contains(child))
 				return child;
 		}
@@ -187,7 +187,6 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	private void setSampleSolution(List<Leg> sampleLegs) {
 		SetCoverSolver solver = new SetCoverSolver(sampleLegs, calculator);
 		sampleSolution = solver.getSolution(bases);
-		numberOfPairings += solver.getNumberOfPairings();
 		solver.endOptimizerModel();
 	}
 	

@@ -11,12 +11,12 @@ import tcc.pairings.rules.Rules;
 import tcc.util.DateUtil;
 
 public class Pairing {
-	private int number;
+	private long number;
 	private double cost;
 	private double costWithDeadHeads;
 	private List<Duty> duties;
 	
-	public int getNumber() {
+	public long getNumber() {
 		return number;
 	}
 	
