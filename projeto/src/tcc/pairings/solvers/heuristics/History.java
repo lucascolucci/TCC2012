@@ -18,6 +18,11 @@ public class History {
 		return subproblems.contains(other);
 	}
 	
+	public Subproblem getSubproblem(Subproblem subproblem) {
+		int index = subproblems.indexOf(subproblem);
+		return subproblems.get(index);
+	}
+	
 	public int size() {
 		return subproblems.size();
 	}

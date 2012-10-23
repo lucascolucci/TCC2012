@@ -81,6 +81,33 @@ public class UtilTest {
 	}
 	
 	@Test
+	public void testListIndexOf() {
+		TestClass t1 = new TestClass(0);
+		TestClass t2 = new TestClass(0);
+		assertTrue(t1 != t2);
+		List<TestClass> list = new ArrayList<TestClass>();
+		list.add(t1);
+		assertEquals(0, list.indexOf(t2));
+	}
+	
+	@Test
+	public void testHashMap() {
+		TestClass t1 = new TestClass(1);
+		TestClass t2 = new TestClass(2);
+		assertTrue(t1 != t2);
+		
+		List<TestClass> list1 = new ArrayList<TestClass>();
+		list1.add(t1); list1.add(t2);
+		
+		List<TestClass> list2 = new ArrayList<TestClass>();
+		list2.add(t2); list2.add(t1);
+
+		HashMap<List<TestClass>, String> map = new HashMap<List<TestClass>, String>();
+		map.put(list2, "ok");
+		assertNull(map.get(list1));
+	}
+	
+	@Test
 	public void testHashSetContains() {
 		TestClass t1 = new TestClass(0);
 		TestClass t2 = new TestClass(0);

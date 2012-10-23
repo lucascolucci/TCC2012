@@ -160,18 +160,22 @@ public class LocalSearchSolver implements Solver {
 		newPairings = null;
 		List<Leg> oldLegs = getOldLegsToBeCovered();
 		Subproblem subproblem = new Subproblem(oldLegs);
+		Solution newSolution;
 		if (!history.contains(subproblem)) {
-			history.add(subproblem);
 			coverSolver = new SetCoverSolver(oldLegs, calculator);
-			Solution newSolution = coverSolver.getSolution(bases);
+			newSolution = coverSolver.getSolution(bases);
 			numberOfPairings += coverSolver.getNumberOfPairings();
 			coverSolver.endOptimizerModel();
-			if (newSolution != null) {
-				newPairings = newSolution.getPairings();
-				numberOfPairings += coverSolver.getNumberOfPairings();
-			} else
-				infeasibleCount++;
+			subproblem.setSolution(newSolution);
+			history.add(subproblem);
+		} else {
+			newSolution = history.getSubproblem(subproblem).getSolution();
+			System.out.println(history.size());
 		}
+		if (newSolution != null) {
+			newPairings = newSolution.getPairings();
+		} else
+			infeasibleCount++;
 	}
 	
 	private List<Pairing> getRandomSample() {

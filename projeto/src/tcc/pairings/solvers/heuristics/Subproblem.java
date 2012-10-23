@@ -3,12 +3,22 @@ package tcc.pairings.solvers.heuristics;
 import java.util.List;
 
 import tcc.pairings.Leg;
+import tcc.pairings.solvers.Solution;
 
 public class Subproblem {
 	private List<Leg> legs;
+	private Solution solution;
 	
 	public List<Leg> getLegs() {
 		return legs;
+	}
+	
+	public Solution getSolution() {
+		return solution;
+	}
+	
+	public void setSolution(Solution solution) {
+		this.solution = solution;
 	}
 	
 	public Subproblem(List<Leg> legs) {
