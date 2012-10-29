@@ -13,9 +13,9 @@ import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 
 public class LocalSearchGeneticSolver extends GeneticSolver {
-	private int sampleSize = 2;
+	private int sampleSize = 3;
 	private int initialMaxDuties = 4;
-	private int individueImprovements = 25;
+	private int individueImprovements = 50;
 	private double optimizationProbability = 0.01;
 	private InitialSolver initialSolver;
 	private Solution initialSolution;

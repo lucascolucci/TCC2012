@@ -21,9 +21,9 @@ public class SolversAnalysis {
 		//sa.doInitialSolution();
 		//sa.doSetPartition();
 		//sa.doSetCover();
-		sa.doLocalSearch();
+		//sa.doLocalSearch();
 		//sa.doGeneticSolver();
-		//sa.doLocalSearchGeneticSolver();
+		sa.doLocalSearchGeneticSolver();
 	}
 	
 	public void doInitialSolution() {
@@ -52,7 +52,6 @@ public class SolversAnalysis {
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
 		LocalSearchSolver solver = new LocalSearchSolver(TIME_TABLES_PATH + file, calc);
-		solver.setUseHistory(true);
 		solver.setMaxIterations(3000);
 		System.out.println(solver.getSolution(sao));
 		System.out.println(solver.getSolutionTime());
