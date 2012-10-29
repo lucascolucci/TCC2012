@@ -13,9 +13,9 @@ import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 
 public class LocalSearchGeneticSolver extends GeneticSolver {
-	private int sampleSize = 3;
+	private int sampleSize = 2;
 	private int initialMaxDuties = 4;
-	private int individueImprovements = 50;
+	private int individueImprovements = 100;
 	private double optimizationProbability = 0.01;
 	private InitialSolver initialSolver;
 	private Solution initialSolution;
@@ -134,9 +134,8 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	
 	private void doOptimization(Individue individue) {
 		setIndividueSolution(individue);
-		setSamplePairings(individueSolution.getPairings());
-		List<Leg> sampleLegs = getSampleLegs();
-		setSampleSolution(sampleLegs);
+		setSamplePairings();
+		setSampleSolution();
 		replacePairingsIfImproved(individue);
 		setAllDeadheadsToFalse(samplePairings);
 		setAllDeadheadsToFalse(individue.getChromosome());
@@ -153,7 +152,8 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 		setSolutionCost(solution);
 	}
 	
-	private void setSamplePairings(List<Pairing> pairings) {
+	private void setSamplePairings() {
+		List<Pairing> pairings = individueSolution.getPairings();
 		samplePairings = new ArrayList<Pairing>();
 		for (int i = 0; i < sampleSize; i++) {
 			int randomIndex = random.nextInt(pairings.size());
@@ -161,6 +161,13 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 			if (!samplePairings.contains(selected)) 
 				samplePairings.add(selected);	
 		}
+	}
+	
+	private void setSampleSolution() {
+		List<Leg> sampleLegs = getSampleLegs();
+		SetCoverSolver solver = new SetCoverSolver(sampleLegs, calculator);
+		sampleSolution = solver.getSolution(bases);
+		solver.endOptimizerModel();
 	}
 	
 	private List<Leg> getSampleLegs() {
@@ -179,12 +186,6 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 				if (!leg.isDeadHead())
 					legs.add(leg);
 		return legs;
-	}
-
-	private void setSampleSolution(List<Leg> sampleLegs) {
-		SetCoverSolver solver = new SetCoverSolver(sampleLegs, calculator);
-		sampleSolution = solver.getSolution(bases);
-		solver.endOptimizerModel();
 	}
 	
 	private void replacePairingsIfImproved(Individue individue) {
