@@ -72,11 +72,16 @@ public class CplexOutputer extends Outputer {
 	}
 
 	protected void tryToOutput(Pairing pairing) throws IloException {
+		IloColumn col = getColumn(pairing);
+		matrix.addColumn(model.boolVar(col, "X" + pairing.getNumber()));
+	}
+
+	protected IloColumn getColumn(Pairing pairing) throws IloException {
 		IloColumn col = model.column(obj, pairing.getCost());
 		for (int i = 0; i < legs.size(); i++)
 			if (pairing.contains(legs.get(i)))
 				col = col.and(model.column(range[i], 1));
-		matrix.addColumn(model.boolVar(col, "X" + pairing.getNumber()));
+		return col;
 	}
 	
 	public void exportModel(String file) {

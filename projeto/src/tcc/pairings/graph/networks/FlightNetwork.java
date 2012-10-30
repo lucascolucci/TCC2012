@@ -143,4 +143,12 @@ public class FlightNetwork extends Graph<Leg> {
 				typeEdges.add(edge);
 		return typeEdges;
 	}
+
+	public void setDuals(double[] duals) {
+		for (Node<Leg> node: nodes) {
+			Leg leg = node.getInfo();
+			int index = legs.indexOf(leg);
+			((FlightNetworkNodeLabel) node.getLabel()).setDual(duals[index]);
+		}
+	}
 }

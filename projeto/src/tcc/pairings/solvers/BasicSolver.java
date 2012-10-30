@@ -40,6 +40,10 @@ public abstract class BasicSolver implements Solver {
 		return legs;
 	}
 	
+	public FlightNetwork getFlightNetwork() {
+		return net;
+	}
+	
 	@Override
 	public int getNumberOfPairings() {
 		return numberOfPairings;

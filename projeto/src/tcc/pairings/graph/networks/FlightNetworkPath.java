@@ -12,6 +12,7 @@ public class FlightNetworkPath extends Path<Leg>{
 	private DutyData dutyData;
 	private short track;
 	private int numberOfDuties;
+	private double cost;
 	
 	public DutyData getDutyData() {
 		return dutyData;
@@ -37,11 +38,20 @@ public class FlightNetworkPath extends Path<Leg>{
 		this.numberOfDuties = numberOfDuties;
 	}
 	
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+	
 	public FlightNetworkPath() {
 		super();
 		dutyData = new DutyData();
 		track = -1;
 		numberOfDuties = 0;
+		cost = 0.0;
 	}
 	
 	public void addNewDuty(int flightTime, short track) {

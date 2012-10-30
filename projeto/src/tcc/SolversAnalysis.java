@@ -6,6 +6,7 @@ import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
+import tcc.pairings.solvers.heuristics.ColumnGenerationSolver;
 import tcc.pairings.solvers.heuristics.LocalSearchSolver;
 import tcc.pairings.solvers.heuristics.genetic.GeneticSolver;
 import tcc.pairings.solvers.heuristics.genetic.LocalSearchGeneticSolver;
@@ -23,7 +24,8 @@ public class SolversAnalysis {
 		//sa.doSetCover();
 		//sa.doLocalSearch();
 		//sa.doGeneticSolver();
-		sa.doLocalSearchGeneticSolver();
+		//sa.doLocalSearchGeneticSolver();
+		sa.doColumnGeneration();
 	}
 	
 	public void doInitialSolution() {
@@ -72,4 +74,14 @@ public class SolversAnalysis {
 		System.out.println(solver.getSolution(sao));
 		System.out.println(solver.getSolutionTime());
 	}
+	
+
+	public void doColumnGeneration() {
+		Base sao = new Base("GRU", "CGH");
+		CostCalculator calc = new MeanFlightPerDutyCalculator();
+		ColumnGenerationSolver solver = new ColumnGenerationSolver(TIME_TABLES_PATH + file, calc);
+		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getSolutionTime());		
+	}
+
 }

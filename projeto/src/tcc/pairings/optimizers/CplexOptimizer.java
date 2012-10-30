@@ -122,4 +122,13 @@ public class CplexOptimizer implements Optimizer {
 	public void endModel() {
 		model.end();
 	}
+	
+	public double[] getDuals() {
+		try {
+			return model.getDuals(matrix);		
+		} catch (IloException e) {
+			System.err.println("Erro ao obter duais: " + e.getMessage());
+			return null;
+		}
+	}
 }

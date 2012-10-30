@@ -24,7 +24,7 @@ public class DHCplexOutputer extends CplexOutputer {
 		}
 	}
 
-	private void tryToAddDHVariables() throws IloException {
+	protected void tryToAddDHVariables() throws IloException {
 		for (int i = 0; i < legs.size(); i++) { 
 			IloColumn col = getColWithObjSet(i);
 			col = col.and(model.column(range[i], -1));
@@ -32,7 +32,7 @@ public class DHCplexOutputer extends CplexOutputer {
 		}
 	}
 
-	private IloColumn getColWithObjSet(int index) throws IloException {
+	protected IloColumn getColWithObjSet(int index) throws IloException {
 		if (calculator != null)
 			return model.column(obj, calculator.getDeadHeadingCost(legs.get(index)));
 		return model.column(obj, 1.0);
