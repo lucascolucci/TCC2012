@@ -11,8 +11,6 @@ import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
-import tcc.pairings.solvers.heuristics.Subproblem;
-import tcc.pairings.solvers.heuristics.History;
 
 public class LocalSearchGeneticSolver extends GeneticSolver {
 	private int sampleSize = 2;
@@ -24,7 +22,6 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	private Solution individueSolution;
 	private Solution sampleSolution;
 	private List<Pairing> samplePairings;
-	private History history;
 	
 	public int getSampleSize() {
 		return sampleSize;
@@ -65,7 +62,6 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	public LocalSearchGeneticSolver(String timeTable, CostCalculator calculator) {
 		super(timeTable, calculator);
 		initialSolver = new InitialSolver(timeTable, calculator);
-		history = new History();
 	}
 	
 	@Override
@@ -123,7 +119,6 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	private void improve(Individue individue) {
 		for (int i = 0; i < individueImprovements; i++)
 			doOptimization(individue);
-		history.clear();
 	}
 		
 	@Override
@@ -141,12 +136,8 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 		setIndividueSolution(individue);
 		setSamplePairings(individueSolution.getPairings());
 		List<Leg> sampleLegs = getSampleLegs();
-		Subproblem subproblem = new Subproblem(sampleLegs);
-		if (!history.contains(subproblem)) {
-			history.add(subproblem);
-			setSampleSolution(sampleLegs);
-			replacePairingsIfImproved(individue);
-		}
+		setSampleSolution(sampleLegs);
+		replacePairingsIfImproved(individue);
 		setAllDeadheadsToFalse(samplePairings);
 		setAllDeadheadsToFalse(individue.getChromosome());
 	}
@@ -173,17 +164,23 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	}
 	
 	private List<Leg> getSampleLegs() {
+		List<DutyLeg> sampleLegs = getSampleNonDHLegs();
 		List<Leg> cloned = new ArrayList<Leg>();
-		for (Pairing pairing: samplePairings)
-			for (DutyLeg dutyLeg: pairing.getLegs())
-				for (Leg leg: legs)
-					if (leg.equals(dutyLeg) && !dutyLeg.isDeadHead()) {
-						cloned.add(leg.clone());
-						break;
-					}
+		for (Leg leg: legs)
+			if (sampleLegs.contains(leg))
+				cloned.add(leg.clone());
 		return cloned;
 	}
-	
+
+	private List<DutyLeg> getSampleNonDHLegs() {
+		List<DutyLeg> legs = new ArrayList<DutyLeg>();	
+		for (Pairing pairing: samplePairings)
+			for (DutyLeg leg: pairing.getLegs())
+				if (!leg.isDeadHead())
+					legs.add(leg);
+		return legs;
+	}
+
 	private void setSampleSolution(List<Leg> sampleLegs) {
 		SetCoverSolver solver = new SetCoverSolver(sampleLegs, calculator);
 		sampleSolution = solver.getSolution(bases);

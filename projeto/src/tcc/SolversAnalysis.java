@@ -52,8 +52,8 @@ public class SolversAnalysis {
 		Base sao = new Base("GRU", "CGH");
 		CostCalculator calc = new MeanFlightPerDutyCalculator();
 		LocalSearchSolver solver = new LocalSearchSolver(TIME_TABLES_PATH + file, calc);
-		solver.setInitialMaxDuties(3);
-		solver.setMaxIterations(100000);
+		solver.setUseHistory(true);
+		solver.setMaxIterations(3000);
 		System.out.println(solver.getSolution(sao));
 		System.out.println(solver.getSolutionTime());
 	}

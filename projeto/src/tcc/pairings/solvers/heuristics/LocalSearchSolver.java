@@ -21,9 +21,10 @@ public class LocalSearchSolver implements Solver {
 	private int sampleSize = 3;
 	private int initialMaxDuties = 4;
 	private int outputStep = 100;
-	private Base[] bases;
 	private ResultsBuffer buffer;
+	private boolean useHistory = false;
 	private CostCalculator calculator;
+	private Base[] bases;
 	private InitialSolver initialSolver;
 	private SetCoverSolver coverSolver;
 	private Solution solution;
@@ -73,6 +74,14 @@ public class LocalSearchSolver implements Solver {
 
 	public void setBuffer(ResultsBuffer buffer) {
 		this.buffer = buffer;
+	}
+	
+	public boolean useHistory() {
+		return useHistory;
+	}
+
+	public void setUseHistory(boolean useHistory) {
+		this.useHistory = useHistory;
 	}
 	
 	public CostCalculator getCalculator() {
@@ -129,11 +138,9 @@ public class LocalSearchSolver implements Solver {
 	
 	private void improveSolution() {
 		infeasibleCount = 0;
-		int iteration = 0;
-		output(iteration);
-		while (iteration++ < maxIterations) {
-			doIteration();
+		for (int iteration = 0; iteration < maxIterations; iteration++) {
 			output(iteration);
+			doIteration();
 		}
 	}
 	
@@ -146,7 +153,7 @@ public class LocalSearchSolver implements Solver {
 	}
 
 	private void doIteration() {
-		setOldAndNewPairings(bases);
+		setOldAndNewPairings();
 		if (newPairings != null) {
 			double oldCost = getCost(oldPairings);
 			double newCost = getCost(newPairings);
@@ -155,27 +162,9 @@ public class LocalSearchSolver implements Solver {
 		}
 	}
 
-	private void setOldAndNewPairings(Base... bases) {
+	private void setOldAndNewPairings() {
 		oldPairings = getRandomSample();
-		newPairings = null;
-		List<Leg> oldLegs = getOldLegsToBeCovered();
-		Subproblem subproblem = new Subproblem(oldLegs);
-		Solution newSolution;
-		if (!history.contains(subproblem)) {
-			coverSolver = new SetCoverSolver(oldLegs, calculator);
-			newSolution = coverSolver.getSolution(bases);
-			numberOfPairings += coverSolver.getNumberOfPairings();
-			coverSolver.endOptimizerModel();
-			subproblem.setSolution(newSolution);
-			history.add(subproblem);
-		} else {
-			newSolution = history.getSubproblem(subproblem).getSolution();
-			System.out.println(history.size());
-		}
-		if (newSolution != null) {
-			newPairings = newSolution.getPairings();
-		} else
-			infeasibleCount++;
+		setNewPairings();
 	}
 	
 	private List<Pairing> getRandomSample() {
@@ -188,18 +177,25 @@ public class LocalSearchSolver implements Solver {
 		}
 		return list;
 	}
+
+	private void setNewPairings() {
+		List<Leg> legs = getSampleLegs();
+		if (useHistory)
+			setNewPairingsUsingHistory(legs);
+		else
+			setNewPairingsWithoutHistory(legs);
+	}
 	
-	private List<Leg> getOldLegsToBeCovered() {
-		List<DutyLeg> oldLegs = getOldLegs();
-		List<Leg> originalLegs = initialSolver.getLegs();
-		List<Leg> clonedLegs = new ArrayList<Leg>();
-		for (Leg oringinal: originalLegs)
-			if (oldLegs.contains(oringinal))
-				clonedLegs.add(oringinal.clone());
-		return clonedLegs;
+	private List<Leg> getSampleLegs() {
+		List<DutyLeg> sampleLegs = getSampleNonDHLegs();
+		List<Leg> cloned = new ArrayList<Leg>();
+		for (Leg leg: initialSolver.getLegs())
+			if (sampleLegs.contains(leg))
+				cloned.add(leg.clone());
+		return cloned;
 	}
 
-	private List<DutyLeg> getOldLegs() {
+	private List<DutyLeg> getSampleNonDHLegs() {
 		List<DutyLeg> legs = new ArrayList<DutyLeg>();	
 		for (Pairing pairing: oldPairings)
 			for (DutyLeg leg: pairing.getLegs())
@@ -208,6 +204,45 @@ public class LocalSearchSolver implements Solver {
 		return legs;
 	}
 	
+	private void setNewPairingsUsingHistory(List<Leg> legs) {
+		Solution newSolution = getNewSolutionUsingHistory(legs);
+		setNewPairingsFromSolution(newSolution);
+	}
+
+	private void setNewPairingsWithoutHistory(List<Leg> legs) {
+		Solution newSolution = getNewSolutionFromCoverSolver(legs);
+		setNewPairingsFromSolution(newSolution);
+	}
+	
+	private void setNewPairingsFromSolution(Solution solution) {
+		if (solution != null) {
+			newPairings = solution.getPairings();
+		} else {
+			newPairings = null;
+			infeasibleCount++;
+		}
+	}
+
+	private Solution getNewSolutionUsingHistory(List<Leg> legs) {
+		Subproblem subproblem = new Subproblem(legs);
+		if (!history.contains(subproblem)) {
+			Solution newSolution = getNewSolutionFromCoverSolver(legs);
+			subproblem.setSolution(newSolution);
+			history.add(subproblem);
+			return newSolution;
+		} else {
+			return history.getSubproblem(subproblem).getSolution();
+		}
+	}
+	
+	private Solution getNewSolutionFromCoverSolver(List<Leg> legs) {
+		coverSolver = new SetCoverSolver(legs, calculator);
+		Solution newSolution = coverSolver.getSolution(bases);
+		numberOfPairings += coverSolver.getNumberOfPairings();
+		coverSolver.endOptimizerModel();
+		return newSolution;
+	}
+		
 	private double getCost(List<Pairing> pairings) {
 		double cost = 0.0;
 		for (Pairing pairing: pairings) 
