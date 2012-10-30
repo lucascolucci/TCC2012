@@ -32,9 +32,9 @@ public class InitialSolver extends BasicSolver {
 	private Solution getInitialSolution() {		
 		InitialGenerator generator = new InitialGenerator(net, calculator);
 		generator.generate(bases);
+		numberOfPairings = generator.getNumberOfPairings();
 		if (!generator.isAllLegsCovered())
 			return null;
-		numberOfPairings = generator.getNumberOfPairings();
 		Solution solution = new Solution(generator.getPairings());
 		setCostsWithDeadHeads(solution.getPairings());
 		setSolutionCost(solution);
