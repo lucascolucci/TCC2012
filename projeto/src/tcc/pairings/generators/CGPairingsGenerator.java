@@ -11,7 +11,7 @@ import tcc.pairings.graph.Node;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.graph.networks.FlightNetworkPath;
 
-public class CGPairingsGenerator extends PairingsGenerator {
+public class CGPairingsGenerator extends BasicGenerator {
 	private Queue<Pair<Node<Leg>, FlightNetworkPath>> queue;
 
 	public CGPairingsGenerator(FlightNetwork net, CostCalculator calculator) {
@@ -21,11 +21,13 @@ public class CGPairingsGenerator extends PairingsGenerator {
 
 	@Override
 	protected void findPairings(Node<Leg> node) {
-		//queue.offer();
 		while (!queue.isEmpty()) {
-			for (Node<Leg> neighbor : node.getNeighbors()) {
-			//	if ()
-			}
+			
 		}
+	}
+	
+	@Override
+	protected void output() {
+		
 	}
 }

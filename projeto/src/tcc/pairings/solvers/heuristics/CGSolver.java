@@ -10,14 +10,14 @@ import tcc.pairings.solvers.BasicSolver;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
 
-public class ColumnGenerationSolver extends BasicSolver {
+public class CGSolver extends BasicSolver {
 	private InitialSolver initialSolver;
 	private Solution initialSolution;
 	private CGCplexOutputer cplex;
 	private List<Pairing> pairings;
 	
 	
-	public ColumnGenerationSolver(String timeTable, CostCalculator calculator) {
+	public CGSolver(String timeTable, CostCalculator calculator) {
 		super(timeTable, calculator);
 	}
 

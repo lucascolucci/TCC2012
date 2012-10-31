@@ -26,14 +26,11 @@ public class InitialGenerator extends PairingsGenerator {
 	public InitialGenerator(FlightNetwork net, CostCalculator calculator) {
 		super(net, calculator);
 		pairings = new ArrayList<Pairing>();
-		setLegsList(net.getLegs());
+		this.legs = new ArrayList<Leg>(net.getLegs());
 	}
 	
-	private void setLegsList(List<Leg> legs) {
-		this.legs = new ArrayList<Leg>();
-		for (Leg leg: legs) {
-			this.legs.add(leg);
-		}
+	public boolean isAllLegsCovered() {
+		return legs.isEmpty();
 	}
 
 	@Override
@@ -70,9 +67,5 @@ public class InitialGenerator extends PairingsGenerator {
 		if (calculator != null)
 			calculator.setCost(pairing);
 		pairings.add(pairing);
-	}
-	
-	public boolean isAllLegsCovered() {
-		return legs.isEmpty();
 	}
 }

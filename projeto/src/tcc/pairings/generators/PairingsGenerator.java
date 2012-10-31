@@ -1,6 +1,5 @@
 package tcc.pairings.generators;
 
-import tcc.pairings.Base;
 import tcc.pairings.DutyData;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
@@ -10,29 +9,12 @@ import tcc.pairings.graph.Node;
 import tcc.pairings.graph.networks.FlightNetwork;
 import tcc.pairings.graph.networks.FlightNetworkEdgeLabel;
 import tcc.pairings.graph.networks.FlightNetworkNodeLabel;
-import tcc.pairings.graph.networks.FlightNetworkPath;
-import tcc.pairings.graph.networks.SpecialNode;
 import tcc.pairings.io.outputers.Outputer;
 import tcc.pairings.rules.Rules;
 
-public class PairingsGenerator {
-	private FlightNetwork net;
+public class PairingsGenerator extends BasicGenerator {
 	private Outputer[] outputers;
-	protected CostCalculator calculator;
 	private int maxPairings;
-	protected int numberOfPairings;
-	private Base base;
-	protected FlightNetworkPath path;
-	private SpecialNode source;
-	private SpecialNode sink;
-	
-	public int getNumberOfPairings() {
-		return numberOfPairings;
-	}
-	
-	public void setNumberOfPairings(int numberOfPairings) {
-		this.numberOfPairings = numberOfPairings;
-	}
 	
 	public int getMaxPairings() {
 		return maxPairings;
@@ -55,46 +37,12 @@ public class PairingsGenerator {
 	}
 	
 	public PairingsGenerator(FlightNetwork net, Outputer[] outputers, CostCalculator calculator) {
-		this.net = net;
+		super(net, calculator);
 		this.outputers = outputers;
-		this.calculator = calculator;
 		maxPairings = 0;
-		numberOfPairings = 0;
 	}
 	
-	public void generate(Base... bases) {
-		for (Base base: bases)
-			generate(base);
-	}
-		
-	public void generate(Base base) {
-		initialSetUp(base);
-		addSourceAndSink();
-		findPairings(source);
-		removeSourceAndSink();
-	}
-
-	private void initialSetUp(Base base) {
-		this.base = base;
-		path = new FlightNetworkPath();
-		setSourceAndSink();
-	}
-
-	private void setSourceAndSink() {
-		source = new SpecialNode(base);
-		sink = new SpecialNode(base);
-	}
-	
-	private void addSourceAndSink() {
-		net.addSource(source);
-		net.addSink(sink);
-	}
-	
-	private void removeSourceAndSink() {
-		net.removeNode(source);
-		net.removeNode(sink);
-	}
-
+	@Override
 	protected void findPairings(Node<Leg> node) {
 		if (maxPairings > 0 && numberOfPairings >= maxPairings)
 			return;
@@ -181,6 +129,7 @@ public class PairingsGenerator {
 		output();
 	}
 	
+	@Override
 	protected void output() {
 		if (outputers != null) {
 			Pairing pairing = getNewPairing();

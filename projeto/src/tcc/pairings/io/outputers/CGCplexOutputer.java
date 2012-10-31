@@ -10,7 +10,6 @@ import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
 
 public class CGCplexOutputer extends DHCplexOutputer {
-
 	public CGCplexOutputer(List<Leg> legs, CostCalculator calculator) {
 		super(legs, calculator);
 	}
