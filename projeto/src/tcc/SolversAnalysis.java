@@ -21,11 +21,11 @@ public class SolversAnalysis {
 		file = "738_48.txt";
 		//sa.doInitialSolution();
 		//sa.doSetPartition();
-		sa.doSetCover();
+		//sa.doSetCover();
 		//sa.doLocalSearch();
 		//sa.doGeneticSolver();
 		//sa.doLocalSearchGeneticSolver();
-		//sa.doColumnGeneration();
+		sa.doColumnGeneration();
 	}
 	
 	public void doInitialSolution() {

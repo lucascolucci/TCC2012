@@ -16,7 +16,6 @@ public class CGSolver extends BasicSolver {
 	private CGCplexOutputer cplex;
 	private List<Pairing> pairings;
 	
-	
 	public CGSolver(String timeTable, CostCalculator calculator) {
 		super(timeTable, calculator);
 	}
@@ -60,8 +59,7 @@ public class CGSolver extends BasicSolver {
 	@Override
 	protected Solution getOptimalSolution() {
 		if (optimizer.optimize()) {
-			double[] duals = optimizer.getDuals();
-			net.setDuals(duals);
+			net.setDuals(optimizer.getDuals());
 		}
 		return null;
 	}
