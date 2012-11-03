@@ -88,13 +88,13 @@ public abstract class BasicSolver implements Solver {
 		}
 	}
 	
-	protected Solution tryToGetSolution() {
+	private Solution tryToGetSolution() {
 		setLegs();
 		buildFlightNetwork();
 		setOutputers();
 		generatePairings();
 		setOptimizer();
-		return getOptimalSolution();
+		return getSolution();
 	}
 
 	protected void setLegs() {
@@ -119,7 +119,7 @@ public abstract class BasicSolver implements Solver {
 	
 	protected abstract void setOptimizer();
 	
-	protected Solution getOptimalSolution() {
+	protected Solution getSolution() {
 		if (optimizer.optimize()) {
 			Solution solution = new Solution(getOptimalPairings(memory.getPairings()));
 			solution.setCost(optimizer.getObjectiveValue());
@@ -134,11 +134,6 @@ public abstract class BasicSolver implements Solver {
 		for (int i: vars)
 			list.add(pairings.get(i - 1));
 		return list;
-	}
-	
-	public void endOptimizerModel() {
-		if (optimizer != null)
-			optimizer.endModel();
 	}
 	
 	protected void setCostsWithDeadHeads(List<Pairing> pairings) {
@@ -166,5 +161,10 @@ public abstract class BasicSolver implements Solver {
 		for (Pairing pairing: pairings)
 			cost += pairing.getCostWithDeadHeads();
 		solution.setCost(cost);
+	}
+	
+	public void endOptimizerModel() {
+		if (optimizer != null)
+			optimizer.endModel();
 	}
 }

@@ -92,7 +92,8 @@ public class Rules {
 			int flightTime = ((FlightNetworkNodeLabel) edge.getIn().getLabel()).getFlightTime();
 			int sitTime = ((FlightNetworkEdgeLabel) edge.getLabel()).getSitTime();
 			short track = edge.getIn().getInfo().getTrack();
-			return numberOfLegsCheck(path) && trackChangesCheck(path, track) && flightTimeCheck(path, flightTime) && dutyTimeCheck(path, flightTime, sitTime);
+			return numberOfLegsCheck(path) && trackChangesCheck(path, track) 
+					&& flightTimeCheck(path, flightTime) && dutyTimeCheck(path, flightTime, sitTime);
 		}
 		return false;
 	}

@@ -90,6 +90,11 @@ public class DutyData implements Cloneable {
 		numberOfTracks--;
 	}
 	
+	public boolean dominates(DutyData other) {
+		return flightTime <= other.flightTime && dutyTime <= other.dutyTime 
+				&& numberOfLegs <= other.numberOfLegs && numberOfTracks <= other.numberOfTracks;
+	}
+	
 	@Override
 	public DutyData clone() {
 		return new DutyData(flightTime, dutyTime, numberOfLegs, numberOfTracks);

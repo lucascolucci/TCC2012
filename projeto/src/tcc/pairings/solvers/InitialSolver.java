@@ -2,8 +2,12 @@ package tcc.pairings.solvers;
 
 import tcc.pairings.costs.CostCalculator;
 import tcc.pairings.generators.InitialGenerator;
+import tcc.pairings.io.outputers.MemoryOutputer;
+import tcc.pairings.io.outputers.Outputer;
 
 public class InitialSolver extends BasicSolver {
+	private InitialGenerator generator;
+	
 	public InitialSolver(String timeTable) {
 		this(timeTable, null);
 	}
@@ -13,15 +17,16 @@ public class InitialSolver extends BasicSolver {
 	}
 	
 	@Override
-	protected Solution tryToGetSolution() {
-		setLegs();
-		buildFlightNetwork();
-		return getInitialSolution();
+	protected void setOutputers() {
+		memory = new MemoryOutputer();
+		outputers = new Outputer[] { memory };
 	}
 	
 	@Override
-	protected void setOutputers() {
-		outputers = null;
+	protected void generatePairings() {
+		generator = new InitialGenerator(net, outputers, calculator);
+		generator.generate(bases);
+		numberOfPairings = generator.getNumberOfPairings();
 	}
 
 	@Override
@@ -29,13 +34,11 @@ public class InitialSolver extends BasicSolver {
 		optimizer = null;
 	}
 
-	private Solution getInitialSolution() {		
-		InitialGenerator generator = new InitialGenerator(net, calculator);
-		generator.generate(bases);
-		numberOfPairings = generator.getNumberOfPairings();
+	@Override
+	protected Solution getSolution() {		
 		if (!generator.isAllLegsCovered())
 			return null;
-		Solution solution = new Solution(generator.getPairings());
+		Solution solution = new Solution(memory.getPairings());
 		setCostsWithDeadHeads(solution.getPairings());
 		setSolutionCost(solution);
 		return solution;

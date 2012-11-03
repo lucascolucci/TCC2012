@@ -85,10 +85,10 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	}
 	
 	@Override
-	protected Solution getOptimalSolution() {
+	protected Solution getSolution() {
 		if (initialSolution != null) {
 			System.out.println(initialSolution);
-			return super.getOptimalSolution();
+			return super.getSolution();
 		}
 		return null;
 	}

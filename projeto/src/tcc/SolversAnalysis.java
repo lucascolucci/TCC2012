@@ -18,7 +18,7 @@ public class SolversAnalysis {
 	
 	public static void main(String[] args) {
 		SolversAnalysis sa = new SolversAnalysis();
-		file = "738_48.txt";
+		file = "73G_340.txt";
 		//sa.doInitialSolution();
 		//sa.doSetPartition();
 		//sa.doSetCover();
@@ -44,8 +44,7 @@ public class SolversAnalysis {
 	
 	public void doSetCover() {
 		Base sao = new Base("GRU", "CGH");
-		CostCalculator calc = new MeanFlightPerDutyCalculator();
-		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + file, calc);
+		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + file);
 		System.out.println(solver.getSolution(sao));
 		System.out.println(solver.getSolutionTime());
 	}
@@ -75,11 +74,9 @@ public class SolversAnalysis {
 		System.out.println(solver.getSolutionTime());
 	}
 	
-
 	public void doColumnGeneration() {
 		Base sao = new Base("GRU", "CGH");
-		CostCalculator calc = new MeanFlightPerDutyCalculator();
-		CGSolver solver = new CGSolver(TIME_TABLES_PATH + file, calc);
+		CGSolver solver = new CGSolver(TIME_TABLES_PATH + file, null);
 		System.out.println(solver.getSolution(sao));
 		System.out.println(solver.getSolutionTime());		
 	}

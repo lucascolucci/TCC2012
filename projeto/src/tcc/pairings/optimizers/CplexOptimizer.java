@@ -2,6 +2,7 @@ package tcc.pairings.optimizers;
 
 import ilog.concert.*;
 import ilog.cplex.*;
+import ilog.cplex.IloCplex.CplexStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,6 +129,33 @@ public class CplexOptimizer implements Optimizer {
 			return model.getDuals(matrix);		
 		} catch (IloException e) {
 			System.err.println("Erro ao obter duais: " + e.getMessage());
+			return null;
+		}
+	}
+	
+	public double[] getVars() {
+		try {
+			return model.getValues(matrix);
+		} catch (IloException e) {
+			System.err.println("Erro ao obter vari‡veis: " + e.getMessage());
+			return null;
+		}
+	}
+	
+	public double[] getReducedCosts() {
+		try {
+			return model.getReducedCosts(matrix);
+		} catch (IloException e) {
+			System.err.println("Erro ao obter custos reduzido: " + e.getMessage());
+			return null;
+		}
+	}
+	
+	public CplexStatus getStatus() {
+		try {
+			return model.getCplexStatus();
+		} catch (IloException e) {
+			System.err.println("Erro ao obter status: " + e.getMessage());
 			return null;
 		}
 	}

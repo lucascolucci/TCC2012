@@ -151,4 +151,9 @@ public class FlightNetwork extends Graph<Leg> {
 			((FlightNetworkNodeLabel) node.getLabel()).setDual(duals[index]);
 		}
 	}
+
+	public void clearLabels() {
+		for (Node<Leg> node: nodes)
+			((FlightNetworkNodeLabel) node.getLabel()).clearPaths();
+	}
 }

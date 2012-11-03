@@ -10,6 +10,8 @@ import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
 
 public class CGCplexOutputer extends DHCplexOutputer {
+	private static int column = 0;
+	
 	public CGCplexOutputer(List<Leg> legs, CostCalculator calculator) {
 		super(legs, calculator);
 	}
@@ -17,7 +19,7 @@ public class CGCplexOutputer extends DHCplexOutputer {
 	@Override
 	protected void tryToOutput(Pairing pairing) throws IloException {
 		IloColumn col = getColumn(pairing);
-		matrix.addColumn(model.numVar(col, 0, 1, "X" + pairing.getNumber()));
+		matrix.addColumn(model.numVar(col, 0, 1, "X" + (++column)));
 	}
 	
 	@Override

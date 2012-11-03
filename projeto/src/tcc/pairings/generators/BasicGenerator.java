@@ -3,17 +3,21 @@ package tcc.pairings.generators;
 import tcc.pairings.Base;
 import tcc.pairings.Leg;
 import tcc.pairings.costs.CostCalculator;
+import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.Node;
 import tcc.pairings.graph.networks.FlightNetwork;
+import tcc.pairings.graph.networks.FlightNetworkEdgeLabel;
+import tcc.pairings.graph.networks.FlightNetworkNodeLabel;
 import tcc.pairings.graph.networks.FlightNetworkPath;
 import tcc.pairings.graph.networks.SpecialNode;
+import tcc.pairings.io.outputers.Outputer;
 
 public abstract class BasicGenerator {
 	protected FlightNetwork net;
 	protected CostCalculator calculator;
+	protected Outputer[] outputers;
 	protected int numberOfPairings;
 	protected Base base;
-	protected FlightNetworkPath path;
 	protected SpecialNode source;
 	protected SpecialNode sink;
 	
@@ -25,12 +29,9 @@ public abstract class BasicGenerator {
 		this.numberOfPairings = numberOfPairings;
 	}
 		
-	public BasicGenerator(FlightNetwork net) {
-		this(net, null);
-	}
-	
-	public BasicGenerator(FlightNetwork net, CostCalculator calculator) {
+	public BasicGenerator(FlightNetwork net, Outputer[] outputers, CostCalculator calculator) {
 		this.net = net;
+		this.outputers = outputers;
 		this.calculator = calculator;
 		numberOfPairings = 0;
 	}
@@ -49,11 +50,10 @@ public abstract class BasicGenerator {
 
 	private void initialSetUp(Base base) {
 		this.base = base;
-		path = new FlightNetworkPath();
 		setSourceAndSink();
 	}
 
-	private void setSourceAndSink() {
+	protected void setSourceAndSink() {
 		source = new SpecialNode(base);
 		sink = new SpecialNode(base);
 	}
@@ -71,4 +71,19 @@ public abstract class BasicGenerator {
 	protected abstract void findPairings(Node<Leg> node);
 	
 	protected abstract void output();
+	
+	protected void addNewDutyToPath(FlightNetworkPath path, Edge<Leg> edge) {
+		int flightTime = ((FlightNetworkNodeLabel) edge.getIn().getLabel()).getFlightTime();
+		short track = edge.getIn().getInfo().getTrack();
+		path.addNewDuty(flightTime, track);
+		path.addEdge(edge);
+	}
+	
+	protected void addConnectionToPath(FlightNetworkPath path, Edge<Leg> edge) {
+		int flightTime = ((FlightNetworkNodeLabel) edge.getIn().getLabel()).getFlightTime();
+		int sitTime = ((FlightNetworkEdgeLabel) edge.getLabel()).getSitTime();
+		short track = edge.getIn().getInfo().getTrack();
+		path.addConnection(flightTime, sitTime, track);
+		path.addEdge(edge);
+	}
 }

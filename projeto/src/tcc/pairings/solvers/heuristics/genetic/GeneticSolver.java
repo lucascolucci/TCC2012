@@ -136,7 +136,7 @@ public class GeneticSolver extends BasicSolver {
 	}
 	
 	@Override
-	protected Solution getOptimalSolution() {
+	protected Solution getSolution() {
 		setPairings();
 		sortPairings();
 		setCoverPairings();

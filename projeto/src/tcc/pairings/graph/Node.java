@@ -7,7 +7,7 @@ import tcc.pairings.graph.networks.EdgeType;
 
 public class Node<T> {
 	private T info;
-	private Label label;
+	protected Label label;
 	private List<Edge<T>> edges;
 
 	public T getInfo() {

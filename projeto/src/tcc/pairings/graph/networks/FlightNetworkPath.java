@@ -8,11 +8,11 @@ import tcc.pairings.Leg;
 import tcc.pairings.graph.Edge;
 import tcc.pairings.graph.Path;
 
-public class FlightNetworkPath extends Path<Leg>{
+public class FlightNetworkPath extends Path<Leg> implements Cloneable {
 	private DutyData dutyData;
 	private short track;
 	private int numberOfDuties;
-	private double cost;
+	private double reducedCost;
 	
 	public DutyData getDutyData() {
 		return dutyData;
@@ -38,12 +38,12 @@ public class FlightNetworkPath extends Path<Leg>{
 		this.numberOfDuties = numberOfDuties;
 	}
 	
-	public double getCost() {
-		return cost;
+	public double getReducedCost() {
+		return reducedCost;
 	}
 
-	public void setCost(double cost) {
-		this.cost = cost;
+	public void setReducedCost(double reducedCost) {
+		this.reducedCost = reducedCost;
 	}
 	
 	public FlightNetworkPath() {
@@ -51,7 +51,15 @@ public class FlightNetworkPath extends Path<Leg>{
 		dutyData = new DutyData();
 		track = -1;
 		numberOfDuties = 0;
-		cost = 0.0;
+		reducedCost = 1.0;
+	}
+	
+	public FlightNetworkPath(DutyData dutyData, short track, int numberOfDuties, double reducedCost) {
+		super();
+		this.dutyData = dutyData;
+		this.track = track;
+		this.numberOfDuties = numberOfDuties;
+		this.reducedCost = reducedCost;
 	}
 	
 	public void addNewDuty(int flightTime, short track) {
@@ -111,5 +119,22 @@ public class FlightNetworkPath extends Path<Leg>{
 				legs.add(leg);
 		}
 		return legs;
+	}
+	
+	@Override
+	public FlightNetworkPath clone() {
+		FlightNetworkPath clone = new FlightNetworkPath(dutyData.clone(), track, numberOfDuties, reducedCost);
+		for (Edge<Leg> edge: edges)
+			clone.addEdge(edge);
+		return clone;
+	}
+
+	public void updateReducedCost(double value) {
+		reducedCost -= value;
+	}
+
+	public boolean dominates(FlightNetworkPath other) {
+		return reducedCost <= other.reducedCost 
+				&& numberOfDuties <= other.numberOfDuties && dutyData.dominates(other.dutyData);
 	}
 }
