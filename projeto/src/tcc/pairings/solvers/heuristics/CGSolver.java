@@ -75,9 +75,9 @@ public class CGSolver extends BasicSolver {
 			solvePricing();
 			newColumns = addGeneratedPairings();
 			output(++iteration, obj, newColumns);
-		} while (newColumns > 0);
-		optimizer.endModel();		
+		} while (newColumns > 0);		
 		columnManagement();
+		optimizer.endModel();
 		return getIntegerSolution();
 	}
 	
@@ -116,7 +116,14 @@ public class CGSolver extends BasicSolver {
 	}
 	
 	private void columnManagement() {
-		// TODO
+		List<Pairing> remove = new ArrayList<Pairing>();
+		double[] reducedCosts = optimizer.getReducedCosts();
+		int i0 = legs.size() - 1;
+		for (int i = 0; i < generatedPairings.size(); i++)
+			if (reducedCosts[i0 + i] > 1.0)
+				remove.add(generatedPairings.get(i));
+		System.out.println("Colunas removidas pelo custo reduzido: " + remove.size());
+		generatedPairings.removeAll(remove);
 	}
 
 	private Solution getIntegerSolution() {
@@ -125,16 +132,16 @@ public class CGSolver extends BasicSolver {
 		if (solution != null) {
 			setDeadHeads(solution);
 			setCostsWithDeadHeads(solution.getPairings());
+			System.out.println("Cheque de cobertura: " + solution.isAllLegsCovered(legs));
+			System.out.println("Cheque de custo: " + solution.isCostRight());
 		}
 		optimizer.endModel();
-		System.out.println("Cheque de cobertura: " + solution.isAllLegsCovered(legs));
-		System.out.println("Cheque de custo: " + solution.isCostRight());
 		return solution;
 	}
 
 	private Solution getSuperSolution() {
 		resetMemoryOutputer();
-		resetOptimizer();
+		resetOptimizer();		
 		return super.getSolution();
 	}
 	
@@ -148,7 +155,7 @@ public class CGSolver extends BasicSolver {
 		dhCplex.addRows();
 		dhCplex.output(memory.getPairings());
 		dhCplex.addDHVariables();
-		dhCplex.getModel().setOut(null);
+		//dhCplex.getModel().setOut(null);
 		optimizer = new CplexOptimizer(dhCplex.getModel());
 	}
 	

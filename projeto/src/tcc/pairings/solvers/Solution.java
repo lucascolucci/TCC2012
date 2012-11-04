@@ -31,9 +31,13 @@ public class Solution {
 	public Solution(List<Pairing> pairings) {
 		this.pairings = pairings;
 	}
-
+	
 	public void addPairing(Pairing pairing) {
 		pairings.add(pairing);
+	}
+	
+	public void addPairings(List<Pairing> pairings) {
+		this.pairings.addAll(pairings);
 	}
 
 	public void removePairing(Pairing pairing) {

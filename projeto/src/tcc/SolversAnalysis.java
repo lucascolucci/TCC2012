@@ -18,7 +18,7 @@ public class SolversAnalysis {
 	
 	public static void main(String[] args) {
 		SolversAnalysis sa = new SolversAnalysis();
-		file = "73G_340.txt";
+		file = "733_92.txt";
 		//sa.doInitialSolution();
 		//sa.doSetPartition();
 		//sa.doSetCover();
