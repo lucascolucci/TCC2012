@@ -20,7 +20,16 @@ public class CGSolver extends BasicSolver {
 	private Solution initialSolution;
 	private CGCplexOutputer cplex;
 	private List<Pairing> generatedPairings;
+	private double reducedCostCutoff = 1.0;
 	
+	public double getReducedCostCutoff() {
+		return reducedCostCutoff;
+	}
+
+	public void setReducedCostCutoff(double reducedCostCutoff) {
+		this.reducedCostCutoff = reducedCostCutoff;
+	}
+
 	public InitialSolver getInitialSolver() {
 		return initialSolver;
 	}
@@ -48,6 +57,7 @@ public class CGSolver extends BasicSolver {
 	protected void generatePairings() {
 		initialSolution = initialSolver.getSolution(bases);
 		if (initialSolution != null) {
+			System.out.println(initialSolution);
 			for (Outputer outputer: outputers)
 				outputer.output(initialSolution.getPairings());
 			numberOfPairings = initialSolver.getNumberOfPairings();
@@ -119,10 +129,11 @@ public class CGSolver extends BasicSolver {
 		List<Pairing> remove = new ArrayList<Pairing>();
 		double[] reducedCosts = optimizer.getReducedCosts();
 		int i0 = legs.size() - 1;
-		for (int i = 0; i < generatedPairings.size(); i++)
-			if (reducedCosts[i0 + i] > 1.0)
+		for (int i = 0; i < generatedPairings.size(); i++) {
+			if (reducedCosts[i0 + i] > reducedCostCutoff)
 				remove.add(generatedPairings.get(i));
-		System.out.println("Colunas removidas pelo custo reduzido: " + remove.size());
+		}
+		System.out.println("Colunas removidas (custo reduzido): " + remove.size());
 		generatedPairings.removeAll(remove);
 	}
 

@@ -7,14 +7,12 @@ import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
-import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 
 public class LocalSearchGeneticSolver extends GeneticSolver {
-	private int sampleSize = 2;
-	private int initialMaxDuties = 4;
+	private int sampleSize = 3;
 	private int individueImprovements = 100;
 	private double optimizationProbability = 0.01;
 	private InitialSolver initialSolver;
@@ -30,15 +28,7 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	public void setSampleSize(int sampleSize) {
 		this.sampleSize = sampleSize;
 	}
-	
-	public int getInitialMaxDuties() {
-		return initialMaxDuties;
-	}
-
-	public void setInitialMaxDuties(int initialMaxDuties) {
-		this.initialMaxDuties = initialMaxDuties;
-	}
-	
+		
 	public int getIndividueImprovements() {
 		return individueImprovements;
 	}
@@ -53,6 +43,10 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 
 	public void setOptimizationProbability(double optimizationProbability) {
 		this.optimizationProbability = optimizationProbability;
+	}
+	
+	public InitialSolver getInitialSolver() {
+		return initialSolver;
 	}
 
 	public LocalSearchGeneticSolver(String timeTable) {
@@ -72,10 +66,7 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	
 	@Override
 	protected void generatePairings() {
-		int maxDuties = Rules.MAX_DUTIES;
-		Rules.MAX_DUTIES = initialMaxDuties;
 		initialSolution = initialSolver.getSolution(bases);
-		Rules.MAX_DUTIES = maxDuties;
 		numberOfPairings = initialSolver.getNumberOfPairings();
 	}
 	

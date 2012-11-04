@@ -76,7 +76,8 @@ public class SolversAnalysis {
 	
 	public void doColumnGeneration() {
 		Base sao = new Base("GRU", "CGH");
-		CGSolver solver = new CGSolver(TIME_TABLES_PATH + file, null);
+		CGSolver solver = new CGSolver(TIME_TABLES_PATH + file);
+		solver.getInitialSolver().setMaxDuties(4);
 		System.out.println(solver.getSolution(sao));
 		System.out.println(solver.getSolutionTime());		
 	}

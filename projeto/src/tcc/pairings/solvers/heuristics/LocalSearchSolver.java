@@ -9,7 +9,6 @@ import tcc.pairings.DutyLeg;
 import tcc.pairings.Leg;
 import tcc.pairings.Pairing;
 import tcc.pairings.costs.CostCalculator;
-import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.Solution;
 import tcc.pairings.solvers.Solver;
@@ -19,7 +18,6 @@ import tcc.util.ResultsBuffer;
 public class LocalSearchSolver implements Solver {
 	private int maxIterations = 1000;
 	private int sampleSize = 3;
-	private int initialMaxDuties = 4;
 	private int outputStep = 100;
 	private ResultsBuffer buffer;
 	private boolean useHistory = false;
@@ -52,14 +50,6 @@ public class LocalSearchSolver implements Solver {
 		this.sampleSize = sampleSize;
 	}
 	
-	public int getInitialMaxDuties() {
-		return initialMaxDuties;
-	}
-
-	public void setInitialMaxDuties(int initialMaxDuties) {
-		this.initialMaxDuties = initialMaxDuties;
-	}
-	
 	public int getOutputStep() {
 		return outputStep;
 	}
@@ -86,6 +76,10 @@ public class LocalSearchSolver implements Solver {
 	
 	public CostCalculator getCalculator() {
 		return calculator;
+	}
+	
+	public InitialSolver getInitialSolver() {
+		return initialSolver;
 	}
 	
 	@Override
@@ -129,11 +123,8 @@ public class LocalSearchSolver implements Solver {
 	}
 
 	private void setInitialSolution() {
-		int maxDuties = Rules.MAX_DUTIES;
-		Rules.MAX_DUTIES = initialMaxDuties;
 		solution = initialSolver.getSolution(bases);
 		numberOfPairings += initialSolver.getNumberOfPairings();
-		Rules.MAX_DUTIES = maxDuties;
 	}
 	
 	private void improveSolution() {
