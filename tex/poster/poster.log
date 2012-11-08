@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  7 NOV 2012 13:13
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  8 NOV 2012 10:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1074,10 +1074,10 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package epstopdf Info: Source file: <fig/preliminary.eps>
-(epstopdf)                    date: 2012-11-06 19:27:02
+(epstopdf)                    date: 2012-11-08 10:00:28
 (epstopdf)                    size: 60751 bytes
 (epstopdf)             Output file: <fig/preliminary-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-06 19:27:34
+(epstopdf)                    date: 2012-11-08 10:00:28
 (epstopdf)                    size: 21665 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/preliminary-eps-conver
 ted-to.pdf fig/preliminary.eps>
@@ -1137,22 +1137,22 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package epstopdf Info: Source file: <fig/results.eps>
-(epstopdf)                    date: 2012-11-06 20:27:02
-(epstopdf)                    size: 90404 bytes
+(epstopdf)                    date: 2012-11-08 10:30:25
+(epstopdf)                    size: 90402 bytes
 (epstopdf)             Output file: <fig/results-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-06 20:28:04
-(epstopdf)                    size: 10152 bytes
+(epstopdf)                    date: 2012-11-08 10:30:51
+(epstopdf)                    size: 10206 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/results-eps-converted-
 to.pdf fig/results.eps>
 (epstopdf)             \includegraphics on input line 220.
 Package epstopdf Info: Output file is already uptodate.
-<fig/results-eps-converted-to.pdf, id=24, 699.61375pt x 275.0275pt>
+<fig/results-eps-converted-to.pdf, id=24, 755.82375pt x 375.4025pt>
 File: fig/results-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/results-eps-converted-to.pdf>
 Package pdftex.def Info: fig/results-eps-converted-to.pdf used on input line 22
 0.
-(pdftex.def)             Requested size: 491.28972pt x 193.13483pt.
+(pdftex.def)             Requested size: 491.28972pt x 244.01445pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -1182,7 +1182,7 @@ ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmti10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmti7.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmtt12.pfb>
-Output written on poster.pdf (1 page, 378415 bytes).
+Output written on poster.pdf (1 page, 378474 bytes).
 PDF statistics:
  91 PDF objects out of 1000 (max. 8388607)
  52 compressed objects within 1 object stream
