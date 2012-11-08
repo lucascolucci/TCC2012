@@ -20,15 +20,15 @@ public class SolversAnalysis {
 	public static void main(String[] args) {
 		SolversAnalysis sa = new SolversAnalysis();
 		file = "73H_26.txt";
-		calc = new DurationToFlightCalculator();
+		calc = new DutyToFlightCalculator();
 		bases = new Base[] { new Base("CGH", "GRU") };
 		//sa.doInitialSolution();
 		//sa.doSetPartition();
-		//sa.doSetCover();
+		sa.doSetCover();
 		//sa.doLocalSearch();
 		//sa.doGeneticSolver();
 		//sa.doLocalSearchGeneticSolver();
-		sa.doColumnGeneration();
+		//sa.doColumnGeneration();
 	}
 	
 	public void doInitialSolution() {
