@@ -20,6 +20,10 @@ public class DutyToFlightCalculator implements CostCalculator {
 
 	@Override
 	public void setReducedCost(FlightNetworkPath path) {
-		// TODO Auto-generated method stub
+		Pairing dummy = new Pairing(0, path);
+		int duty = dummy.getDutyTime();
+		int flight = dummy.getFlightTime();
+		double cost = (double) duty / flight;
+		path.setReducedCost(cost - path.sumOfDuals());
 	}
 }
