@@ -1,4 +1,4 @@
-\documentclass[landscape,a0paper,fontscale=0.292]{baposter}
+\documentclass[portrait,b1paper,fontscale=0.400]{baposter}
 
 \usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
@@ -17,7 +17,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{ae}
 
-\graphicspath{{images/}}
+\graphicspath{{fig/}}
 
 % Multicol Settings
 \setlength{\columnsep}{0.7em}
@@ -34,6 +34,7 @@
 
 \begin{document}
 \begin{poster}{
+columns=3,
 % Show grid to help with alignment
 grid=false,
 % Column spacing
@@ -53,7 +54,7 @@ bgColorOne=cyan!10!white,
 headerheight=0.12\textheight}
 % Eye Catcher
 {
- \includegraphics[width=0.08\linewidth]{gol}
+ \includegraphics[height=0.060\textheight]{gol}
 }
 % Title
 {
@@ -62,16 +63,16 @@ headerheight=0.12\textheight}
 % Authors
 {
 Daniel Augusto Cortez, Lucas Rodrigues Colucci e Renato Lerac Corrêa de Sá\\[1em]
-{\texttt{dacortez79@gmail.com, bublecamp@gmail.com, renatolerac@gmail.com}}
+{\texttt{dacortez79@gmail.com, lucasrcolucci@gmail.com, renatolerac@gmail.com}}
 }
 % University logo
 {
- \includegraphics[height=0.12\textheight]{logo}
+ \includegraphics[height=0.095\textheight]{logo}
 }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{Introdução}{name=introducao,column=0,row=0,span=2}{
+\headerbox{Introdução}{name=introducao,column=0,row=0}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 }
@@ -84,115 +85,15 @@ Daniel Augusto Cortez, Lucas Rodrigues Colucci e Renato Lerac Corrêa de Sá\\[1
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{Busca Local}{name=local,column=0,above=bottom}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{algorithm}[H]
- \dontprintsemicolon
- %\linesnumbered
- \For{Blur and regularisation values}{
-  Initialize $q, q_{\text{best}}$ and $\kappa$\;
- \Repeat{converged}{
-  Calculate $\Delta{p}{\tilde{F}(q, 0)}$, $F(q)$\;
-  \eIf{$F(q) < F(q_{\text{best}})$}{
-    %\nl Calculate distance between best warp estimate and current warp estimate to test for convergence\;
-    $q_{\text{best}} \gets q$\;
-    %\If{More than three successiv updates}{ (Too much detail)
-    Increase $\kappa$\;
-    %}
- }{
-   \If{$\kappa$ smaller than threshold}{
-     return\;
-    }%{
-       decrease $\kappa$\;
-    %}
-  }
-  Calculate $p$ from $\Delta{p}{\tilde{F}(q_{best},p)}$ and $\kappa$\;
-  $q \gets C{\circ}{q, p}$
- }
-}
-\end{algorithm}
-}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{Geração de Viagens}{name=geracao,column=0,above=local,below=formulacao}{
+\headerbox{Geração de Viagens}{name=geracao,column=0,below=formulacao}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{Algoritmo Genético}{name=genetico,column=1,span=1,below=introducao}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{algorithm}[H]
- \dontprintsemicolon
- %\linesnumbered
- \For{Blur and regularisation values}{
-  Initialize $q, q_{\text{best}}$ and $\kappa$\;
- \Repeat{converged}{
-  Calculate $\Delta{p}{\tilde{F}(q, 0)}$, $F(q)$\;
-  \eIf{$F(q) < F(q_{\text{best}})$}{
-    %\nl Calculate distance between best warp estimate and current warp estimate to test for convergence\;
-    $q_{\text{best}} \gets q$\;
-    %\If{More than three successiv updates}{ (Too much detail)
-    Increase $\kappa$\;
-    %}
- }{
-   \If{$\kappa$ smaller than threshold}{
-     return\;
-    }%{
-       decrease $\kappa$\;
-    %}
-  }
-  Calculate $p$ from $\Delta{p}{\tilde{F}(q_{best},p)}$ and $\kappa$\;
-  $q \gets C{\circ}{q, p}$
- }
-}
-\end{algorithm}
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{Geração de Colunas}{name=cg,column=1,span=1,below=genetico,above=bottom}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{algorithm}[H]
- \dontprintsemicolon
- %\linesnumbered
- \For{Blur and regularisation values}{
-  Initialize $q, q_{\text{best}}$ and $\kappa$\;
- \Repeat{converged}{
-  Calculate $\Delta{p}{\tilde{F}(q, 0)}$, $F(q)$\;
-  \eIf{$F(q) < F(q_{\text{best}})$}{
-    %\nl Calculate distance between best warp estimate and current warp estimate to test for convergence\;
-    $q_{\text{best}} \gets q$\;
-    %\If{More than three successiv updates}{ (Too much detail)
-    Increase $\kappa$\;
-    %}
- }{
-   \If{$\kappa$ smaller than threshold}{
-     return\;
-    }%{
-       decrease $\kappa$\;
-    %}
-  }
-  Calculate $p$ from $\Delta{p}{\tilde{F}(q_{best},p)}$ and $\kappa$\;
-  $q \gets C{\circ}{q, p}$
- }
-}
-\end{algorithm}
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{Análise Preliminar}{name=preliminar,column=2,row=0,span=2}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{Referencias}{name=referencias,column=3,above=bottom}{
+\headerbox{Referencias}{name=referencias,column=0,below=geracao,above=bottom}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \smaller   
 \bibliographystyle{ieee}
@@ -205,16 +106,117 @@ Daniel Augusto Cortez, Lucas Rodrigues Colucci e Renato Lerac Corrêa de Sá\\[1
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{Resultados}{name=resultados,column=2,span=2,below=preliminar,above=referencias}{
+\headerbox{Análise Preliminar}{name=preliminar,column=1,row=0}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centering
+\includegraphics[width=0.99\linewidth]{preliminary}
+}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{Busca Local}{name=local,column=2,row=0}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{algorithm}[H]
+ \dontprintsemicolon
+ %\linesnumbered
+ \For{Blur and regularisation values}{
+  Initialize $q, q_{\text{best}}$ and $\kappa$\;
+ \Repeat{converged}{
+  Calculate $\Delta{p}{\tilde{F}(q, 0)}$, $F(q)$\;
+  \eIf{$F(q) < F(q_{\text{best}})$}{
+    %\nl Calculate distance between best warp estimate and current warp estimate to test for convergence\;
+    $q_{\text{best}} \gets q$\;
+    %\If{More than three successiv updates}{ (Too much detail)
+    Increase $\kappa$\;
+    %}
+ }{
+   \If{$\kappa$ smaller than threshold}{
+     return\;
+    }%{
+       decrease $\kappa$\;
+    %}
+  }
+  Calculate $p$ from $\Delta{p}{\tilde{F}(q_{best},p)}$ and $\kappa$\;
+  $q \gets C{\circ}{q, p}$
+ }
+}
+\end{algorithm}
 }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{Conclusões}{name=conclusoes,column=2,below=resultados,above=bottom}{
+\headerbox{Algoritmo Genético}{name=genetico,column=1,below=preliminar}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{algorithm}[H]
+ \dontprintsemicolon
+ %\linesnumbered
+ \For{Blur and regularisation values}{
+  Initialize $q, q_{\text{best}}$ and $\kappa$\;
+ \Repeat{converged}{
+  Calculate $\Delta{p}{\tilde{F}(q, 0)}$, $F(q)$\;
+  \eIf{$F(q) < F(q_{\text{best}})$}{
+    %\nl Calculate distance between best warp estimate and current warp estimate to test for convergence\;
+    $q_{\text{best}} \gets q$\;
+    %\If{More than three successiv updates}{ (Too much detail)
+    Increase $\kappa$\;
+    %}
+ }{
+   \If{$\kappa$ smaller than threshold}{
+     return\;
+    }%{
+       decrease $\kappa$\;
+    %}
+  }
+  Calculate $p$ from $\Delta{p}{\tilde{F}(q_{best},p)}$ and $\kappa$\;
+  $q \gets C{\circ}{q, p}$
+ }
+}
+\end{algorithm}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{Geração de Colunas}{name=cg,column=2,below=local}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{algorithm}[H]
+ \dontprintsemicolon
+ %\linesnumbered
+ \For{Blur and regularisation values}{
+  Initialize $q, q_{\text{best}}$ and $\kappa$\;
+ \Repeat{converged}{
+  Calculate $\Delta{p}{\tilde{F}(q, 0)}$, $F(q)$\;
+  \eIf{$F(q) < F(q_{\text{best}})$}{
+    %\nl Calculate distance between best warp estimate and current warp estimate to test for convergence\;
+    $q_{\text{best}} \gets q$\;
+    %\If{More than three successiv updates}{ (Too much detail)
+    Increase $\kappa$\;
+    %}
+ }{
+   \If{$\kappa$ smaller than threshold}{
+     return\;
+    }%{
+       decrease $\kappa$\;
+    %}
+  }
+  Calculate $p$ from $\Delta{p}{\tilde{F}(q_{best},p)}$ and $\kappa$\;
+  $q \gets C{\circ}{q, p}$
+ }
+}
+\end{algorithm}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{Conclusões}{name=conclusoes,column=1,span=2,above=bottom}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{Resultados}{name=resultados,column=1,span=2,below=genetico,above=conclusoes}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centering
+\includegraphics[width=0.98\linewidth]{results}
 }
 
 \end{poster}

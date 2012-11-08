@@ -20,7 +20,7 @@ public class CGSolver extends BasicSolver {
 	private Solution initialSolution;
 	private CGCplexOutputer cplex;
 	private List<Pairing> generatedPairings;
-	private double reducedCostCutoff = 1.0;
+	private double reducedCostCutoff = 10.0;
 	
 	public double getReducedCostCutoff() {
 		return reducedCostCutoff;
@@ -40,7 +40,7 @@ public class CGSolver extends BasicSolver {
 	
 	public CGSolver(String timeTable, CostCalculator calculator) {
 		super(timeTable, calculator);
-		initialSolver = new InitialSolver(timeTable);
+		initialSolver = new InitialSolver(timeTable, calculator);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class CGSolver extends BasicSolver {
 	protected void generatePairings() {
 		initialSolution = initialSolver.getSolution(bases);
 		if (initialSolution != null) {
-			System.out.println(initialSolution);
+			//System.out.println(initialSolution);
 			for (Outputer outputer: outputers)
 				outputer.output(initialSolution.getPairings());
 			numberOfPairings = initialSolver.getNumberOfPairings();
@@ -71,10 +71,17 @@ public class CGSolver extends BasicSolver {
 	
 	@Override
 	protected Solution getSolution() {
-		if (initialSolution == null)
-			return null;
+		if (initialSolution != null) {
+			setGeneratedPairings();
+			return columnGeneration();
+		}
+		return null;
+	}
+
+	private void setGeneratedPairings() {
 		generatedPairings = new ArrayList<Pairing>(memory.getPairings());
-		return columnGeneration();
+		for (Pairing pairing: generatedPairings)
+			pairing.setAllDeadHeads(false);
 	}
 
 	private Solution columnGeneration() {
@@ -85,7 +92,7 @@ public class CGSolver extends BasicSolver {
 			solvePricing();
 			newColumns = addGeneratedPairings();
 			output(++iteration, obj, newColumns);
-		} while (newColumns > 0);		
+		} while (newColumns > 0);
 		columnManagement();
 		optimizer.endModel();
 		return getIntegerSolution();
@@ -133,7 +140,7 @@ public class CGSolver extends BasicSolver {
 			if (reducedCosts[i0 + i] > reducedCostCutoff)
 				remove.add(generatedPairings.get(i));
 		}
-		System.out.println("Colunas removidas (custo reduzido): " + remove.size());
+		System.out.println("Colunas removidas (custo reduzido maior que cutoff): " + remove.size());
 		generatedPairings.removeAll(remove);
 	}
 
@@ -158,7 +165,7 @@ public class CGSolver extends BasicSolver {
 	
 	private void resetMemoryOutputer() {
 		memory.clear();
-		memory.output(generatedPairings);
+		memory.output(generatedPairings);	
 	}
 
 	private void resetOptimizer() {

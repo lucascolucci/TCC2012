@@ -34,4 +34,12 @@ public class Path<T> {
 			return edges.get(size - 1).getIn();
 		return null;
 	}
+	
+	public List<Node<T>> getNodes() {
+		List<Node<T>> nodes = new ArrayList<Node<T>>();
+		for (Edge<T> edge: edges)
+			nodes.add(edge.getOut());
+		nodes.add(getEnd());
+		return nodes;
+	}
 }

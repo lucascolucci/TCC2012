@@ -3,7 +3,6 @@ package tcc;
 import tcc.pairings.Base;
 import tcc.pairings.costs.*;
 import tcc.pairings.solvers.InitialSolver;
-import tcc.pairings.solvers.Solver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
 import tcc.pairings.solvers.heuristics.CGSolver;
@@ -15,10 +14,14 @@ public class SolversAnalysis {
 	public static final String TIME_TABLES_PATH = "./time_tables/";
 	public static final String OUTPUTS_PATH = "./outputs/";
 	private static String file;
+	private static CostCalculator calc;
+	private static Base[] bases;
 	
 	public static void main(String[] args) {
 		SolversAnalysis sa = new SolversAnalysis();
-		file = "733_92.txt";
+		file = "73H_26.txt";
+		calc = new DurationToFlightCalculator();
+		bases = new Base[] { new Base("CGH", "GRU") };
 		//sa.doInitialSolution();
 		//sa.doSetPartition();
 		//sa.doSetCover();
@@ -29,57 +32,45 @@ public class SolversAnalysis {
 	}
 	
 	public void doInitialSolution() {
-		Base sao = new Base("CGH", "GRU");
-		Solver solver = new InitialSolver(TIME_TABLES_PATH + file);
-		System.out.println(solver.getSolution(sao));
+		InitialSolver solver = new InitialSolver(TIME_TABLES_PATH + file, calc);
+		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());
 	}
 	
 	public void doSetPartition() {
-		Base sao = new Base("GRU", "CGH");
-		Solver solver = new SetPartitionSolver(TIME_TABLES_PATH + file);
-		System.out.println(solver.getSolution(sao));
+		SetPartitionSolver solver = new SetPartitionSolver(TIME_TABLES_PATH + file, calc);
+		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());
 	}
 	
 	public void doSetCover() {
-		Base sao = new Base("GRU", "CGH");
-		Solver solver = new SetCoverSolver(TIME_TABLES_PATH + file);
-		System.out.println(solver.getSolution(sao));
+		SetCoverSolver solver = new SetCoverSolver(TIME_TABLES_PATH + file, calc);
+		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());
 	}
 	
 	public void doLocalSearch() {
-		Base sao = new Base("GRU", "CGH");
-		CostCalculator calc = new MeanFlightPerDutyCalculator();
 		LocalSearchSolver solver = new LocalSearchSolver(TIME_TABLES_PATH + file, calc);
-		solver.setMaxIterations(3000);
-		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());
 	}
 	
 	public void doGeneticSolver() {
-		Base sao = new Base("GRU", "CGH");
-		CostCalculator calc = new MeanFlightPerDutyCalculator();
 		GeneticSolver solver = new GeneticSolver(TIME_TABLES_PATH + file, calc);
-		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());
 	}
 	
 	public void doLocalSearchGeneticSolver() {
-		Base sao = new Base("GRU", "CGH");
-		CostCalculator calc = new MeanFlightPerDutyCalculator();
 		LocalSearchGeneticSolver solver = new LocalSearchGeneticSolver(TIME_TABLES_PATH + file, calc);
-		System.out.println(solver.getSolution(sao));
+		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());
 	}
 	
 	public void doColumnGeneration() {
-		Base sao = new Base("GRU", "CGH");
-		CGSolver solver = new CGSolver(TIME_TABLES_PATH + file);
-		solver.getInitialSolver().setMaxDuties(4);
-		System.out.println(solver.getSolution(sao));
+		CGSolver solver = new CGSolver(TIME_TABLES_PATH + file, calc);
+		solver.getInitialSolver().setMaxDuties(3);
+		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());		
 	}
-
 }

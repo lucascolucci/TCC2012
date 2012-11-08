@@ -168,14 +168,30 @@ public class CGGenerator extends BasicGenerator {
 		neighborLabel.removePaths(list);
 	}
 	
+//	@Override
+//	protected void output() {
+//		FlightNetworkNodeLabel sinkLabel = (FlightNetworkNodeLabel) sink.getLabel();
+//		int count = 0;
+//		double min = 0;
+//		FlightNetworkPath minPath = null;
+//		for (FlightNetworkPath path: sinkLabel.getPaths())
+//			if (path.getReducedCost() < min) {
+//				min = path.getReducedCost();
+//				minPath = path;
+//			}
+//		output(++count, minPath);
+//		numberOfPairings += count;
+//	}
+	
 	@Override
 	protected void output() {
 		FlightNetworkNodeLabel sinkLabel = (FlightNetworkNodeLabel) sink.getLabel();
 		int count = 0;
 		for (FlightNetworkPath path: sinkLabel.getPaths())
-			if (path.getReducedCost() < 0)
+			if (path.getReducedCost() < 0) {
 				output(++count, path);
-		numberOfPairings += count;
+				numberOfPairings += count;
+			}
 	}
 
 	private void output(int count, FlightNetworkPath path) {

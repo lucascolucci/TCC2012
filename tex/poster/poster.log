@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  5 NOV 2012 20:46
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  7 NOV 2012 13:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -450,10 +450,10 @@ File: tikzlibrarycalc.code.tex 2009/09/04 v2.10 (rcs-revision 1.6)
 \baposter@basemarginright=\skip67
 \baposter@basemarginleft=\skip68
 
-Paperwidth=2392.87677pt
-Paperheight=3383.03267pt
-BasePaperwidth=698.73782pt
-BasePaperheight=987.87073pt
+Paperwidth=2011.60983pt
+Paperheight=2845.27559pt
+BasePaperwidth=804.63165pt
+BasePaperheight=1138.09286pt
 (/usr/local/texlive/2011/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
@@ -1008,16 +1008,16 @@ e
 * paper: custom
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: landscape 
-* h-part:(L,W,R)=(12.46262pt, 962.9455pt, 12.46262pt)
-* v-part:(T,H,B)=(12.46262pt, 673.81259pt, 12.46262pt)
-* \paperwidth=987.87073pt
-* \paperheight=698.73782pt
-* \textwidth=962.9455pt
-* \textheight=673.81259pt
-* \oddsidemargin=-59.80737pt
-* \evensidemargin=-59.80737pt
-* \topmargin=-96.80737pt
+* modes: 
+* h-part:(L,W,R)=(17.07138pt, 770.48889pt, 17.07138pt)
+* v-part:(T,H,B)=(17.07138pt, 1103.9501pt, 17.07138pt)
+* \paperwidth=804.63165pt
+* \paperheight=1138.09286pt
+* \textwidth=770.48889pt
+* \textheight=1103.9501pt
+* \oddsidemargin=-55.19861pt
+* \evensidemargin=-55.19861pt
+* \topmargin=-92.19861pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -1035,28 +1035,28 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<images/gol.jpg, id=20, 401.5pt x 278.03876pt>
-File: images/gol.jpg Graphic file (type jpg)
- <use images/gol.jpg>
-Package pdftex.def Info: images/gol.jpg used on input line 70.
-(pdftex.def)             Requested size: 77.0374pt x 53.34549pt.
+<fig/gol.jpg, id=20, 401.5pt x 278.03876pt>
+File: fig/gol.jpg Graphic file (type jpg)
+ <use fig/gol.jpg>
+Package pdftex.def Info: fig/gol.jpg used on input line 71.
+(pdftex.def)             Requested size: 95.64517pt x 66.2343pt.
 
-<images/logo.png, id=21, 480.194pt x 650.43pt>
-File: images/logo.png Graphic file (type png)
- <use images/logo.png>
-Package pdftex.def Info: images/logo.png used on input line 70.
-(pdftex.def)             Requested size: 59.68704pt x 80.85422pt.
-LaTeX Font Info:    Try loading font information for T1+aett on input line 70.
+<fig/logo.png, id=21, 480.194pt x 650.43pt>
+File: fig/logo.png Graphic file (type png)
+ <use fig/logo.png>
+Package pdftex.def Info: fig/logo.png used on input line 71.
+(pdftex.def)             Requested size: 77.4261pt x 104.8766pt.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 71.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 70.
+LaTeX Font Info:    Try loading font information for U+msa on input line 71.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 70.
+LaTeX Font Info:    Try loading font information for U+msb on input line 71.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -1067,29 +1067,53 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Package epstopdf Info: Source file: <fig/preliminary.eps>
+(epstopdf)                    date: 2012-11-06 19:27:02
+(epstopdf)                    size: 60751 bytes
+(epstopdf)             Output file: <fig/preliminary-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-06 19:27:34
+(epstopdf)                    size: 21665 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/preliminary-eps-conver
+ted-to.pdf fig/preliminary.eps>
+(epstopdf)             \includegraphics on input line 113.
+Package epstopdf Info: Output file is already uptodate.
 
-Underfull \hbox (badness 10000) detected at line 115
+<fig/preliminary-eps-converted-to.pdf, id=23, 659.46375pt x 466.74374pt>
+File: fig/preliminary-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/preliminary-eps-converted-to.pdf>
+Package pdftex.def Info: fig/preliminary-eps-converted-to.pdf used on input lin
+e 113.
+(pdftex.def)             Requested size: 239.73886pt x 169.6799pt.
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
+Underfull \hbox (badness 10000) detected at line 144
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--115
+Underfull \hbox (badness 10000) in paragraph at lines 144--144
 
  []
 
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
 
-Underfull \hbox (badness 10000) detected at line 153
+Underfull \hbox (badness 10000) detected at line 175
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--153
+Underfull \hbox (badness 10000) in paragraph at lines 175--175
 
  []
 
@@ -1097,12 +1121,12 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 
-Underfull \hbox (badness 10000) detected at line 184
+Underfull \hbox (badness 10000) detected at line 206
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
+Underfull \hbox (badness 10000) in paragraph at lines 206--206
 
  []
 
@@ -1112,44 +1136,56 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-[2
+Package epstopdf Info: Source file: <fig/results.eps>
+(epstopdf)                    date: 2012-11-06 20:27:02
+(epstopdf)                    size: 90404 bytes
+(epstopdf)             Output file: <fig/results-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-06 20:28:04
+(epstopdf)                    size: 10152 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/results-eps-converted-
+to.pdf fig/results.eps>
+(epstopdf)             \includegraphics on input line 220.
+Package epstopdf Info: Output file is already uptodate.
+<fig/results-eps-converted-to.pdf, id=24, 699.61375pt x 275.0275pt>
+File: fig/results-eps-converted-to.pdf Graphic file (type pdf)
 
-{/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./image
-s/gol.jpg> <./images/logo.png>] (./poster.aux) ) 
+<use fig/results-eps-converted-to.pdf>
+Package pdftex.def Info: fig/results-eps-converted-to.pdf used on input line 22
+0.
+(pdftex.def)             Requested size: 491.28972pt x 193.13483pt.
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+ [2
+
+{/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./fig/g
+ol.jpg> <./fig/logo.png> <./fig/preliminary-eps-converted-to.pdf> <./fig/result
+s-eps-converted-to.pdf>] (./poster.aux) ) 
 Here is how much of TeX's memory you used:
- 15544 strings out of 493633
- 292098 string characters out of 3143378
- 383684 words of memory out of 3000000
- 18441 multiletter control sequences out of 15000+200000
+ 15563 strings out of 493633
+ 292405 string characters out of 3143378
+ 384108 words of memory out of 3000000
+ 18447 multiletter control sequences out of 15000+200000
  39354 words of font info for 71 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  63i,25n,70p,417b,958s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2011/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2011/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2011/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2011/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2011/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2011/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2011/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2011/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2011/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmtt12.pfb>
-Output written on poster.pdf (1 page, 352043 bytes).
+</usr/local/texlive/2011/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2011/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2011/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2011/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2011/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2011/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmti10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmti7.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmtt12.pfb>
+Output written on poster.pdf (1 page, 378415 bytes).
 PDF statistics:
- 79 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
+ 91 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 119 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 129 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -21,6 +21,10 @@ public class DurationToFlightCalculator implements CostCalculator {
 	
 	@Override
 	public void setReducedCost(FlightNetworkPath path) {
-		// TODO Auto-generated method stub
+		Pairing dummy = new Pairing(0, path);
+		int duration = dummy.getDuration();
+		int flight = dummy.getFlightTime();
+		double cost = (double) duration / flight;
+		path.setReducedCost(cost - path.sumOfDuals());
 	}
 }

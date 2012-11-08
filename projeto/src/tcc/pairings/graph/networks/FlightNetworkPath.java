@@ -6,6 +6,7 @@ import java.util.List;
 import tcc.pairings.DutyData;
 import tcc.pairings.Leg;
 import tcc.pairings.graph.Edge;
+import tcc.pairings.graph.Node;
 import tcc.pairings.graph.Path;
 
 public class FlightNetworkPath extends Path<Leg> implements Cloneable {
@@ -136,5 +137,15 @@ public class FlightNetworkPath extends Path<Leg> implements Cloneable {
 	public boolean dominates(FlightNetworkPath other) {
 		return reducedCost <= other.reducedCost 
 				&& numberOfDuties <= other.numberOfDuties && dutyData.dominates(other.dutyData);
+	}
+	
+	public double sumOfDuals() {
+		List<Node<Leg>> nodes = this.getNodes();
+		double sum = 0.0;
+		for (int i = 1; i < nodes.size(); i++) {
+			FlightNetworkNodeLabel label = (FlightNetworkNodeLabel) nodes.get(i).getLabel();
+			sum += label.getDual();
+		}
+		return sum;
 	}
 }
