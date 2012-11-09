@@ -21,7 +21,7 @@ public class GeneticSolver extends BasicSolver {
 	protected static double deadheadingPenalty = 1.0;
 	protected int populationSize = 100;
 	protected long maxGenerations = 10000;
-	protected int outputStep = 1000;
+	private int outputStep = 1000;
 	protected static int cutoff = 5;
 	protected int mf = 5;
 	protected int mc = 200; 
@@ -56,6 +56,14 @@ public class GeneticSolver extends BasicSolver {
 
 	public void setMaxGenerations(long maxGenerations) {
 		this.maxGenerations = maxGenerations;
+	}
+	
+	public int getOutputStep() {
+		return outputStep;
+	}
+
+	public void setOutputStep(int outputStep) {
+		this.outputStep = outputStep;
 	}
 	
 	public static int getCutoff() {
@@ -109,7 +117,7 @@ public class GeneticSolver extends BasicSolver {
 	public static List<Pairing> getElite() {
 		return elite;
 	}
-
+	
 	public GeneticSolver(String timeTable) {
 		this(timeTable, null);
 	}
@@ -185,7 +193,6 @@ public class GeneticSolver extends BasicSolver {
 		population = new Population();
 		fillPopulation();
 		best = population.getTheFittest();
-		System.out.println(population);
 	}
 	
 	protected void fillPopulation() {

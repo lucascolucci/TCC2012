@@ -34,6 +34,11 @@ public class CGSolver extends BasicSolver {
 		return initialSolver;
 	}
 	
+	@Override
+	public double getSolutionTime() {
+		return solutionTime - initialSolver.getSolutionTime();
+	}
+	
 	public CGSolver(String timeTable) {
 		this(timeTable, null);
 	}
@@ -91,7 +96,7 @@ public class CGSolver extends BasicSolver {
 			double obj = optimizer.getObjectiveValue();
 			solvePricing();
 			newColumns = addGeneratedPairings();
-			output(++iteration, obj, newColumns);
+			output(iteration++, obj, newColumns);
 		} while (newColumns > 0);
 		columnManagement();
 		optimizer.endModel();

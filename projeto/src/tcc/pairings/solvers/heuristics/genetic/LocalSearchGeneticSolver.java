@@ -48,6 +48,11 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	public InitialSolver getInitialSolver() {
 		return initialSolver;
 	}
+	
+	@Override
+	public double getSolutionTime() {
+		return solutionTime - initialSolver.getSolutionTime();
+	}
 
 	public LocalSearchGeneticSolver(String timeTable) {
 		this(timeTable, null);
@@ -77,10 +82,8 @@ public class LocalSearchGeneticSolver extends GeneticSolver {
 	
 	@Override
 	protected Solution getSolution() {
-		if (initialSolution != null) {
-			System.out.println(initialSolution);
+		if (initialSolution != null)
 			return super.getSolution();
-		}
 		return null;
 	}
 	

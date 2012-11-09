@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  8 NOV 2012 10:30
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  8 NOV 2012 23:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -931,18 +931,18 @@ File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 ))) (./poster.aux)
 \openout1 = `poster.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
 
 (/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1038,38 +1038,71 @@ e
 <fig/gol.jpg, id=20, 401.5pt x 278.03876pt>
 File: fig/gol.jpg Graphic file (type jpg)
  <use fig/gol.jpg>
-Package pdftex.def Info: fig/gol.jpg used on input line 71.
+Package pdftex.def Info: fig/gol.jpg used on input line 94.
 (pdftex.def)             Requested size: 95.64517pt x 66.2343pt.
 
 <fig/logo.png, id=21, 480.194pt x 650.43pt>
 File: fig/logo.png Graphic file (type png)
  <use fig/logo.png>
-Package pdftex.def Info: fig/logo.png used on input line 71.
+Package pdftex.def Info: fig/logo.png used on input line 94.
 (pdftex.def)             Requested size: 77.4261pt x 104.8766pt.
-LaTeX Font Info:    Try loading font information for T1+aett on input line 71.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 94.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 71.
+LaTeX Font Info:    Try loading font information for U+msa on input line 94.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 71.
+LaTeX Font Info:    Try loading font information for U+msb on input line 94.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
+Package epstopdf Info: Source file: <fig/pairing.eps>
+(epstopdf)                    date: 2012-11-08 18:12:35
+(epstopdf)                    size: 11289 bytes
+(epstopdf)             Output file: <fig/pairing-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-08 18:15:00
+(epstopdf)                    size: 11156 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/pairing-eps-converted-
+to.pdf fig/pairing.eps>
+(epstopdf)             \includegraphics on input line 118.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/pairing-eps-converted-to.pdf, id=23, 761.84625pt x 273.02pt>
+File: fig/pairing-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/pairing-eps-converted-to.pdf>
+Package pdftex.def Info: fig/pairing-eps-converted-to.pdf used on input line 11
+8.
+(pdftex.def)             Requested size: 239.73886pt x 85.91426pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
+Package epstopdf Info: Source file: <fig/network.eps>
+(epstopdf)                    date: 2012-11-08 18:13:02
+(epstopdf)                    size: 27069 bytes
+(epstopdf)             Output file: <fig/network-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-08 18:53:50
+(epstopdf)                    size: 12245 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/network-eps-converted-
+to.pdf fig/network.eps>
+(epstopdf)             \includegraphics on input line 151.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/network-eps-converted-to.pdf, id=24, 585.18625pt x 530.98375pt>
+File: fig/network-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/network-eps-converted-to.pdf>
+Package pdftex.def Info: fig/network-eps-converted-to.pdf used on input line 15
+1.
+(pdftex.def)             Requested size: 237.31491pt x 215.33081pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -1081,26 +1114,47 @@ Package epstopdf Info: Source file: <fig/preliminary.eps>
 (epstopdf)                    size: 21665 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/preliminary-eps-conver
 ted-to.pdf fig/preliminary.eps>
-(epstopdf)             \includegraphics on input line 113.
+(epstopdf)             \includegraphics on input line 176.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/preliminary-eps-converted-to.pdf, id=23, 659.46375pt x 466.74374pt>
+<fig/preliminary-eps-converted-to.pdf, id=25, 659.46375pt x 466.74374pt>
 File: fig/preliminary-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/preliminary-eps-converted-to.pdf>
 Package pdftex.def Info: fig/preliminary-eps-converted-to.pdf used on input lin
-e 113.
-(pdftex.def)             Requested size: 239.73886pt x 169.6799pt.
+e 176.
+(pdftex.def)             Requested size: 222.78595pt x 157.67946pt.
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Package epstopdf Info: Source file: <fig/local.eps>
+(epstopdf)                    date: 2012-11-08 22:58:35
+(epstopdf)                    size: 7157 bytes
+(epstopdf)             Output file: <fig/local-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-08 23:01:20
+(epstopdf)                    size: 7128 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/local-eps-converted-to
+.pdf fig/local.eps>
+(epstopdf)             \includegraphics on input line 185.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/local-eps-converted-to.pdf, id=26, 381.425pt x 318.18875pt>
+File: fig/local-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/local-eps-converted-to.pdf>
+Package pdftex.def Info: fig/local-eps-converted-to.pdf used on input line 185.
+
+(pdftex.def)             Requested size: 217.94174pt x 181.80643pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 
-Underfull \hbox (badness 10000) detected at line 144
+Underfull \hbox (badness 10000) detected at line 216
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 216--216
 
  []
 
@@ -1108,25 +1162,12 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 
-Underfull \hbox (badness 10000) detected at line 175
+Underfull \hbox (badness 10000) detected at line 251
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--175
-
- []
-
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
-Underfull \hbox (badness 10000) detected at line 206
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 251--251
 
  []
 
@@ -1137,55 +1178,57 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package epstopdf Info: Source file: <fig/results.eps>
-(epstopdf)                    date: 2012-11-08 10:30:25
-(epstopdf)                    size: 90402 bytes
+(epstopdf)                    date: 2012-11-08 23:30:14
+(epstopdf)                    size: 133530 bytes
 (epstopdf)             Output file: <fig/results-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-08 10:30:51
-(epstopdf)                    size: 10206 bytes
+(epstopdf)                    date: 2012-11-08 23:32:18
+(epstopdf)                    size: 42981 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/results-eps-converted-
 to.pdf fig/results.eps>
-(epstopdf)             \includegraphics on input line 220.
+(epstopdf)             \includegraphics on input line 337.
 Package epstopdf Info: Output file is already uptodate.
-<fig/results-eps-converted-to.pdf, id=24, 755.82375pt x 375.4025pt>
+<fig/results-eps-converted-to.pdf, id=27, 741.77126pt x 334.24875pt>
 File: fig/results-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/results-eps-converted-to.pdf>
-Package pdftex.def Info: fig/results-eps-converted-to.pdf used on input line 22
-0.
-(pdftex.def)             Requested size: 491.28972pt x 244.01445pt.
+Package pdftex.def Info: fig/results-eps-converted-to.pdf used on input line 33
+7.
+(pdftex.def)             Requested size: 491.28972pt x 221.38518pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
  [2
 
 {/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./fig/g
-ol.jpg> <./fig/logo.png> <./fig/preliminary-eps-converted-to.pdf> <./fig/result
-s-eps-converted-to.pdf>] (./poster.aux) ) 
+ol.jpg> <./fig/logo.png> <./fig/pairing-eps-converted-to.pdf> <./fig/network-ep
+s-converted-to.pdf> <./fig/preliminary-eps-converted-to.pdf> <./fig/local-eps-c
+onverted-to.pdf> <./fig/results-eps-converted-to.pdf>] (./poster.aux) ) 
 Here is how much of TeX's memory you used:
- 15563 strings out of 493633
- 292405 string characters out of 3143378
- 384108 words of memory out of 3000000
- 18447 multiletter control sequences out of 15000+200000
- 39354 words of font info for 71 fonts, out of 3000000 for 9000
+ 15528 strings out of 493633
+ 291131 string characters out of 3143378
+ 407327 words of memory out of 3000000
+ 18409 multiletter control sequences out of 15000+200000
+ 38128 words of font info for 71 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  63i,25n,70p,417b,958s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2011/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2011/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2011/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2011/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2011/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2011/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmti10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmti7.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmtt12.pfb>
-Output written on poster.pdf (1 page, 378474 bytes).
+</usr/lo
+cal/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/loc
+al/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/loc
+al/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/loca
+l/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local
+/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/t
+exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/t
+exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/tex
+live/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texli
+ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/
+2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
+011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
+11/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2011
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on poster.pdf (1 page, 460370 bytes).
 PDF statistics:
- 91 PDF objects out of 1000 (max. 8388607)
- 52 compressed objects within 1 object stream
+ 116 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 129 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 144 words of extra memory for PDF output out of 10000 (max. 10000000)
 

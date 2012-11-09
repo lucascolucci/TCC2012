@@ -2,6 +2,7 @@ package tcc;
 
 import tcc.pairings.Base;
 import tcc.pairings.costs.*;
+import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
@@ -18,17 +19,18 @@ public class SolversAnalysis {
 	private static Base[] bases;
 	
 	public static void main(String[] args) {
+		Rules.MAX_DUTIES = 2;
 		SolversAnalysis sa = new SolversAnalysis();
-		file = "73H_26.txt";
+		file = "cgh_sdu_62.txt";
 		calc = new DutyToFlightCalculator();
-		bases = new Base[] { new Base("CGH", "GRU") };
+		bases = new Base[] { new Base("CGH", "GRU"),  new Base("SDU", "GIG") };
 		//sa.doInitialSolution();
 		//sa.doSetPartition();
-		sa.doSetCover();
+		//sa.doSetCover();
 		//sa.doLocalSearch();
 		//sa.doGeneticSolver();
 		//sa.doLocalSearchGeneticSolver();
-		//sa.doColumnGeneration();
+		sa.doColumnGeneration();
 	}
 	
 	public void doInitialSolution() {
@@ -51,6 +53,10 @@ public class SolversAnalysis {
 	
 	public void doLocalSearch() {
 		LocalSearchSolver solver = new LocalSearchSolver(TIME_TABLES_PATH + file, calc);
+		solver.setMaxIterations(200);
+		solver.setSampleSize(2);
+		solver.setOutputStep(5);
+		solver.setUseHistory(true);
 		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());
 	}
@@ -63,13 +69,17 @@ public class SolversAnalysis {
 	
 	public void doLocalSearchGeneticSolver() {
 		LocalSearchGeneticSolver solver = new LocalSearchGeneticSolver(TIME_TABLES_PATH + file, calc);
+		solver.setIndividueImprovements(10);
+		solver.setOptimizationProbability(0.01);
+		solver.setMaxGenerations(5001);
+		solver.setOutputStep(10);
+		solver.setSampleSize(3);
 		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());
 	}
 	
 	public void doColumnGeneration() {
 		CGSolver solver = new CGSolver(TIME_TABLES_PATH + file, calc);
-		solver.getInitialSolver().setMaxDuties(3);
 		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());		
 	}

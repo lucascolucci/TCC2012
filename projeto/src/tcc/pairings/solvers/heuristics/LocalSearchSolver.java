@@ -111,12 +111,10 @@ public class LocalSearchSolver implements Solver {
 	@Override
 	public Solution getSolution(Base... bases) {
 		this.bases = bases;
-		long start = System.currentTimeMillis();
 		setInitialSolution();
-		if (solution != null) {
-			System.out.println(solution);
+		long start = System.currentTimeMillis();
+		if (solution != null)			
 			improveSolution();
-		}
 		long finish = System.currentTimeMillis();
 		solutionTime = (finish - start) / 1000.0; 
 		return solution;
