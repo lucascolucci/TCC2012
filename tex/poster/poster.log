@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  9 NOV 2012 10:09
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  10 NOV 2012 10:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -452,8 +452,8 @@ File: tikzlibrarycalc.code.tex 2009/09/04 v2.10 (rcs-revision 1.6)
 
 Paperwidth=2011.60983pt
 Paperheight=2845.27559pt
-BasePaperwidth=804.63165pt
-BasePaperheight=1138.09286pt
+BasePaperwidth=824.7674pt
+BasePaperheight=1166.57341pt
 (/usr/local/texlive/2011/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
@@ -726,40 +726,7 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(./algorithm2e.sty
-Package: algorithm2e 2005/10/04 v3.9 algorithms environments
-\c@AlgoLine=\count122
-
-(/usr/local/texlive/2011/texmf-dist/tex/latex/tools/xspace.sty
-Package: xspace 2006/05/08 v1.12 Space after command names (DPC,MH)
-)
-********************************************************
-Package `algorithm2e' Release 3.9 -- october 04 2005 --
-- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
-- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
-subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
-- Author: Christophe Fiorio (fiorio@lirmm.fr)
-********************************************************
-\skiptotal=\skip69
-\skiprule=\skip70
-\skiphlne=\skip71
-\skiptext=\skip72
-\skiplength=\skip73
-\algomargin=\skip74
-\skipalgocfslide=\skip75
-\algowidth=\dimen168
-\inoutsize=\dimen169
-\inoutline=\dimen170
-\algocf@inoutbox=\box42
-\algocf@inputbox=\box43
-\AlCapSkip=\skip76
-\AlCapHSkip=\skip77
-\algocf@capbox=\box44
-\c@algocfline=\count123
-\c@algocf=\count124
-\algocf@algoframe=\box45
-\algocf@algobox=\box46
-) (/usr/local/texlive/2011/texmf-dist/tex/latex/psnfss/times.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/psnfss/times.sty
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
 )
 (/usr/local/texlive/2011/texmf-dist/tex/latex/url/url.sty
@@ -768,7 +735,7 @@ Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
 (/usr/local/texlive/2011/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2000/07/18 v2.13 AMS math features
-\@mathmargin=\skip78
+\@mathmargin=\skip69
 
 For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2011/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -777,49 +744,49 @@ Package: amstext 2000/06/29 v2.01
 (/usr/local/texlive/2011/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks28
-\ex@=\dimen171
+\ex@=\dimen168
 ))
 (/usr/local/texlive/2011/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen172
+\pmbraise@=\dimen169
 )
 (/usr/local/texlive/2011/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count125
+\inf@bad=\count122
 LaTeX Info: Redefining \frac on input line 211.
-\uproot@=\count126
-\leftroot@=\count127
+\uproot@=\count123
+\leftroot@=\count124
 LaTeX Info: Redefining \overline on input line 307.
-\classnum@=\count128
-\DOTSCASE@=\count129
+\classnum@=\count125
+\DOTSCASE@=\count126
 LaTeX Info: Redefining \ldots on input line 379.
 LaTeX Info: Redefining \dots on input line 382.
 LaTeX Info: Redefining \cdots on input line 467.
-\Mathstrutbox@=\box47
-\strutbox@=\box48
-\big@size=\dimen173
+\Mathstrutbox@=\box42
+\strutbox@=\box43
+\big@size=\dimen170
 LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
-\macc@depth=\count130
-\c@MaxMatrixCols=\count131
+\macc@depth=\count127
+\c@MaxMatrixCols=\count128
 \dotsspace@=\muskip11
-\c@parentequation=\count132
-\dspbrk@lvl=\count133
+\c@parentequation=\count129
+\dspbrk@lvl=\count130
 \tag@help=\toks29
-\row@=\count134
-\column@=\count135
-\maxfields@=\count136
+\row@=\count131
+\column@=\count132
+\maxfields@=\count133
 \andhelp@=\toks30
-\eqnshift@=\dimen174
-\alignsep@=\dimen175
-\tagshift@=\dimen176
-\tagwidth@=\dimen177
-\totwidth@=\dimen178
-\lineht@=\dimen179
+\eqnshift@=\dimen171
+\alignsep@=\dimen172
+\tagshift@=\dimen173
+\tagwidth@=\dimen174
+\totwidth@=\dimen175
+\lineht@=\dimen176
 \@envbody=\toks31
-\multlinegap=\skip79
-\multlinetaggap=\skip80
+\multlinegap=\skip70
+\multlinetaggap=\skip71
 \mathdisplay@stack=\toks32
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
@@ -838,50 +805,55 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 Package: relsize 2003/07/04 ver 3.1
 )
 (/usr/local/texlive/2011/texmf-dist/tex/latex/multirow/multirow.sty
-\bigstrutjot=\dimen180
+\bigstrutjot=\dimen177
 )
 (/usr/local/texlive/2011/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen181
-\lightrulewidth=\dimen182
-\cmidrulewidth=\dimen183
-\belowrulesep=\dimen184
-\belowbottomsep=\dimen185
-\aboverulesep=\dimen186
-\abovetopsep=\dimen187
-\cmidrulesep=\dimen188
-\cmidrulekern=\dimen189
-\defaultaddspace=\dimen190
-\@cmidla=\count137
-\@cmidlb=\count138
-\@aboverulesep=\dimen191
-\@belowrulesep=\dimen192
-\@thisruleclass=\count139
-\@lastruleclass=\count140
-\@thisrulewidth=\dimen193
+\heavyrulewidth=\dimen178
+\lightrulewidth=\dimen179
+\cmidrulewidth=\dimen180
+\belowrulesep=\dimen181
+\belowbottomsep=\dimen182
+\aboverulesep=\dimen183
+\abovetopsep=\dimen184
+\cmidrulesep=\dimen185
+\cmidrulekern=\dimen186
+\defaultaddspace=\dimen187
+\@cmidla=\count134
+\@cmidlb=\count135
+\@aboverulesep=\dimen188
+\@belowrulesep=\dimen189
+\@thisruleclass=\count136
+\@lastruleclass=\count137
+\@thisrulewidth=\dimen190
 )
 (/usr/local/texlive/2011/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2008/12/05 v1.6h multicolumn formatting (FMi)
-\c@tracingmulticols=\count141
-\mult@box=\box49
-\multicol@leftmargin=\dimen194
-\c@unbalance=\count142
-\c@collectmore=\count143
-\doublecol@number=\count144
-\multicoltolerance=\count145
-\multicolpretolerance=\count146
-\full@width=\dimen195
-\page@free=\dimen196
-\premulticols=\dimen197
-\postmulticols=\dimen198
-\multicolsep=\skip81
-\multicolbaselineskip=\skip82
-\partial@page=\box50
-\last@line=\box51
-\mult@rightbox=\box52
-\mult@grightbox=\box53
-\mult@gfirstbox=\box54
-\mult@firstbox=\box55
+\c@tracingmulticols=\count138
+\mult@box=\box44
+\multicol@leftmargin=\dimen191
+\c@unbalance=\count139
+\c@collectmore=\count140
+\doublecol@number=\count141
+\multicoltolerance=\count142
+\multicolpretolerance=\count143
+\full@width=\dimen192
+\page@free=\dimen193
+\premulticols=\dimen194
+\postmulticols=\dimen195
+\multicolsep=\skip72
+\multicolbaselineskip=\skip73
+\partial@page=\box45
+\last@line=\box46
+\mult@rightbox=\box47
+\mult@grightbox=\box48
+\mult@gfirstbox=\box49
+\mult@firstbox=\box50
+\@tempa=\box51
+\@tempa=\box52
+\@tempa=\box53
+\@tempa=\box54
+\@tempa=\box55
 \@tempa=\box56
 \@tempa=\box57
 \@tempa=\box58
@@ -894,18 +866,13 @@ Package: multicol 2008/12/05 v1.6h multicolumn formatting (FMi)
 \@tempa=\box65
 \@tempa=\box66
 \@tempa=\box67
-\@tempa=\box68
-\@tempa=\box69
-\@tempa=\box70
-\@tempa=\box71
-\@tempa=\box72
-\c@columnbadness=\count147
-\c@finalcolumnbadness=\count148
-\last@try=\dimen199
-\multicolovershoot=\dimen200
-\multicolundershoot=\dimen201
-\mult@nat@firstbox=\box73
-\colbreak@box=\box74
+\c@columnbadness=\count144
+\c@finalcolumnbadness=\count145
+\last@try=\dimen196
+\multicolovershoot=\dimen197
+\multicolundershoot=\dimen198
+\mult@nat@firstbox=\box68
+\colbreak@box=\box69
 )
 (/usr/local/texlive/2011/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
@@ -931,31 +898,31 @@ File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 ))) (./poster.aux)
 \openout1 = `poster.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
 
 (/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count149
-\scratchdimen=\dimen202
-\scratchbox=\box75
-\nofMPsegments=\count150
-\nofMParguments=\count151
+\scratchcounter=\count146
+\scratchdimen=\dimen199
+\scratchbox=\box70
+\nofMPsegments=\count147
+\nofMParguments=\count148
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count152
-\MPscratchDim=\dimen203
-\MPnumerator=\count153
-\makeMPintoPDFobject=\count154
+\MPscratchCnt=\count149
+\MPscratchDim=\dimen200
+\MPnumerator=\count150
+\makeMPintoPDFobject=\count151
 \everyMPtoPDFconversion=\toks34
 ) ABD: EveryShipout initializing macros
 (/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
@@ -1009,15 +976,15 @@ e
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(17.07138pt, 770.48889pt, 17.07138pt)
-* v-part:(T,H,B)=(17.07138pt, 1103.9501pt, 17.07138pt)
-* \paperwidth=804.63165pt
-* \paperheight=1138.09286pt
-* \textwidth=770.48889pt
-* \textheight=1103.9501pt
-* \oddsidemargin=-55.19861pt
-* \evensidemargin=-55.19861pt
-* \topmargin=-92.19861pt
+* h-part:(L,W,R)=(17.4986pt, 789.7702pt, 17.4986pt)
+* v-part:(T,H,B)=(17.4986pt, 1131.57622pt, 17.4986pt)
+* \paperwidth=824.7674pt
+* \paperheight=1166.57341pt
+* \textwidth=789.7702pt
+* \textheight=1131.57622pt
+* \oddsidemargin=-54.7714pt
+* \evensidemargin=-54.7714pt
+* \topmargin=-91.7714pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -1038,25 +1005,25 @@ e
 <fig/gol.jpg, id=20, 401.5pt x 278.03876pt>
 File: fig/gol.jpg Graphic file (type jpg)
  <use fig/gol.jpg>
-Package pdftex.def Info: fig/gol.jpg used on input line 93.
-(pdftex.def)             Requested size: 95.64517pt x 66.2343pt.
+Package pdftex.def Info: fig/gol.jpg used on input line 95.
+(pdftex.def)             Requested size: 98.04059pt x 67.8918pt.
 
 <fig/logo.png, id=21, 480.194pt x 650.43pt>
 File: fig/logo.png Graphic file (type png)
  <use fig/logo.png>
-Package pdftex.def Info: fig/logo.png used on input line 93.
-(pdftex.def)             Requested size: 77.4261pt x 104.8766pt.
-LaTeX Font Info:    Try loading font information for T1+aett on input line 93.
+Package pdftex.def Info: fig/logo.png used on input line 95.
+(pdftex.def)             Requested size: 79.36047pt x 107.50111pt.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 95.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 93.
+LaTeX Font Info:    Try loading font information for U+msa on input line 95.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 93.
+LaTeX Font Info:    Try loading font information for U+msb on input line 95.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -1069,16 +1036,16 @@ Package epstopdf Info: Source file: <fig/pairing.eps>
 (epstopdf)                    size: 11156 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/pairing-eps-converted-
 to.pdf fig/pairing.eps>
-(epstopdf)             \includegraphics on input line 117.
+(epstopdf)             \includegraphics on input line 120.
 Package epstopdf Info: Output file is already uptodate.
 
 <fig/pairing-eps-converted-to.pdf, id=23, 761.84625pt x 273.02pt>
 File: fig/pairing-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/pairing-eps-converted-to.pdf>
-Package pdftex.def Info: fig/pairing-eps-converted-to.pdf used on input line 11
-7.
-(pdftex.def)             Requested size: 239.73886pt x 85.91426pt.
+Package pdftex.def Info: fig/pairing-eps-converted-to.pdf used on input line 12
+0.
+(pdftex.def)             Requested size: 243.61334pt x 87.30153pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -1093,7 +1060,7 @@ Package epstopdf Info: Source file: <fig/network.eps>
 (epstopdf)                    size: 12245 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/network-eps-converted-
 to.pdf fig/network.eps>
-(epstopdf)             \includegraphics on input line 150.
+(epstopdf)             \includegraphics on input line 155.
 Package epstopdf Info: Output file is already uptodate.
 
 <fig/network-eps-converted-to.pdf, id=24, 585.18625pt x 530.98375pt>
@@ -1101,8 +1068,8 @@ File: fig/network-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/network-eps-converted-to.pdf>
 Package pdftex.def Info: fig/network-eps-converted-to.pdf used on input line 15
-0.
-(pdftex.def)             Requested size: 237.31491pt x 215.33081pt.
+5.
+(pdftex.def)             Requested size: 243.61334pt x 221.05092pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -1114,7 +1081,7 @@ Package epstopdf Info: Source file: <fig/preliminary.eps>
 (epstopdf)                    size: 21665 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/preliminary-eps-conver
 ted-to.pdf fig/preliminary.eps>
-(epstopdf)             \includegraphics on input line 175.
+(epstopdf)             \includegraphics on input line 170.
 Package epstopdf Info: Output file is already uptodate.
 
 <fig/preliminary-eps-converted-to.pdf, id=25, 659.46375pt x 466.74374pt>
@@ -1122,78 +1089,105 @@ File: fig/preliminary-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/preliminary-eps-converted-to.pdf>
 Package pdftex.def Info: fig/preliminary-eps-converted-to.pdf used on input lin
-e 175.
-(pdftex.def)             Requested size: 222.78595pt x 157.67946pt.
+e 170.
+(pdftex.def)             Requested size: 228.69878pt x 161.86003pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package epstopdf Info: Source file: <fig/local.eps>
-(epstopdf)                    date: 2012-11-09 10:02:08
-(epstopdf)                    size: 9735 bytes
+(epstopdf)                    date: 2012-11-10 10:56:50
+(epstopdf)                    size: 9737 bytes
 (epstopdf)             Output file: <fig/local-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-09 10:09:11
-(epstopdf)                    size: 7949 bytes
+(epstopdf)                    date: 2012-11-10 10:58:26
+(epstopdf)                    size: 7951 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/local-eps-converted-to
 .pdf fig/local.eps>
-(epstopdf)             \includegraphics on input line 184.
+(epstopdf)             \includegraphics on input line 179.
 Package epstopdf Info: Output file is already uptodate.
 
 <fig/local-eps-converted-to.pdf, id=26, 399.4925pt x 318.18875pt>
 File: fig/local-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/local-eps-converted-to.pdf>
-Package pdftex.def Info: fig/local-eps-converted-to.pdf used on input line 184.
+Package pdftex.def Info: fig/local-eps-converted-to.pdf used on input line 179.
 
-(pdftex.def)             Requested size: 217.94174pt x 173.58664pt.
+(pdftex.def)             Requested size: 211.29973pt x 168.29936pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+Package epstopdf Info: Source file: <fig/genetic.eps>
+(epstopdf)                    date: 2012-11-10 10:42:48
+(epstopdf)                    size: 11221 bytes
+(epstopdf)             Output file: <fig/genetic-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-10 10:43:59
+(epstopdf)                    size: 8562 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/genetic-eps-converted-
+to.pdf fig/genetic.eps>
+(epstopdf)             \includegraphics on input line 188.
+Package epstopdf Info: Output file is already uptodate.
 
-Underfull \hbox (badness 10000) detected at line 215
-[][]
- []
+<fig/genetic-eps-converted-to.pdf, id=27, 324.21124pt x 471.7625pt>
+File: fig/genetic-eps-converted-to.pdf Graphic file (type pdf)
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 215--215
-
- []
-
+<use fig/genetic-eps-converted-to.pdf>
+Package pdftex.def Info: fig/genetic-eps-converted-to.pdf used on input line 18
+8.
+(pdftex.def)             Requested size: 207.57109pt x 302.04213pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+Package epstopdf Info: Source file: <fig/cg.eps>
+(epstopdf)                    date: 2012-11-09 19:05:46
+(epstopdf)                    size: 8707 bytes
+(epstopdf)             Output file: <fig/cg-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-09 19:21:32
+(epstopdf)                    size: 8390 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/cg-eps-converted-to.pd
+f fig/cg.eps>
+(epstopdf)             \includegraphics on input line 197.
+Package epstopdf Info: Output file is already uptodate.
 
-Underfull \hbox (badness 10000) detected at line 250
-[][]
- []
+<fig/cg-eps-converted-to.pdf, id=28, 399.4925pt x 200.75pt>
+File: fig/cg-eps-converted-to.pdf Graphic file (type pdf)
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 250--250
-
- []
-
+<use fig/cg-eps-converted-to.pdf>
+Package pdftex.def Info: fig/cg-eps-converted-to.pdf used on input line 197.
+(pdftex.def)             Requested size: 211.29973pt x 106.18256pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 209.
+
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/ae/omsaer.fd
+File: omsaer.fd 1999/12/27
+)
+LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 209.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package epstopdf Info: Source file: <fig/results.eps>
-(epstopdf)                    date: 2012-11-09 09:21:32
-(epstopdf)                    size: 133530 bytes
+(epstopdf)                    date: 2012-11-09 22:39:36
+(epstopdf)                    size: 165754 bytes
 (epstopdf)             Output file: <fig/results-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-09 09:21:32
-(epstopdf)                    size: 42981 bytes
+(epstopdf)                    date: 2012-11-09 22:40:04
+(epstopdf)                    size: 48127 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/results-eps-converted-
 to.pdf fig/results.eps>
-(epstopdf)             \includegraphics on input line 336.
+(epstopdf)             \includegraphics on input line 294.
 Package epstopdf Info: Output file is already uptodate.
-<fig/results-eps-converted-to.pdf, id=27, 741.77126pt x 334.24875pt>
+
+<fig/results-eps-converted-to.pdf, id=29, 753.81625pt x 347.2975pt>
 File: fig/results-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/results-eps-converted-to.pdf>
-Package pdftex.def Info: fig/results-eps-converted-to.pdf used on input line 33
-6.
-(pdftex.def)             Requested size: 491.28972pt x 221.38518pt.
+Package pdftex.def Info: fig/results-eps-converted-to.pdf used on input line 29
+4.
+(pdftex.def)             Requested size: 488.46205pt x 225.04118pt.
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -1202,33 +1196,35 @@ Missing character: There is no ; in font nullfont!
 {/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./fig/g
 ol.jpg> <./fig/logo.png> <./fig/pairing-eps-converted-to.pdf> <./fig/network-ep
 s-converted-to.pdf> <./fig/preliminary-eps-converted-to.pdf> <./fig/local-eps-c
-onverted-to.pdf> <./fig/results-eps-converted-to.pdf>] (./poster.aux) ) 
+onverted-to.pdf> <./fig/genetic-eps-converted-to.pdf> <./fig/cg-eps-converted-t
+o.pdf> <./fig/results-eps-converted-to.pdf>] (./poster.aux) ) 
 Here is how much of TeX's memory you used:
- 15527 strings out of 493633
- 291128 string characters out of 3143378
- 407331 words of memory out of 3000000
- 18408 multiletter control sequences out of 15000+200000
- 38128 words of font info for 71 fonts, out of 3000000 for 9000
+ 14663 strings out of 493633
+ 281610 string characters out of 3143378
+ 372377 words of memory out of 3000000
+ 17546 multiletter control sequences out of 15000+200000
+ 36619 words of font info for 74 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 63i,25n,70p,417b,958s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/lo
-cal/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/loc
-al/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/loc
-al/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/loca
-l/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local
-/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/t
-exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/t
-exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/tex
-live/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texli
-ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/
-2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
-011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
-11/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2011
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on poster.pdf (1 page, 460942 bytes).
+ 63i,14n,70p,417b,958s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texliv
+e/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive
+/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive
+/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/
+2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2
+011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/201
+1/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2011/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2011/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2011/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2011/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2011/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2011/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2011/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2011/texmf-dist/fon
+ts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on poster.pdf (1 page, 483844 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 69 compressed objects within 1 object stream
+ 132 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 144 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 154 words of extra memory for PDF output out of 10000 (max. 10000000)
 

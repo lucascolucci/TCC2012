@@ -23,14 +23,15 @@ public class SolversAnalysis {
 		SolversAnalysis sa = new SolversAnalysis();
 		file = "cgh_sdu_62.txt";
 		calc = new DutyToFlightCalculator();
+		//bases = new Base[] { new Base("CGH", "GRU") };
 		bases = new Base[] { new Base("CGH", "GRU"),  new Base("SDU", "GIG") };
 		//sa.doInitialSolution();
 		//sa.doSetPartition();
 		//sa.doSetCover();
 		//sa.doLocalSearch();
 		//sa.doGeneticSolver();
-		//sa.doLocalSearchGeneticSolver();
-		sa.doColumnGeneration();
+		sa.doLocalSearchGeneticSolver();
+		//sa.doColumnGeneration();
 	}
 	
 	public void doInitialSolution() {
@@ -53,9 +54,9 @@ public class SolversAnalysis {
 	
 	public void doLocalSearch() {
 		LocalSearchSolver solver = new LocalSearchSolver(TIME_TABLES_PATH + file, calc);
-		solver.setMaxIterations(200);
-		solver.setSampleSize(2);
-		solver.setOutputStep(5);
+		solver.setMaxIterations(201);
+		solver.setSampleSize(4);
+		solver.setOutputStep(100);
 		solver.setUseHistory(true);
 		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());
@@ -72,7 +73,7 @@ public class SolversAnalysis {
 		solver.setIndividueImprovements(10);
 		solver.setOptimizationProbability(0.01);
 		solver.setMaxGenerations(5001);
-		solver.setOutputStep(10);
+		solver.setOutputStep(100);
 		solver.setSampleSize(3);
 		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());
