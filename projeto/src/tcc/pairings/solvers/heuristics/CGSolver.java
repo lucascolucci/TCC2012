@@ -98,9 +98,10 @@ public class CGSolver extends BasicSolver {
 			newColumns = addGeneratedPairings();
 			output(iteration++, obj, newColumns);
 		} while (newColumns > 0);
-		columnManagement();
+		//columnManagement();
 		optimizer.endModel();
-		return getIntegerSolution();
+		return null;
+		//return getIntegerSolution();
 	}
 	
 	private void solvePricing() {
@@ -137,7 +138,7 @@ public class CGSolver extends BasicSolver {
 		System.out.println(iteration + "\t" + obj + "\t" + newColumns);
 	}
 	
-	private void columnManagement() {
+	public void columnManagement() {
 		List<Pairing> remove = new ArrayList<Pairing>();
 		double[] reducedCosts = optimizer.getReducedCosts();
 		int i0 = legs.size() - 1;
@@ -149,7 +150,7 @@ public class CGSolver extends BasicSolver {
 		generatedPairings.removeAll(remove);
 	}
 
-	private Solution getIntegerSolution() {
+	public Solution getIntegerSolution() {
 		System.out.println("Obtendo solução inteira (" + generatedPairings.size() + " colunas)... ");
 		Solution solution = getSuperSolution();
 		if (solution != null) {

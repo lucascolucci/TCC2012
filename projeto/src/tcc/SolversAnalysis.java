@@ -2,7 +2,6 @@ package tcc;
 
 import tcc.pairings.Base;
 import tcc.pairings.costs.*;
-import tcc.pairings.rules.Rules;
 import tcc.pairings.solvers.InitialSolver;
 import tcc.pairings.solvers.exacts.SetCoverSolver;
 import tcc.pairings.solvers.exacts.SetPartitionSolver;
@@ -19,18 +18,17 @@ public class SolversAnalysis {
 	private static Base[] bases;
 	
 	public static void main(String[] args) {
-		Rules.MAX_DUTIES = 2;
 		SolversAnalysis sa = new SolversAnalysis();
-		file = "cgh_sdu_62.txt";
-		calc = new DutyToFlightCalculator();
+		file = "738_48.txt";
+		calc = null;
 		//bases = new Base[] { new Base("CGH", "GRU") };
-		bases = new Base[] { new Base("CGH", "GRU"),  new Base("SDU", "GIG") };
+		bases = new Base[] { new Base("CGH", "GRU") };
 		//sa.doInitialSolution();
 		//sa.doSetPartition();
 		//sa.doSetCover();
 		//sa.doLocalSearch();
 		//sa.doGeneticSolver();
-		sa.doLocalSearchGeneticSolver();
+		//sa.doLocalSearchGeneticSolver();
 		//sa.doColumnGeneration();
 	}
 	
@@ -53,10 +51,11 @@ public class SolversAnalysis {
 	}
 	
 	public void doLocalSearch() {
+		System.out.println("\n\n\n Local Search Algorithm:");
 		LocalSearchSolver solver = new LocalSearchSolver(TIME_TABLES_PATH + file, calc);
-		solver.setMaxIterations(201);
-		solver.setSampleSize(4);
-		solver.setOutputStep(100);
+		solver.setMaxIterations(1000);
+		solver.setSampleSize(3);
+		solver.setOutputStep(10);
 		solver.setUseHistory(true);
 		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());
@@ -69,10 +68,11 @@ public class SolversAnalysis {
 	}
 	
 	public void doLocalSearchGeneticSolver() {
+		System.out.println("\n\n\n Hybrid Genetic Algorithm:");
 		LocalSearchGeneticSolver solver = new LocalSearchGeneticSolver(TIME_TABLES_PATH + file, calc);
 		solver.setIndividueImprovements(10);
 		solver.setOptimizationProbability(0.01);
-		solver.setMaxGenerations(5001);
+		solver.setMaxGenerations(3001);
 		solver.setOutputStep(100);
 		solver.setSampleSize(3);
 		System.out.println(solver.getSolution(bases));
@@ -80,6 +80,7 @@ public class SolversAnalysis {
 	}
 	
 	public void doColumnGeneration() {
+		System.out.println("\n\n\n Column Generation:");
 		CGSolver solver = new CGSolver(TIME_TABLES_PATH + file, calc);
 		System.out.println(solver.getSolution(bases));
 		System.out.println(solver.getSolutionTime());		
