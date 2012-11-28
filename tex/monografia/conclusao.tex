@@ -1,0 +1,46 @@
+\zerar
+\chapter{Conclusão}
+\label{cap:conclusoes}
+
+Com relação a análise preliminar apresentada na Seção~\ref{sec:analise_p}, concluímos que o
+procedimento de geração de viagens leva a um número gigantesco de variáveis, mesmo para um pequeno
+número de pernas (Figura~\ref{fig:pairings}). Isso porque a natureza combinatória do problema leva o
+algoritmo de busca a explorar diversas possibilidades, principalmente em uma rede como a da ponte
+aérea, onde existem diversas possibilidades de conexão toda vez que se chega em uma das localidades.
+Além disso, essas possibilidades se multiplicam quando consideramos um maior número de jornadas
+permitidas (\verb|MAX_DUTIES|). Apesar disso, a geração de viagens ainda se fez em tempo aceitável,
+podendo ser aplicada para redes maiores (Figura~\ref{fig:generation}).
+
+Entretanto, quando esse número enorme de variáveis é levado ao otimizador, o tempo de processamento
+se torna impraticável. Para se certificar disso, basta extrapolar as curvas obtidas nas
+Figuras~\ref{fig:glpk} e~\ref{fig:cplex}. {\bf Uma tentativa de resolução de uma instância da
+ponte-aérea contendo 40 etapas, não pode ser resolvida mesmo após 12 horas de processamento.} Ainda
+assim, ficamos surpresos com a capacidade do otimizador resolver instâncias com um número de
+variáveis da ordem de $10^6$ em tempo aceitável (resultados da Tabela~\ref{tab:resultados}).
+
+A análise preliminar então nos mostra que o método de ``gerar-e-otimizar'' para resolver o modelo
+(\ref{eq:sppv}) não é adequado para resolver o problema de forma geral. Em particular, das milhares
+de variáveis geradas, apenas poucas delas são escolhidas para entrar na solução final, como se pode
+observar da Tabela~\ref{tab:resultados}. Isso indica que o procedimento de geração explícita de 
+variáveis não é adequado, pois muitas delas não servem para nada. Um procedimento mais inteligente
+seria o de gerar apenas variáveis ``boas'', ou seja, com grande chance de aparecerem na solução 
+final. O método de geração de colunas desenvolve essa ideia e será explorado futuramente.
+
+Com relação aos resultados obtidos utilizando o modelo {\it set cover}, observamos que como as 
+colunas associadas às variáveis $y_i$ de {\it deadheading} (reveja o formulação (\ref{eq:scpdv})) 
+foram ajustadas com preços altos, e como os problemas analisados eram viáveis do ponto de vista do 
+{\it set partition}, o otimizador conseguiu encontrar as mesmas soluções obitidas sem a presença de 
+{\it deadheading}. Concluímos que a utilização de {\it deadheading} só será realizada se for 
+estritamente necessária para viabilidade do problema.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Comparação Entre Heurísticas}
+\label{sec:comparacao}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Perspectivas Futuras}
+\label{sec:perspectivas}
+
+

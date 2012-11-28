@@ -1,0 +1,60 @@
+\zerar
+\chapter{Heurísticas}
+\label{cap:heuristicas}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Busca Local}
+\label{sec:metodos_busca}
+
+O método de busca local é bastante simples e foi um dos primeiros a ser utilizado na tentativa de 
+melhorar uma solução viável do problema (\ref{eq:scpdv}). 
+
+A busca local consiste em escolher aleatoriamente duas ou três viagens da solução viável inicial e, 
+a partir da lista de etapas cobertas por essas viagens, gerar explicitamente todas as possíveis 
+viagens legais usando o gerador. Como o número de etapas não é muito grande, o número de variáveis 
+geradas é gerenciável. O modelo (\ref{eq:scpdv}) é então resolvido para todas essas variáveis, 
+obtendo um novo conjunto de viagens que cobre o lista de etapas inicial. 
+
+Se o custo desse novo conjunto de viagens for menor do que o original, então as viagens originais
+serão substituídas na solução global. O processo é iterado um número máximo de vezes (ou um tempo 
+máximo de execução), ou até que não haja variação significativa do custo (mínimo local), de tal 
+forma que o custo sempre seja reduzido a cada passo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Algoritmo Genético}
+\label{sec:metodos_genetico}
+
+Daremos aqui a formulação de um algoritmo genético para o problema (\ref{eq:scpdv}). 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Geração de Colunas}
+\label{sec:metodos_colunas}
+
+Nesta seção descreveremos o método de geração de colunas para obtenção de uma solução ótima 
+associada ao problema em (\ref{eq:scpdv}), chamado de problema mestre.
+
+A ideia básica consiste em não gerar explicitamente todas as $n$ viagens possíveis do problema. 
+Ao invés disso, começamos com um número reduzido de colunas que forneça ao menos uma solução viável
+(o chamado problema restrito). Essas variáveis são levadas ao otimizador considerando a versão 
+relaxada de (\ref{eq:scpdv}). Para determinar se o problema original com todas as $n$ variáveis 
+está resolvido otimamente, solucionamos o seguinte subproblema:
+%
+\begin{equation} \label{eq:sub}
+	w^\ast = \min_{j = 1, \ldots, n} \left[ c_j - \sum_{i=1}^m \pi_i a_{ij} \right] \ev
+\end{equation} 
+%
+onde $\pi_i$, $i = 1, \ldots, m$ são as variáveis duais ótimas associadas ao problema restrito.
+Da teoria da programação linear, sabemos que se $w^\ast \geq 0$ então o problema restrito é ótimo
+ao problema mestre. Por outro lado, se  $w^\ast < 0$, a coluna $k$ (com custo reduzido 
+$\bar{c}_k < 0$) é identificada e é adicionada ao problema restrito. O problema restrito é 
+resolvido novamente e o processo se repete até que nenhuma variável de custo reduzido negativo 
+seja encontrada.
+
+Ocorre que o subproblema (\ref{eq:sub}) pode ser traduzido como um problema de caminho mais curto 
+no grafo da rede de voos, o qual pode ser resolvido de forma eficiente. Mostraremos isso com mais 
+detalhes na próxima versão deste trabalho.
+

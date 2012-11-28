@@ -1,4 +1,0 @@
-\select@language {brazil}
-\contentsline {section}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{3}
-\contentsline {section}{\numberline {2}Gera\IeC {\c c}\IeC {\~a}o de Viagens}{3}
-\contentsline {section}{\numberline {3}Otimiza\IeC {\c c}\IeC {\~a}o}{4}
