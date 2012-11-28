@@ -1,13 +1,15 @@
+*************************************************************
 TCC2012 - MAC0499 - Trabalho de Formatura Supervisionado 2012
+*************************************************************
 
-Trabalho de Conclusão de Curso. Bacharelado em Ciência da Computação.
-Instituto de Matemática e Estatística - USP. 
+Trabalho de Conclusão de Curso - Bacharelado em Ciência da Computação
+Instituto de Matemática e Estatística - USP
 
 
 Tema
 ----
 
-Escalonamento otimizado de viagens e tripulantes em companhias aéreas brasileiras.
+Otimização de viagens em companhias aéreas brasileiras.
 
 
 Participantes
@@ -24,6 +26,7 @@ Conteúdo
 - Código-fonte do programa;
 - Página web;
 - Resumos;
+- Versão preliminar;
 - Monografia;
 - Pôster;
 - Apresentação.
@@ -40,20 +43,28 @@ tcc [git]
 		imagens
 		scripts
 		styles
+	malha [planilhas do Excel com as malhas dos voos]
 	projeto [sincronizado com o eclipse]
 		bin
 		data [dados gerados pelo programa para confecção de tabelas e gráficos]
 		outputs [arquivos gerados pelo programa para processamento]
-		src
-		time_tables [malhas para entrada de dados]
+		src [código-fonte]
+		time_tables [malhas editadas no formato da entrada de dados]
 	tex [documentos tex]
 		bib [bibliografia bibtex]
 		formulacao [formulação e modelagem do problema]
 			fig
-		preliminar [análise da otimização de pairings via PLI]
+		analise_preliminar [análise da otimização de pairings via PLI]
+			fig
+		versao_preliminar [versão preliminar do trabalho]
+			fig
+		monografia [monografia completa]
+			fig
+		poster
 			fig
 	xfig [figuras xfig]
+	prezi [apresentação do trabalho]
  
 
-------------------------------
-Última atualização: 31/07/2012
+-------------------------------------------------------------
+Última atualização: 28/11/2012
