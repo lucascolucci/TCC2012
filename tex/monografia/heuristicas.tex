@@ -133,9 +133,9 @@ genéticos tipicamente utilizam variáveis com valores binários ou discretos pa
 informação em seus indivíduos, priorizando o uso de recombinação.
 
 O uso de técnicas evolucionárias aplicadas à resolução do problema {\it set cover} é encontrado
-em~\cite{beasley95}. Inspirado nesse trabalho, os autores de~\cite{kornilakis02} propõem um
+em~\cite{beasley96}. Inspirado nesse trabalho, os autores de~\cite{kornilakis02} propõem um
 algoritmo genético para resolver o problema da determinação de viagens. Na verdade, o algoritmo
-proposto em~\cite{kornilakis02} é uma especialização daquele em~\cite{beasley95}, com algumas
+proposto em~\cite{kornilakis02} é uma especialização daquele em~\cite{beasley96}, com algumas
 modificações que visam a minimização do número de {\it deadheads} na solução final e um método para
 corrigir soluções que violam restriçoes (soluções que não cobrem todos as etapas). Estudamos os dois
 trabalhos em detalhes. Vamos apresentar abaixo uma síntese de seus métodos e descrever a nossa
@@ -173,7 +173,7 @@ Isso define um operador de {\it crossover} uniforme.
 A operação de mutação é aplicada ao indivíduo filho gerado. O objetivo da mutação é prevenir que a
 busca fique presa em um mínimo local. Isso é feito alterando aleatóriamente alguns dos genes do
 cromossomo gerado, de forma direcionar a busca em direção a novas áreas no espaço de busca. O número
-de genes $\mu$ a serem mutados é dado pela fórmula~\cite{beasley95} ({\it steady-state replacement
+de genes $\mu$ a serem mutados é dado pela fórmula~\cite{beasley96} ({\it steady-state replacement
 model})
 %
 \begin{equation*}
@@ -193,7 +193,7 @@ algoritmo funciona de forma heurística alterando o valor de alguns genes para 1
 voos sejam cobertos, tornando a solução viável: para cada perna descoberta da solução, adicionamos
 uma viagem que cobre aquela perna. Para isso, escolhemos uma viagem de baixo custo que quando
 selecionada cubra o máximo de pernas descobertas possível e o mínimo de pernas já cobertas. Para
-mais detalhes e uma descrição forma do método corretivo, consulte~\cite{beasley95}.
+mais detalhes e uma descrição forma do método corretivo, consulte~\cite{beasley96}.
 
 A população inicial criada pelo algoritmo deve ter a maior diversidade de indivíduos possível para
 que uma boa parte do espaço de busca seja explorado no início. Para tanto, geramos os indivíduos
@@ -232,7 +232,7 @@ inicial.
 	\begin{center}
 		\includegraphics[scale=0.6]{fig/genetic.eps}
 		\caption{Fluxograma mostrando o funcionamento do algoritmo genético híbrido proposto. O quadro 
-		em azul representa uma novidade com relação ao algoritmo usual de~\cite{beasley95,kornilakis02},
+		em azul representa uma novidade com relação ao algoritmo usual de~\cite{beasley96,kornilakis02},
 		inspirado na heurística GRASP, resultando em um ganho considerável de qualidade e performance.}
 		\label{fig:genetico}
 	\end{center}
@@ -243,9 +243,69 @@ inicial.
 \section{Geração de Colunas}
 \label{sec:metodos_colunas}
 
-\begin{equation} \label{eq:sub}
+A solução do PDV pode ser obtida exatamente através de um algoritmo {\it branch-and-bound} que
+envolve a resolução de uma relaxação linear do PLI associado em cada nó da árvore enumerativa do
+procedimento. O grande número de variáveis torna difícil a resolução do programa linear relaxado
+usando método tradicionais, como o algoritmo Simplex. Isso motiva a utilização de técnicas que não
+requerem enumeração explícita de toda a matriz das restrições, tais como a geração de colunas.
+
+Dantzig e Wolfe~\cite{dantzig60} desenvolveram um técnica para resolver PL grandes e especialmente
+estruturados. Tal técnica consiste na solução alternada de um problema coordenador mestre restrito e
+de subproblemas lineares menores. Métodos de geração de colunas, baseados no princípio de
+decomposição de Dantzig e Wolfe, aproveitam-se do fato de que não é necessário ter disponível toda a
+matriz de restrições durante o processamento. As colunas devem ser geradas apenas quando necessário.
+
+Considere o seguinte programa linear, denotado por Problme Mestre (PM), onde o número de variáveis,
+ou colunas, $n$, é muito grande:
+%
+\begin{eqnarray*} 
+	\text{minimizar} && c_1 x_1 + c_2 x_2 + \ldots + c_n x_n \\
+	\text{sujeito à} && a_{i1} x_1 + a_{i2} x_2 + \ldots + a_{in} x_n = b_i 
+	\ev \;\; i = 1, \ldots, m \\
+		               && x_j \geq 0 \ev \;\; j = 1, \ldots, n \ep 
+\end{eqnarray*} 
+%
+Podemos assumir, sem perda de generalidade, que certas variáveis, 
+$x_{\ell+1}, x_{\ell+2}, \ldots, x_{n}$, são não-básicas. Assim, podemos definir um problema
+restrito, chamado de Problema Restrito Mestre (PRM), da seguinte forma:
+%
+\begin{eqnarray*} 
+	\text{minimizar} && c_1 x_1 + c_2 x_2 + \ldots + c_\ell x_\ell \\
+	\text{sujeito à} && a_{i1} x_1 + a_{i2} x_2 + \ldots + a_{in} x_n = b_i 
+	\ev \;\; i = 1, \ldots, m \\
+		               && x_j \geq 0 \ev \;\; j = 1, \ldots, \ell \ep 
+\end{eqnarray*}
+
+Note que a solução do PRM, se viável, pode ser ótima para o PM. Sejam $\pi_1 \, \pi_2, \ldots, 
+\pi_m$ as variáveis duais ótimas para o PRM. O custo reduzido da variável $j$ é definido por
+%
+\begin{equation*}
+\bar{c}_j = c_j - \sum_{i=1}^m \pi_i a_{ij} \ep
+\end{equation*}
+%
+Da teoria de programação linear, sabemos que se o custo reduzido de cada variável é não-nulo, então
+a solução do PRM é ótima para o PM. Portanto, para se determinar se o ótimo do PM foi atingido,
+o seguinte Subproblema (denotado por SP) deve ser resolvido:
+%
+\begin{equation} \label{eq:pricing}
 	w^\ast = \min_{j = 1, \ldots, n} \left[ c_j - \sum_{i=1}^m \pi_i a_{ij} \right] \ev
 \end{equation}
+%
+Se $w^\ast \geq 0$ a solução do PRM é ótima para o PM. Caso contrário, se $w^\ast < 0$, a coluna 
+$k$, tal que $\bar{c}_k < 0$ é identificada e adicionada ao PRM. O PRM é resolvido novamente com 
+essa nova coluna, e todo o processo é repetido até que nenhum variável com custo reduzido negativo
+seja encontrada. O problema (\ref{eq:pricing}) é conhecido como {\it pricing problem}.
+
+Especializando o procedimento de geração de colunas para o PDV, observamos que o SP
+(\ref{eq:pricing}) pode ser resolvido usando um procedimento de caminho mais curto na rede de voos
+correspondente. Associamos a variável dual $\pi_i$ para cada nó correspondente ao voo $i$. Rodando o
+procedimento de caminho mais curto entre fonte e sorvedouro para cada base de tripulação, usando
+arcos com custos iguais aos custos reduzidos, a viagem de menor custo reduzido pode ser encontrada.
+Se $w^\ast$ (o custo reduzido mínimo da equação (\ref{eq:pricing})) é não-negativo, então todas as
+viagens tem custo reduzido não-negativo e portanto o algoritmo de geração de coluna pode ser
+terminado. De forma contrária, viagens de custos reduzidos negativos são identificadas e adicionadas
+como colunas ao problema mestre restrito, de forma que a próxima iteração do algoritmo pode ser
+executada (confira a Figura~\ref{fig:cg}).
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -256,11 +316,43 @@ inicial.
 	\end{center}
 \end{figure}
 
+O procedimento de busca do caminho mais curto na rede de voos deve levar em consideração a 
+viabilidade dos caminhos percorridos. Recaímos, portanto, em um problema de caminho mais curto
+com restrições.
+
+Problemas simples (ou sem restrições) de caminho mais curto envolvem apenas a determinação do 
+caminho de menor custo sem considerações adicionais e podem ser resolvidos em tempo polinomial. 
+Problemas de caminho mais curto com restrições podem levar tempo exponencial.
+
+Para ilustração, consire o problema comum de caminho mais curto, onde um rótulo em cada nó dá o 
+comprimento do caminho mais curto atual a partir da fonte até o dado nó. Como cada rótulo contém
+apenas um custo, ele pode, sem ambiguidade, dominar ou ser dominado por outro rótulo: um rótulo mais
+barato domina um rótulo mais caro.
+
+No caso de problemas de caminho mais curto com restrições, em cada nó pode haver um conjunto de 
+rótulos, cada qual correspondendo a um caminho e nenhum deles sendo dominante. Tal conjunto de 
+rótulos é dito {\it eficiente}. Um rótulo pode dominar outro rótulo apenas se ele tiver custo
+menor e for menos restrito com relação a todos os parâmetros que governam a viabilidade dos 
+caminhos. Suponha em um nó que nenhum dos rótulos possa dominar os outros, então todos eles devem 
+ser armazenados. Como teoricamente pode haver um número exponencial de caminhos no grafo, um número
+exponencial de rótulos também pode existir, fazendo, portanto, com que o algoritmo leve um tempo
+exponencial para ser executado.
+
+A Figura~\ref{fig:shortest_path} pode ser utilizada para demonstrar o procedimento de solução
+adotado para resolver o problema de caminho mais curto com restrições. Suponha que o custo de um
+caminho seja a soma do segundo parâmetro de todas as arestas que constituem o caminho, e que o
+primeiro parâmetro seja um recurso sendo consumido ao se utilizar a aresta. Gostaríamos de encontrar
+o caminho de custo mínimo entre os nós $s$ e $t$ que satisfaça a restrição de que o total de
+recursos utilizados no caminho seja menor ou igual a 4. O algoritmo procede com uma busca em 
+profundidade, efetuando um cheque de dominância entre os rótulos de cada nó atingido.
+
 \begin{figure}[htbp]
 	\begin{center}
 		\includegraphics[scale=0.6]{fig/shortest_path.eps}
-		\caption{Caminho mais curto com restrições entre os nós $s$ e $t$: $1 \to 2 \to 3 \to 4$.}
+		\caption{Caminho mais curto com restrições entre os nós $s$ e $t$: $1 \to 2 \to 3 \to 4$.
+		O primeiro parâmetro nas arestas indica o custo e o segundo o valor de um recurso a ser
+    consumido. A restrição imposta é de que o total de recursos utilizados pelo caminho seja 
+		$\leq 4$.}
 		\label{fig:shortest_path}
 	\end{center}
 \end{figure}
-

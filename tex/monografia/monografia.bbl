@@ -26,6 +26,27 @@ Cynthia Barnhart, Amy~M. Cohn, Ellis~L. Johnson, Diego Klabjan, George~L.
 \newblock {\em Airline Crew Scheduling}, chapter~14, pages 517--560.
 \newblock Kluwer Academic Publishers, Norwell, MA, 2 edition, 2003.
 
+\bibitem{beasley96}
+J.~E. Beasley and P.~C. Chu.
+\newblock A genetic algorithm for the set covering problem.
+\newblock {\em European Journal of Operational Research}, 94(2):392--404, 1996.
+
+\bibitem{dantzig60}
+George~B. Dantzig and Philip Wolfe.
+\newblock Decomposition principle for linear programs.
+\newblock {\em Operations Research}, 8:101--111, 1960.
+
+\bibitem{feo89}
+T.~A. Feo and M.~G.~C. Resende.
+\newblock A probabilistic heuristic for a computationally difficult set
+  covering problem.
+\newblock {\em Operations Research Letters}, 8:67--71, 1989.
+
+\bibitem{feo95}
+T.~A. Feo and M.~G.~C. Resende.
+\newblock Greedy randomized adaptive search procedures.
+\newblock {\em J. of Global Optimization}, 6(109-133), 1995.
+
 \bibitem{garey79}
 M.~R. Garey and D.~S. Johnson.
 \newblock {\em Computers and Intractability: A Guide to the Theory of
@@ -37,6 +58,12 @@ I.~Gershkoff.
 \newblock Optimizing flight crew schedules.
 \newblock {\em Interfaces}, 19(4):24--43, 1989.
 
+\bibitem{goldberg89}
+David~E Goldberg.
+\newblock {\em Genetic Algorithms in Search, Optimization and Machine
+  Learning}.
+\newblock Kluwer Academic Publishers, 1989.
+
 \bibitem{gopalakrishnan05}
 Balaji Gopalakrishnan and Ellis~L. Johnson.
 \newblock Airline crew scheduling: State-of-the-art.
@@ -46,6 +73,16 @@ Balaji Gopalakrishnan and Ellis~L. Johnson.
 G.~W. Graves, R.~D. McBride, I.~Gershkoff, D.~Anderson, and D.~Mahidhara.
 \newblock Flight crew scheduling.
 \newblock {\em Management Science}, 39(6):736--745, 1993.
+
+\bibitem{holland75}
+John Holland.
+\newblock {\em Adaptation in Natural and Artificial Systems}.
+\newblock University of Michigan Press, 1975.
+
+\bibitem{kornilakis02}
+H.~Kornilakis and P.~Stamatopoulos.
+\newblock Crew pairing optimization with genetic algorithms.
+\newblock {\em Lecture Notes in Computer Science}, 2308:109--120, 2002.
 
 \bibitem{souai09}
 Nadia Souai and Jacques Teghem.
