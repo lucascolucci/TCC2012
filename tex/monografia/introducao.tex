@@ -69,7 +69,7 @@ tripulantes. Uma visão geral e esquemática dos dois problemas é apresentada n
 Figura~\ref{fig:escalonamento}.
 
 As modelagens matemáticas usuais do PDV e do PDE são semelhantes e baseiam-se em um problema de 
-otimização combinatória conhecido como \emph{set partition}. A técnica de resolução comum utilizada 
+otimização combinatória conhecido por \emph{set partition}. A técnica de resolução comum utilizada 
 pode ser descrita como ``gerar-e-otimizar''. Outras abordagens vem sendo recentemente propostas, 
 buscando por soluções através de métodos meta-heurísticos. Nos próximos capítulos apresentaremos 
 mais detalhes sobre as duas abordagens.
@@ -143,9 +143,9 @@ contratual considerada é CGH (São Paulo).
 
 No problema da determinação das viagens, tem-se como entrada o conjunto de voos a ser operado pela
 empresa, o conjunto de bases contratuais dos tripulantes, as regras de trabalho que ditam a
-construção de viagens legais e a estrutura de custo como descrita na equação (\ref{eq:custov}). A
-saída então deve ser um conjunto de viagens que cubra todos os voos operados exatamente e uma vez e
-que gere o custo mínimo (veja Figura~\ref{fig:pdv}).
+construção de viagens legais e uma estrutura de custo (mais detalhes na 
+Seção~\ref{sec:regras_e_custos}). A saída, então, deve ser um conjunto de viagens que cubra todos os
+voos operados exatamente e uma vez e que tenha o custo mínimo (veja Figura~\ref{fig:pdv}).
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -189,7 +189,7 @@ pode ser modelado da seguinte forma:
 		               && x_j \in \{0, 1\} \ev \;\; j = 1, \ldots, n \ep \nonumber
 \end{eqnarray} 
 %
-Os coeficientes $a_{ij}$ são definidos por
+Os coeficientes $a_{ij}$ são definidos por (matriz de incidência)
 %
 \begin{equation*}
 	a_{ij} = \left\{
@@ -208,9 +208,9 @@ viagem. Existe ainda uma formulação alternativa onde as restrições são dada
 \end{equation} 
 %
 Nesse caso uma mesma etapa pode ser coberta por mais de uma viagem e o problema se torna um
-\emph{set cover problem}. Do ponto de vista do escalonamento, se uma etapa é coberta por mais
+\emph{set cover}. Do ponto de vista do escalonamento, se uma etapa é coberta por mais
 de uma viagem, então uma tripulação estará trabalhando nessa etapa e as demais viajando de
-passageiro (situação conhecida por \emph{deadheading}). As vezes essa formulação é necessária para
+passageiro (situação conhecida por \emph{deadheading}). As vezes essa situação é necessária para
 que se garanta viabilidade da solução. Se o preço a se pagar pela operação com \emph{deadheading} 
 for essencialmente o mesmo de uma operação normal, então não há alteração significativa no custo 
 da viagem associada. Isso permite que o problema seja modelado com as restrições (\ref{eq:dh}) 
@@ -229,16 +229,16 @@ Note que $H_k^L$ pode ser diferente de zero desde que se exija que não mais do 
 de tripulantes fiquem de reserva. O coeficiente $h_{kj}$ dá o número de horas necessárias para 
 efetuar a viagem $j$ ($h_{kj} = 0$ se a viagem $j$ não pertencer à base $k$).
 
-O grande problema com a formulação (\ref{eq:sppv}) está no enorme número de variáveis geradas mesmo
+O grande problema com a formulação (\ref{eq:sppv}) está no enorme número de variáveis geradas, mesmo
 nos casos das instâncias pequenas (poucas etapas diárias). A Tabela~\ref{tab:viagens} ilustra o
 número de viagens legais geradas, com duração máxima de 3 ou 4 dias, para diversas frotas de
 aeronaves. O número enorme de variáveis está associada com a natureza combinatória do problema. A
 maioria das empresas aéreas operam em aeroportos conhecidos como \emph{hubs}, onde um grande número
 de aeronaves chegam e partem em um mesmo intervalo de tempo, possibilitando que os passageiros
-efetuem suas conexões para uma grande quantidade de destinos em pouco tempo. Esse tipo de estrutura
-em rede leva à explosão no número de viagens legais que podem ser construídas~\cite{graves93}.
-Note da Tabela~\ref{tab:viagens} que apesar do número de viagens ser gigantesco, o número de 
-jornadas tem um valor muito mais gerenciável.
+efetuem suas conexões para uma variedade de destinos em pouco tempo. Esse tipo de estrutura em rede 
+leva à explosão no número de viagens legais que podem ser construídas~\cite{graves93}. Note da
+Tabela~\ref{tab:viagens} que apesar do número de viagens ser gigantesco, o número de 
+jornadas tem um valor mais gerenciável.
 
 \begin{table}[ht]
 	\begin{center}
@@ -266,19 +266,37 @@ jornadas tem um valor muito mais gerenciável.
 	\end{center}
 \end{table}
 
-Como o problema de partição é do tipo NP-difícil, a aplicação de métodos diretos de otimização é
-impraticável para qualquer situação real. Discutiremos esse ponto na Seção~\ref{sec:analise_p}. Os
-métodos de solução normalmente envolvem algum tipo de heurística e/ou algum critério de parada que
-leva a soluções sub-ótimas.
+Como o problema de partição é NP-difícil~\cite{garey79}, a aplicação de métodos diretos de
+otimização é impraticável para qualquer situação real. Discutiremos esse ponto na
+Seção~\ref{sec:preliminar}. Os métodos de solução normalmente envolvem algum tipo de heurística e/ou
+algum critério de parada que leva a soluções sub-ótimas.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Objetivos}
+\section{Objetivos e Estrutura}
 \label{sec:objetivos}
 
-Neste trabalho focaremos justamente na parte de escalonamento de tripulantes, mais especificamente
-no chamado problema da determinação das viagens. O objetivo é apresentar, discutir e implementar 
-alguns dos métodos de solução disponíveis na literatura, apresentando alguns resultados no contexto
-das companhias aéreas brasileiras.
+Neste trabalho focamos no problema da determinação das viagens. Os objetivos foram estudar a 
+literatura, entender e implementar alguns dos métodos de solução disponíveis, aplicando-os
+no contexto de companhias aéreas brasileiras e, por fim, analisar os resultados obtidos.
 
+O contexto brasileiro difere significativamente dos contextos estrangeiros no que se refere à 
+estrutura de custos e regras que ditam a viabilidade de uma viagem. Como os trabalhos estudados na
+literatura se referem ao escopo norte-americano e europeu, tivemos por objetivo também efetuar as 
+devidas adaptações na tentativa de solucionar problemas de companhias aéreas brasileiras.
 
+Esta monografia está estruturada da seguinte forma: neste capítulo faz-se uma introdução e
+contextualização do problema em estudo. Em seguida, no Capítulo~\ref{cap:geracao} apresentamos o
+método de geração de viagens, com destaque especial na estrutura de custos e regras de viabilidade.
+Um exemplo explícito é apresentado. No Capítulo~\ref{cap:heuristicas} apresentamos as tês
+heurísticas implementadas neste trabalho, a saber, um método de busca local, um algoritmo genético
+híbrido e um procedimento de geração de colunas. O Capítulo~\ref{cap:resultados} mostra os
+resultados obtidos aplicando-se as heurísticas estudadas a algumas instâncias reais do problema. Em
+particular, mostramos a redução do custo da solução em função do número de iterações que controla a
+evolução dos algoritmos. Finalmente, no Capítulo~\ref{cap:conclusao} destacamos algumas conclusões e
+comparações de resultados. Listamos também alguns pontos de melhorias, dificuldades com o projeto e
+perspectivas futuras. 
+
+A segunda parte desta monografia apresenta o conteúdo subjetivo, destacando a opinião e as
+impressões de cada autor sobre o curso do BCC/IME e a relação com este projeto
+(Capítulo~\ref{cap:sub}).

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  10 NOV 2012 13:42
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  29 NOV 2012 09:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1168,11 +1168,11 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package epstopdf Info: Source file: <fig/results.eps>
-(epstopdf)                    date: 2012-11-10 11:01:40
-(epstopdf)                    size: 165754 bytes
+(epstopdf)                    date: 2012-11-29 09:08:04
+(epstopdf)                    size: 165322 bytes
 (epstopdf)             Output file: <fig/results-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-10 11:01:40
-(epstopdf)                    size: 48127 bytes
+(epstopdf)                    date: 2012-11-29 09:08:43
+(epstopdf)                    size: 48031 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/results-eps-converted-
 to.pdf fig/results.eps>
 (epstopdf)             \includegraphics on input line 294.
@@ -1221,7 +1221,7 @@ ist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2011/texmf-dist
 fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2011/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2011/texmf-dist/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on poster.pdf (1 page, 483843 bytes).
+Output written on poster.pdf (1 page, 483748 bytes).
 PDF statistics:
  132 PDF objects out of 1000 (max. 8388607)
  80 compressed objects within 1 object stream

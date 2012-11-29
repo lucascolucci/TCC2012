@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  28 NOV 2012 11:35
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  29 NOV 2012 10:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -380,8 +380,8 @@ Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
 \bigstrutjot=\dimen118
 )
 (./monografia.aux (./capa.aux) (./resumo.aux) (./introducao.aux) (./geracao.aux
-) (./heuristicas.aux) (./resultados.aux) (./conclusao.aux) (./bibliografia.aux)
-(./subjetivo_daniel.aux))
+) (./heuristicas.aux) (./resultados.aux) (./conclusao.aux)
+(./subjetivo_daniel.aux) (./bibliografia.aux))
 \openout1 = `monografia.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
@@ -495,36 +495,24 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
  [4]
 (./monografia.lof
 
-LaTeX Warning: Citation `souai09' on page v undefined on input line 4.
+LaTeX Warning: Citation `beasley95' on page v undefined on input line 11.
 
-)
+
+LaTeX Warning: Citation `kornilakis02' on page v undefined on input line 11.
+
+[5
+
+])
 \tf@lof=\write4
 \openout4 = `monografia.lof'.
 
- [5
-
-] [1
+ [6] [1
 
 ]
 \openout2 = `introducao.aux'.
 
  (./introducao.tex
 Cap\'{\i }tulo 1.
-
-LaTeX Warning: Citation `yu' on page 2 undefined on input line 6.
-
-
-LaTeX Warning: Citation `barnhart03' on page 2 undefined on input line 8.
-
-
-LaTeX Warning: Citation `arabeyre69' on page 2 undefined on input line 27.
-
-
-LaTeX Warning: Citation `anbil91a' on page 2 undefined on input line 30.
-
-
-LaTeX Warning: Citation `barnhart03' on page 2 undefined on input line 32.
-
 Package epstopdf Info: Source file: <fig/planejamento.eps>
 (epstopdf)                    date: 2012-11-21 08:36:08
 (epstopdf)                    size: 4523 bytes
@@ -535,7 +523,7 @@ Package epstopdf Info: Source file: <fig/planejamento.eps>
 rted-to.pdf fig/planejamento.eps>
 (epstopdf)             \includegraphics on input line 36.
 Package epstopdf Info: Output file is already uptodate.
-<fig/planejamento-eps-converted-to.pdf, id=27, 399.4925pt x 254.9525pt>
+<fig/planejamento-eps-converted-to.pdf, id=32, 399.4925pt x 254.9525pt>
 File: fig/planejamento-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/planejamento-eps-converted-to.pdf>
@@ -546,10 +534,6 @@ ne 36.
 
 
 ]
-
-LaTeX Warning: Citation `gopalakrishnan05' on page 3 undefined on input line 64
-.
-
 Package epstopdf Info: Source file: <fig/escalonamento.eps>
 (epstopdf)                    date: 2012-11-21 08:36:08
 (epstopdf)                    size: 11983 bytes
@@ -560,21 +544,16 @@ Package epstopdf Info: Source file: <fig/escalonamento.eps>
 erted-to.pdf fig/escalonamento.eps>
 (epstopdf)             \includegraphics on input line 79.
 Package epstopdf Info: Output file is already uptodate.
-<fig/escalonamento-eps-converted-to.pdf, id=33, 553.06625pt x 557.08125pt>
+
+<fig/escalonamento-eps-converted-to.pdf, id=36, 553.06625pt x 557.08125pt>
 File: fig/escalonamento-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/escalonamento-eps-converted-to.pdf>
 Package pdftex.def Info: fig/escalonamento-eps-converted-to.pdf used on input l
 ine 79.
 (pdftex.def)             Requested size: 276.53244pt x 278.53995pt.
-
-
-LaTeX Warning: Citation `souai09' on page 3 undefined on input line 81.
-
-
-LaTeX Warning: Citation `souai09' on page 3 undefined on input line 81.
-
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 96.
+
 (/usr/local/texlive/2011/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
@@ -593,7 +572,7 @@ o.pdf fig/viagem.eps>
 (epstopdf)             \includegraphics on input line 133.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/viagem-eps-converted-to.pdf, id=56, 761.84625pt x 273.02pt>
+<fig/viagem-eps-converted-to.pdf, id=59, 761.84625pt x 273.02pt>
 File: fig/viagem-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/viagem-eps-converted-to.pdf>
@@ -611,28 +590,14 @@ df fig/pdv.eps>
 (epstopdf)             \includegraphics on input line 152.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/pdv-eps-converted-to.pdf, id=57, 439.6425pt x 363.3575pt>
+<fig/pdv-eps-converted-to.pdf, id=60, 439.6425pt x 363.3575pt>
 File: fig/pdv-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/pdv-eps-converted-to.pdf>
 Package pdftex.def Info: fig/pdv-eps-converted-to.pdf used on input line 152.
 (pdftex.def)             Requested size: 219.82071pt x 181.6783pt.
-
-
-LaTeX Warning: Citation `gopalakrishnan05' on page 5 undefined on input line 16
-9.
-
-[5 <./fig/viagem-eps-converted-to.pdf>] [6 <./fig/pdv-eps-converted-to.pdf>]
-
-LaTeX Warning: Citation `graves93' on page 7 undefined on input line 239.
-
-
-LaTeX Warning: Citation `anbil98' on page 7 undefined on input line 264.
-
-
-LaTeX Warning: Citation `anbil98' on page 7 undefined on input line 264.
-
-[7]) [8]
+ [5 <./fig/viagem-eps-converted-to.pdf>]
+[6 <./fig/pdv-eps-converted-to.pdf>] [7]) [8]
 \openout2 = `geracao.aux'.
 
  (./geracao.tex
@@ -641,11 +606,7 @@ Cap\'{\i }tulo 2.
 
 
 
-] [10] [11] [12]
-
-LaTeX Warning: Citation `barnhart03' on page 13 undefined on input line 199.
-
-[13]
+] [10] [11]
 Package epstopdf Info: Source file: <fig/rede.eps>
 (epstopdf)                    date: 2012-11-21 08:36:08
 (epstopdf)                    size: 27069 bytes
@@ -654,32 +615,154 @@ Package epstopdf Info: Source file: <fig/rede.eps>
 (epstopdf)                    size: 12245 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/rede-eps-converted-to.
 pdf fig/rede.eps>
-(epstopdf)             \includegraphics on input line 272.
+(epstopdf)             \includegraphics on input line 206.
 Package epstopdf Info: Output file is already uptodate.
- <fig/rede-eps-converted-to.pdf, id=104, 585.18625pt x 530.98375pt>
+
+<fig/rede-eps-converted-to.pdf, id=101, 585.18625pt x 530.98375pt>
 File: fig/rede-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/rede-eps-converted-to.pdf>
-Package pdftex.def Info: fig/rede-eps-converted-to.pdf used on input line 272.
-(pdftex.def)             Requested size: 380.36655pt x 345.13533pt.
-) [14] [15 <./fig/rede-eps-converted-to.pdf>]
+Package pdftex.def Info: fig/rede-eps-converted-to.pdf used on input line 206.
+(pdftex.def)             Requested size: 468.14963pt x 424.78757pt.
+) [12] [13 <./fig/rede-eps-converted-to.pdf>]
 \openout2 = `heuristicas.aux'.
 
  (./heuristicas.tex
 Cap\'{\i }tulo 3.
-[16
+
+LaTeX Warning: Citation `kornilakis02' on page 14 undefined on input line 25.
+
+[14
 
 
 
-]) [17]
+] [15]
+Package epstopdf Info: Source file: <fig/localsearch.eps>
+(epstopdf)                    date: 2012-11-29 08:09:17
+(epstopdf)                    size: 11612 bytes
+(epstopdf)             Output file: <fig/localsearch-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-29 08:10:15
+(epstopdf)                    size: 8531 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/localsearch-eps-conver
+ted-to.pdf fig/localsearch.eps>
+(epstopdf)             \includegraphics on input line 98.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/localsearch-eps-converted-to.pdf, id=120, 633.36626pt x 381.425pt>
+File: fig/localsearch-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/localsearch-eps-converted-to.pdf>
+Package pdftex.def Info: fig/localsearch-eps-converted-to.pdf used on input lin
+e 98.
+(pdftex.def)             Requested size: 380.02269pt x 228.85675pt.
+
+
+LaTeX Warning: Citation `holland75' on page 16 undefined on input line 120.
+
+
+LaTeX Warning: Citation `goldberg89' on page 16 undefined on input line 120.
+
+[16 <./fig/localsearch-eps-converted-to.pdf>]
+
+LaTeX Warning: Citation `beasley95' on page 17 undefined on input line 136.
+
+
+LaTeX Warning: Citation `kornilakis02' on page 17 undefined on input line 136.
+
+
+LaTeX Warning: Citation `kornilakis02' on page 17 undefined on input line 138.
+
+
+LaTeX Warning: Citation `beasley95' on page 17 undefined on input line 138.
+
+
+LaTeX Warning: Citation `beasley95' on page 17 undefined on input line 176.
+
+[17]
+
+LaTeX Warning: Citation `beasley95' on page 18 undefined on input line 196.
+
+
+LaTeX Warning: Citation `feo89' on page 18 undefined on input line 222.
+
+
+LaTeX Warning: Citation `feo95' on page 18 undefined on input line 222.
+
+Package epstopdf Info: Source file: <fig/genetic.eps>
+(epstopdf)                    date: 2012-11-28 20:08:40
+(epstopdf)                    size: 11771 bytes
+(epstopdf)             Output file: <fig/genetic-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-28 20:10:07
+(epstopdf)                    size: 8785 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/genetic-eps-converted-
+to.pdf fig/genetic.eps>
+(epstopdf)             \includegraphics on input line 233.
+Package epstopdf Info: Output file is already uptodate.
+<fig/genetic-eps-converted-to.pdf, id=132, 787.94376pt x 327.2225pt>
+File: fig/genetic-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/genetic-eps-converted-to.pdf>
+Package pdftex.def Info: fig/genetic-eps-converted-to.pdf used on input line 23
+3.
+(pdftex.def)             Requested size: 472.7699pt x 196.335pt.
+
+
+LaTeX Warning: Citation `beasley95' on page 18 undefined on input line 236.
+
+
+LaTeX Warning: Citation `kornilakis02' on page 18 undefined on input line 236.
+
+
+LaTeX Warning: Citation `beasley95' on page 18 undefined on input line 236.
+
+
+LaTeX Warning: Citation `kornilakis02' on page 18 undefined on input line 236.
+
+[18]
+Package epstopdf Info: Source file: <fig/cg.eps>
+(epstopdf)                    date: 2012-11-29 10:15:04
+(epstopdf)                    size: 8703 bytes
+(epstopdf)             Output file: <fig/cg-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-29 10:17:36
+(epstopdf)                    size: 8387 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/cg-eps-converted-to.pd
+f fig/cg.eps>
+(epstopdf)             \includegraphics on input line 252.
+Package epstopdf Info: Output file is already uptodate.
+ <fig/cg-eps-converted-to.pdf, id=136, 399.4925pt x 200.75pt>
+File: fig/cg-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/cg-eps-converted-to.pdf>
+Package pdftex.def Info: fig/cg-eps-converted-to.pdf used on input line 252.
+(pdftex.def)             Requested size: 239.69734pt x 120.45091pt.
+Package epstopdf Info: Source file: <fig/shortest_path.eps>
+(epstopdf)                    date: 2012-11-29 10:21:18
+(epstopdf)                    size: 7337 bytes
+(epstopdf)             Output file: <fig/shortest_path-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-29 10:21:36
+(epstopdf)                    size: 7587 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/shortest_path-eps-conv
+erted-to.pdf fig/shortest_path.eps>
+(epstopdf)             \includegraphics on input line 261.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/shortest_path-eps-converted-to.pdf, id=137, 505.89pt x 231.86626pt>
+File: fig/shortest_path-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/shortest_path-eps-converted-to.pdf>
+Package pdftex.def Info: fig/shortest_path-eps-converted-to.pdf used on input l
+ine 261.
+(pdftex.def)             Requested size: 303.53633pt x 139.12082pt.
+) [19 <./fig/genetic-eps-converted-to.pdf> <./fig/cg-eps-converted-to.pdf>] [20
+ <./fig/shortest_path-eps-converted-to.pdf>]
 \openout2 = `resultados.aux'.
 
  (./resultados.tex
 Cap\'{\i }tulo 4.
 
-LaTeX Warning: Reference `sec:metodos' on page 18 undefined on input line 14.
+LaTeX Warning: Reference `sec:metodos' on page 21 undefined on input line 14.
 
-[18
+[21
 
 
 
@@ -696,14 +779,14 @@ f>
 (epstopdf)             \includegraphics on input line 75.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/number_of_pairings-eps-converted-to.pdf, id=126, 516.93124pt x 659.46375pt
+<fig/number_of_pairings-eps-converted-to.pdf, id=163, 516.93124pt x 659.46375pt
 >
 File: fig/number_of_pairings-eps-converted-to.pdf Graphic file (type pdf)
  <use fig/number_of_pairings-eps-converted-to.pdf>
 Package pdftex.def Info: fig/number_of_pairings-eps-converted-to.pdf used on in
 put line 75.
 (pdftex.def)             Requested size: 232.6169pt x 296.75594pt.
- [19 <./fig/number_of_pairings-eps-converted-to.pdf>]
+ [22 <./fig/number_of_pairings-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig/generation_time.eps>
 (epstopdf)                    date: 2012-11-21 08:36:08
 (epstopdf)                    size: 27345 bytes
@@ -715,7 +798,7 @@ nverted-to.pdf fig/generation_time.eps>
 (epstopdf)             \includegraphics on input line 90.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/generation_time-eps-converted-to.pdf, id=138, 516.93124pt x 662.475pt>
+<fig/generation_time-eps-converted-to.pdf, id=176, 516.93124pt x 662.475pt>
 File: fig/generation_time-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/generation_time-eps-converted-to.pdf>
@@ -734,7 +817,7 @@ f>
 (epstopdf)             \includegraphics on input line 106.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/glpk_solution_time-eps-converted-to.pdf, id=139, 516.93124pt x 662.475pt>
+<fig/glpk_solution_time-eps-converted-to.pdf, id=177, 516.93124pt x 662.475pt>
 File: fig/glpk_solution_time-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/glpk_solution_time-eps-converted-to.pdf>
@@ -753,33 +836,103 @@ s-converted-to.pdf fig/cplex_solution_time.eps>
 (epstopdf)             \includegraphics on input line 118.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/cplex_solution_time-eps-converted-to.pdf, id=140, 665.48625pt x 519.9425pt
+<fig/cplex_solution_time-eps-converted-to.pdf, id=178, 665.48625pt x 519.9425pt
 >
 File: fig/cplex_solution_time-eps-converted-to.pdf Graphic file (type pdf)
  <use fig/cplex_solution_time-eps-converted-to.pdf>
 Package pdftex.def Info: fig/cplex_solution_time-eps-converted-to.pdf used on i
 nput line 118.
 (pdftex.def)             Requested size: 299.46603pt x 233.97197pt.
- [20 <./fig/generation_time-eps-converted-to.pdf>] [21 <./fig/glpk_solution_tim
+ [23 <./fig/generation_time-eps-converted-to.pdf>] [24 <./fig/glpk_solution_tim
 e-eps-converted-to.pdf>]
-[22 <./fig/cplex_solution_time-eps-converted-to.pdf>]) [23] [24]
+[25 <./fig/cplex_solution_time-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <fig/localsearch_results.eps>
+(epstopdf)                    date: 2012-11-29 08:23:45
+(epstopdf)                    size: 70335 bytes
+(epstopdf)             Output file: <fig/localsearch_results-eps-converted-to.p
+df>
+(epstopdf)                    date: 2012-11-29 08:25:54
+(epstopdf)                    size: 14101 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/localsearch_results-ep
+s-converted-to.pdf fig/localsearch_results.eps>
+(epstopdf)             \includegraphics on input line 313.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/localsearch_results-eps-converted-to.pdf, id=215, 709.65125pt x 441.65pt>
+File: fig/localsearch_results-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/localsearch_results-eps-converted-to.pdf>
+Package pdftex.def Info: fig/localsearch_results-eps-converted-to.pdf used on i
+nput line 313.
+(pdftex.def)             Requested size: 354.82475pt x 220.82445pt.
+Package epstopdf Info: Source file: <fig/genetic_results.eps>
+(epstopdf)                    date: 2012-11-29 08:27:23
+(epstopdf)                    size: 93482 bytes
+(epstopdf)             Output file: <fig/genetic_results-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-29 08:28:08
+(epstopdf)                    size: 32479 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/genetic_results-eps-co
+nverted-to.pdf fig/genetic_results.eps>
+(epstopdf)             \includegraphics on input line 377.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/genetic_results-eps-converted-to.pdf, id=216, 712.6625pt x 441.65pt>
+File: fig/genetic_results-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/genetic_results-eps-converted-to.pdf>
+Package pdftex.def Info: fig/genetic_results-eps-converted-to.pdf used on input
+ line 377.
+(pdftex.def)             Requested size: 356.33038pt x 220.82445pt.
+Package epstopdf Info: Source file: <fig/cg_results.eps>
+(epstopdf)                    date: 2012-11-29 08:59:03
+(epstopdf)                    size: 37361 bytes
+(epstopdf)             Output file: <fig/cg_results-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-29 09:01:12
+(epstopdf)                    size: 16358 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/cg_results-eps-convert
+ed-to.pdf fig/cg_results.eps>
+(epstopdf)             \includegraphics on input line 439.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/cg_results-eps-converted-to.pdf, id=217, 699.61375pt x 443.6575pt>
+File: fig/cg_results-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/cg_results-eps-converted-to.pdf>
+Package pdftex.def Info: fig/cg_results-eps-converted-to.pdf used on input line
+ 439.
+(pdftex.def)             Requested size: 349.80602pt x 221.8282pt.
+ [26] [27 <./fig/localsearch_results-eps-converted-to.pdf> <./fig/genetic_resul
+ts-eps-converted-to.pdf>]) [28]
+[29 <./fig/cg_results-eps-converted-to.pdf>]
 \openout2 = `conclusao.aux'.
 
-
-(./conclusao.tex
+ (./conclusao.tex
 Cap\'{\i }tulo 5.
-) [25
+
+LaTeX Warning: Reference `sec:analise_p' on page 30 undefined on input line 5.
+
+Package epstopdf Info: Source file: <fig/results.eps>
+(epstopdf)                    date: 2012-11-29 09:06:01
+(epstopdf)                    size: 165322 bytes
+(epstopdf)             Output file: <fig/results-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-11-29 09:06:23
+(epstopdf)                    size: 48031 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig/results-eps-converted-
+to.pdf fig/results.eps>
+(epstopdf)             \includegraphics on input line 45.
+Package epstopdf Info: Output file is already uptodate.
+<fig/results-eps-converted-to.pdf, id=245, 753.81625pt x 347.2975pt>
+File: fig/results-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/results-eps-converted-to.pdf>
+Package pdftex.def Info: fig/results-eps-converted-to.pdf used on input line 45
+.
+(pdftex.def)             Requested size: 471.134pt x 217.0604pt.
+ [30
 
 
 
-] [26]
-\openout2 = `bibliografia.aux'.
-
- (./bibliografia.tex
-No file monografia.bbl.
-) [27
-
-
+]) [31 <./fig/results-eps-converted-to.pdf>] [32
 
 
 ]
@@ -787,21 +940,29 @@ No file monografia.bbl.
 
  (./subjetivo_daniel.tex
 Cap\'{\i }tulo 6.
-) [28
+) [33
 
 
-] (./monografia.aux (./capa.aux) (./resumo.aux) (./introducao.aux)
-(./geracao.aux) (./heuristicas.aux) (./resultados.aux) (./conclusao.aux)
-(./bibliografia.aux) (./subjetivo_daniel.aux))
+]
+\openout2 = `bibliografia.aux'.
+
+ (./bibliografia.tex (./monografia.bbl)) [34
+
+
+
+] (./monografia.aux
+(./capa.aux) (./resumo.aux) (./introducao.aux) (./geracao.aux)
+(./heuristicas.aux) (./resultados.aux) (./conclusao.aux)
+(./subjetivo_daniel.aux) (./bibliografia.aux))
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3008 strings out of 493633
- 40305 string characters out of 3143378
- 118925 words of memory out of 3000000
- 6155 multiletter control sequences out of 15000+200000
+ 3074 strings out of 493633
+ 42038 string characters out of 3143378
+ 134120 words of memory out of 3000000
+ 6211 multiletter control sequences out of 15000+200000
  13730 words of font info for 57 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  37i,12n,26p,700b,308s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -819,10 +980,10 @@ live/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
 ive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texliv
 e/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive
 /2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on monografia.pdf (33 pages, 296088 bytes).
+Output written on monografia.pdf (40 pages, 445378 bytes).
 PDF statistics:
- 242 PDF objects out of 1000 (max. 8388607)
- 166 compressed objects within 2 object streams
+ 315 PDF objects out of 1000 (max. 8388607)
+ 215 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

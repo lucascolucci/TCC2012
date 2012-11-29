@@ -1,6 +1,6 @@
 \zerar
 \chapter{Conclusão}
-\label{cap:conclusoes}
+\label{cap:conclusao}
 
 Com relação a análise preliminar apresentada na Seção~\ref{sec:analise_p}, concluímos que o
 procedimento de geração de viagens leva a um número gigantesco de variáveis, mesmo para um pequeno
@@ -38,9 +38,98 @@ estritamente necessária para viabilidade do problema.
 \section{Comparação Entre Heurísticas}
 \label{sec:comparacao}
 
+Parte do Renato.
+
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[scale=0.625]{fig/results.eps}
+		\caption{Comparação das evoluções do processos de otimização para as heurísticas estudadas 
+		(custo $\times$ iteração). São apresentadas os resultados para as cinco instâncias estudadas.}
+		\label{fig:comparacao}
+	\end{center}
+\end{figure}
+
+
+\begin{table}[ht]
+\begin{center}
+\scalebox{0.72}{
+\begin{tabular}{cc|c|c|c|c|c|c|c|c|c|c|}
+	\cline{3-12}
+	& &
+	\multicolumn{2}{|c|}{\bf 73H\_26} & 
+	\multicolumn{2}{|c|}{\bf 738\_48} & 
+	\multicolumn{2}{|c|}{\bf 733\_92} & 
+	\multicolumn{2}{|c|}{\bf 73G\_340} & 
+	\multicolumn{2}{|c|}{\bf PA\_62} \\
+	\cline{3-12}
+	& & OBJ (DH) & CPU & OBJ (DH) & CPU & OBJ (DH) & CPU & OBJ (DH) & CPU & OBJ (DH) & CPU \\
+
+	\hline
+	\multicolumn{2}{|c|}{GC} & 
+	5,696 (0)  & 0,26  & 
+	6,230 (0) & 0,54  & 
+	10,973 (0) & 1,36  & 
+	42,744 (0) & 54,02 & 
+	10,103 (0) & 1,13 \\
+
+	\hline
+	\multicolumn{1}{|c|}{\multirow{3}{*}{BL}} 
+	& $k = 2$ & 
+	0\% (0) & 1,10   & 
+	$>$100\% (116) & 1,22   & 
+  $>$100\% (124) & 3,16   & 
+	$>$100\% (654) & 208,44 & 
+	$>$100\% (8) & 0,79 \\
+	\multicolumn{1}{|c|}{} 
+	& $k = 3$ &
+	0\% (0) & 1,48    & 
+	14,1\% (0) & 7,91    & 
+	8,1\% (0) & 18,68   & 
+	32,5\% (9) & 1303,53 & 
+	87,7\% (0) & 1,31 \\
+	\multicolumn{1}{|c|}{} 
+	& $k = 4$ & 
+	0\% (0) & 1,81 & 
+	0\% (0) & 11,46 & 
+	7,7\% (0) & 99,09 & 
+	25,5\% (11) & 2182,31 & 
+	0\% (0)   & 17,83 \\
+
+	\hline
+	\multicolumn{1}{|c|}{\multirow{3}{*}{AG}} 
+	& $L = 1$ & 
+	0\% (0) & 1,39 & 
+	78,1\% (2) & 4,35 & 
+	$>$100\% (9) & 8,30 & 
+	$>$100\% (476) & 1074,97 & 
+	56,2\% (0) & 4,31 \\
+	\multicolumn{1}{|c|}{} 
+	& $L = 5$ & 
+	0\% (0) & 4,17 & 
+	13,8\% (0) & 13,19 & 
+	46,4\% (0) & 10,79 & 
+	$>$100\% (208) & 763,19 & 
+	36,2\% (0) & 13,99 \\
+	\multicolumn{1}{|c|}{} 
+	& $L = 10$ & 
+	0\% (0) & 11,01 & 
+	0\% (0) & 33,99 & 
+	72,2\% (3)3 & 17,85 & 
+	$>$100\% (78) & 482,10 & 
+	30,5\% (0) & 27,50 \\
+	\hline
+\end{tabular}}
+\caption{Resultados do processo de otimização para as três heurísticas: GC = geração de colunas,
+BL = busca local e AG = algoritmo genético. OBJ corresponde ao valor da função objetivo para a 
+solução. DH corresponde ao número de {\it deadheads} na solução. CPU corresponde ao tempo de 
+processamento total em segundos.}
+\label{tab:comparacao}
+\end{center}
+\end{table}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Perspectivas Futuras}
 \label{sec:perspectivas}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

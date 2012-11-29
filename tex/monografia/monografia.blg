@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99d (TeX Live 2011)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: monografia.aux
+A level-1 auxiliary file: capa.aux
+A level-1 auxiliary file: resumo.aux
+A level-1 auxiliary file: introducao.aux
+A level-1 auxiliary file: geracao.aux
+A level-1 auxiliary file: heuristicas.aux
+A level-1 auxiliary file: resultados.aux
+A level-1 auxiliary file: conclusao.aux
+A level-1 auxiliary file: bibliografia.aux
+The style file: plain.bst
+A level-1 auxiliary file: subjetivo_daniel.aux
+Database file #1: ../bib/crew_scheduling.bib
+Warning--I didn't find a database entry for "kornilakis02"
+Warning--I didn't find a database entry for "holland75"
+Warning--I didn't find a database entry for "goldberg89"
+Warning--I didn't find a database entry for "beasley94"
+Warning--can't use both author and editor fields in barnhart03
+You've used 12 entries,
+            2118 wiz_defined-function locations,
+            588 strings with 5881 characters,
+and the built_in function-call counts, 4211 in all, are:
+= -- 398
+> -- 220
+< -- 2
++ -- 88
+- -- 74
+* -- 323
+:= -- 718
+add.period$ -- 36
+call.type$ -- 12
+change.case$ -- 71
+chr.to.int$ -- 0
+cite$ -- 13
+duplicate$ -- 145
+empty$ -- 318
+format.name$ -- 74
+if$ -- 874
+int.to.chr$ -- 0
+int.to.str$ -- 12
+missing$ -- 13
+newline$ -- 62
+num.names$ -- 25
+pop$ -- 63
+preamble$ -- 1
+purify$ -- 61
+quote$ -- 0
+skip$ -- 95
+stack$ -- 0
+substring$ -- 261
+swap$ -- 24
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 43
+warning$ -- 1
+while$ -- 35
+width$ -- 14
+write$ -- 133
+(There were 5 warnings)

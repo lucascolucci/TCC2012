@@ -1,0 +1,6354 @@
+# Grace project file
+#
+@version 50122
+@page size 842, 595
+@page scroll 5%
+@page inout 5%
+@link page off
+@map font 0 to "Times-Roman", "Times-Roman"
+@map font 1 to "Times-Italic", "Times-Italic"
+@map font 2 to "Times-Bold", "Times-Bold"
+@map font 3 to "Times-BoldItalic", "Times-BoldItalic"
+@map font 4 to "Helvetica", "Helvetica"
+@map font 5 to "Helvetica-Oblique", "Helvetica-Oblique"
+@map font 6 to "Helvetica-Bold", "Helvetica-Bold"
+@map font 7 to "Helvetica-BoldOblique", "Helvetica-BoldOblique"
+@map font 8 to "Courier", "Courier"
+@map font 9 to "Courier-Oblique", "Courier-Oblique"
+@map font 10 to "Courier-Bold", "Courier-Bold"
+@map font 11 to "Courier-BoldOblique", "Courier-BoldOblique"
+@map font 12 to "Symbol", "Symbol"
+@map font 13 to "ZapfDingbats", "ZapfDingbats"
+@map color 0 to (255, 255, 255), "white"
+@map color 1 to (0, 0, 0), "black"
+@map color 2 to (255, 0, 0), "red"
+@map color 3 to (0, 255, 0), "green"
+@map color 4 to (0, 0, 255), "blue"
+@map color 5 to (255, 255, 0), "yellow"
+@map color 6 to (188, 143, 143), "brown"
+@map color 7 to (220, 220, 220), "grey"
+@map color 8 to (148, 0, 211), "violet"
+@map color 9 to (0, 255, 255), "cyan"
+@map color 10 to (255, 0, 255), "magenta"
+@map color 11 to (255, 165, 0), "orange"
+@map color 12 to (114, 33, 188), "indigo"
+@map color 13 to (103, 7, 72), "maroon"
+@map color 14 to (64, 224, 208), "turquoise"
+@map color 15 to (0, 139, 0), "green4"
+@reference date 0
+@date wrap off
+@date wrap year 1950
+@default linewidth 1.0
+@default linestyle 1
+@default color 1
+@default pattern 1
+@default font 0
+@default char size 1.000000
+@default symbol size 1.000000
+@default sformat "%.8g"
+@background color 0
+@page background fill on
+@timestamp off
+@timestamp 0.03, 0.03
+@timestamp color 1
+@timestamp rot 0
+@timestamp font 0
+@timestamp char size 1.000000
+@timestamp def "Thu Nov 29 08:27:08 2012"
+@with string
+@    string on
+@    string loctype view
+@    string 0.359394703657, 0.800756620429
+@    string color 1
+@    string rot 0
+@    string font 0
+@    string just 0
+@    string char size 1.000000
+@    string def "73H_26"
+@with string
+@    string on
+@    string loctype view
+@    string 0.760403530895, 0.805800756621
+@    string color 1
+@    string rot 0
+@    string font 0
+@    string just 0
+@    string char size 1.000000
+@    string def "738_48"
+@with string
+@    string on
+@    string loctype view
+@    string 1.15889029004, 0.80580075662
+@    string color 1
+@    string rot 0
+@    string font 0
+@    string just 0
+@    string char size 1.000000
+@    string def "733_92"
+@with string
+@    string on
+@    string loctype view
+@    string 0.343001261034, 0.419924337957
+@    string color 1
+@    string rot 0
+@    string font 0
+@    string just 0
+@    string char size 1.000000
+@    string def "73G_340"
+@with string
+@    string on
+@    string loctype view
+@    string 0.767969735183, 0.421185372005
+@    string color 1
+@    string rot 0
+@    string font 0
+@    string just 0
+@    string char size 1.000000
+@    string def "PA_62"
+@r0 off
+@link r0 to g0
+@r0 type above
+@r0 linestyle 1
+@r0 linewidth 1.0
+@r0 color 1
+@r0 line 0, 0, 0, 0
+@r1 off
+@link r1 to g0
+@r1 type above
+@r1 linestyle 1
+@r1 linewidth 1.0
+@r1 color 1
+@r1 line 0, 0, 0, 0
+@r2 off
+@link r2 to g0
+@r2 type above
+@r2 linestyle 1
+@r2 linewidth 1.0
+@r2 color 1
+@r2 line 0, 0, 0, 0
+@r3 off
+@link r3 to g0
+@r3 type above
+@r3 linestyle 1
+@r3 linewidth 1.0
+@r3 color 1
+@r3 line 0, 0, 0, 0
+@r4 off
+@link r4 to g0
+@r4 type above
+@r4 linestyle 1
+@r4 linewidth 1.0
+@r4 color 1
+@r4 line 0, 0, 0, 0
+@g0 on
+@g0 hidden true
+@g0 type XY
+@g0 stacked false
+@g0 bar hgap 0.000000
+@g0 fixedpoint off
+@g0 fixedpoint type 0
+@g0 fixedpoint xy 0.000000, 0.000000
+@g0 fixedpoint format general general
+@g0 fixedpoint prec 6, 6
+@with g0
+@    world 0, 0, 150, 60
+@    stack world 0, 0, 0, 0
+@    znorm 1
+@    view 0.150000, 0.150000, 1.266141, 0.850000
+@    title ""
+@    title font 0
+@    title size 1.500000
+@    title color 1
+@    subtitle ""
+@    subtitle font 0
+@    subtitle size 1.000000
+@    subtitle color 1
+@    xaxes scale Normal
+@    yaxes scale Normal
+@    xaxes invert off
+@    yaxes invert off
+@    xaxis  off
+@    yaxis  off
+@    altxaxis  off
+@    altyaxis  off
+@    legend on
+@    legend loctype view
+@    legend 0.33, 0.89
+@    legend box color 1
+@    legend box pattern 1
+@    legend box linewidth 1.0
+@    legend box linestyle 0
+@    legend box fill color 0
+@    legend box fill pattern 1
+@    legend font 0
+@    legend char size 1.000000
+@    legend color 1
+@    legend length 2
+@    legend vgap 1
+@    legend hgap 0
+@    legend invert false
+@    frame type 0
+@    frame linestyle 1
+@    frame linewidth 1.0
+@    frame color 1
+@    frame pattern 1
+@    frame background color 0
+@    frame background pattern 0
+@g1 on
+@g1 hidden true
+@g1 type XY
+@g1 stacked false
+@g1 bar hgap 0.000000
+@g1 fixedpoint off
+@g1 fixedpoint type 0
+@g1 fixedpoint xy 0.000000, 0.000000
+@g1 fixedpoint format general general
+@g1 fixedpoint prec 6, 6
+@with g1
+@    world 0, 0, 3000, 500
+@    stack world 0, 0, 0, 0
+@    znorm 1
+@    view 0.472414, 0.664706, 0.782759, 0.900000
+@    title ""
+@    title font 0
+@    title size 1.500000
+@    title color 1
+@    subtitle ""
+@    subtitle font 0
+@    subtitle size 1.000000
+@    subtitle color 1
+@    xaxes scale Normal
+@    yaxes scale Normal
+@    xaxes invert off
+@    yaxes invert off
+@    xaxis  off
+@    yaxis  off
+@    altxaxis  off
+@    altyaxis  off
+@    legend on
+@    legend loctype view
+@    legend 0.5, 0.8
+@    legend box color 1
+@    legend box pattern 1
+@    legend box linewidth 1.0
+@    legend box linestyle 1
+@    legend box fill color 0
+@    legend box fill pattern 1
+@    legend font 0
+@    legend char size 1.000000
+@    legend color 1
+@    legend length 4
+@    legend vgap 1
+@    legend hgap 1
+@    legend invert false
+@    frame type 0
+@    frame linestyle 1
+@    frame linewidth 1.0
+@    frame color 1
+@    frame pattern 1
+@    frame background color 0
+@    frame background pattern 0
+@g2 on
+@g2 hidden true
+@g2 type XY
+@g2 stacked false
+@g2 bar hgap 0.000000
+@g2 fixedpoint off
+@g2 fixedpoint type 0
+@g2 fixedpoint xy 0.000000, 0.000000
+@g2 fixedpoint format general general
+@g2 fixedpoint prec 6, 6
+@with g2
+@    world 0, 0, 5000, 1200
+@    stack world 0, 0, 0, 0
+@    znorm 1
+@    view 0.844828, 0.664706, 1.155172, 0.900000
+@    title ""
+@    title font 0
+@    title size 1.500000
+@    title color 1
+@    subtitle ""
+@    subtitle font 0
+@    subtitle size 1.000000
+@    subtitle color 1
+@    xaxes scale Normal
+@    yaxes scale Normal
+@    xaxes invert off
+@    yaxes invert off
+@    xaxis  off
+@    yaxis  off
+@    altxaxis  off
+@    altyaxis  off
+@    legend on
+@    legend loctype view
+@    legend 0.5, 0.8
+@    legend box color 1
+@    legend box pattern 1
+@    legend box linewidth 1.0
+@    legend box linestyle 1
+@    legend box fill color 0
+@    legend box fill pattern 1
+@    legend font 0
+@    legend char size 1.000000
+@    legend color 1
+@    legend length 4
+@    legend vgap 1
+@    legend hgap 1
+@    legend invert false
+@    frame type 0
+@    frame linestyle 1
+@    frame linewidth 1.0
+@    frame color 1
+@    frame pattern 1
+@    frame background color 0
+@    frame background pattern 0
+@g3 on
+@g3 hidden true
+@g3 type XY
+@g3 stacked false
+@g3 bar hgap 0.000000
+@g3 fixedpoint off
+@g3 fixedpoint type 0
+@g3 fixedpoint xy 0.000000, 0.000000
+@g3 fixedpoint format general general
+@g3 fixedpoint prec 6, 6
+@with g3
+@    world 0, 0, 200000, 5000
+@    stack world 0, 0, 0, 0
+@    znorm 1
+@    view 1.217241, 0.664706, 1.527586, 0.900000
+@    title ""
+@    title font 0
+@    title size 1.500000
+@    title color 1
+@    subtitle ""
+@    subtitle font 0
+@    subtitle size 1.000000
+@    subtitle color 1
+@    xaxes scale Normal
+@    yaxes scale Normal
+@    xaxes invert off
+@    yaxes invert off
+@    xaxis  off
+@    yaxis  off
+@    altxaxis  off
+@    altyaxis  off
+@    legend on
+@    legend loctype view
+@    legend 0.5, 0.8
+@    legend box color 1
+@    legend box pattern 1
+@    legend box linewidth 1.0
+@    legend box linestyle 1
+@    legend box fill color 0
+@    legend box fill pattern 1
+@    legend font 0
+@    legend char size 1.000000
+@    legend color 1
+@    legend length 4
+@    legend vgap 1
+@    legend hgap 1
+@    legend invert false
+@    frame type 0
+@    frame linestyle 1
+@    frame linewidth 1.0
+@    frame color 1
+@    frame pattern 1
+@    frame background color 0
+@    frame background pattern 0
+@g4 on
+@g4 hidden true
+@g4 type XY
+@g4 stacked false
+@g4 bar hgap 0.000000
+@g4 fixedpoint off
+@g4 fixedpoint type 0
+@g4 fixedpoint xy 0.000000, 0.000000
+@g4 fixedpoint format general general
+@g4 fixedpoint prec 6, 6
+@with g4
+@    world 0, 0, 200, 1000
+@    stack world 0, 0, 0, 0
+@    znorm 1
+@    view 1.589655, 0.664706, 1.900000, 0.900000
+@    title ""
+@    title font 0
+@    title size 1.500000
+@    title color 1
+@    subtitle ""
+@    subtitle font 0
+@    subtitle size 1.000000
+@    subtitle color 1
+@    xaxes scale Normal
+@    yaxes scale Normal
+@    xaxes invert off
+@    yaxes invert off
+@    xaxis  off
+@    yaxis  off
+@    altxaxis  off
+@    altyaxis  off
+@    legend on
+@    legend loctype view
+@    legend 0.5, 0.8
+@    legend box color 1
+@    legend box pattern 1
+@    legend box linewidth 1.0
+@    legend box linestyle 1
+@    legend box fill color 0
+@    legend box fill pattern 1
+@    legend font 0
+@    legend char size 1.000000
+@    legend color 1
+@    legend length 4
+@    legend vgap 1
+@    legend hgap 1
+@    legend invert false
+@    frame type 0
+@    frame linestyle 1
+@    frame linewidth 1.0
+@    frame color 1
+@    frame pattern 1
+@    frame background color 0
+@    frame background pattern 0
+@g5 on
+@g5 hidden false
+@g5 type XY
+@g5 stacked false
+@g5 bar hgap 0.000000
+@g5 fixedpoint off
+@g5 fixedpoint type 0
+@g5 fixedpoint xy 0.000000, 0.000000
+@g5 fixedpoint format general general
+@g5 fixedpoint prec 6, 6
+@with g5
+@    world 0, 7, 300, 20
+@    stack world 0, 0, 0, 0
+@    znorm 1
+@    view 0.150000, 0.531818, 0.478277, 0.850000
+@    title ""
+@    title font 0
+@    title size 1.500000
+@    title color 1
+@    subtitle ""
+@    subtitle font 0
+@    subtitle size 1.000000
+@    subtitle color 1
+@    xaxes scale Normal
+@    yaxes scale Normal
+@    xaxes invert off
+@    yaxes invert off
+@    xaxis  on
+@    xaxis  type zero false
+@    xaxis  offset 0.000000 , 0.000000
+@    xaxis  bar on
+@    xaxis  bar color 1
+@    xaxis  bar linestyle 1
+@    xaxis  bar linewidth 1.0
+@    xaxis  label ""
+@    xaxis  label layout para
+@    xaxis  label place auto
+@    xaxis  label char size 1.000000
+@    xaxis  label font 0
+@    xaxis  label color 1
+@    xaxis  label place normal
+@    xaxis  tick on
+@    xaxis  tick major 100
+@    xaxis  tick minor ticks 3
+@    xaxis  tick default 6
+@    xaxis  tick place rounded true
+@    xaxis  tick in
+@    xaxis  tick major size 0.600000
+@    xaxis  tick major color 1
+@    xaxis  tick major linewidth 1.0
+@    xaxis  tick major linestyle 1
+@    xaxis  tick major grid off
+@    xaxis  tick minor color 1
+@    xaxis  tick minor linewidth 1.0
+@    xaxis  tick minor linestyle 1
+@    xaxis  tick minor grid off
+@    xaxis  tick minor size 0.300000
+@    xaxis  ticklabel on
+@    xaxis  ticklabel format general
+@    xaxis  ticklabel prec 5
+@    xaxis  ticklabel formula ""
+@    xaxis  ticklabel append ""
+@    xaxis  ticklabel prepend ""
+@    xaxis  ticklabel angle 0
+@    xaxis  ticklabel skip 0
+@    xaxis  ticklabel stagger 0
+@    xaxis  ticklabel place normal
+@    xaxis  ticklabel offset auto
+@    xaxis  ticklabel offset 0.000000 , 0.010000
+@    xaxis  ticklabel start type auto
+@    xaxis  ticklabel start 0.000000
+@    xaxis  ticklabel stop type auto
+@    xaxis  ticklabel stop 0.000000
+@    xaxis  ticklabel char size 0.800000
+@    xaxis  ticklabel font 0
+@    xaxis  ticklabel color 1
+@    xaxis  tick place both
+@    xaxis  tick spec type none
+@    yaxis  on
+@    yaxis  type zero false
+@    yaxis  offset 0.000000 , 0.000000
+@    yaxis  bar on
+@    yaxis  bar color 1
+@    yaxis  bar linestyle 1
+@    yaxis  bar linewidth 1.0
+@    yaxis  label ""
+@    yaxis  label layout para
+@    yaxis  label place spec
+@    yaxis  label place 0.000000, 0.060000
+@    yaxis  label char size 1.000000
+@    yaxis  label font 0
+@    yaxis  label color 1
+@    yaxis  label place normal
+@    yaxis  tick on
+@    yaxis  tick major 2
+@    yaxis  tick minor ticks 1
+@    yaxis  tick default 6
+@    yaxis  tick place rounded true
+@    yaxis  tick in
+@    yaxis  tick major size 0.600000
+@    yaxis  tick major color 1
+@    yaxis  tick major linewidth 1.0
+@    yaxis  tick major linestyle 1
+@    yaxis  tick major grid off
+@    yaxis  tick minor color 1
+@    yaxis  tick minor linewidth 1.0
+@    yaxis  tick minor linestyle 1
+@    yaxis  tick minor grid off
+@    yaxis  tick minor size 0.300000
+@    yaxis  ticklabel on
+@    yaxis  ticklabel format general
+@    yaxis  ticklabel prec 5
+@    yaxis  ticklabel formula ""
+@    yaxis  ticklabel append ""
+@    yaxis  ticklabel prepend ""
+@    yaxis  ticklabel angle 0
+@    yaxis  ticklabel skip 0
+@    yaxis  ticklabel stagger 0
+@    yaxis  ticklabel place normal
+@    yaxis  ticklabel offset auto
+@    yaxis  ticklabel offset 0.000000 , 0.010000
+@    yaxis  ticklabel start type auto
+@    yaxis  ticklabel start 0.000000
+@    yaxis  ticklabel stop type auto
+@    yaxis  ticklabel stop 0.000000
+@    yaxis  ticklabel char size 0.800000
+@    yaxis  ticklabel font 0
+@    yaxis  ticklabel color 1
+@    yaxis  tick place both
+@    yaxis  tick spec type none
+@    altxaxis  off
+@    altyaxis  off
+@    legend on
+@    legend loctype view
+@    legend 0.95, 0.45
+@    legend box color 1
+@    legend box pattern 1
+@    legend box linewidth 1.0
+@    legend box linestyle 0
+@    legend box fill color 0
+@    legend box fill pattern 1
+@    legend font 0
+@    legend char size 1.000000
+@    legend color 1
+@    legend length 4
+@    legend vgap 1
+@    legend hgap 1
+@    legend invert false
+@    frame type 0
+@    frame linestyle 1
+@    frame linewidth 1.0
+@    frame color 1
+@    frame pattern 1
+@    frame background color 0
+@    frame background pattern 0
+@    s0 hidden false
+@    s0 type xy
+@    s0 symbol 0
+@    s0 symbol size 1.000000
+@    s0 symbol color 9
+@    s0 symbol pattern 1
+@    s0 symbol fill color 9
+@    s0 symbol fill pattern 0
+@    s0 symbol linewidth 1.0
+@    s0 symbol linestyle 1
+@    s0 symbol char 65
+@    s0 symbol char font 0
+@    s0 symbol skip 0
+@    s0 line type 1
+@    s0 line linestyle 1
+@    s0 line linewidth 1.0
+@    s0 line color 9
+@    s0 line pattern 1
+@    s0 baseline type 0
+@    s0 baseline off
+@    s0 dropline off
+@    s0 fill type 0
+@    s0 fill rule 0
+@    s0 fill color 1
+@    s0 fill pattern 1
+@    s0 avalue off
+@    s0 avalue type 2
+@    s0 avalue char size 1.000000
+@    s0 avalue font 0
+@    s0 avalue color 1
+@    s0 avalue rot 0
+@    s0 avalue format general
+@    s0 avalue prec 3
+@    s0 avalue prepend ""
+@    s0 avalue append ""
+@    s0 avalue offset 0.000000 , 0.000000
+@    s0 errorbar on
+@    s0 errorbar place both
+@    s0 errorbar color 9
+@    s0 errorbar pattern 1
+@    s0 errorbar size 1.000000
+@    s0 errorbar linewidth 1.0
+@    s0 errorbar linestyle 1
+@    s0 errorbar riser linewidth 1.0
+@    s0 errorbar riser linestyle 1
+@    s0 errorbar riser clip off
+@    s0 errorbar riser clip length 0.100000
+@    s0 comment "/Users/dacortez/tcc/projeto/data/ge_73H_26_i1.dat"
+@    s0 legend  "L=1"
+@    s1 hidden false
+@    s1 type xy
+@    s1 symbol 0
+@    s1 symbol size 1.000000
+@    s1 symbol color 11
+@    s1 symbol pattern 1
+@    s1 symbol fill color 11
+@    s1 symbol fill pattern 0
+@    s1 symbol linewidth 1.0
+@    s1 symbol linestyle 1
+@    s1 symbol char 65
+@    s1 symbol char font 0
+@    s1 symbol skip 0
+@    s1 line type 1
+@    s1 line linestyle 1
+@    s1 line linewidth 1.0
+@    s1 line color 11
+@    s1 line pattern 1
+@    s1 baseline type 0
+@    s1 baseline off
+@    s1 dropline off
+@    s1 fill type 0
+@    s1 fill rule 0
+@    s1 fill color 1
+@    s1 fill pattern 1
+@    s1 avalue off
+@    s1 avalue type 2
+@    s1 avalue char size 1.000000
+@    s1 avalue font 0
+@    s1 avalue color 1
+@    s1 avalue rot 0
+@    s1 avalue format general
+@    s1 avalue prec 3
+@    s1 avalue prepend ""
+@    s1 avalue append ""
+@    s1 avalue offset 0.000000 , 0.000000
+@    s1 errorbar on
+@    s1 errorbar place both
+@    s1 errorbar color 11
+@    s1 errorbar pattern 1
+@    s1 errorbar size 1.000000
+@    s1 errorbar linewidth 1.0
+@    s1 errorbar linestyle 1
+@    s1 errorbar riser linewidth 1.0
+@    s1 errorbar riser linestyle 1
+@    s1 errorbar riser clip off
+@    s1 errorbar riser clip length 0.100000
+@    s1 comment "/Users/dacortez/tcc/projeto/data/ge_73H_26_i5.dat"
+@    s1 legend  "L=5"
+@    s2 hidden false
+@    s2 type xy
+@    s2 symbol 0
+@    s2 symbol size 1.000000
+@    s2 symbol color 10
+@    s2 symbol pattern 1
+@    s2 symbol fill color 10
+@    s2 symbol fill pattern 0
+@    s2 symbol linewidth 1.0
+@    s2 symbol linestyle 1
+@    s2 symbol char 65
+@    s2 symbol char font 0
+@    s2 symbol skip 0
+@    s2 line type 1
+@    s2 line linestyle 1
+@    s2 line linewidth 1.0
+@    s2 line color 10
+@    s2 line pattern 1
+@    s2 baseline type 0
+@    s2 baseline off
+@    s2 dropline off
+@    s2 fill type 0
+@    s2 fill rule 0
+@    s2 fill color 1
+@    s2 fill pattern 1
+@    s2 avalue off
+@    s2 avalue type 2
+@    s2 avalue char size 1.000000
+@    s2 avalue font 0
+@    s2 avalue color 1
+@    s2 avalue rot 0
+@    s2 avalue format general
+@    s2 avalue prec 3
+@    s2 avalue prepend ""
+@    s2 avalue append ""
+@    s2 avalue offset 0.000000 , 0.000000
+@    s2 errorbar on
+@    s2 errorbar place both
+@    s2 errorbar color 10
+@    s2 errorbar pattern 1
+@    s2 errorbar size 1.000000
+@    s2 errorbar linewidth 1.0
+@    s2 errorbar linestyle 1
+@    s2 errorbar riser linewidth 1.0
+@    s2 errorbar riser linestyle 1
+@    s2 errorbar riser clip off
+@    s2 errorbar riser clip length 0.100000
+@    s2 comment "/Users/dacortez/tcc/projeto/data/ge_73H_26_i10.dat"
+@    s2 legend  "L=10"
+@g6 on
+@g6 hidden false
+@g6 type XY
+@g6 stacked false
+@g6 bar hgap 0.000000
+@g6 fixedpoint off
+@g6 fixedpoint type 0
+@g6 fixedpoint xy 0.000000, 0.000000
+@g6 fixedpoint format general general
+@g6 fixedpoint prec 6, 6
+@with g6
+@    world 0, 0, 10000, 50
+@    stack world 0, 0, 0, 0
+@    znorm 1
+@    view 0.543932, 0.531818, 0.872209, 0.850000
+@    title ""
+@    title font 0
+@    title size 1.500000
+@    title color 1
+@    subtitle ""
+@    subtitle font 0
+@    subtitle size 1.000000
+@    subtitle color 1
+@    xaxes scale Normal
+@    yaxes scale Normal
+@    xaxes invert off
+@    yaxes invert off
+@    xaxis  on
+@    xaxis  type zero false
+@    xaxis  offset 0.000000 , 0.000000
+@    xaxis  bar on
+@    xaxis  bar color 1
+@    xaxis  bar linestyle 1
+@    xaxis  bar linewidth 1.0
+@    xaxis  label ""
+@    xaxis  label layout para
+@    xaxis  label place auto
+@    xaxis  label char size 1.000000
+@    xaxis  label font 0
+@    xaxis  label color 1
+@    xaxis  label place normal
+@    xaxis  tick on
+@    xaxis  tick major 2000
+@    xaxis  tick minor ticks 3
+@    xaxis  tick default 6
+@    xaxis  tick place rounded true
+@    xaxis  tick in
+@    xaxis  tick major size 0.600000
+@    xaxis  tick major color 1
+@    xaxis  tick major linewidth 1.0
+@    xaxis  tick major linestyle 1
+@    xaxis  tick major grid off
+@    xaxis  tick minor color 1
+@    xaxis  tick minor linewidth 1.0
+@    xaxis  tick minor linestyle 1
+@    xaxis  tick minor grid off
+@    xaxis  tick minor size 0.300000
+@    xaxis  ticklabel on
+@    xaxis  ticklabel format decimal
+@    xaxis  ticklabel prec 0
+@    xaxis  ticklabel formula ""
+@    xaxis  ticklabel append ""
+@    xaxis  ticklabel prepend ""
+@    xaxis  ticklabel angle 0
+@    xaxis  ticklabel skip 0
+@    xaxis  ticklabel stagger 0
+@    xaxis  ticklabel place normal
+@    xaxis  ticklabel offset auto
+@    xaxis  ticklabel offset 0.000000 , 0.010000
+@    xaxis  ticklabel start type auto
+@    xaxis  ticklabel start 0.000000
+@    xaxis  ticklabel stop type auto
+@    xaxis  ticklabel stop 0.000000
+@    xaxis  ticklabel char size 0.800000
+@    xaxis  ticklabel font 0
+@    xaxis  ticklabel color 1
+@    xaxis  tick place both
+@    xaxis  tick spec type both
+@    xaxis  tick spec 21
+@    xaxis  tick major 0, 0
+@    xaxis  ticklabel 0, "0"
+@    xaxis  tick minor 1, 500
+@    xaxis  tick minor 2, 1000
+@    xaxis  tick minor 3, 1500
+@    xaxis  tick major 4, 2000
+@    xaxis  ticklabel 4, "2K"
+@    xaxis  tick minor 5, 2500
+@    xaxis  tick minor 6, 3000
+@    xaxis  tick minor 7, 3500
+@    xaxis  tick major 8, 4000
+@    xaxis  ticklabel 8, "4K"
+@    xaxis  tick minor 9, 4500
+@    xaxis  tick minor 10, 5000
+@    xaxis  tick minor 11, 5500
+@    xaxis  tick major 12, 6000
+@    xaxis  ticklabel 12, "6K"
+@    xaxis  tick minor 13, 6500
+@    xaxis  tick minor 14, 7000
+@    xaxis  tick minor 15, 7500
+@    xaxis  tick major 16, 8000
+@    xaxis  ticklabel 16, "8K"
+@    xaxis  tick minor 17, 8500
+@    xaxis  tick minor 18, 9000
+@    xaxis  tick minor 19, 9500
+@    xaxis  tick major 20, 10000
+@    xaxis  ticklabel 20, "10K"
+@    yaxis  on
+@    yaxis  type zero false
+@    yaxis  offset 0.000000 , 0.000000
+@    yaxis  bar on
+@    yaxis  bar color 1
+@    yaxis  bar linestyle 1
+@    yaxis  bar linewidth 1.0
+@    yaxis  label ""
+@    yaxis  label layout para
+@    yaxis  label place auto
+@    yaxis  label char size 1.000000
+@    yaxis  label font 0
+@    yaxis  label color 1
+@    yaxis  label place normal
+@    yaxis  tick on
+@    yaxis  tick major 10
+@    yaxis  tick minor ticks 1
+@    yaxis  tick default 6
+@    yaxis  tick place rounded true
+@    yaxis  tick in
+@    yaxis  tick major size 0.600000
+@    yaxis  tick major color 1
+@    yaxis  tick major linewidth 1.0
+@    yaxis  tick major linestyle 1
+@    yaxis  tick major grid off
+@    yaxis  tick minor color 1
+@    yaxis  tick minor linewidth 1.0
+@    yaxis  tick minor linestyle 1
+@    yaxis  tick minor grid off
+@    yaxis  tick minor size 0.300000
+@    yaxis  ticklabel on
+@    yaxis  ticklabel format general
+@    yaxis  ticklabel prec 5
+@    yaxis  ticklabel formula ""
+@    yaxis  ticklabel append ""
+@    yaxis  ticklabel prepend ""
+@    yaxis  ticklabel angle 0
+@    yaxis  ticklabel skip 0
+@    yaxis  ticklabel stagger 0
+@    yaxis  ticklabel place normal
+@    yaxis  ticklabel offset auto
+@    yaxis  ticklabel offset 0.000000 , 0.010000
+@    yaxis  ticklabel start type auto
+@    yaxis  ticklabel start 0.000000
+@    yaxis  ticklabel stop type auto
+@    yaxis  ticklabel stop 0.000000
+@    yaxis  ticklabel char size 0.800000
+@    yaxis  ticklabel font 0
+@    yaxis  ticklabel color 1
+@    yaxis  tick place both
+@    yaxis  tick spec type none
+@    altxaxis  off
+@    altyaxis  off
+@    legend on
+@    legend loctype view
+@    legend 0.5, 0.8
+@    legend box color 1
+@    legend box pattern 1
+@    legend box linewidth 1.0
+@    legend box linestyle 1
+@    legend box fill color 0
+@    legend box fill pattern 1
+@    legend font 0
+@    legend char size 0.800000
+@    legend color 1
+@    legend length 4
+@    legend vgap 1
+@    legend hgap 1
+@    legend invert false
+@    frame type 0
+@    frame linestyle 1
+@    frame linewidth 1.0
+@    frame color 1
+@    frame pattern 1
+@    frame background color 0
+@    frame background pattern 0
+@    s0 hidden false
+@    s0 type xy
+@    s0 symbol 0
+@    s0 symbol size 1.000000
+@    s0 symbol color 9
+@    s0 symbol pattern 1
+@    s0 symbol fill color 9
+@    s0 symbol fill pattern 0
+@    s0 symbol linewidth 1.0
+@    s0 symbol linestyle 1
+@    s0 symbol char 65
+@    s0 symbol char font 0
+@    s0 symbol skip 0
+@    s0 line type 1
+@    s0 line linestyle 1
+@    s0 line linewidth 1.0
+@    s0 line color 9
+@    s0 line pattern 1
+@    s0 baseline type 0
+@    s0 baseline off
+@    s0 dropline off
+@    s0 fill type 0
+@    s0 fill rule 0
+@    s0 fill color 1
+@    s0 fill pattern 1
+@    s0 avalue off
+@    s0 avalue type 2
+@    s0 avalue char size 1.000000
+@    s0 avalue font 0
+@    s0 avalue color 1
+@    s0 avalue rot 0
+@    s0 avalue format general
+@    s0 avalue prec 3
+@    s0 avalue prepend ""
+@    s0 avalue append ""
+@    s0 avalue offset 0.000000 , 0.000000
+@    s0 errorbar on
+@    s0 errorbar place both
+@    s0 errorbar color 9
+@    s0 errorbar pattern 1
+@    s0 errorbar size 1.000000
+@    s0 errorbar linewidth 1.0
+@    s0 errorbar linestyle 1
+@    s0 errorbar riser linewidth 1.0
+@    s0 errorbar riser linestyle 1
+@    s0 errorbar riser clip off
+@    s0 errorbar riser clip length 0.100000
+@    s0 comment "/Users/dacortez/tcc/projeto/data/ge_738_48_i1.dat"
+@    s0 legend  ""
+@    s1 hidden false
+@    s1 type xy
+@    s1 symbol 0
+@    s1 symbol size 1.000000
+@    s1 symbol color 11
+@    s1 symbol pattern 1
+@    s1 symbol fill color 11
+@    s1 symbol fill pattern 0
+@    s1 symbol linewidth 1.0
+@    s1 symbol linestyle 1
+@    s1 symbol char 65
+@    s1 symbol char font 0
+@    s1 symbol skip 0
+@    s1 line type 1
+@    s1 line linestyle 1
+@    s1 line linewidth 1.0
+@    s1 line color 11
+@    s1 line pattern 1
+@    s1 baseline type 0
+@    s1 baseline off
+@    s1 dropline off
+@    s1 fill type 0
+@    s1 fill rule 0
+@    s1 fill color 1
+@    s1 fill pattern 1
+@    s1 avalue off
+@    s1 avalue type 2
+@    s1 avalue char size 1.000000
+@    s1 avalue font 0
+@    s1 avalue color 1
+@    s1 avalue rot 0
+@    s1 avalue format general
+@    s1 avalue prec 3
+@    s1 avalue prepend ""
+@    s1 avalue append ""
+@    s1 avalue offset 0.000000 , 0.000000
+@    s1 errorbar on
+@    s1 errorbar place both
+@    s1 errorbar color 11
+@    s1 errorbar pattern 1
+@    s1 errorbar size 1.000000
+@    s1 errorbar linewidth 1.0
+@    s1 errorbar linestyle 1
+@    s1 errorbar riser linewidth 1.0
+@    s1 errorbar riser linestyle 1
+@    s1 errorbar riser clip off
+@    s1 errorbar riser clip length 0.100000
+@    s1 comment "/Users/dacortez/tcc/projeto/data/ge_738_48_i5.dat"
+@    s1 legend  ""
+@    s2 hidden false
+@    s2 type xy
+@    s2 symbol 0
+@    s2 symbol size 1.000000
+@    s2 symbol color 10
+@    s2 symbol pattern 1
+@    s2 symbol fill color 10
+@    s2 symbol fill pattern 0
+@    s2 symbol linewidth 1.0
+@    s2 symbol linestyle 1
+@    s2 symbol char 65
+@    s2 symbol char font 0
+@    s2 symbol skip 0
+@    s2 line type 1
+@    s2 line linestyle 1
+@    s2 line linewidth 1.0
+@    s2 line color 10
+@    s2 line pattern 1
+@    s2 baseline type 0
+@    s2 baseline off
+@    s2 dropline off
+@    s2 fill type 0
+@    s2 fill rule 0
+@    s2 fill color 1
+@    s2 fill pattern 1
+@    s2 avalue off
+@    s2 avalue type 2
+@    s2 avalue char size 1.000000
+@    s2 avalue font 0
+@    s2 avalue color 1
+@    s2 avalue rot 0
+@    s2 avalue format general
+@    s2 avalue prec 3
+@    s2 avalue prepend ""
+@    s2 avalue append ""
+@    s2 avalue offset 0.000000 , 0.000000
+@    s2 errorbar on
+@    s2 errorbar place both
+@    s2 errorbar color 10
+@    s2 errorbar pattern 1
+@    s2 errorbar size 1.000000
+@    s2 errorbar linewidth 1.0
+@    s2 errorbar linestyle 1
+@    s2 errorbar riser linewidth 1.0
+@    s2 errorbar riser linestyle 1
+@    s2 errorbar riser clip off
+@    s2 errorbar riser clip length 0.100000
+@    s2 comment "/Users/dacortez/tcc/projeto/data/ge_738_48_i10.dat"
+@    s2 legend  ""
+@g7 on
+@g7 hidden false
+@g7 type XY
+@g7 stacked false
+@g7 bar hgap 0.000000
+@g7 fixedpoint off
+@g7 fixedpoint type 0
+@g7 fixedpoint xy 0.000000, 0.000000
+@g7 fixedpoint format general general
+@g7 fixedpoint prec 6, 6
+@with g7
+@    world 0, 0, 10000, 200
+@    stack world 0, 0, 0, 0
+@    znorm 1
+@    view 0.937864, 0.531818, 1.266141, 0.850000
+@    title ""
+@    title font 0
+@    title size 1.500000
+@    title color 1
+@    subtitle ""
+@    subtitle font 0
+@    subtitle size 1.000000
+@    subtitle color 1
+@    xaxes scale Normal
+@    yaxes scale Normal
+@    xaxes invert off
+@    yaxes invert off
+@    xaxis  on
+@    xaxis  type zero false
+@    xaxis  offset 0.000000 , 0.000000
+@    xaxis  bar on
+@    xaxis  bar color 1
+@    xaxis  bar linestyle 1
+@    xaxis  bar linewidth 1.0
+@    xaxis  label ""
+@    xaxis  label layout para
+@    xaxis  label place auto
+@    xaxis  label char size 1.000000
+@    xaxis  label font 0
+@    xaxis  label color 1
+@    xaxis  label place normal
+@    xaxis  tick on
+@    xaxis  tick major 2000
+@    xaxis  tick minor ticks 3
+@    xaxis  tick default 6
+@    xaxis  tick place rounded true
+@    xaxis  tick in
+@    xaxis  tick major size 0.600000
+@    xaxis  tick major color 1
+@    xaxis  tick major linewidth 1.0
+@    xaxis  tick major linestyle 1
+@    xaxis  tick major grid off
+@    xaxis  tick minor color 1
+@    xaxis  tick minor linewidth 1.0
+@    xaxis  tick minor linestyle 1
+@    xaxis  tick minor grid off
+@    xaxis  tick minor size 0.300000
+@    xaxis  ticklabel on
+@    xaxis  ticklabel format general
+@    xaxis  ticklabel prec 5
+@    xaxis  ticklabel formula ""
+@    xaxis  ticklabel append ""
+@    xaxis  ticklabel prepend ""
+@    xaxis  ticklabel angle 0
+@    xaxis  ticklabel skip 0
+@    xaxis  ticklabel stagger 0
+@    xaxis  ticklabel place normal
+@    xaxis  ticklabel offset auto
+@    xaxis  ticklabel offset 0.000000 , 0.010000
+@    xaxis  ticklabel start type auto
+@    xaxis  ticklabel start 0.000000
+@    xaxis  ticklabel stop type auto
+@    xaxis  ticklabel stop 0.000000
+@    xaxis  ticklabel char size 0.800000
+@    xaxis  ticklabel font 0
+@    xaxis  ticklabel color 1
+@    xaxis  tick place both
+@    xaxis  tick spec type both
+@    xaxis  tick spec 21
+@    xaxis  tick major 0, 0
+@    xaxis  ticklabel 0, "0"
+@    xaxis  tick minor 1, 500
+@    xaxis  tick minor 2, 1000
+@    xaxis  tick minor 3, 1500
+@    xaxis  tick major 4, 2000
+@    xaxis  ticklabel 4, "2K"
+@    xaxis  tick minor 5, 2500
+@    xaxis  tick minor 6, 3000
+@    xaxis  tick minor 7, 3500
+@    xaxis  tick major 8, 4000
+@    xaxis  ticklabel 8, "4K"
+@    xaxis  tick minor 9, 4500
+@    xaxis  tick minor 10, 5000
+@    xaxis  tick minor 11, 5500
+@    xaxis  tick major 12, 6000
+@    xaxis  ticklabel 12, "6K"
+@    xaxis  tick minor 13, 6500
+@    xaxis  tick minor 14, 7000
+@    xaxis  tick minor 15, 7500
+@    xaxis  tick major 16, 8000
+@    xaxis  ticklabel 16, "8K"
+@    xaxis  tick minor 17, 8500
+@    xaxis  tick minor 18, 9000
+@    xaxis  tick minor 19, 9500
+@    xaxis  tick major 20, 10000
+@    xaxis  ticklabel 20, "10K"
+@    yaxis  on
+@    yaxis  type zero false
+@    yaxis  offset 0.000000 , 0.000000
+@    yaxis  bar on
+@    yaxis  bar color 1
+@    yaxis  bar linestyle 1
+@    yaxis  bar linewidth 1.0
+@    yaxis  label ""
+@    yaxis  label layout para
+@    yaxis  label place auto
+@    yaxis  label char size 1.000000
+@    yaxis  label font 0
+@    yaxis  label color 1
+@    yaxis  label place normal
+@    yaxis  tick on
+@    yaxis  tick major 50
+@    yaxis  tick minor ticks 1
+@    yaxis  tick default 6
+@    yaxis  tick place rounded true
+@    yaxis  tick in
+@    yaxis  tick major size 0.600000
+@    yaxis  tick major color 1
+@    yaxis  tick major linewidth 1.0
+@    yaxis  tick major linestyle 1
+@    yaxis  tick major grid off
+@    yaxis  tick minor color 1
+@    yaxis  tick minor linewidth 1.0
+@    yaxis  tick minor linestyle 1
+@    yaxis  tick minor grid off
+@    yaxis  tick minor size 0.300000
+@    yaxis  ticklabel on
+@    yaxis  ticklabel format general
+@    yaxis  ticklabel prec 5
+@    yaxis  ticklabel formula ""
+@    yaxis  ticklabel append ""
+@    yaxis  ticklabel prepend ""
+@    yaxis  ticklabel angle 0
+@    yaxis  ticklabel skip 0
+@    yaxis  ticklabel stagger 0
+@    yaxis  ticklabel place normal
+@    yaxis  ticklabel offset auto
+@    yaxis  ticklabel offset 0.000000 , 0.010000
+@    yaxis  ticklabel start type auto
+@    yaxis  ticklabel start 0.000000
+@    yaxis  ticklabel stop type auto
+@    yaxis  ticklabel stop 0.000000
+@    yaxis  ticklabel char size 0.800000
+@    yaxis  ticklabel font 0
+@    yaxis  ticklabel color 1
+@    yaxis  tick place both
+@    yaxis  tick spec type none
+@    altxaxis  off
+@    altyaxis  off
+@    legend on
+@    legend loctype view
+@    legend 0.5, 0.8
+@    legend box color 1
+@    legend box pattern 1
+@    legend box linewidth 1.0
+@    legend box linestyle 1
+@    legend box fill color 0
+@    legend box fill pattern 1
+@    legend font 0
+@    legend char size 1.000000
+@    legend color 1
+@    legend length 4
+@    legend vgap 1
+@    legend hgap 1
+@    legend invert false
+@    frame type 0
+@    frame linestyle 1
+@    frame linewidth 1.0
+@    frame color 1
+@    frame pattern 1
+@    frame background color 0
+@    frame background pattern 0
+@    s0 hidden false
+@    s0 type xy
+@    s0 symbol 0
+@    s0 symbol size 1.000000
+@    s0 symbol color 9
+@    s0 symbol pattern 1
+@    s0 symbol fill color 9
+@    s0 symbol fill pattern 0
+@    s0 symbol linewidth 1.0
+@    s0 symbol linestyle 1
+@    s0 symbol char 65
+@    s0 symbol char font 0
+@    s0 symbol skip 0
+@    s0 line type 1
+@    s0 line linestyle 1
+@    s0 line linewidth 1.0
+@    s0 line color 9
+@    s0 line pattern 1
+@    s0 baseline type 0
+@    s0 baseline off
+@    s0 dropline off
+@    s0 fill type 0
+@    s0 fill rule 0
+@    s0 fill color 1
+@    s0 fill pattern 1
+@    s0 avalue off
+@    s0 avalue type 2
+@    s0 avalue char size 1.000000
+@    s0 avalue font 0
+@    s0 avalue color 1
+@    s0 avalue rot 0
+@    s0 avalue format general
+@    s0 avalue prec 3
+@    s0 avalue prepend ""
+@    s0 avalue append ""
+@    s0 avalue offset 0.000000 , 0.000000
+@    s0 errorbar on
+@    s0 errorbar place both
+@    s0 errorbar color 9
+@    s0 errorbar pattern 1
+@    s0 errorbar size 1.000000
+@    s0 errorbar linewidth 1.0
+@    s0 errorbar linestyle 1
+@    s0 errorbar riser linewidth 1.0
+@    s0 errorbar riser linestyle 1
+@    s0 errorbar riser clip off
+@    s0 errorbar riser clip length 0.100000
+@    s0 comment "/Users/dacortez/tcc/projeto/data/ge_733_92_i1.dat"
+@    s0 legend  ""
+@    s1 hidden false
+@    s1 type xy
+@    s1 symbol 0
+@    s1 symbol size 1.000000
+@    s1 symbol color 11
+@    s1 symbol pattern 1
+@    s1 symbol fill color 11
+@    s1 symbol fill pattern 0
+@    s1 symbol linewidth 1.0
+@    s1 symbol linestyle 1
+@    s1 symbol char 65
+@    s1 symbol char font 0
+@    s1 symbol skip 0
+@    s1 line type 1
+@    s1 line linestyle 1
+@    s1 line linewidth 1.0
+@    s1 line color 11
+@    s1 line pattern 1
+@    s1 baseline type 0
+@    s1 baseline off
+@    s1 dropline off
+@    s1 fill type 0
+@    s1 fill rule 0
+@    s1 fill color 1
+@    s1 fill pattern 1
+@    s1 avalue off
+@    s1 avalue type 2
+@    s1 avalue char size 1.000000
+@    s1 avalue font 0
+@    s1 avalue color 1
+@    s1 avalue rot 0
+@    s1 avalue format general
+@    s1 avalue prec 3
+@    s1 avalue prepend ""
+@    s1 avalue append ""
+@    s1 avalue offset 0.000000 , 0.000000
+@    s1 errorbar on
+@    s1 errorbar place both
+@    s1 errorbar color 11
+@    s1 errorbar pattern 1
+@    s1 errorbar size 1.000000
+@    s1 errorbar linewidth 1.0
+@    s1 errorbar linestyle 1
+@    s1 errorbar riser linewidth 1.0
+@    s1 errorbar riser linestyle 1
+@    s1 errorbar riser clip off
+@    s1 errorbar riser clip length 0.100000
+@    s1 comment "/Users/dacortez/tcc/projeto/data/ge_733_92_i5.dat"
+@    s1 legend  ""
+@    s2 hidden false
+@    s2 type xy
+@    s2 symbol 0
+@    s2 symbol size 1.000000
+@    s2 symbol color 10
+@    s2 symbol pattern 1
+@    s2 symbol fill color 10
+@    s2 symbol fill pattern 0
+@    s2 symbol linewidth 1.0
+@    s2 symbol linestyle 1
+@    s2 symbol char 65
+@    s2 symbol char font 0
+@    s2 symbol skip 0
+@    s2 line type 1
+@    s2 line linestyle 1
+@    s2 line linewidth 1.0
+@    s2 line color 10
+@    s2 line pattern 1
+@    s2 baseline type 0
+@    s2 baseline off
+@    s2 dropline off
+@    s2 fill type 0
+@    s2 fill rule 0
+@    s2 fill color 1
+@    s2 fill pattern 1
+@    s2 avalue off
+@    s2 avalue type 2
+@    s2 avalue char size 1.000000
+@    s2 avalue font 0
+@    s2 avalue color 1
+@    s2 avalue rot 0
+@    s2 avalue format general
+@    s2 avalue prec 3
+@    s2 avalue prepend ""
+@    s2 avalue append ""
+@    s2 avalue offset 0.000000 , 0.000000
+@    s2 errorbar on
+@    s2 errorbar place both
+@    s2 errorbar color 10
+@    s2 errorbar pattern 1
+@    s2 errorbar size 1.000000
+@    s2 errorbar linewidth 1.0
+@    s2 errorbar linestyle 1
+@    s2 errorbar riser linewidth 1.0
+@    s2 errorbar riser linestyle 1
+@    s2 errorbar riser clip off
+@    s2 errorbar riser clip length 0.100000
+@    s2 comment "/Users/dacortez/tcc/projeto/data/ge_733_92_i10.dat"
+@    s2 legend  ""
+@g8 on
+@g8 hidden false
+@g8 type XY
+@g8 stacked false
+@g8 bar hgap 0.000000
+@g8 fixedpoint off
+@g8 fixedpoint type 0
+@g8 fixedpoint xy 0.000000, 0.000000
+@g8 fixedpoint format general general
+@g8 fixedpoint prec 6, 6
+@with g8
+@    world 0, 0, 50000, 3000
+@    stack world 0, 0, 0, 0
+@    znorm 1
+@    view 0.150000, 0.150000, 0.478277, 0.468182
+@    title ""
+@    title font 0
+@    title size 1.500000
+@    title color 1
+@    subtitle ""
+@    subtitle font 0
+@    subtitle size 1.000000
+@    subtitle color 1
+@    xaxes scale Normal
+@    yaxes scale Normal
+@    xaxes invert off
+@    yaxes invert off
+@    xaxis  on
+@    xaxis  type zero false
+@    xaxis  offset 0.000000 , 0.000000
+@    xaxis  bar on
+@    xaxis  bar color 1
+@    xaxis  bar linestyle 1
+@    xaxis  bar linewidth 1.0
+@    xaxis  label ""
+@    xaxis  label layout para
+@    xaxis  label place auto
+@    xaxis  label char size 1.000000
+@    xaxis  label font 0
+@    xaxis  label color 1
+@    xaxis  label place normal
+@    xaxis  tick on
+@    xaxis  tick major 10000
+@    xaxis  tick minor ticks 1
+@    xaxis  tick default 6
+@    xaxis  tick place rounded true
+@    xaxis  tick in
+@    xaxis  tick major size 0.600000
+@    xaxis  tick major color 1
+@    xaxis  tick major linewidth 1.0
+@    xaxis  tick major linestyle 1
+@    xaxis  tick major grid off
+@    xaxis  tick minor color 1
+@    xaxis  tick minor linewidth 1.0
+@    xaxis  tick minor linestyle 1
+@    xaxis  tick minor grid off
+@    xaxis  tick minor size 0.300000
+@    xaxis  ticklabel on
+@    xaxis  ticklabel format general
+@    xaxis  ticklabel prec 5
+@    xaxis  ticklabel formula ""
+@    xaxis  ticklabel append ""
+@    xaxis  ticklabel prepend ""
+@    xaxis  ticklabel angle 0
+@    xaxis  ticklabel skip 0
+@    xaxis  ticklabel stagger 0
+@    xaxis  ticklabel place normal
+@    xaxis  ticklabel offset auto
+@    xaxis  ticklabel offset 0.000000 , 0.010000
+@    xaxis  ticklabel start type auto
+@    xaxis  ticklabel start 0.000000
+@    xaxis  ticklabel stop type auto
+@    xaxis  ticklabel stop 0.000000
+@    xaxis  ticklabel char size 0.800000
+@    xaxis  ticklabel font 0
+@    xaxis  ticklabel color 1
+@    xaxis  tick place both
+@    xaxis  tick spec type both
+@    xaxis  tick spec 11
+@    xaxis  tick major 0, 0
+@    xaxis  ticklabel 0, "0"
+@    xaxis  tick minor 1, 5000
+@    xaxis  tick major 2, 10000
+@    xaxis  ticklabel 2, "10K"
+@    xaxis  tick minor 3, 15000
+@    xaxis  tick major 4, 20000
+@    xaxis  ticklabel 4, "20K"
+@    xaxis  tick minor 5, 25000
+@    xaxis  tick major 6, 30000
+@    xaxis  ticklabel 6, "30K"
+@    xaxis  tick minor 7, 35000
+@    xaxis  tick major 8, 40000
+@    xaxis  ticklabel 8, "40K"
+@    xaxis  tick minor 9, 45000
+@    xaxis  tick major 10, 50000
+@    xaxis  ticklabel 10, "50K"
+@    yaxis  on
+@    yaxis  type zero false
+@    yaxis  offset 0.000000 , 0.000000
+@    yaxis  bar on
+@    yaxis  bar color 1
+@    yaxis  bar linestyle 1
+@    yaxis  bar linewidth 1.0
+@    yaxis  label ""
+@    yaxis  label layout para
+@    yaxis  label place auto
+@    yaxis  label char size 1.000000
+@    yaxis  label font 0
+@    yaxis  label color 1
+@    yaxis  label place normal
+@    yaxis  tick on
+@    yaxis  tick major 500
+@    yaxis  tick minor ticks 1
+@    yaxis  tick default 6
+@    yaxis  tick place rounded true
+@    yaxis  tick in
+@    yaxis  tick major size 0.600000
+@    yaxis  tick major color 1
+@    yaxis  tick major linewidth 1.0
+@    yaxis  tick major linestyle 1
+@    yaxis  tick major grid off
+@    yaxis  tick minor color 1
+@    yaxis  tick minor linewidth 1.0
+@    yaxis  tick minor linestyle 1
+@    yaxis  tick minor grid off
+@    yaxis  tick minor size 0.300000
+@    yaxis  ticklabel on
+@    yaxis  ticklabel format general
+@    yaxis  ticklabel prec 5
+@    yaxis  ticklabel formula ""
+@    yaxis  ticklabel append ""
+@    yaxis  ticklabel prepend ""
+@    yaxis  ticklabel angle 0
+@    yaxis  ticklabel skip 0
+@    yaxis  ticklabel stagger 0
+@    yaxis  ticklabel place normal
+@    yaxis  ticklabel offset auto
+@    yaxis  ticklabel offset 0.000000 , 0.010000
+@    yaxis  ticklabel start type auto
+@    yaxis  ticklabel start 0.000000
+@    yaxis  ticklabel stop type auto
+@    yaxis  ticklabel stop 0.000000
+@    yaxis  ticklabel char size 0.800000
+@    yaxis  ticklabel font 0
+@    yaxis  ticklabel color 1
+@    yaxis  tick place both
+@    yaxis  tick spec type none
+@    altxaxis  off
+@    altyaxis  off
+@    legend on
+@    legend loctype view
+@    legend 0.5, 0.8
+@    legend box color 1
+@    legend box pattern 1
+@    legend box linewidth 1.0
+@    legend box linestyle 1
+@    legend box fill color 0
+@    legend box fill pattern 1
+@    legend font 0
+@    legend char size 1.000000
+@    legend color 1
+@    legend length 4
+@    legend vgap 1
+@    legend hgap 1
+@    legend invert false
+@    frame type 0
+@    frame linestyle 1
+@    frame linewidth 1.0
+@    frame color 1
+@    frame pattern 1
+@    frame background color 0
+@    frame background pattern 0
+@    s0 hidden false
+@    s0 type xy
+@    s0 symbol 0
+@    s0 symbol size 1.000000
+@    s0 symbol color 11
+@    s0 symbol pattern 1
+@    s0 symbol fill color 11
+@    s0 symbol fill pattern 0
+@    s0 symbol linewidth 1.0
+@    s0 symbol linestyle 1
+@    s0 symbol char 65
+@    s0 symbol char font 0
+@    s0 symbol skip 0
+@    s0 line type 1
+@    s0 line linestyle 1
+@    s0 line linewidth 1.0
+@    s0 line color 11
+@    s0 line pattern 1
+@    s0 baseline type 0
+@    s0 baseline off
+@    s0 dropline off
+@    s0 fill type 0
+@    s0 fill rule 0
+@    s0 fill color 1
+@    s0 fill pattern 1
+@    s0 avalue off
+@    s0 avalue type 2
+@    s0 avalue char size 1.000000
+@    s0 avalue font 0
+@    s0 avalue color 1
+@    s0 avalue rot 0
+@    s0 avalue format general
+@    s0 avalue prec 3
+@    s0 avalue prepend ""
+@    s0 avalue append ""
+@    s0 avalue offset 0.000000 , 0.000000
+@    s0 errorbar on
+@    s0 errorbar place both
+@    s0 errorbar color 11
+@    s0 errorbar pattern 1
+@    s0 errorbar size 1.000000
+@    s0 errorbar linewidth 1.0
+@    s0 errorbar linestyle 1
+@    s0 errorbar riser linewidth 1.0
+@    s0 errorbar riser linestyle 1
+@    s0 errorbar riser clip off
+@    s0 errorbar riser clip length 0.100000
+@    s0 comment "/Users/dacortez/tcc/projeto/data/ge_73G_340_i1.dat"
+@    s0 legend  ""
+@    s1 hidden false
+@    s1 type xy
+@    s1 symbol 0
+@    s1 symbol size 1.000000
+@    s1 symbol color 10
+@    s1 symbol pattern 1
+@    s1 symbol fill color 10
+@    s1 symbol fill pattern 0
+@    s1 symbol linewidth 1.0
+@    s1 symbol linestyle 1
+@    s1 symbol char 65
+@    s1 symbol char font 0
+@    s1 symbol skip 0
+@    s1 line type 1
+@    s1 line linestyle 1
+@    s1 line linewidth 1.0
+@    s1 line color 10
+@    s1 line pattern 1
+@    s1 baseline type 0
+@    s1 baseline off
+@    s1 dropline off
+@    s1 fill type 0
+@    s1 fill rule 0
+@    s1 fill color 1
+@    s1 fill pattern 1
+@    s1 avalue off
+@    s1 avalue type 2
+@    s1 avalue char size 1.000000
+@    s1 avalue font 0
+@    s1 avalue color 1
+@    s1 avalue rot 0
+@    s1 avalue format general
+@    s1 avalue prec 3
+@    s1 avalue prepend ""
+@    s1 avalue append ""
+@    s1 avalue offset 0.000000 , 0.000000
+@    s1 errorbar on
+@    s1 errorbar place both
+@    s1 errorbar color 10
+@    s1 errorbar pattern 1
+@    s1 errorbar size 1.000000
+@    s1 errorbar linewidth 1.0
+@    s1 errorbar linestyle 1
+@    s1 errorbar riser linewidth 1.0
+@    s1 errorbar riser linestyle 1
+@    s1 errorbar riser clip off
+@    s1 errorbar riser clip length 0.100000
+@    s1 comment "/Users/dacortez/tcc/projeto/data/ge_73G_340_i10.dat"
+@    s1 legend  ""
+@    s2 hidden false
+@    s2 type xy
+@    s2 symbol 0
+@    s2 symbol size 1.000000
+@    s2 symbol color 9
+@    s2 symbol pattern 1
+@    s2 symbol fill color 9
+@    s2 symbol fill pattern 0
+@    s2 symbol linewidth 1.0
+@    s2 symbol linestyle 1
+@    s2 symbol char 65
+@    s2 symbol char font 0
+@    s2 symbol skip 0
+@    s2 line type 1
+@    s2 line linestyle 1
+@    s2 line linewidth 1.0
+@    s2 line color 9
+@    s2 line pattern 1
+@    s2 baseline type 0
+@    s2 baseline off
+@    s2 dropline off
+@    s2 fill type 0
+@    s2 fill rule 0
+@    s2 fill color 1
+@    s2 fill pattern 1
+@    s2 avalue off
+@    s2 avalue type 2
+@    s2 avalue char size 1.000000
+@    s2 avalue font 0
+@    s2 avalue color 1
+@    s2 avalue rot 0
+@    s2 avalue format general
+@    s2 avalue prec 3
+@    s2 avalue prepend ""
+@    s2 avalue append ""
+@    s2 avalue offset 0.000000 , 0.000000
+@    s2 errorbar on
+@    s2 errorbar place both
+@    s2 errorbar color 9
+@    s2 errorbar pattern 1
+@    s2 errorbar size 1.000000
+@    s2 errorbar linewidth 1.0
+@    s2 errorbar linestyle 1
+@    s2 errorbar riser linewidth 1.0
+@    s2 errorbar riser linestyle 1
+@    s2 errorbar riser clip off
+@    s2 errorbar riser clip length 0.100000
+@    s2 comment "/Users/dacortez/tcc/projeto/data/ge_73G_340_i1.dat"
+@    s2 legend  ""
+@g9 on
+@g9 hidden false
+@g9 type XY
+@g9 stacked false
+@g9 bar hgap 0.000000
+@g9 fixedpoint off
+@g9 fixedpoint type 0
+@g9 fixedpoint xy 0.000000, 0.000000
+@g9 fixedpoint format general general
+@g9 fixedpoint prec 6, 6
+@with g9
+@    world 0, 10, 5000, 50
+@    stack world 0, 0, 0, 0
+@    znorm 1
+@    view 0.543932, 0.150000, 0.872209, 0.468182
+@    title ""
+@    title font 0
+@    title size 1.500000
+@    title color 1
+@    subtitle ""
+@    subtitle font 0
+@    subtitle size 1.000000
+@    subtitle color 1
+@    xaxes scale Normal
+@    yaxes scale Normal
+@    xaxes invert off
+@    yaxes invert off
+@    xaxis  on
+@    xaxis  type zero false
+@    xaxis  offset 0.000000 , 0.000000
+@    xaxis  bar on
+@    xaxis  bar color 1
+@    xaxis  bar linestyle 1
+@    xaxis  bar linewidth 1.0
+@    xaxis  label ""
+@    xaxis  label layout para
+@    xaxis  label place auto
+@    xaxis  label char size 1.000000
+@    xaxis  label font 0
+@    xaxis  label color 1
+@    xaxis  label place normal
+@    xaxis  tick on
+@    xaxis  tick major 1000
+@    xaxis  tick minor ticks 1
+@    xaxis  tick default 6
+@    xaxis  tick place rounded true
+@    xaxis  tick in
+@    xaxis  tick major size 0.600000
+@    xaxis  tick major color 1
+@    xaxis  tick major linewidth 1.0
+@    xaxis  tick major linestyle 1
+@    xaxis  tick major grid off
+@    xaxis  tick minor color 1
+@    xaxis  tick minor linewidth 1.0
+@    xaxis  tick minor linestyle 1
+@    xaxis  tick minor grid off
+@    xaxis  tick minor size 0.300000
+@    xaxis  ticklabel on
+@    xaxis  ticklabel format general
+@    xaxis  ticklabel prec 5
+@    xaxis  ticklabel formula ""
+@    xaxis  ticklabel append ""
+@    xaxis  ticklabel prepend ""
+@    xaxis  ticklabel angle 0
+@    xaxis  ticklabel skip 0
+@    xaxis  ticklabel stagger 0
+@    xaxis  ticklabel place normal
+@    xaxis  ticklabel offset auto
+@    xaxis  ticklabel offset 0.000000 , 0.010000
+@    xaxis  ticklabel start type auto
+@    xaxis  ticklabel start 0.000000
+@    xaxis  ticklabel stop type auto
+@    xaxis  ticklabel stop 0.000000
+@    xaxis  ticklabel char size 0.800000
+@    xaxis  ticklabel font 0
+@    xaxis  ticklabel color 1
+@    xaxis  tick place both
+@    xaxis  tick spec type both
+@    xaxis  tick spec 11
+@    xaxis  tick major 0, 0
+@    xaxis  ticklabel 0, "0"
+@    xaxis  tick minor 1, 500
+@    xaxis  tick major 2, 1000
+@    xaxis  ticklabel 2, "1K"
+@    xaxis  tick minor 3, 1500
+@    xaxis  tick major 4, 2000
+@    xaxis  ticklabel 4, "2K"
+@    xaxis  tick minor 5, 2500
+@    xaxis  tick major 6, 3000
+@    xaxis  ticklabel 6, "3K"
+@    xaxis  tick minor 7, 3500
+@    xaxis  tick major 8, 4000
+@    xaxis  ticklabel 8, "4K"
+@    xaxis  tick minor 9, 4500
+@    xaxis  tick major 10, 5000
+@    xaxis  ticklabel 10, "5K"
+@    yaxis  on
+@    yaxis  type zero false
+@    yaxis  offset 0.000000 , 0.000000
+@    yaxis  bar on
+@    yaxis  bar color 1
+@    yaxis  bar linestyle 1
+@    yaxis  bar linewidth 1.0
+@    yaxis  label ""
+@    yaxis  label layout para
+@    yaxis  label place auto
+@    yaxis  label char size 1.000000
+@    yaxis  label font 0
+@    yaxis  label color 1
+@    yaxis  label place normal
+@    yaxis  tick on
+@    yaxis  tick major 10
+@    yaxis  tick minor ticks 1
+@    yaxis  tick default 6
+@    yaxis  tick place rounded true
+@    yaxis  tick in
+@    yaxis  tick major size 0.600000
+@    yaxis  tick major color 1
+@    yaxis  tick major linewidth 1.0
+@    yaxis  tick major linestyle 1
+@    yaxis  tick major grid off
+@    yaxis  tick minor color 1
+@    yaxis  tick minor linewidth 1.0
+@    yaxis  tick minor linestyle 1
+@    yaxis  tick minor grid off
+@    yaxis  tick minor size 0.300000
+@    yaxis  ticklabel on
+@    yaxis  ticklabel format general
+@    yaxis  ticklabel prec 5
+@    yaxis  ticklabel formula ""
+@    yaxis  ticklabel append ""
+@    yaxis  ticklabel prepend ""
+@    yaxis  ticklabel angle 0
+@    yaxis  ticklabel skip 0
+@    yaxis  ticklabel stagger 0
+@    yaxis  ticklabel place normal
+@    yaxis  ticklabel offset auto
+@    yaxis  ticklabel offset 0.000000 , 0.010000
+@    yaxis  ticklabel start type auto
+@    yaxis  ticklabel start 0.000000
+@    yaxis  ticklabel stop type auto
+@    yaxis  ticklabel stop 0.000000
+@    yaxis  ticklabel char size 0.800000
+@    yaxis  ticklabel font 0
+@    yaxis  ticklabel color 1
+@    yaxis  tick place both
+@    yaxis  tick spec type none
+@    altxaxis  off
+@    altyaxis  off
+@    legend on
+@    legend loctype view
+@    legend 0.5, 0.8
+@    legend box color 1
+@    legend box pattern 1
+@    legend box linewidth 1.0
+@    legend box linestyle 1
+@    legend box fill color 0
+@    legend box fill pattern 1
+@    legend font 0
+@    legend char size 1.000000
+@    legend color 1
+@    legend length 4
+@    legend vgap 1
+@    legend hgap 1
+@    legend invert false
+@    frame type 0
+@    frame linestyle 1
+@    frame linewidth 1.0
+@    frame color 1
+@    frame pattern 1
+@    frame background color 0
+@    frame background pattern 0
+@    s0 hidden false
+@    s0 type xy
+@    s0 symbol 0
+@    s0 symbol size 1.000000
+@    s0 symbol color 9
+@    s0 symbol pattern 1
+@    s0 symbol fill color 9
+@    s0 symbol fill pattern 0
+@    s0 symbol linewidth 1.0
+@    s0 symbol linestyle 1
+@    s0 symbol char 65
+@    s0 symbol char font 0
+@    s0 symbol skip 0
+@    s0 line type 1
+@    s0 line linestyle 1
+@    s0 line linewidth 1.0
+@    s0 line color 9
+@    s0 line pattern 1
+@    s0 baseline type 0
+@    s0 baseline off
+@    s0 dropline off
+@    s0 fill type 0
+@    s0 fill rule 0
+@    s0 fill color 1
+@    s0 fill pattern 1
+@    s0 avalue off
+@    s0 avalue type 2
+@    s0 avalue char size 1.000000
+@    s0 avalue font 0
+@    s0 avalue color 1
+@    s0 avalue rot 0
+@    s0 avalue format general
+@    s0 avalue prec 3
+@    s0 avalue prepend ""
+@    s0 avalue append ""
+@    s0 avalue offset 0.000000 , 0.000000
+@    s0 errorbar on
+@    s0 errorbar place both
+@    s0 errorbar color 9
+@    s0 errorbar pattern 1
+@    s0 errorbar size 1.000000
+@    s0 errorbar linewidth 1.0
+@    s0 errorbar linestyle 1
+@    s0 errorbar riser linewidth 1.0
+@    s0 errorbar riser linestyle 1
+@    s0 errorbar riser clip off
+@    s0 errorbar riser clip length 0.100000
+@    s0 comment "/Users/dacortez/tcc/projeto/data/ge_cgh_sdu_62_i1.dat"
+@    s0 legend  ""
+@    s1 hidden false
+@    s1 type xy
+@    s1 symbol 0
+@    s1 symbol size 1.000000
+@    s1 symbol color 10
+@    s1 symbol pattern 1
+@    s1 symbol fill color 10
+@    s1 symbol fill pattern 0
+@    s1 symbol linewidth 1.0
+@    s1 symbol linestyle 1
+@    s1 symbol char 65
+@    s1 symbol char font 0
+@    s1 symbol skip 0
+@    s1 line type 1
+@    s1 line linestyle 1
+@    s1 line linewidth 1.0
+@    s1 line color 10
+@    s1 line pattern 1
+@    s1 baseline type 0
+@    s1 baseline off
+@    s1 dropline off
+@    s1 fill type 0
+@    s1 fill rule 0
+@    s1 fill color 1
+@    s1 fill pattern 1
+@    s1 avalue off
+@    s1 avalue type 2
+@    s1 avalue char size 1.000000
+@    s1 avalue font 0
+@    s1 avalue color 1
+@    s1 avalue rot 0
+@    s1 avalue format general
+@    s1 avalue prec 3
+@    s1 avalue prepend ""
+@    s1 avalue append ""
+@    s1 avalue offset 0.000000 , 0.000000
+@    s1 errorbar on
+@    s1 errorbar place both
+@    s1 errorbar color 10
+@    s1 errorbar pattern 1
+@    s1 errorbar size 1.000000
+@    s1 errorbar linewidth 1.0
+@    s1 errorbar linestyle 1
+@    s1 errorbar riser linewidth 1.0
+@    s1 errorbar riser linestyle 1
+@    s1 errorbar riser clip off
+@    s1 errorbar riser clip length 0.100000
+@    s1 comment "/Users/dacortez/tcc/projeto/data/ge_cgh_sdu_62_i10.dat"
+@    s1 legend  ""
+@    s2 hidden false
+@    s2 type xy
+@    s2 symbol 0
+@    s2 symbol size 1.000000
+@    s2 symbol color 11
+@    s2 symbol pattern 1
+@    s2 symbol fill color 11
+@    s2 symbol fill pattern 0
+@    s2 symbol linewidth 1.0
+@    s2 symbol linestyle 1
+@    s2 symbol char 65
+@    s2 symbol char font 0
+@    s2 symbol skip 0
+@    s2 line type 1
+@    s2 line linestyle 1
+@    s2 line linewidth 1.0
+@    s2 line color 11
+@    s2 line pattern 1
+@    s2 baseline type 0
+@    s2 baseline off
+@    s2 dropline off
+@    s2 fill type 0
+@    s2 fill rule 0
+@    s2 fill color 1
+@    s2 fill pattern 1
+@    s2 avalue off
+@    s2 avalue type 2
+@    s2 avalue char size 1.000000
+@    s2 avalue font 0
+@    s2 avalue color 1
+@    s2 avalue rot 0
+@    s2 avalue format general
+@    s2 avalue prec 3
+@    s2 avalue prepend ""
+@    s2 avalue append ""
+@    s2 avalue offset 0.000000 , 0.000000
+@    s2 errorbar on
+@    s2 errorbar place both
+@    s2 errorbar color 11
+@    s2 errorbar pattern 1
+@    s2 errorbar size 1.000000
+@    s2 errorbar linewidth 1.0
+@    s2 errorbar linestyle 1
+@    s2 errorbar riser linewidth 1.0
+@    s2 errorbar riser linestyle 1
+@    s2 errorbar riser clip off
+@    s2 errorbar riser clip length 0.100000
+@    s2 comment "/Users/dacortez/tcc/projeto/data/ge_cgh_sdu_62_i5.dat"
+@    s2 legend  ""
+@target G5.S0
+@type xy
+0 17.123253
+10 16.194765
+20 15.703722
+30 14.326486
+40 13.038209
+50 12.444708
+60 11.65242
+70 11.080907
+80 10.439043
+90 10.138856
+100 9.9216975
+110 9.6618155
+120 9.4354944
+130 9.5543007
+140 9.3791897
+150 9.5216594
+160 9.245916
+170 9.650822
+180 8.9451938
+190 8.5776097
+200 8.4337196
+210 8.7358803
+220 8.4765862
+230 8.1051411
+240 8.0723747
+250 8.3019859
+260 8.0496345
+270 8.0996118
+280 8.0208825
+290 7.8997044
+&
+@target G5.S1
+@type xy
+0 10.044488
+10 9.7871307
+20 9.5779028
+30 8.9351782
+40 8.8657974
+50 8.6492375
+60 8.7154538
+70 8.5865347
+80 8.3054833
+90 8.4057282
+100 7.7761072
+110 7.731359
+120 7.6123841
+130 7.7029475
+140 7.6855612
+150 7.5937665
+160 7.5352476
+170 7.3495025
+180 7.5788868
+190 7.7549513
+200 7.8761859
+210 7.3969367
+220 7.5251433
+230 7.6119534
+240 7.6161399
+250 8.2313581
+260 7.4425666
+270 7.4578954
+280 7.7322716
+290 7.7679059
+&
+@target G5.S2
+@type xy
+0 8.4268194
+10 8.5705436
+20 8.4255015
+30 8.1776889
+40 7.9873575
+50 8.2266066
+60 8.1098952
+70 7.9655568
+80 7.5903691
+90 7.5942559
+100 7.594632
+110 7.6106783
+120 7.5324108
+130 7.7623537
+140 8.2054232
+150 7.8431385
+160 7.6597557
+170 7.2775487
+180 7.6275408
+190 7.4113939
+200 7.4644397
+210 7.9384034
+220 7.5935951
+230 7.3106805
+240 7.3676058
+250 7.4033295
+260 7.5640081
+270 7.4519511
+280 7.4730936
+290 7.1894961
+&
+@target G6.S0
+@type xy
+0 143.31187
+50 106.03524
+100 77.243268
+150 58.313108
+200 48.931114
+250 47.971813
+300 45.981962
+350 45.153962
+400 44.668374
+450 41.787571
+500 42.61745
+550 41.779412
+600 41.558879
+650 40.89523
+700 40.396342
+750 39.075612
+800 38.180063
+850 37.471012
+900 37.352851
+950 36.747655
+1000 36.53014
+1050 35.004604
+1100 35.655828
+1150 35.341688
+1200 34.646199
+1250 33.255229
+1300 34.474521
+1350 33.364915
+1400 34.228552
+1450 33.481189
+1500 33.055277
+1550 33.490852
+1600 33.737185
+1650 34.024143
+1700 32.39582
+1750 32.718486
+1800 32.765916
+1850 33.234442
+1900 32.773219
+1950 32.315415
+2000 32.335666
+2050 33.058036
+2100 33.346572
+2150 32.576275
+2200 32.988718
+2250 32.331935
+2300 33.037655
+2350 31.52768
+2400 32.473682
+2450 32.151398
+2500 32.457745
+2550 31.776337
+2600 31.179445
+2650 32.156588
+2700 31.806584
+2750 32.042174
+2800 31.249382
+2850 32.145313
+2900 31.586241
+2950 31.63504
+3000 32.079123
+3050 31.61226
+3100 31.86617
+3150 30.74799
+3200 31.893767
+3250 31.458751
+3300 30.897458
+3350 31.579302
+3400 30.579449
+3450 31.215318
+3500 29.467617
+3550 30.011396
+3600 30.046553
+3650 29.86463
+3700 29.99103
+3750 28.500373
+3800 28.926957
+3850 27.527092
+3900 27.627265
+3950 27.23948
+4000 27.542847
+4050 26.514284
+4100 26.642531
+4150 26.863094
+4200 25.874936
+4250 26.140964
+4300 25.331183
+4350 25.994049
+4400 25.501583
+4450 25.443991
+4500 25.783966
+4550 25.004129
+4600 25.511281
+4650 24.489639
+4700 24.27211
+4750 24.915652
+4800 24.227905
+4850 23.968175
+4900 24.111574
+4950 24.388524
+5000 23.97149
+5050 23.581148
+5100 24.258731
+5150 24.292311
+5200 24.112257
+5250 23.734294
+5300 23.603284
+5350 23.304534
+5400 23.830937
+5450 23.567934
+5500 23.293458
+5550 24.416966
+5600 23.659178
+5650 23.252146
+5700 23.541693
+5750 24.518568
+5800 24.504856
+5850 23.34876
+5900 24.152708
+5950 23.173283
+6000 23.561941
+6050 23.944623
+6100 23.623543
+6150 23.41825
+6200 23.691345
+6250 23.805394
+6300 23.283752
+6350 23.294155
+6400 23.559465
+6450 23.563011
+6500 23.061487
+6550 23.492147
+6600 25.187374
+6650 22.970135
+6700 23.396752
+6750 23.007175
+6800 23.577467
+6850 23.183941
+6900 23.683337
+6950 23.909689
+7000 23.650729
+7050 23.267678
+7100 23.1078
+7150 22.727079
+7200 22.874768
+7250 22.711852
+7300 22.512635
+7350 21.593401
+7400 21.470026
+7450 22.115486
+7500 21.964736
+7550 21.656959
+7600 21.077976
+7650 21.197385
+7700 21.528481
+7750 21.82252
+7800 21.278459
+7850 21.56266
+7900 21.490515
+7950 21.303911
+8000 20.544514
+8050 21.757467
+8100 20.370574
+8150 21.141681
+8200 20.802809
+8250 20.637518
+8300 20.59946
+8350 20.940797
+8400 20.866582
+8450 20.304631
+8500 20.314505
+8550 20.633289
+8600 20.688744
+8650 20.570905
+8700 20.248779
+8750 20.775823
+8800 20.495111
+8850 20.066473
+8900 20.454685
+8950 20.532078
+9000 19.969184
+9050 19.618124
+9100 20.169092
+9150 19.581115
+9200 19.146445
+9250 19.734111
+9300 20.080728
+9350 19.72886
+9400 19.316851
+9450 19.056179
+9500 19.168429
+9550 19.2914
+9600 19.005117
+9650 18.347143
+9700 19.424748
+9750 18.511716
+9800 18.856029
+9850 18.789913
+9900 18.35142
+9950 18.726239
+&
+@target G6.S1
+@type xy
+0 100.12156
+50 67.773546
+100 45.717465
+150 32.596752
+200 27.987526
+250 24.979199
+300 22.869363
+350 22.2088
+400 21.332058
+450 20.619944
+500 20.226323
+550 20.030705
+600 20.035787
+650 19.811322
+700 19.778603
+750 19.09904
+800 18.746228
+850 18.82621
+900 18.963523
+950 18.788467
+1000 18.759509
+1050 17.972844
+1100 18.412425
+1150 18.385301
+1200 18.707029
+1250 17.891704
+1300 17.388168
+1350 17.332687
+1400 17.568444
+1450 16.305573
+1500 16.616827
+1550 16.919299
+1600 16.693417
+1650 15.286489
+1700 16.006563
+1750 15.421405
+1800 15.722469
+1850 15.218365
+1900 14.993594
+1950 14.669705
+2000 14.293897
+2050 14.722371
+2100 14.362244
+2150 14.134694
+2200 14.087451
+2250 14.289931
+2300 13.285776
+2350 13.277849
+2400 13.029144
+2450 13.201221
+2500 13.540203
+2550 13.179652
+2600 13.016455
+2650 13.426987
+2700 13.025942
+2750 13.306492
+2800 13.260701
+2850 13.060316
+2900 13.166477
+2950 13.253958
+3000 13.35751
+3050 13.298081
+3100 13.14821
+3150 12.902017
+3200 13.10539
+3250 13.168064
+3300 12.638876
+3350 12.452857
+3400 13.014649
+3450 12.696225
+3500 12.564672
+3550 12.534978
+3600 12.482885
+3650 12.007942
+3700 12.583844
+3750 12.291809
+3800 12.069325
+3850 12.007952
+3900 12.288708
+3950 12.046803
+4000 11.882534
+4050 12.048848
+4100 12.024756
+4150 12.859341
+4200 12.333027
+4250 12.170537
+4300 12.607186
+4350 11.138923
+4400 11.73798
+4450 11.234803
+4500 11.291141
+4550 11.579046
+4600 11.385571
+4650 11.273582
+4700 11.194178
+4750 11.526617
+4800 10.902824
+4850 11.272779
+4900 11.194615
+4950 11.408895
+5000 11.39316
+5050 11.109968
+5100 11.23319
+5150 11.225507
+5200 11.011461
+5250 11.660181
+5300 10.937013
+5350 10.924312
+5400 11.210658
+5450 12.254939
+5500 10.975806
+5550 11.087842
+5600 11.069285
+5650 11.204327
+5700 11.013535
+5750 10.781171
+5800 11.084789
+5850 10.419414
+5900 10.895545
+5950 10.058963
+6000 10.233603
+6050 10.326561
+6100 10.887708
+6150 10.30464
+6200 10.187641
+6250 10.310838
+6300 11.681411
+6350 10.60146
+6400 10.876596
+6450 11.280731
+6500 10.358008
+6550 10.176193
+6600 10.867803
+6650 10.119736
+6700 10.422549
+6750 10.095155
+6800 10.017246
+6850 9.8702779
+6900 9.5957718
+6950 9.8945737
+7000 9.5700149
+7050 8.6728676
+7100 8.7748439
+7150 8.5295006
+7200 8.277092
+7250 8.3436266
+7300 8.7241486
+7350 8.2589445
+7400 8.3819261
+7450 8.279375
+7500 8.2041827
+7550 8.4190317
+7600 8.4951591
+7650 8.3309349
+7700 8.3051525
+7750 8.3440599
+7800 8.3613065
+7850 8.3658184
+7900 8.4533621
+7950 8.1847135
+8000 8.5900493
+8050 8.5005696
+8100 8.2768135
+8150 8.2673477
+8200 8.2107807
+8250 8.4063085
+8300 8.4013941
+8350 8.3136432
+8400 8.1676209
+8450 8.3238355
+8500 8.1172812
+8550 8.1817623
+8600 8.2276267
+8650 8.247547
+8700 8.1857728
+8750 8.2371711
+8800 8.6318601
+8850 8.2590182
+8900 8.4304491
+8950 8.2014896
+9000 8.0673278
+9050 8.1791032
+9100 8.4427119
+9150 8.3839096
+9200 8.287919
+9250 8.1353669
+9300 8.3007938
+9350 8.3344689
+9400 8.1202784
+9450 8.3468364
+9500 8.7827551
+9550 8.2573856
+9600 8.3431886
+9650 8.0848658
+9700 8.4042965
+9750 8.4810393
+9800 8.1578435
+9850 8.1948737
+9900 8.1657573
+9950 8.0365963
+&
+@target G6.S2
+@type xy
+0 75.942457
+50 50.471501
+100 36.923934
+150 31.696582
+200 28.781925
+250 26.84724
+300 26.176177
+350 25.054691
+400 24.054002
+450 23.325073
+500 23.042868
+550 22.466977
+600 21.597794
+650 21.160053
+700 20.856712
+750 20.223351
+800 19.941581
+850 19.827456
+900 19.340561
+950 18.709552
+1000 18.33539
+1050 18.258951
+1100 18.385334
+1150 18.075802
+1200 17.456968
+1250 17.390802
+1300 17.619536
+1350 17.23279
+1400 17.563823
+1450 17.117227
+1500 17.235755
+1550 17.033258
+1600 17.301045
+1650 17.045619
+1700 17.021709
+1750 16.35993
+1800 16.233777
+1850 16.180075
+1900 15.551501
+1950 15.211133
+2000 15.252028
+2050 15.61528
+2100 15.036167
+2150 14.736301
+2200 14.997788
+2250 14.312582
+2300 14.492333
+2350 14.830537
+2400 14.514127
+2450 13.791016
+2500 13.748089
+2550 13.963995
+2600 12.980043
+2650 13.437217
+2700 13.478199
+2750 13.262385
+2800 13.180036
+2850 13.179278
+2900 13.256351
+2950 12.599837
+3000 12.574016
+3050 12.842673
+3100 12.437037
+3150 12.195336
+3200 12.216367
+3250 12.539601
+3300 12.425583
+3350 11.931144
+3400 12.206042
+3450 12.217165
+3500 12.270193
+3550 11.272911
+3600 11.478969
+3650 10.845183
+3700 10.436446
+3750 10.317504
+3800 10.549249
+3850 10.275457
+3900 10.151525
+3950 10.432613
+4000 10.325425
+4050 10.407863
+4100 10.174885
+4150 11.022461
+4200 10.056466
+4250 10.313202
+4300 10.422762
+4350 10.489835
+4400 10.424707
+4450 10.249117
+4500 10.492163
+4550 10.076879
+4600 10.287942
+4650 10.50728
+4700 10.322887
+4750 10.67096
+4800 10.267975
+4850 10.44965
+4900 10.2781
+4950 10.743189
+5000 10.705427
+5050 10.293134
+5100 10.294379
+5150 10.244916
+5200 10.536166
+5250 10.124586
+5300 10.338524
+5350 10.400994
+5400 10.3358
+5450 10.485914
+5500 10.519494
+5550 10.37229
+5600 10.425113
+5650 10.247782
+5700 10.423555
+5750 10.535215
+5800 10.317409
+5850 10.127137
+5900 10.092612
+5950 10.117863
+6000 10.692495
+6050 10.758634
+6100 10.439306
+6150 10.136002
+6200 10.763234
+6250 10.193036
+6300 9.7090231
+6350 9.8998785
+6400 9.767652
+6450 9.954742
+6500 9.8629428
+6550 9.4044115
+6600 9.7389394
+6650 10.050803
+6700 9.663172
+6750 9.9577297
+6800 9.8462344
+6850 10.434117
+6900 9.5933995
+6950 9.9479365
+7000 9.7670381
+7050 9.7804466
+7100 9.5819613
+7150 9.3755707
+7200 9.8434106
+7250 9.1353852
+7300 9.631382
+7350 9.7973064
+7400 10.253272
+7450 10.042775
+7500 9.5486334
+7550 9.8492229
+7600 9.8679993
+7650 9.2372588
+7700 9.6649401
+7750 9.8336148
+7800 9.958067
+7850 10.349732
+7900 9.3702007
+7950 9.3761912
+8000 9.447653
+8050 9.6376538
+8100 9.6921853
+8150 9.3475415
+8200 9.7047577
+8250 9.5134266
+8300 9.4427284
+8350 9.6476109
+8400 9.6679942
+8450 9.6704228
+8500 8.9685654
+8550 9.8313848
+8600 9.8500201
+8650 9.4885985
+8700 10.385432
+8750 10.032695
+8800 9.3947896
+8850 9.5745781
+8900 9.3698268
+8950 10.14845
+9000 9.5913506
+9050 9.9451028
+9100 9.4295685
+9150 9.4402319
+9200 9.9509533
+9250 9.2161266
+9300 9.586326
+9350 9.5591723
+9400 9.4256073
+9450 9.7524025
+9500 9.2505166
+9550 9.366912
+9600 9.672147
+9650 9.6563903
+9700 9.4051534
+9750 9.4124782
+9800 9.3571039
+9850 9.6036514
+9900 9.3928545
+9950 9.7382148
+&
+@target G7.S0
+@type xy
+0 400.61633
+50 344.25856
+100 287
+150 240.60908
+200 216.73204
+250 201.84401
+300 197.14491
+350 193.92695
+400 194.61626
+450 192.12962
+500 191.51042
+550 190.82979
+600 188.39119
+650 184.74001
+700 182.89274
+750 183.99829
+800 181.92007
+850 181.88895
+900 180.59297
+950 176.30918
+1000 175.53037
+1050 171.01577
+1100 165.52837
+1150 164.09063
+1200 161.79572
+1250 158.86074
+1300 158.22151
+1350 158.4272
+1400 158.0224
+1450 156.92584
+1500 151.29
+1550 149.10261
+1600 138.75508
+1650 121.58794
+1700 108.69228
+1750 98.556792
+1800 89.375466
+1850 84.620341
+1900 79.683339
+1950 77.029543
+2000 73.117547
+2050 70.960355
+2100 69.861682
+2150 69.634343
+2200 70.191215
+2250 69.227122
+2300 68.527635
+2350 68.665459
+2400 67.44381
+2450 67.083117
+2500 66.947183
+2550 68.022322
+2600 66.667563
+2650 66.016489
+2700 64.913684
+2750 64.440997
+2800 62.774007
+2850 61.339401
+2900 58.51149
+2950 55.098008
+3000 52.858772
+3050 51.076034
+3100 48.63074
+3150 48.45194
+3200 47.748581
+3250 46.352599
+3300 46.974977
+3350 45.036768
+3400 44.085223
+3450 43.072791
+3500 41.795108
+3550 41.635213
+3600 42.242258
+3650 42.245136
+3700 42.581646
+3750 41.831048
+3800 41.765686
+3850 42.260896
+3900 42.154583
+3950 42.208584
+4000 41.951933
+4050 41.525178
+4100 42.14983
+4150 42.107424
+4200 41.810424
+4250 41.109007
+4300 40.822004
+4350 41.11282
+4400 41.330125
+4450 40.7485
+4500 40.989817
+4550 40.894993
+4600 40.782823
+4650 41.681868
+4700 41.187587
+4750 40.975048
+4800 40.872584
+4850 40.97344
+4900 40.819019
+4950 40.979061
+5000 40.665807
+5050 40.703228
+5100 40.565636
+5150 40.613626
+5200 41.236992
+5250 39.514243
+5300 39.996029
+5350 40.099123
+5400 40.101299
+5450 39.779541
+5500 38.690501
+5550 39.09779
+5600 38.732256
+5650 38.833188
+5700 37.996675
+5750 38.14441
+5800 37.592155
+5850 37.451437
+5900 37.930337
+5950 37.337313
+6000 37.256935
+6050 37.300612
+6100 37.325537
+6150 38.263868
+6200 38.086013
+6250 37.037832
+6300 37.677764
+6350 37.445596
+6400 37.66333
+6450 38.158559
+6500 37.875557
+6550 37.444115
+6600 36.730502
+6650 37.245705
+6700 38.42437
+6750 37.751615
+6800 37.032657
+6850 36.830086
+6900 37.266762
+6950 36.756903
+7000 36.864248
+7050 36.646648
+7100 38.573145
+7150 36.895058
+7200 37.19905
+7250 37.57515
+7300 36.2395
+7350 36.104481
+7400 36.189935
+7450 35.679002
+7500 34.997694
+7550 35.343024
+7600 34.716707
+7650 34.743351
+7700 35.695528
+7750 34.294115
+7800 34.808202
+7850 34.581925
+7900 34.497158
+7950 34.221641
+8000 33.643002
+8050 33.974323
+8100 33.270055
+8150 33.031072
+8200 32.460296
+8250 33.074876
+8300 32.641382
+8350 32.508941
+8400 32.858381
+8450 32.657872
+8500 32.633628
+8550 31.96623
+8600 31.58416
+8650 31.551077
+8700 31.563998
+8750 31.703162
+8800 31.047978
+8850 32.10579
+8900 31.230297
+8950 31.019553
+9000 29.997302
+9050 30.023138
+9100 30.230683
+9150 30.492004
+9200 29.944389
+9250 30.017825
+9300 29.987204
+9350 30.174491
+9400 30.087035
+9450 30.128461
+9500 30.112667
+9550 30.219226
+9600 30.100124
+9650 30.123363
+9700 30.080969
+9750 30.026948
+9800 30.006868
+9850 29.691267
+9900 30.629904
+9950 30.371919
+10000 29.704157
+&
+@target G7.S1
+@type xy
+0 266.61406
+50 181.28395
+100 124.93187
+150 96.227431
+200 79.191266
+250 73.310603
+300 70.482806
+350 67.026897
+400 64.538957
+450 62.664406
+500 60.493083
+550 58.965684
+600 57.400466
+650 56.427087
+700 55.786259
+750 55.664002
+800 55.08286
+850 54.375975
+900 54.095586
+950 54.130782
+1000 54.150922
+1050 53.785926
+1100 53.359069
+1150 53.005227
+1200 52.794734
+1250 51.958001
+1300 51.392942
+1350 50.83064
+1400 50.603571
+1450 50.653501
+1500 49.610065
+1550 48.222477
+1600 47.244137
+1650 45.677403
+1700 44.684441
+1750 43.607548
+1800 43.528102
+1850 43.596427
+1900 43.662959
+1950 42.403168
+2000 42.320597
+2050 40.71203
+2100 40.265412
+2150 39.788949
+2200 39.156237
+2250 38.910931
+2300 38.358141
+2350 38.159285
+2400 37.245125
+2450 36.518742
+2500 36.246575
+2550 36.064894
+2600 36.482401
+2650 36.115229
+2700 35.734001
+2750 35.284013
+2800 34.943163
+2850 35.630908
+2900 34.950063
+2950 35.006994
+3000 33.742807
+3050 33.228757
+3100 32.516291
+3150 31.557496
+3200 30.137778
+3250 29.430886
+3300 29.488868
+3350 30.141667
+3400 29.125578
+3450 29.241584
+3500 28.473042
+3550 28.14637
+3600 27.458864
+3650 27.092182
+3700 27.260826
+3750 26.983015
+3800 27.13903
+3850 27.151259
+3900 27.139603
+3950 27.410425
+4000 27.0852
+4050 27.497031
+4100 27.244495
+4150 27.575466
+4200 27.038243
+4250 27.109479
+4300 26.804704
+4350 27.320666
+4400 27.064544
+4450 26.973739
+4500 26.991131
+4550 27.020479
+4600 26.634403
+4650 26.160242
+4700 27.062811
+4750 26.176263
+4800 26.058124
+4850 26.064757
+4900 25.471137
+4950 25.134653
+5000 25.227638
+5050 24.982808
+5100 25.047023
+5150 25.632197
+5200 25.08029
+5250 24.967904
+5300 25.388428
+5350 24.264245
+5400 24.062683
+5450 24.863029
+5500 24.253229
+5550 24.045259
+5600 24.070106
+5650 24.865514
+5700 24.268731
+5750 24.031694
+5800 24.237165
+5850 23.414793
+5900 23.114566
+5950 23.488608
+6000 23.220451
+6050 22.109032
+6100 22.103886
+6150 22.323853
+6200 22.215306
+6250 22.132229
+6300 22.19948
+6350 21.977274
+6400 21.981822
+6450 22.673534
+6500 22.223633
+6550 22.160233
+6600 22.406506
+6650 22.632366
+6700 22.369865
+6750 22.000234
+6800 22.110521
+6850 22.221436
+6900 22.333665
+6950 22.126054
+7000 22.151311
+7050 21.981593
+7100 22.223275
+7150 22.18819
+7200 22.300743
+7250 21.864726
+7300 22.685502
+7350 21.782396
+7400 22.031385
+7450 21.891965
+7500 21.783676
+7550 21.961463
+7600 22.042894
+7650 21.828219
+7700 21.828636
+7750 21.963475
+7800 21.86563
+7850 21.155081
+7900 21.984141
+7950 21.30002
+8000 21.472751
+8050 21.506968
+8100 21.551398
+8150 21.228888
+8200 21.175708
+8250 21.935341
+8300 21.06776
+8350 21.046212
+8400 20.918004
+8450 21.589389
+8500 21.040139
+8550 20.715959
+8600 21.545513
+8650 21.432672
+8700 20.720156
+8750 21.28689
+8800 21.10079
+8850 21.436574
+8900 20.474804
+8950 20.429333
+9000 20.062042
+9050 20.042387
+9100 19.867276
+9150 19.783784
+9200 19.860745
+9250 19.366438
+9300 19.671115
+9350 19.07208
+9400 18.865893
+9450 18.868862
+9500 18.749466
+9550 18.92411
+9600 19.344442
+9650 19.137076
+9700 18.747585
+9750 19.225841
+9800 19.755003
+9850 19.517495
+9900 19.205549
+9950 18.639193
+10000 19.03111
+&
+@target G7.S2
+@type xy
+0 187.74955
+50 123.20668
+100 90.546607
+150 65.715624
+200 56.754079
+250 49.763402
+300 46.345136
+350 43.12187
+400 42.227697
+450 40.590958
+500 38.633753
+550 36.797384
+600 34.480185
+650 33.107623
+700 30.967843
+750 29.710493
+800 29.077817
+850 28.04325
+900 28.269434
+950 27.093091
+1000 26.757541
+1050 26.341477
+1100 26.380079
+1150 25.501198
+1200 25.373921
+1250 24.942885
+1300 25.091847
+1350 24.637038
+1400 23.885187
+1450 23.908563
+1500 24.051063
+1550 23.605743
+1600 23.882865
+1650 23.137206
+1700 23.343101
+1750 23.106037
+1800 23.053007
+1850 22.734936
+1900 23.032387
+1950 22.145207
+2000 22.445263
+2050 22.518577
+2100 22.361981
+2150 22.28464
+2200 21.957886
+2250 21.765998
+2300 21.796764
+2350 21.512848
+2400 21.654044
+2450 21.462626
+2500 21.36935
+2550 21.304837
+2600 21.623581
+2650 21.183871
+2700 21.321717
+2750 21.370539
+2800 21.094348
+2850 21.284613
+2900 20.574937
+2950 21.349186
+3000 20.932124
+3050 21.083031
+3100 20.969568
+3150 20.581711
+3200 20.629076
+3250 20.562947
+3300 20.352444
+3350 20.252491
+3400 20.642056
+3450 20.689698
+3500 20.470928
+3550 20.251037
+3600 20.642223
+3650 20.437934
+3700 20.013106
+3750 20.418489
+3800 20.125142
+3850 20.144904
+3900 20.525922
+3950 20.523128
+4000 20.816069
+4050 20.940099
+4100 20.445589
+4150 19.567083
+4200 19.75081
+4250 20.364563
+4300 19.946361
+4350 19.810913
+4400 19.417776
+4450 19.405113
+4500 19.440484
+4550 19.026275
+4600 19.328521
+4650 19.072208
+4700 19.094688
+4750 18.782585
+4800 19.622219
+4850 19.037809
+4900 19.567319
+4950 19.415493
+5000 19.535155
+5050 19.06574
+5100 19.363234
+5150 19.34881
+5200 19.792345
+5250 19.272602
+5300 19.417976
+5350 19.272304
+5400 19.130092
+5450 19.270966
+5500 18.891337
+5550 19.512791
+5600 18.873984
+5650 19.114248
+5700 19.348804
+5750 19.21817
+5800 19.397794
+5850 19.856381
+5900 19.332211
+5950 19.184803
+6000 19.128028
+6050 19.061155
+6100 19.55422
+6150 19.40006
+6200 19.088709
+6250 19.388133
+6300 18.83276
+6350 19.386488
+6400 18.992116
+6450 19.280854
+6500 19.342823
+6550 19.596
+6600 18.801828
+6650 18.906491
+6700 19.135168
+6750 19.095278
+6800 18.956697
+6850 18.956412
+6900 19.631202
+6950 19.324757
+7000 19.325326
+7050 19.290051
+7100 19.062544
+7150 19.461305
+7200 19.492877
+7250 19.187932
+7300 18.973034
+7350 19.071369
+7400 19.489252
+7450 18.918232
+7500 19.258873
+7550 19.630888
+7600 19.209232
+7650 19.120314
+7700 18.878984
+7750 19.591847
+7800 19.239538
+7850 18.774242
+7900 18.997203
+7950 19.925061
+8000 18.903827
+8050 18.956032
+8100 18.704586
+8150 19.119297
+8200 19.028886
+8250 18.692458
+8300 18.33594
+8350 18.755852
+8400 18.187001
+8450 18.152844
+8500 18.453381
+8550 18.29078
+8600 18.153888
+8650 18.910946
+8700 18.336875
+8750 18.689748
+8800 18.117556
+8850 18.279909
+8900 17.941776
+8950 18.166643
+9000 18.708968
+9050 18.024015
+9100 18.058669
+9150 18.395543
+9200 18.708333
+9250 17.89988
+9300 18.529581
+9350 17.899126
+9400 18.052633
+9450 18.039651
+9500 17.977872
+9550 17.660104
+9600 18.125259
+9650 17.876967
+9700 17.522917
+9750 17.195504
+9800 16.803523
+9850 15.916194
+9900 16.043929
+9950 16.077449
+10000 16.157589
+&
+@target G8.S0
+@type xy
+0 2847.62
+100 2617.0108
+200 2490.1126
+300 2458.2104
+400 2453.3942
+500 2450.0103
+600 2449.7857
+700 2446.4729
+800 2444.6276
+900 2445.9371
+1000 2445.8218
+1100 2445.1726
+1200 2445.2542
+1300 2444.8759
+1400 2441.5575
+1500 2432.4072
+1600 2417.4779
+1700 2390.0957
+1800 2379.5502
+1900 2367.7536
+2000 2355.66
+2100 2349.5874
+2200 2332.1253
+2300 2305.0137
+2400 2274.9963
+2500 2227.768
+2600 2211.5918
+2700 2203.6624
+2800 2203.275
+2900 2198.2442
+3000 2168.0777
+3100 2119.5622
+3200 2091.8573
+3300 2088.1438
+3400 2085.5254
+3500 2085.0967
+3600 2085.0412
+3700 2084.8618
+3800 2083.3658
+3900 2041.1057
+4000 2025.4386
+4100 2001.4478
+4200 1981.8625
+4300 1971.8627
+4400 1966.0428
+4500 1962.7074
+4600 1961.8189
+4700 1961.1386
+4800 1949.2758
+4900 1938.0379
+5000 1916.4685
+5100 1892.5476
+5200 1881.2027
+5300 1874.4728
+5400 1872.1794
+5500 1870.7121
+5600 1867.5339
+5700 1839.2634
+5800 1818.954
+5900 1814.0964
+6000 1814.2625
+6100 1814.8342
+6200 1814.3744
+6300 1814.5571
+6400 1814.5253
+6500 1814.5544
+6600 1814.1364
+6700 1814.0964
+6800 1814.0964
+6900 1814.4834
+7000 1814.0964
+7100 1814.4244
+7200 1814.4031
+7300 1814.0964
+7400 1814.4945
+7500 1814.1695
+7600 1799.3739
+7700 1759.7127
+7800 1741.7953
+7900 1736.8563
+8000 1735.6927
+8100 1735.6553
+8200 1735.1307
+8300 1736.454
+8400 1736.3195
+8500 1735.8269
+8600 1734.452
+8700 1734.4596
+8800 1722.3139
+8900 1693.9879
+9000 1676.8674
+9100 1671.7671
+9200 1663.75
+9300 1660.4941
+9400 1655.1975
+9500 1652.6556
+9600 1651.9111
+9700 1649.8821
+9800 1648.091
+9900 1634.1637
+10000 1609.3294
+10100 1598.0408
+10200 1594.0577
+10300 1587.7652
+10400 1581.1455
+10500 1578.2625
+10600 1577.1344
+10700 1569.8694
+10800 1528.9221
+10900 1508.6644
+11000 1500.5178
+11100 1489.0569
+11200 1473.0855
+11300 1462.8721
+11400 1453.3001
+11500 1449.2078
+11600 1447.6544
+11700 1443.8306
+11800 1444.5867
+11900 1442.8814
+12000 1443.0368
+12100 1443.9053
+12200 1443.4375
+12300 1442.9884
+12400 1444.5523
+12500 1442.25
+12600 1442.3643
+12700 1442.5198
+12800 1442.6752
+12900 1442.5314
+13000 1442.4047
+13100 1442.5644
+13200 1442.3486
+13300 1442.6409
+13400 1442.8649
+13500 1442.4227
+13600 1442.9711
+13700 1442.8834
+13800 1442.2888
+13900 1442.1665
+14000 1442.2756
+14100 1443.2991
+14200 1440.2271
+14300 1434.2816
+14400 1424.9744
+14500 1418.0458
+14600 1418.4669
+14700 1417.6151
+14800 1417.6175
+14900 1413.4013
+15000 1403.6871
+15100 1382.5132
+15200 1354.5129
+15300 1306.9516
+15400 1289.914
+15500 1279.4648
+15600 1272.9121
+15700 1266.7482
+15800 1266.8316
+15900 1266.0014
+16000 1265.5239
+16100 1265.5298
+16200 1265.967
+16300 1265.0952
+16400 1262.1733
+16500 1261.3939
+16600 1257.8634
+16700 1220.8883
+16800 1183.5207
+16900 1175.5807
+17000 1171.8567
+17100 1167.3877
+17200 1165.0018
+17300 1164.1165
+17400 1164.8382
+17500 1163.2697
+17600 1164.4067
+17700 1161.2068
+17800 1160.977
+17900 1149.1498
+18000 1122.1216
+18100 1086.9975
+18200 1069.9886
+18300 1063.1456
+18400 1062.3664
+18500 1062.1597
+18600 1061.9778
+18700 1062.923
+18800 1061.0102
+18900 1060.0162
+19000 1059.8829
+19100 1060.5225
+19200 1059.9902
+19300 1059.9264
+19400 1048.5659
+19500 1024.0003
+19600 1009.1675
+19700 1008.8977
+19800 1007.5852
+19900 1008.1976
+20000 1009.3876
+20100 1007.8018
+20200 1007.1246
+20300 1005.4829
+20400 1005.6856
+20500 1005.5916
+20600 1006.2414
+20700 1006.2914
+20800 1005.9434
+20900 1005.7397
+21000 1005.6654
+21100 1005.6578
+21200 1005.5552
+21300 1005.6517
+21400 1005.9928
+21500 1005.9651
+21600 1006.1356
+21700 1005.666
+21800 1005.749
+21900 992.17434
+22000 960.37595
+22100 947.7204
+22200 937.59771
+22300 936.99822
+22400 936.73009
+22500 936.49167
+22600 934.45243
+22700 933.44635
+22800 934.05584
+22900 933.39408
+23000 931.78503
+23100 916.6377
+23200 900.95091
+23300 896.8245
+23400 896.38312
+23500 896.6557
+23600 896.45383
+23700 895.31063
+23800 894.19643
+23900 894.07838
+24000 894.00529
+24100 894.21602
+24200 894.25766
+24300 894.79529
+24400 894.01332
+24500 894.90959
+24600 894.76709
+24700 894.36145
+24800 896.13006
+24900 894.38494
+25000 891.79695
+25100 888.22794
+25200 885.78962
+25300 884.91054
+25400 884.06386
+25500 868.29614
+25600 861.29779
+25700 858.33062
+25800 856.95371
+25900 856.06196
+26000 855.87264
+26100 848.88169
+26200 832.75283
+26300 825.24256
+26400 814.52768
+26500 796.03376
+26600 775.83358
+26700 770.51151
+26800 766.32837
+26900 762.80824
+27000 761.07313
+27100 758.58329
+27200 758.18261
+27300 756.55627
+27400 756.14181
+27500 752.72865
+27600 751.96505
+27700 752.42603
+27800 748.32453
+27900 724.19587
+28000 710.62554
+28100 706.76064
+28200 706.65222
+28300 706.32172
+28400 706.82339
+28500 706.62375
+28600 707.24254
+28700 706.5131
+28800 706.67526
+28900 707.6989
+29000 706.28172
+29100 706.46877
+29200 706.3222
+29300 702.63596
+29400 690.15492
+29500 683.40182
+29600 680.41988
+29700 667.58254
+29800 658.30568
+29900 654.02806
+30000 640.9223
+30100 628.24266
+30200 622.33842
+30300 620.69057
+30400 617.09085
+30500 610.89672
+30600 602.30512
+30700 597.03559
+30800 596.63762
+30900 594.99686
+31000 595.10933
+31100 594.99239
+31200 595.42408
+31300 593.74747
+31400 594.25903
+31500 594.01272
+31600 593.89402
+31700 594.31365
+31800 593.6923
+31900 595.13427
+32000 594.47666
+32100 594.47317
+32200 592.21521
+32300 591.83686
+32400 591.9798
+32500 592.12453
+32600 591.63248
+32700 591.2666
+32800 593.67604
+32900 591.9928
+33000 589.67467
+33100 590.07158
+33200 589.87063
+33300 589.68612
+33400 585.66278
+33500 569.90853
+33600 560.7791
+33700 545.76408
+33800 533.09941
+33900 525.04577
+34000 515.44358
+34100 505.82781
+34200 496.01807
+34300 494.00912
+34400 493.19015
+34500 492.45972
+34600 491.72486
+34700 490.56454
+34800 489.92087
+34900 489.93631
+35000 488.0527
+35100 487.00586
+35200 479.22377
+35300 476.97977
+35400 474.1581
+35500 472.12817
+35600 473.01272
+35700 470.96688
+35800 467.60084
+35900 464.977
+36000 467.02787
+36100 466.25364
+36200 467.59338
+36300 464.14583
+36400 463.42262
+36500 463.49433
+36600 462.0986
+36700 462.97912
+36800 462.44407
+36900 461.87747
+37000 461.53554
+37100 461.86749
+37200 462.87734
+37300 461.70575
+37400 461.56371
+37500 460.7953
+37600 459.81891
+37700 460.64822
+37800 459.76763
+37900 460.90088
+38000 461.05772
+38100 460.14135
+38200 459.78253
+38300 459.88035
+38400 461.87517
+38500 459.93597
+38600 460.90088
+38700 460.20272
+38800 460.83991
+38900 460.8039
+39000 459.88561
+39100 458.22689
+39200 457.41488
+39300 457.63923
+39400 456.19138
+39500 452.32937
+39600 450.65376
+39700 450.49099
+39800 450.91913
+39900 450.45089
+40000 449.41582
+40100 448.66653
+40200 449.30269
+40300 448.42024
+40400 448.67571
+40500 448.40688
+40600 449.42612
+40700 448.45506
+40800 449.0587
+40900 448.92399
+41000 447.8534
+41100 441.67591
+41200 439.21846
+41300 438.77483
+41400 438.24409
+41500 437.66496
+41600 438.19634
+41700 438.14873
+41800 437.3662
+41900 437.48637
+42000 437.44366
+42100 437.28778
+42200 437.87971
+42300 437.14307
+42400 437.12056
+42500 437.45494
+42600 437.30267
+42700 437.41086
+42800 437.57547
+42900 437.27633
+43000 437.79617
+43100 436.76775
+43200 436.93073
+43300 431.07234
+43400 418.13781
+43500 412.08547
+43600 408.58364
+43700 406.21757
+43800 405.39615
+43900 404.89466
+44000 405.01895
+44100 404.467
+44200 404.18649
+44300 396.34168
+44400 385.34009
+44500 374.96657
+44600 372.18763
+44700 369.94029
+44800 367.84824
+44900 368.06645
+45000 367.70268
+45100 366.60751
+45200 366.55969
+45300 365.92347
+45400 365.69525
+45500 366.22592
+45600 365.62797
+45700 366.43055
+45800 365.22288
+45900 366.4559
+46000 366.26423
+46100 365.02094
+46200 363.72857
+46300 363.23115
+46400 362.86206
+46500 362.75891
+46600 362.82904
+46700 363.76347
+46800 362.84059
+46900 362.94903
+47000 361.7059
+47100 361.03838
+47200 359.61777
+47300 357.2371
+47400 354.77719
+47500 353.45095
+47600 352.07669
+47700 350.45544
+47800 349.39119
+47900 346.06536
+48000 342.89614
+48100 342.94581
+48200 342.1243
+48300 342.28259
+48400 341.73956
+48500 341.99217
+48600 341.93031
+48700 342.57337
+48800 343.04966
+48900 341.88618
+49000 343.0095
+49100 343.02255
+49200 341.8785
+49300 341.25847
+49400 341.27651
+49500 340.63957
+49600 339.80668
+49700 338.9821
+49800 337.78865
+49900 338.57159
+50000 338.53752
+&
+@target G8.S1
+@type xy
+0 2592.3789
+100 2236.6275
+200 2046.4032
+300 1969.5177
+400 1938.2541
+500 1925.4416
+600 1911.955
+700 1849.9483
+800 1771.0062
+900 1710.6048
+1000 1648.0311
+1100 1624.6919
+1200 1574.5708
+1300 1524.2832
+1400 1505.4658
+1500 1488.8696
+1600 1466.03
+1700 1433.4011
+1800 1386.208
+1900 1364.5385
+2000 1352.6333
+2100 1319.3988
+2200 1304.0509
+2300 1284.8551
+2400 1258.8999
+2500 1246.4931
+2600 1230.6893
+2700 1208.6963
+2800 1170.9645
+2900 1141.1493
+3000 1130.9023
+3100 1117.5734
+3200 1090.4167
+3300 1069.8932
+3400 1050.6354
+3500 1032.5833
+3600 1027.7074
+3700 1019.1895
+3800 1013.4886
+3900 1006.1748
+4000 998.32174
+4100 993.49694
+4200 975.1817
+4300 959.36477
+4400 958.31309
+4500 956.92872
+4600 955.66226
+4700 952.01082
+4800 945.25639
+4900 939.5551
+5000 938.68245
+5100 936.50426
+5200 931.41938
+5300 917.21155
+5400 902.86739
+5500 898.9178
+5600 894.96872
+5700 874.87048
+5800 856.91792
+5900 855.2464
+6000 853.80725
+6100 850.73651
+6200 851.99381
+6300 850.18891
+6400 849.58631
+6500 835.76831
+6600 799.66457
+6700 785.3814
+6800 776.29662
+6900 770.62686
+7000 767.79494
+7100 765.11705
+7200 761.79452
+7300 749.32671
+7400 735.61084
+7500 735.57574
+7600 731.64905
+7700 729.59185
+7800 728.85445
+7900 727.60781
+8000 722.7499
+8100 714.2929
+8200 705.90964
+8300 697.65353
+8400 694.06841
+8500 691.83339
+8600 691.93915
+8700 689.14014
+8800 675.9886
+8900 667.86318
+9000 657.87297
+9100 647.34658
+9200 642.12003
+9300 640.66817
+9400 638.80858
+9500 638.49592
+9600 638.30977
+9700 637.852
+9800 638.36646
+9900 638.83221
+10000 635.26839
+10100 634.06634
+10200 632.77315
+10300 631.33869
+10400 631.05816
+10500 631.3915
+10600 631.3361
+10700 633.46468
+10800 631.7913
+10900 632.0111
+11000 631.54773
+11100 632.13282
+11200 626.18384
+11300 597.99857
+11400 585.765
+11500 576.12148
+11600 571.16014
+11700 568.26969
+11800 566.3576
+11900 565.50775
+12000 566.46566
+12100 564.12975
+12200 560.55435
+12300 551.60825
+12400 547.85107
+12500 537.85142
+12600 531.49025
+12700 527.0786
+12800 525.98484
+12900 523.5546
+13000 520.06785
+13100 507.2494
+13200 482.10255
+13300 471.97801
+13400 459.86259
+13500 455.98845
+13600 453.06448
+13700 452.12677
+13800 452.40281
+13900 451.34289
+14000 449.22202
+14100 443.4608
+14200 433.48959
+14300 422.62804
+14400 418.88141
+14500 417.3987
+14600 407.39443
+14700 390.5437
+14800 384.53539
+14900 378.71317
+15000 374.2469
+15100 373.06386
+15200 371.51353
+15300 368.09216
+15400 365.39105
+15500 366.16152
+15600 365.03868
+15700 365.6781
+15800 358.86352
+15900 341.92626
+16000 335.54813
+16100 329.64927
+16200 327.43984
+16300 327.58965
+16400 327.60211
+16500 324.80322
+16600 324.5415
+16700 323.60748
+16800 324.74968
+16900 323.94437
+17000 321.70981
+17100 322.04237
+17200 320.11853
+17300 317.88752
+17400 317.07445
+17500 316.38417
+17600 316.45397
+17700 316.46847
+17800 316.03426
+17900 314.34417
+18000 310.00097
+18100 306.22257
+18200 305.59295
+18300 303.90997
+18400 302.74533
+18500 302.14372
+18600 301.15053
+18700 301.40839
+18800 300.01067
+18900 299.8045
+19000 299.98214
+19100 298.62222
+19200 297.12899
+19300 292.98176
+19400 289.00105
+19500 286.85968
+19600 284.20535
+19700 283.28469
+19800 282.54777
+19900 283.48378
+20000 281.87051
+20100 280.53096
+20200 279.42004
+20300 278.92902
+20400 278.19872
+20500 277.3239
+20600 277.35678
+20700 277.52284
+20800 277.252
+20900 278.56472
+21000 277.6259
+21100 277.05923
+21200 276.26824
+21300 276.65303
+21400 275.93359
+21500 275.86659
+21600 276.62345
+21700 275.97654
+21800 274.17127
+21900 274.21162
+22000 275.89306
+22100 269.88059
+22200 265.86969
+22300 263.73027
+22400 262.13488
+22500 259.21839
+22600 259.23655
+22700 256.71779
+22800 255.34949
+22900 251.82283
+23000 248.51794
+23100 245.90024
+23200 244.64484
+23300 244.09841
+23400 245.30125
+23500 243.52445
+23600 242.43127
+23700 242.08147
+23800 242.41998
+23900 242.41132
+24000 241.00138
+24100 240.27876
+24200 240.26099
+24300 238.03599
+24400 237.53803
+24500 234.79632
+24600 234.13981
+24700 233.11299
+24800 231.677
+24900 229.58136
+25000 227.67499
+25100 226.72592
+25200 225.54539
+25300 225.50959
+25400 225.14463
+25500 226.31733
+25600 224.40435
+25700 225.22189
+25800 224.5821
+25900 224.48548
+26000 224.90382
+26100 223.77492
+26200 223.73015
+26300 223.31428
+26400 223.83314
+26500 224.26363
+26600 224.62072
+26700 222.45593
+26800 222.32082
+26900 222.37957
+27000 222.05065
+27100 218.71555
+27200 217.2982
+27300 214.26476
+27400 211.33488
+27500 208.85309
+27600 207.76261
+27700 206.37897
+27800 205.77959
+27900 205.09713
+28000 205.1057
+28100 204.38388
+28200 203.27462
+28300 203.40552
+28400 202.45148
+28500 203.40752
+28600 202.27563
+28700 202.71113
+28800 199.50155
+28900 199.52493
+29000 199.97545
+29100 199.33771
+29200 199.64539
+29300 197.67967
+29400 196.12478
+29500 195.25275
+29600 195.58497
+29700 193.37267
+29800 192.29133
+29900 190.84484
+30000 190.64455
+30100 190.51063
+30200 190.93526
+30300 190.95862
+30400 190.43986
+30500 192.68818
+30600 190.4733
+30700 190.68976
+30800 190.91042
+30900 189.56016
+31000 189.69901
+31100 189.36946
+31200 189.42872
+31300 189.55494
+31400 188.79839
+31500 188.91789
+31600 188.24425
+31700 187.14104
+31800 187.45978
+31900 186.77621
+32000 187.13997
+32100 186.68755
+32200 187.0681
+32300 187.0784
+32400 186.58808
+32500 186.78426
+32600 186.75472
+32700 186.59205
+32800 186.63416
+32900 186.90587
+33000 187.63731
+33100 186.01874
+33200 186.37779
+33300 183.98633
+33400 182.94224
+33500 181.74264
+33600 182.6368
+33700 182.26488
+33800 181.61558
+33900 181.79808
+34000 181.4833
+34100 181.46112
+34200 182.51267
+34300 181.44202
+34400 181.46312
+34500 181.63182
+34600 181.67795
+34700 181.74185
+34800 181.54946
+34900 181.81662
+35000 181.73734
+35100 181.35236
+35200 181.42385
+35300 180.98824
+35400 181.25608
+35500 179.83716
+35600 177.95402
+35700 178.38455
+35800 175.64255
+35900 174.58442
+36000 174.00406
+36100 174.18214
+36200 173.45152
+36300 172.65714
+36400 172.42307
+36500 172.1914
+36600 172.44548
+36700 171.44372
+36800 171.86111
+36900 171.88282
+37000 171.24703
+37100 170.99818
+37200 169.94014
+37300 169.11642
+37400 168.82864
+37500 168.61031
+37600 168.21642
+37700 168.28649
+37800 167.85462
+37900 168.53133
+38000 167.89108
+38100 166.55829
+38200 165.8465
+38300 166.56592
+38400 164.5997
+38500 164.16933
+38600 163.8612
+38700 163.90343
+38800 163.79838
+38900 163.79669
+39000 163.81424
+39100 163.87359
+39200 163.87066
+39300 164.04289
+39400 163.93018
+39500 163.89395
+39600 163.83393
+39700 163.81498
+39800 163.76118
+39900 163.81698
+40000 164.85086
+40100 163.71981
+40200 164.14236
+40300 163.53439
+40400 163.44442
+40500 163.15461
+40600 163.66237
+40700 162.65444
+40800 162.5983
+40900 162.91736
+41000 162.68651
+41100 162.82823
+41200 162.661
+41300 162.6375
+41400 162.63037
+41500 163.24236
+41600 162.60667
+41700 162.67289
+41800 162.69784
+41900 162.66187
+42000 162.57058
+42100 161.87441
+42200 162.23568
+42300 162.05897
+42400 162.03147
+42500 161.73989
+42600 161.77943
+42700 161.77021
+42800 161.6494
+42900 162.31705
+43000 161.94144
+43100 161.94494
+43200 162.57168
+43300 162.12852
+43400 162.31924
+43500 161.87198
+43600 161.62953
+43700 161.59661
+43800 161.66657
+43900 161.58315
+44000 161.57919
+44100 161.63079
+44200 161.56338
+44300 161.69662
+44400 161.93336
+44500 161.59672
+44600 162.52486
+44700 161.56929
+44800 161.71685
+44900 161.54107
+45000 161.51258
+45100 162.43645
+45200 160.4736
+45300 160.54291
+45400 160.5194
+45500 160.4026
+45600 160.5054
+45700 161.0263
+45800 160.83336
+45900 160.36082
+46000 160.41937
+46100 160.52967
+46200 160.35364
+46300 160.36524
+46400 160.4077
+46500 160.44604
+46600 160.76755
+46700 160.27304
+46800 160.42147
+46900 160.94313
+47000 160.34753
+47100 160.21699
+47200 160.19745
+47300 160.64179
+47400 160.13483
+47500 160.25774
+47600 160.3183
+47700 160.6525
+47800 160.48959
+47900 160.16463
+48000 160.14564
+48100 160.32456
+48200 160.19535
+48300 160.20407
+48400 160.62483
+48500 160.13104
+48600 160.15097
+48700 160.12991
+48800 160.1268
+48900 160.26808
+49000 160.02298
+49100 160.49948
+49200 159.74391
+49300 158.22882
+49400 157.8946
+49500 157.49434
+49600 157.96738
+49700 156.6569
+49800 157.37514
+49900 156.5594
+50000 156.84467
+&
+@target G8.S2
+@type xy
+0 2824.1204
+100 2627.2306
+200 2532.9546
+300 2489.6526
+400 2486.3297
+500 2486.7001
+600 2478.4905
+700 2435.8069
+800 2409.2994
+900 2404.679
+1000 2401.9503
+1100 2401.9903
+1200 2399.6723
+1300 2400.2
+1400 2403.4819
+1500 2398.8564
+1600 2402.4067
+1700 2401.465
+1800 2400.4906
+1900 2402.0603
+2000 2399.0335
+2100 2400.3863
+2200 2401.5917
+2300 2399.998
+2400 2401.2408
+2500 2400.4711
+2600 2400.9764
+2700 2399.5559
+2800 2400.1745
+2900 2400.4409
+3000 2399.664
+3100 2399.8098
+3200 2400.3116
+3300 2399.9371
+3400 2399.8134
+3500 2400.5749
+3600 2399.448
+3700 2400.635
+3800 2399.1858
+3900 2399.9213
+4000 2400.401
+4100 2386.3928
+4200 2357.927
+4300 2346.5115
+4400 2337.4958
+4500 2333.4313
+4600 2333.1189
+4700 2331.0717
+4800 2329.8184
+4900 2327.1636
+5000 2326.6353
+5100 2328.0471
+5200 2326.3991
+5300 2328.8303
+5400 2327.3917
+5500 2325.6972
+5600 2325.8153
+5700 2320.2689
+5800 2267.6167
+5900 2222.2552
+6000 2180.9159
+6100 2171.4498
+6200 2167.0403
+6300 2170.4741
+6400 2166.5392
+6500 2163.8487
+6600 2163.7904
+6700 2164.811
+6800 2162.2354
+6900 2162.5085
+7000 2162.1777
+7100 2164.3557
+7200 2163.2687
+7300 2162.0545
+7400 2162.0708
+7500 2142.5302
+7600 2081.0407
+7700 2037.761
+7800 2026.2966
+7900 2023.6957
+8000 2019.2971
+8100 2017.4625
+8200 2016.7328
+8300 2014.9358
+8400 2014.9992
+8500 2016.678
+8600 2015.3934
+8700 2016.6745
+8800 2014.0877
+8900 2016.6138
+9000 2014.5819
+9100 2011.8154
+9200 2014.0922
+9300 2012.6359
+9400 2012.7242
+9500 2002.8547
+9600 1970.4544
+9700 1950.3204
+9800 1934.9943
+9900 1931.9777
+10000 1927.3698
+10100 1925.0314
+10200 1923.0054
+10300 1924.171
+10400 1923.9804
+10500 1920.7052
+10600 1919.9395
+10700 1920.8312
+10800 1899.9521
+10900 1863.6397
+11000 1851.0532
+11100 1843.7083
+11200 1839.3387
+11300 1837.192
+11400 1837.7169
+11500 1834.0386
+11600 1834.3608
+11700 1833.8267
+11800 1832.7138
+11900 1835.1521
+12000 1834.4784
+12100 1833.1939
+12200 1833.7855
+12300 1834.5792
+12400 1832.3641
+12500 1831.6795
+12600 1834.2457
+12700 1829.8944
+12800 1834.049
+12900 1833.8859
+13000 1830.5728
+13100 1830.8216
+13200 1832.3095
+13300 1824.4576
+13400 1790.8504
+13500 1773.0249
+13600 1762.6991
+13700 1739.8162
+13800 1724.314
+13900 1720.8811
+14000 1715.9615
+14100 1712.7013
+14200 1711.1282
+14300 1696.2457
+14400 1688.3705
+14500 1682.9964
+14600 1683.9348
+14700 1681.9706
+14800 1681.7225
+14900 1681.5963
+15000 1682.4157
+15100 1681.5232
+15200 1681.1521
+15300 1682.4422
+15400 1680.9437
+15500 1649.2995
+15600 1608.142
+15700 1567.1109
+15800 1537.2897
+15900 1532.8212
+16000 1524.1426
+16100 1524.0282
+16200 1524.8695
+16300 1523.583
+16400 1524.3689
+16500 1523.583
+16600 1523.8295
+16700 1523.5756
+16800 1524.3148
+16900 1524.0439
+17000 1524.0702
+17100 1523.9986
+17200 1523.5681
+17300 1512.4608
+17400 1486.666
+17500 1474.6278
+17600 1473.9697
+17700 1472.5709
+17800 1471.622
+17900 1472.8628
+18000 1472.5255
+18100 1471.592
+18200 1471.7158
+18300 1471.592
+18400 1472.147
+18500 1471.6845
+18600 1472.1534
+18700 1472.6311
+18800 1473.4154
+18900 1471.3678
+19000 1465.6151
+19100 1448.6247
+19200 1441.813
+19300 1438.7384
+19400 1440.8632
+19500 1438.1925
+19600 1437.942
+19700 1437.7741
+19800 1423.3727
+19900 1395.2519
+20000 1380.6859
+20100 1370.8162
+20200 1369.4744
+20300 1368.1694
+20400 1368.9149
+20500 1368.7591
+20600 1369.5257
+20700 1370.0441
+20800 1369.5281
+20900 1369.6206
+21000 1369.7551
+21100 1370.1056
+21200 1369.0151
+21300 1368.5371
+21400 1368.6138
+21500 1369.8471
+21600 1371.3239
+21700 1369.3284
+21800 1369.0031
+21900 1368.9967
+22000 1368.7902
+22100 1355.3314
+22200 1342.8036
+22300 1328.1539
+22400 1326.1825
+22500 1325.7281
+22600 1319.5028
+22700 1321.3549
+22800 1321.2725
+22900 1317.7313
+23000 1315.2175
+23100 1313.2682
+23200 1311.214
+23300 1309.513
+23400 1311.1389
+23500 1312.2731
+23600 1309.8022
+23700 1308.6439
+23800 1309.074
+23900 1310.0229
+24000 1309.3616
+24100 1308.3266
+24200 1308.4428
+24300 1308.5237
+24400 1308.0748
+24500 1306.9635
+24600 1306.5349
+24700 1307.4001
+24800 1306.5137
+24900 1307.0064
+25000 1306.1597
+25100 1306.2047
+25200 1290.6982
+25300 1264.4391
+25400 1255.4781
+25500 1251.2837
+25600 1249.1269
+25700 1245.2589
+25800 1244.0267
+25900 1235.2087
+26000 1227.4265
+26100 1224.7791
+26200 1217.9968
+26300 1215.7054
+26400 1213.5366
+26500 1213.641
+26600 1212.4365
+26700 1212.4359
+26800 1212.1867
+26900 1212.7236
+27000 1212.6338
+27100 1212.6647
+27200 1213.3109
+27300 1212.9351
+27400 1212.3563
+27500 1212.4107
+27600 1212.8493
+27700 1212.0364
+27800 1213.135
+27900 1212.6619
+28000 1213.0659
+28100 1212.5295
+28200 1213.1338
+28300 1212.9629
+28400 1212.4718
+28500 1213.3751
+28600 1212.8184
+28700 1213.1173
+28800 1212.696
+28900 1210.9543
+29000 1198.3598
+29100 1183.7253
+29200 1179.4908
+29300 1173.7616
+29400 1171.3747
+29500 1170.7279
+29600 1170.7505
+29700 1170.9525
+29800 1170.9686
+29900 1170.698
+30000 1170.6282
+30100 1162.1043
+30200 1149.4773
+30300 1145.3722
+30400 1138.9972
+30500 1134.2027
+30600 1131.2505
+30700 1128.9754
+30800 1128.6977
+30900 1127.0788
+31000 1125.3458
+31100 1125.8056
+31200 1125.127
+31300 1125.2902
+31400 1125.5248
+31500 1125.1508
+31600 1124.9031
+31700 1124.9031
+31800 1125.1345
+31900 1125.1898
+32000 1125.3577
+32100 1125.3936
+32200 1125.6546
+32300 1125.5722
+32400 1125.595
+32500 1125.0659
+32600 1125.2555
+32700 1124.8956
+32800 1125.3723
+32900 1125.736
+33000 1125.4351
+33100 1116.8687
+33200 1083.7835
+33300 1074.9239
+33400 1074.7965
+33500 1069.1819
+33600 1063.5888
+33700 1061.1999
+33800 1061.2867
+33900 1055.7157
+34000 1041.931
+34100 1035.2758
+34200 1035.2224
+34300 1032.6747
+34400 1028.8879
+34500 1024.1864
+34600 1019.1503
+34700 1019.6628
+34800 1015.5332
+34900 1016.3663
+35000 1016.1229
+35100 1014.5189
+35200 1011.0228
+35300 1009.9427
+35400 1010.1094
+35500 1008.2721
+35600 1007.9116
+35700 1009.4254
+35800 1008.0177
+35900 1008.2898
+36000 1007.1735
+36100 1007.8529
+36200 1007.9074
+36300 1008.4624
+36400 1008.1999
+36500 1008.1012
+36600 1006.7016
+36700 1007.7866
+36800 1006.8867
+36900 1007.5483
+37000 1007.9409
+37100 1007.1624
+37200 1007.8436
+37300 1006.5059
+37400 1006.772
+37500 1006.101
+37600 1007.0905
+37700 1009.227
+37800 1006.6821
+37900 1006.8852
+38000 1006.6188
+38100 1007.5563
+38200 1006.6361
+38300 1005.7111
+38400 1002.7616
+38500 996.52925
+38600 986.1241
+38700 982.98354
+38800 981.23405
+38900 979.36916
+39000 978.94127
+39100 978.61509
+39200 978.70604
+39300 978.6145
+39400 978.65099
+39500 978.77227
+39600 979.71099
+39700 979.79964
+39800 978.63871
+39900 979.21518
+40000 979.85595
+40100 978.59667
+40200 979.25553
+40300 979.81401
+40400 979.40502
+40500 978.90828
+40600 979.42594
+40700 977.9045
+40800 980.15038
+40900 979.31576
+41000 978.17139
+41100 978.07222
+41200 975.29209
+41300 974.56117
+41400 973.46471
+41500 974.41504
+41600 973.09406
+41700 973.42183
+41800 973.13541
+41900 972.98132
+42000 972.69943
+42100 973.74951
+42200 972.65171
+42300 974.11691
+42400 974.29888
+42500 973.85129
+42600 973.55695
+42700 974.68461
+42800 973.9309
+42900 974.42988
+43000 973.14579
+43100 971.84866
+43200 972.22013
+43300 971.68536
+43400 971.94832
+43500 971.56903
+43600 971.94075
+43700 971.63543
+43800 971.53055
+43900 971.66411
+44000 971.97048
+44100 972.06495
+44200 971.63559
+44300 971.85409
+44400 971.91353
+44500 972.35652
+44600 971.53394
+44700 971.89562
+44800 971.58911
+44900 971.93444
+45000 971.72331
+45100 971.54505
+45200 971.61961
+45300 971.51311
+45400 971.6934
+45500 971.71563
+45600 971.56564
+45700 971.73281
+45800 971.59815
+45900 972.37964
+46000 971.53207
+46100 971.61215
+46200 971.90591
+46300 965.45054
+46400 951.6859
+46500 947.07302
+46600 941.49119
+46700 937.98392
+46800 936.0411
+46900 933.99915
+47000 934.62479
+47100 934.16737
+47200 933.90945
+47300 933.83824
+47400 934.48606
+47500 933.62751
+47600 932.25159
+47700 931.55318
+47800 932.65466
+47900 931.68282
+48000 931.38951
+48100 931.17012
+48200 931.52921
+48300 932.05219
+48400 931.14114
+48500 931.46577
+48600 931.79352
+48700 932.42635
+48800 932.12232
+48900 931.86249
+49000 931.41754
+49100 930.06878
+49200 918.819
+49300 907.99144
+49400 903.42787
+49500 902.22505
+49600 900.51485
+49700 898.90278
+49800 899.49611
+49900 899.28437
+50000 899.97607
+&
+@target G9.S0
+@type xy
+0 98.84511
+10 93.380074
+20 86.948821
+30 83.031539
+40 79.000965
+50 73.858574
+60 69.957664
+70 67.45427
+80 61.870488
+90 59.595587
+100 57.03006
+110 54.811943
+120 49.826324
+130 47.106333
+140 44.897083
+150 43.665508
+160 42.150199
+170 40.558777
+180 39.615902
+190 38.426248
+200 37.356676
+210 36.586344
+220 35.662412
+230 34.60216
+240 33.754571
+250 33.719502
+260 33.709647
+270 33.519577
+280 33.180905
+290 32.489578
+300 32.003686
+310 31.553101
+320 30.653899
+330 30.691723
+340 29.877282
+350 29.446904
+360 29.470794
+370 29.141543
+380 28.981563
+390 29.013096
+400 28.922083
+410 28.343079
+420 27.932366
+430 27.091389
+440 27.302614
+450 27.388807
+460 27.287545
+470 26.976969
+480 27.019215
+490 27.00858
+500 27.153781
+510 26.189959
+520 25.204901
+530 24.875081
+540 24.741955
+550 24.805314
+560 24.678032
+570 24.397605
+580 24.56028
+590 24.338124
+600 24.511962
+610 23.999677
+620 23.89487
+630 23.709717
+640 23.482554
+650 23.168006
+660 23.046098
+670 23.415457
+680 23.048238
+690 23.012872
+700 22.724044
+710 23.110323
+720 22.786238
+730 22.505734
+740 22.775841
+750 22.094145
+760 21.964329
+770 21.851844
+780 21.588745
+790 21.725609
+800 21.680224
+810 21.516853
+820 21.291439
+830 21.392211
+840 21.103932
+850 21.386272
+860 21.381463
+870 21.528051
+880 21.063344
+890 20.839947
+900 21.011258
+910 21.069098
+920 20.947874
+930 20.719822
+940 20.781268
+950 20.371122
+960 20.514268
+970 20.256699
+980 20.229092
+990 20.195646
+1000 20.662344
+1010 20.367107
+1020 20.19122
+1030 20.31351
+1040 20.25116
+1050 20.151077
+1060 20.752232
+1070 20.666923
+1080 19.715751
+1090 19.79696
+1100 19.776828
+1110 19.868694
+1120 19.906351
+1130 19.923978
+1140 19.845568
+1150 19.374724
+1160 19.852714
+1170 19.404661
+1180 19.915438
+1190 19.474121
+1200 19.183331
+1210 19.29104
+1220 19.269776
+1230 19.77859
+1240 19.559923
+1250 19.1759
+1260 19.263448
+1270 19.173442
+1280 19.270218
+1290 19.143736
+1300 19.426557
+1310 19.65781
+1320 19.079225
+1330 19.048166
+1340 19.891453
+1350 19.059663
+1360 19.078004
+1370 19.059308
+1380 19.1181
+1390 19.38966
+1400 19.081871
+1410 19.269564
+1420 19.039608
+1430 19.071663
+1440 19.010146
+1450 18.913797
+1460 19.048703
+1470 19.206683
+1480 19.286721
+1490 19.347728
+1500 19.243781
+1510 19.094275
+1520 18.930799
+1530 19.120724
+1540 19.133382
+1550 18.955911
+1560 19.139843
+1570 18.900276
+1580 19.31199
+1590 19.069788
+1600 19.421062
+1610 19.190742
+1620 19.151848
+1630 19.136127
+1640 18.894399
+1650 18.8008
+1660 18.75099
+1670 18.610898
+1680 18.860848
+1690 18.509527
+1700 18.724761
+1710 18.604175
+1720 18.677545
+1730 18.509162
+1740 19.101663
+1750 18.962065
+1760 18.925542
+1770 18.529426
+1780 18.620856
+1790 18.721138
+1800 18.627956
+1810 18.572497
+1820 18.497398
+1830 18.251724
+1840 18.490524
+1850 18.428224
+1860 18.4716
+1870 18.387937
+1880 18.701399
+1890 18.497592
+1900 18.623372
+1910 18.690971
+1920 18.451014
+1930 18.518746
+1940 18.54626
+1950 18.808884
+1960 18.922183
+1970 18.433052
+1980 18.57434
+1990 19.12732
+2000 18.794525
+2010 18.613643
+2020 18.436831
+2030 18.37512
+2040 18.582334
+2050 18.823521
+2060 18.790793
+2070 18.874822
+2080 18.713847
+2090 18.531255
+2100 18.678278
+2110 18.570689
+2120 18.489101
+2130 18.519097
+2140 18.307109
+2150 18.19104
+2160 18.997606
+2170 18.860303
+2180 18.87816
+2190 19.045593
+2200 17.957579
+2210 18.287679
+2220 18.076888
+2230 18.353277
+2240 18.095043
+2250 18.096103
+2260 18.088682
+2270 18.053171
+2280 18.168437
+2290 18.313181
+2300 18.118972
+2310 18.285832
+2320 18.166177
+2330 18.530611
+2340 18.02741
+2350 17.932185
+2360 18.356245
+2370 18.229195
+2380 18.419568
+2390 18.663452
+2400 18.065182
+2410 17.84536
+2420 18.076328
+2430 18.102685
+2440 18.06324
+2450 18.563598
+2460 18.119352
+2470 18.182983
+2480 17.744843
+2490 17.997425
+2500 18.018462
+2510 17.936158
+2520 17.956639
+2530 17.974705
+2540 17.971935
+2550 17.914373
+2560 17.935841
+2570 17.639346
+2580 17.713991
+2590 18.614635
+2600 18.293105
+2610 17.890855
+2620 17.936701
+2630 18.306847
+2640 17.594479
+2650 18.135774
+2660 17.987435
+2670 17.719113
+2680 17.866341
+2690 17.672969
+2700 17.806312
+2710 18.220882
+2720 18.530613
+2730 17.835675
+2740 17.849735
+2750 17.89162
+2760 17.846194
+2770 17.69637
+2780 17.838648
+2790 17.891052
+2800 18.0442
+2810 18.056674
+2820 17.801342
+2830 17.791499
+2840 18.157572
+2850 17.9392
+2860 17.689981
+2870 17.935186
+2880 17.885759
+2890 17.85976
+2900 18.185403
+2910 17.760372
+2920 17.840637
+2930 17.930893
+2940 17.878342
+2950 17.529174
+2960 17.833185
+2970 18.01742
+2980 18.155585
+2990 18.304478
+3000 17.892012
+3010 17.719346
+3020 18.275149
+3030 18.06271
+3040 17.69311
+3050 17.774613
+3060 17.634059
+3070 17.799079
+3080 18.509273
+3090 17.884517
+3100 17.55836
+3110 17.600813
+3120 17.416578
+3130 17.328283
+3140 17.49475
+3150 17.414849
+3160 17.719999
+3170 17.367454
+3180 17.321538
+3190 17.453133
+3200 17.495091
+3210 17.177389
+3220 17.331242
+3230 17.372584
+3240 17.236876
+3250 17.462541
+3260 17.423258
+3270 17.523374
+3280 17.820395
+3290 17.316301
+3300 17.62905
+3310 17.225959
+3320 17.488719
+3330 17.89705
+3340 17.440576
+3350 17.276072
+3360 17.464875
+3370 17.309781
+3380 17.409843
+3390 17.305307
+3400 17.371383
+3410 17.58776
+3420 17.382762
+3430 17.491925
+3440 17.386722
+3450 17.233471
+3460 17.516991
+3470 17.415952
+3480 17.282145
+3490 17.327563
+3500 17.551595
+3510 17.170464
+3520 17.145945
+3530 17.237328
+3540 17.17876
+3550 17.137321
+3560 17.039708
+3570 17.361276
+3580 17.108316
+3590 17.162845
+3600 17.037585
+3610 17.298456
+3620 17.202748
+3630 17.324369
+3640 17.165995
+3650 17.185304
+3660 17.083594
+3670 17.303983
+3680 17.09259
+3690 17.183778
+3700 17.245915
+3710 17.053927
+3720 17.127556
+3730 17.105737
+3740 17.130376
+3750 17.213422
+3760 17.165509
+3770 17.096011
+3780 17.262891
+3790 17.338412
+3800 17.288043
+3810 17.318264
+3820 17.091421
+3830 17.265766
+3840 17.12581
+3850 17.347199
+3860 17.208747
+3870 17.029497
+3880 17.143727
+3890 17.187645
+3900 17.373772
+3910 17.269681
+3920 17.234724
+3930 17.177795
+3940 17.190841
+3950 17.249381
+3960 17.181547
+3970 17.021098
+3980 17.184405
+3990 17.349352
+4000 17.035511
+4010 17.062986
+4020 17.160658
+4030 17.370375
+4040 17.041835
+4050 17.054394
+4060 17.375384
+4070 17.022769
+4080 17.488186
+4090 17.198807
+4100 17.27553
+4110 17.214919
+4120 17.784732
+4130 17.008998
+4140 17.154763
+4150 17.332067
+4160 17.205576
+4170 17.011749
+4180 16.949762
+4190 17.24405
+4200 17.280248
+4210 17.087227
+4220 17.120317
+4230 17.152535
+4240 17.233861
+4250 17.210101
+4260 17.0505
+4270 17.259918
+4280 17.052428
+4290 16.992401
+4300 16.993935
+4310 17.232165
+4320 17.068938
+4330 16.960922
+4340 17.044647
+4350 16.95863
+4360 17.224537
+4370 17.054773
+4380 16.981313
+4390 16.957514
+4400 17.015218
+4410 17.115112
+4420 17.095037
+4430 16.975645
+4440 17.097997
+4450 17.14526
+4460 16.986006
+4470 17.120528
+4480 17.184754
+4490 17.395406
+4500 16.953974
+4510 16.856716
+4520 17.201569
+4530 17.010129
+4540 16.965249
+4550 17.103997
+4560 17.384787
+4570 16.946409
+4580 17.158965
+4590 17.037628
+4600 16.982646
+4610 17.04645
+4620 17.057262
+4630 17.01542
+4640 17.220221
+4650 16.971231
+4660 17.156284
+4670 17.149194
+4680 17.039874
+4690 16.939407
+4700 17.018082
+4710 17.088926
+4720 17.035031
+4730 17.127054
+4740 17.057775
+4750 17.052011
+4760 17.214214
+4770 17.242006
+4780 16.910923
+4790 16.960492
+4800 16.912893
+4810 17.213498
+4820 16.997162
+4830 17.142385
+4840 16.993424
+4850 17.351734
+4860 16.969381
+4870 16.937427
+4880 16.967551
+4890 17.067834
+4900 17.066516
+4910 16.951071
+4920 17.128183
+4930 17.42162
+4940 17.467559
+4950 17.276458
+4960 17.501781
+4970 17.059856
+4980 16.859353
+4990 17.12135
+5000 17.269594
+&
+@target G9.S1
+@type xy
+0 29.506059
+10 29.524175
+20 29.364124
+30 28.558593
+40 28.33964
+50 28.172481
+60 28.528205
+70 28.121941
+80 27.957779
+90 27.882751
+100 28.004037
+110 27.829363
+120 27.816144
+130 27.871305
+140 27.884368
+150 27.731499
+160 27.642406
+170 27.862622
+180 27.639479
+190 27.623244
+200 27.453659
+210 27.152615
+220 26.911258
+230 27.02542
+240 26.772582
+250 26.802009
+260 26.718586
+270 26.562642
+280 26.730454
+290 26.628621
+300 26.761055
+310 26.623264
+320 26.249381
+330 26.360315
+340 26.499543
+350 26.684823
+360 26.920202
+370 26.686073
+380 26.275533
+390 26.417352
+400 26.553433
+410 26.548379
+420 26.505828
+430 26.24337
+440 26.216553
+450 26.599551
+460 26.338092
+470 26.234543
+480 26.159091
+490 26.170654
+500 25.848904
+510 25.897877
+520 25.857346
+530 26.201813
+540 26.123644
+550 25.963025
+560 25.681202
+570 25.90781
+580 26.414677
+590 26.484425
+600 26.429919
+610 26.188505
+620 26.28555
+630 26.653643
+640 26.254037
+650 26.218277
+660 26.141272
+670 25.816818
+680 25.825399
+690 25.76631
+700 25.652963
+710 25.831007
+720 25.627024
+730 25.538382
+740 25.419467
+750 25.558379
+760 25.286189
+770 24.983197
+780 25.162338
+790 25.277708
+800 25.177047
+810 25.332545
+820 25.372102
+830 25.306421
+840 24.928897
+850 25.363245
+860 25.809082
+870 25.160734
+880 25.069402
+890 24.94806
+900 24.93267
+910 25.00961
+920 25.337298
+930 25.309383
+940 24.988921
+950 24.92177
+960 24.848498
+970 24.914168
+980 24.830199
+990 24.791781
+1000 24.735934
+1010 24.501718
+1020 24.85101
+1030 24.808688
+1040 24.719081
+1050 25.135726
+1060 25.053382
+1070 24.935986
+1080 24.737245
+1090 24.82485
+1100 24.655306
+1110 24.157517
+1120 24.273976
+1130 24.589707
+1140 24.262047
+1150 24.56608
+1160 24.536314
+1170 24.815711
+1180 24.323617
+1190 24.278328
+1200 24.280217
+1210 24.459733
+1220 24.694788
+1230 24.821658
+1240 23.960553
+1250 24.186714
+1260 24.108354
+1270 23.883586
+1280 23.987383
+1290 23.822719
+1300 23.882353
+1310 23.671936
+1320 23.766461
+1330 23.672556
+1340 23.533056
+1350 23.897304
+1360 23.887115
+1370 23.964113
+1380 23.383567
+1390 23.282055
+1400 23.409491
+1410 23.540263
+1420 23.245777
+1430 23.505743
+1440 23.239972
+1450 23.272606
+1460 23.418554
+1470 23.28227
+1480 22.880149
+1490 23.015562
+1500 22.882603
+1510 23.065557
+1520 22.825718
+1530 22.831908
+1540 22.53572
+1550 22.714355
+1560 22.857219
+1570 22.609031
+1580 22.923613
+1590 22.9146
+1600 22.980771
+1610 23.183573
+1620 22.907394
+1630 23.00429
+1640 22.949871
+1650 22.54472
+1660 22.597982
+1670 22.939598
+1680 22.667279
+1690 22.264351
+1700 22.299089
+1710 21.872123
+1720 22.618353
+1730 22.551978
+1740 22.109183
+1750 21.881991
+1760 22.205999
+1770 22.170404
+1780 21.982753
+1790 22.042342
+1800 22.221478
+1810 22.439877
+1820 22.200307
+1830 21.865237
+1840 21.940086
+1850 21.942413
+1860 21.859998
+1870 21.737864
+1880 21.857483
+1890 21.761027
+1900 21.937286
+1910 21.566021
+1920 21.405522
+1930 21.336484
+1940 21.611509
+1950 21.487007
+1960 21.179372
+1970 21.503736
+1980 21.361886
+1990 21.274611
+2000 21.303278
+2010 21.552974
+2020 21.226578
+2030 21.389462
+2040 21.545108
+2050 21.180813
+2060 21.704701
+2070 21.814818
+2080 21.376289
+2090 21.198236
+2100 21.201672
+2110 21.125508
+2120 21.228752
+2130 21.34507
+2140 21.367788
+2150 21.556661
+2160 21.261296
+2170 20.979522
+2180 20.827595
+2190 21.292515
+2200 21.022892
+2210 21.074536
+2220 21.157481
+2230 21.239584
+2240 20.92123
+2250 20.971356
+2260 21.000929
+2270 20.901363
+2280 21.058657
+2290 20.560125
+2300 20.555505
+2310 20.768413
+2320 20.373151
+2330 20.537329
+2340 20.489098
+2350 20.163957
+2360 20.699118
+2370 20.794099
+2380 20.617323
+2390 20.491221
+2400 20.224711
+2410 20.371742
+2420 20.333558
+2430 20.459859
+2440 20.24194
+2450 20.204249
+2460 20.329351
+2470 20.561257
+2480 20.319228
+2490 20.376927
+2500 19.942465
+2510 20.304838
+2520 20.241411
+2530 20.391852
+2540 20.545693
+2550 20.236211
+2560 20.286176
+2570 20.356445
+2580 20.154252
+2590 20.527703
+2600 20.138495
+2610 20.156256
+2620 20.054297
+2630 19.668218
+2640 19.710553
+2650 20.072301
+2660 20.041766
+2670 19.827413
+2680 20.052628
+2690 19.69653
+2700 19.956269
+2710 19.666127
+2720 19.85551
+2730 19.675701
+2740 19.653515
+2750 19.475014
+2760 19.340281
+2770 19.338236
+2780 19.403985
+2790 19.179929
+2800 19.041068
+2810 18.91734
+2820 19.086225
+2830 18.989075
+2840 19.146225
+2850 19.017328
+2860 19.291866
+2870 19.234042
+2880 18.933026
+2890 18.837973
+2900 18.826815
+2910 18.905741
+2920 18.785341
+2930 18.358626
+2940 18.713057
+2950 18.175033
+2960 18.329312
+2970 18.266716
+2980 18.176983
+2990 18.508827
+3000 18.731542
+3010 18.299583
+3020 18.280826
+3030 17.966137
+3040 18.11426
+3050 17.779112
+3060 17.966723
+3070 18.066813
+3080 17.805908
+3090 18.201966
+3100 17.753762
+3110 17.700779
+3120 17.809476
+3130 17.878903
+3140 17.827128
+3150 18.213788
+3160 17.939076
+3170 18.038936
+3180 17.810293
+3190 17.92184
+3200 18.128173
+3210 17.664899
+3220 18.019339
+3230 17.739549
+3240 17.999597
+3250 17.543125
+3260 17.174879
+3270 17.395464
+3280 17.349403
+3290 17.459463
+3300 17.828001
+3310 18.234648
+3320 17.706912
+3330 17.414707
+3340 17.814736
+3350 17.568508
+3360 17.403525
+3370 17.208025
+3380 17.244305
+3390 17.31507
+3400 17.101097
+3410 17.711596
+3420 17.566028
+3430 17.14695
+3440 17.080418
+3450 17.295074
+3460 17.225162
+3470 17.165948
+3480 17.193967
+3490 17.248395
+3500 17.18639
+3510 17.176828
+3520 17.154632
+3530 16.871141
+3540 16.951559
+3550 17.21862
+3560 17.133675
+3570 17.303356
+3580 17.479718
+3590 17.260464
+3600 17.370554
+3610 17.597695
+3620 17.488116
+3630 17.434816
+3640 17.174683
+3650 17.214854
+3660 17.372887
+3670 17.437058
+3680 17.068112
+3690 16.984638
+3700 16.837603
+3710 16.747773
+3720 16.951539
+3730 17.127142
+3740 16.915323
+3750 16.662238
+3760 16.571717
+3770 16.938867
+3780 16.919975
+3790 16.951917
+3800 16.72651
+3810 16.58512
+3820 16.198733
+3830 16.280289
+3840 16.450701
+3850 16.040793
+3860 16.301536
+3870 15.792712
+3880 15.94879
+3890 15.54767
+3900 15.597896
+3910 15.675101
+3920 15.78283
+3930 15.756814
+3940 15.702555
+3950 15.945067
+3960 16.002816
+3970 15.981124
+3980 15.923362
+3990 15.795591
+4000 15.735304
+4010 15.62313
+4020 15.659906
+4030 15.954456
+4040 15.639301
+4050 15.758465
+4060 15.736657
+4070 15.609472
+4080 15.792773
+4090 15.358346
+4100 15.518711
+4110 16.120926
+4120 15.728431
+4130 15.194597
+4140 15.449537
+4150 15.796256
+4160 15.385513
+4170 15.288004
+4180 15.319155
+4190 15.233134
+4200 15.020639
+4210 14.961739
+4220 15.127001
+4230 15.215111
+4240 15.124877
+4250 15.050554
+4260 14.948224
+4270 14.892624
+4280 14.910831
+4290 14.875821
+4300 14.924778
+4310 15.07823
+4320 14.871502
+4330 14.949802
+4340 15.030064
+4350 14.948696
+4360 14.84914
+4370 14.902347
+4380 14.942303
+4390 14.860567
+4400 15.438608
+4410 15.102899
+4420 15.031568
+4430 14.904753
+4440 15.089601
+4450 15.015686
+4460 15.093371
+4470 14.793088
+4480 15.161449
+4490 15.131596
+4500 14.894621
+4510 15.001378
+4520 15.441072
+4530 14.797672
+4540 15.203575
+4550 14.830846
+4560 15.238682
+4570 15.136223
+4580 14.98893
+4590 14.986429
+4600 14.923927
+4610 15.057574
+4620 15.068458
+4630 14.97548
+4640 14.889149
+4650 15.163213
+4660 14.882267
+4670 15.590301
+4680 15.057171
+4690 15.04318
+4700 14.938578
+4710 14.902165
+4720 15.102978
+4730 14.736433
+4740 14.811617
+4750 14.857681
+4760 14.797225
+4770 15.007788
+4780 14.943322
+4790 14.676582
+4800 14.500243
+4810 14.668551
+4820 14.412503
+4830 14.483073
+4840 14.622546
+4850 14.597659
+4860 14.515088
+4870 14.516275
+4880 14.502502
+4890 14.575299
+4900 14.691782
+4910 14.552094
+4920 14.509427
+4930 14.956674
+4940 14.443712
+4950 14.971657
+4960 14.491912
+4970 14.583808
+4980 14.397268
+4990 14.82172
+5000 14.651893
+&
+@target G9.S2
+@type xy
+0 51.134882
+10 48.792051
+20 47.676077
+30 45.934571
+40 44.435028
+50 43.436101
+60 41.228626
+70 39.193172
+80 38.608047
+90 38.065437
+100 37.533896
+110 36.578258
+120 35.86137
+130 35.404966
+140 34.710335
+150 34.346397
+160 34.407926
+170 34.291926
+180 34.175941
+190 33.937081
+200 33.70909
+210 33.400607
+220 32.955148
+230 32.572518
+240 32.501102
+250 32.79598
+260 32.243455
+270 32.08218
+280 32.096124
+290 31.446138
+300 31.681143
+310 31.975737
+320 30.843802
+330 31.027502
+340 30.690712
+350 30.806307
+360 30.351341
+370 30.621914
+380 30.522842
+390 30.473083
+400 30.35494
+410 30.249804
+420 30.336972
+430 30.327646
+440 30.319968
+450 30.003202
+460 30.009077
+470 29.714197
+480 29.991221
+490 29.74781
+500 29.548414
+510 29.585263
+520 29.37053
+530 29.527034
+540 28.997879
+550 29.193709
+560 29.062389
+570 29.07132
+580 28.988464
+590 28.910336
+600 29.230702
+610 29.279217
+620 28.880692
+630 28.855911
+640 28.974601
+650 28.902283
+660 28.500621
+670 28.57996
+680 28.536689
+690 28.363509
+700 28.243211
+710 28.438274
+720 28.563816
+730 28.551889
+740 28.56516
+750 28.501382
+760 28.618855
+770 27.956215
+780 28.255729
+790 28.405697
+800 28.068687
+810 28.061698
+820 27.921032
+830 28.309286
+840 28.401284
+850 28.0644
+860 27.807908
+870 27.438054
+880 27.38617
+890 27.511098
+900 27.228582
+910 27.246463
+920 27.296454
+930 27.304017
+940 27.36436
+950 26.988653
+960 26.856802
+970 26.99829
+980 26.949309
+990 27.580575
+1000 27.371671
+1010 26.724326
+1020 26.786836
+1030 26.830704
+1040 26.722663
+1050 26.855461
+1060 26.644267
+1070 26.895244
+1080 26.954212
+1090 26.681574
+1100 26.395888
+1110 26.419673
+1120 26.510389
+1130 26.68675
+1140 26.497877
+1150 26.522053
+1160 26.466489
+1170 26.248877
+1180 26.121978
+1190 26.375755
+1200 25.98734
+1210 26.019201
+1220 25.81778
+1230 25.7945
+1240 25.914684
+1250 26.129361
+1260 26.243436
+1270 26.131813
+1280 26.238287
+1290 25.793468
+1300 25.868413
+1310 25.973556
+1320 25.747306
+1330 25.703776
+1340 25.738261
+1350 25.569421
+1360 25.510206
+1370 25.183066
+1380 25.107961
+1390 25.2648
+1400 25.032047
+1410 24.954329
+1420 24.994607
+1430 24.973313
+1440 24.839833
+1450 24.891329
+1460 24.64252
+1470 24.476301
+1480 24.507518
+1490 24.159938
+1500 24.011085
+1510 24.086454
+1520 23.804967
+1530 23.729287
+1540 23.618747
+1550 23.623423
+1560 23.459155
+1570 23.273976
+1580 23.249985
+1590 23.181853
+1600 23.038411
+1610 22.803873
+1620 22.478816
+1630 22.410717
+1640 22.701004
+1650 22.710266
+1660 22.538975
+1670 22.215735
+1680 22.466682
+1690 22.336409
+1700 21.949383
+1710 21.636344
+1720 21.584121
+1730 21.437628
+1740 21.540892
+1750 21.663777
+1760 21.478268
+1770 21.302875
+1780 21.073246
+1790 21.1314
+1800 21.25379
+1810 21.314921
+1820 21.456133
+1830 21.083936
+1840 21.514745
+1850 21.212746
+1860 21.067584
+1870 20.878613
+1880 21.039486
+1890 20.87749
+1900 20.944371
+1910 21.122249
+1920 20.948898
+1930 21.013973
+1940 20.676264
+1950 20.808474
+1960 20.484627
+1970 20.527136
+1980 20.551026
+1990 20.785153
+2000 20.521112
+2010 20.564169
+2020 20.528567
+2030 20.402118
+2040 20.541919
+2050 20.469094
+2060 20.342932
+2070 20.25509
+2080 20.193685
+2090 20.422274
+2100 20.180699
+2110 20.323135
+2120 20.16767
+2130 20.227192
+2140 20.303964
+2150 20.509229
+2160 20.495746
+2170 20.075051
+2180 19.975435
+2190 19.843221
+2200 19.849839
+2210 19.489465
+2220 19.824297
+2230 19.508447
+2240 19.940644
+2250 19.209249
+2260 18.962931
+2270 18.982399
+2280 18.868153
+2290 18.575783
+2300 18.699647
+2310 18.799268
+2320 18.533797
+2330 18.468153
+2340 18.574882
+2350 18.590854
+2360 18.631685
+2370 18.769584
+2380 18.404313
+2390 18.680976
+2400 18.680262
+2410 18.492461
+2420 18.12373
+2430 18.36523
+2440 18.330669
+2450 18.327961
+2460 18.356449
+2470 18.238494
+2480 18.458891
+2490 18.384342
+2500 18.551609
+2510 18.252078
+2520 18.382688
+2530 18.193111
+2540 18.425926
+2550 18.210002
+2560 18.343518
+2570 18.325519
+2580 18.33696
+2590 18.415311
+2600 18.336459
+2610 18.184962
+2620 18.462171
+2630 18.434434
+2640 18.277535
+2650 18.336285
+2660 18.363843
+2670 18.290266
+2680 18.237883
+2690 18.156591
+2700 18.098916
+2710 18.208077
+2720 18.247583
+2730 18.126729
+2740 18.309571
+2750 18.307853
+2760 18.369781
+2770 18.172349
+2780 18.287949
+2790 18.138455
+2800 18.433372
+2810 18.159188
+2820 18.091509
+2830 18.069725
+2840 18.210195
+2850 18.481155
+2860 18.069671
+2870 18.215936
+2880 17.915801
+2890 18.190704
+2900 18.182773
+2910 17.998202
+2920 17.986565
+2930 18.036129
+2940 18.108641
+2950 17.924008
+2960 17.931793
+2970 17.998152
+2980 17.713159
+2990 17.863245
+3000 17.73825
+3010 17.758031
+3020 17.699786
+3030 17.565353
+3040 17.747263
+3050 17.830282
+3060 17.632911
+3070 17.643017
+3080 17.364148
+3090 17.490029
+3100 17.454148
+3110 17.468279
+3120 17.617132
+3130 17.744438
+3140 17.430667
+3150 17.807634
+3160 17.42786
+3170 17.509319
+3180 17.339605
+3190 17.441183
+3200 17.492105
+3210 17.424073
+3220 17.521157
+3230 17.499494
+3240 17.516845
+3250 17.514531
+3260 17.485174
+3270 17.5471
+3280 17.526352
+3290 17.430786
+3300 17.455619
+3310 17.698814
+3320 17.746558
+3330 17.644522
+3340 17.597503
+3350 17.317638
+3360 17.414987
+3370 17.461871
+3380 17.505515
+3390 17.515654
+3400 17.408632
+3410 17.510632
+3420 17.527172
+3430 17.452858
+3440 17.45963
+3450 17.694724
+3460 17.59279
+3470 17.367703
+3480 17.528853
+3490 17.417365
+3500 17.899466
+3510 17.494228
+3520 17.369487
+3530 17.450425
+3540 17.528624
+3550 17.631233
+3560 17.531616
+3570 17.449862
+3580 17.335171
+3590 17.597404
+3600 17.466217
+3610 17.459531
+3620 17.623688
+3630 17.72927
+3640 17.539673
+3650 17.508658
+3660 17.781289
+3670 17.428366
+3680 17.582473
+3690 17.659222
+3700 17.503606
+3710 17.831547
+3720 17.648218
+3730 17.504471
+3740 17.78307
+3750 17.48369
+3760 17.492887
+3770 17.500185
+3780 17.465374
+3790 17.31861
+3800 17.805884
+3810 17.570947
+3820 17.671778
+3830 17.303431
+3840 17.360778
+3850 17.518345
+3860 17.422228
+3870 17.959239
+3880 18.117581
+3890 18.059466
+3900 17.317995
+3910 17.418492
+3920 17.765979
+3930 17.623728
+3940 17.3858
+3950 17.411272
+3960 17.648227
+3970 17.553547
+3980 17.535031
+3990 17.317063
+4000 17.550364
+4010 17.444035
+4020 17.321331
+4030 17.390798
+4040 17.211678
+4050 17.328969
+4060 17.355971
+4070 17.142376
+4080 17.029629
+4090 16.849132
+4100 17.199161
+4110 17.378728
+4120 17.335226
+4130 16.828598
+4140 16.901012
+4150 17.012856
+4160 16.957329
+4170 17.156983
+4180 17.186256
+4190 16.893676
+4200 16.907199
+4210 16.713584
+4220 16.822771
+4230 16.970351
+4240 16.572857
+4250 16.660842
+4260 16.637664
+4270 16.660661
+4280 16.585704
+4290 16.586273
+4300 16.617157
+4310 16.693341
+4320 16.415219
+4330 16.345612
+4340 16.419658
+4350 16.404101
+4360 16.293534
+4370 16.531083
+4380 16.388565
+4390 16.098166
+4400 16.420954
+4410 16.439808
+4420 16.550232
+4430 16.270273
+4440 16.144353
+4450 16.494155
+4460 15.974906
+4470 16.201751
+4480 16.241274
+4490 16.10017
+4500 16.194298
+4510 15.952798
+4520 15.812212
+4530 15.806197
+4540 15.797702
+4550 15.788584
+4560 15.733266
+4570 15.772333
+4580 15.665121
+4590 15.897082
+4600 15.962134
+4610 15.586981
+4620 15.804934
+4630 15.577068
+4640 15.713817
+4650 15.678233
+4660 15.602969
+4670 15.665683
+4680 15.705364
+4690 15.734693
+4700 15.700823
+4710 15.658834
+4720 15.764544
+4730 16.033377
+4740 15.77499
+4750 15.640573
+4760 15.768889
+4770 15.69507
+4780 15.486108
+4790 15.624001
+4800 15.700187
+4810 15.73758
+4820 15.579809
+4830 15.874694
+4840 16.00586
+4850 15.602107
+4860 15.93008
+4870 15.696559
+4880 15.796604
+4890 15.843012
+4900 15.620021
+4910 15.614995
+4920 15.957498
+4930 15.664316
+4940 15.854643
+4950 15.885394
+4960 15.721987
+4970 15.509929
+4980 15.70162
+4990 15.587746
+5000 15.691563
+&

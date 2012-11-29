@@ -1,58 +1,33 @@
 \zerar
-\chapter{Geração e Otimização}
-\label{cap:geracao_e_otimizacao}
+\chapter{Geração de Viagens}
+\label{cap:geracao}
 
-O problema da determinação de viagens pode ser resolvido através de métodos exatos ou (meta)
-heurísticos. A seguir discorreremos sobre cada um dos métodos estudados e utilizados neste trabalho.
+Todos os métodos de solução do PDV (exatos ou heurísticos) exigem um mecanismo de geração 
+explícita de viagens legais. Esses serão os objetos referentes às variáveis que desejamos otimizar. 
 
-Os métodos exatos buscam a solução ótima global através de técnicas de otimização que resolvem o
-problema de programação linear inteiro associado.
+A geração pode ser eficientemente implementada através de um mecanismo de busca em uma rede de voos. 
+O resultado da busca depende explicitamente das regras de trabalho impostas pelo contexto do
+problema. As viagens geradas apresentam um custo também intimamente ligado ao contexto e ao 
+objetivo que se deseja atingir. 
 
-No modelo {\it set partition} o problema é formulado de acordo com (\ref{eq:sppv}). A resolução pelo
-otimizador é feita inicialmente considerando uma versão relaxada do problema, \ie, permitindo que as
-variáveis $x_j$ assumam valores reais entre 0 e 1. A seguir, o problema relaxado é resolvido pelo
-método Simplex, o que gera uma solução ótima fracionária $x^\ast$. A partir de $x^\ast$,
-empregando-se um esquema {\it branch-and-bound}, obtém-se a melhor solução inteira. Vale ressaltar
-que o procedimento {\it branch-and-bound} consome tempo e memória exponencial no número de
-variáveis.
-
-Observe que o modelo (\ref{eq:sppv}) não admite a existência de {\it deadheading}, \ie, tripulação 
-viajando como passageiro, o que pode implicar a inviabilidade do problema.
-
-O modelo {\it set cover} é bastante similar ao {\it set partition}, porém admite a ocorrência de 
-{\it deadheading} na solução final, possibilitando a viabilidade do problema.
-
-As restrições adotadas no modelo {\it set cover} são dadas por (\ref{eq:dh}), onde permite-se que 
-uma etapa seja coberta mais do que uma vez. Sendo $m$ o número de etapas a serem cobertas, podemos 
-adicionar $m$ variáveis artificiais inteiras $y_i$, $i = 1, \ldots, m$, onde $y_i$ representa o 
-número de vezes que a etapa $i$ é coberta como {\it deadhead}. Considerando um custo $d_i$ cada vez 
-que a etapa $i$ é utilizada como {\it deadhead}, o problema de programação linear resultante é
-%
-\begin{eqnarray} \label{eq:scpdv}
-	\text{minimizar} && \displaystyle \sum_{j=1}^n c_j x_j + \sum_{i=1}^m d_i y_i \nonumber \\
-	\text{sujeito à} && \displaystyle \sum_{j=1}^n a_{ij} x_j - y_i = 1 \ev \;\; i = 1, \ldots, m \\
-	                 && x_j \in \{0, 1\} \ev \;\; j = 1, \ldots, n \nonumber \\
-	                 && y_i \geq 0 \ev \;\; i = 1, \ldots, m \ep \nonumber
-\end{eqnarray}
-
-O problema (\ref{eq:scpdv}) é resolvido pelo otimizador através dos mesmos procedimentos utilizados 
-na resolução do {\it set cover} (Simplex e {\it branch-and-bound}). 
+Neste capítulo apresentaremos mais detalhes sobre o procedimento de geração de viagens. Ao final,
+será exibido um exemplo explícito.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Regras de Trabalho e Estrutura de Custo}
 \label{sec:regras_e_custos}
 
-Antes de entrarmos nos detalhes sobre a formulação do PDV e do PDE, é interessante explicitar os 
-tipos de restrições e a estrutura de custo envolvidos nos problemas, em especial no contexto 
-brasileiro, já que há uma diferença significativa com relação aos contextos norte-americano e 
-europeu, normalmente analisados na literatura.
+É importante explicitar os tipos de restrições e a estrutura de custo envolvidos no problema, em 
+especial no contexto brasileiro, já que há uma diferença significativa com relação aos contextos 
+norte-americano e europeu, normalmente analisados na literatura.
 
 No caso do PDV, a geração de uma viagem é regida por uma série de regras impostas pela Agência
 Nacional de Aviação Civil (ANAC), além de restrições impostas por leis trabalhistas e acordos
 contratuais. Uma viagem é dita legal se ela obedecer todas as regras impostas pela legislação em
 questão. Abaixo apresenta-se valores típicos para as regras que regem a construção de uma viagem em
-uma empresa de aviação regular do Brasil com voos de curto e médio alcance:
+uma empresa de aviação regular do Brasil com voos de curto e médio alcance (veja a
+Seção~\ref{sec:definicoes} para as defininições):
 
 \begin{itemize}
 	\item Duração máxima de uma jornada de trabalho: 11 horas;
@@ -63,8 +38,8 @@ uma empresa de aviação regular do Brasil com voos de curto e médio alcance:
 	\item Tempo mínimo de conexão: 30 minutos;
 	\item Tempo máximo de conexão: 4 horas;
 	\item Número máximo de trocas de aeronave em uma jornada: 2 trocas;
-	\item Tempo de briefing: 30 minutos fora de base e 45 minutos dentro;
-	\item Tempo de debriefing: 30 minutos.
+	\item Tempo de {\it briefing}: 30 minutos fora de base e 45 minutos na base;
+	\item Tempo de {\it debriefing}: 30 minutos.
 \end{itemize}
 
 O custo de uma viagem está associado à produtividade mais os custos referentes à estadia do 
@@ -93,47 +68,6 @@ Note que a expressão que multiplica $\alpha_0$ em (\ref{eq:custov}) representa 
 tripulante passou trabalhando sem estar voando, portanto representa uma medida de produtividade.
 Quanto mais cara a viagem, menor foi a produtividade do tripulante.
 
-No PDE também aplica-se uma série de regras trabalhistas para geração de uma escala legal. Dentre 
-elas, podemos citar como mais importantes:
-
-\begin{itemize}
-	\item Número mínimo de folgas: 8 folgas, sendo no mínimo 2 em um final de semana;
-	\item Intervalo máximo de trabalho sem folgas: 6 dias;
-	\item Número máximo de horas de voo em um mês: 85 horas;
-	\item Número máximo de horas de uma reserva: 6 horas;
-	\item Número máximo de sobreavisos: 2 semanais e 8 mensais.
-\end{itemize}
-
-O custo associado a uma dada escala legal montada para um tripulante é bastante dependente da
-política de pagamento da empresa. No Brasil, em geral, as companhias costumam pagar um salário fixo
-e mais um excedente por hora voada se o número de horas voadas pelo tripulante extrapolar um
-determinado valor. Além disso, horas voadas no período noturno, domingos e feriados, chamadas horas
-especiais, são pagas a partir do zero. Assim, podemos calcular o custo $c_k$ de uma escala atribuída
-a um tripulante $k$ como
-%
-\begin{equation*}
-c_k = \alpha_1 + \alpha_2 \sum_{p \in P_k} e_p 
-	+ \alpha_3 \max\left\{0, \left(\sum_{p \in P_k} t_p\right) - mg\right\}
-	+ \sum_{p \in P_k} c_p \ev
-\end{equation*}
-%
-onde
-%
-\begin{itemize}
-	\item[$\alpha_1$:] remuneração fixa do tripulante;
-	\item[$\alpha_2$:] remuneração por cada hora especial realizada;
-	\item[$\alpha_3$:] remuneração por cada hora de voo excedente à garantia mínima;
-	\item[$P_k$:] conjunto de viagens atribuídas ao tripulante $k$;	
-	\item[$e_p$:] horas de voo especiais na viagem $p$;
-	\item[$t_p$:] horas de voo na viagem $p$;
-	\item[$mg$:] garantia mínima de horas de voo;
-	\item[$c_p$:] custo da viagem $p$.
-\end{itemize}
-%
-Note que consideramos apenas a atribuição de viagens na escala de tripulantes. Atividades de reserva
-e sobreaviso também entram na remuneração contando como se fossem horas de voo. No caso do
-sobreaviso, o valor deve ser multiplicado por $1/3$.
-
 A estrutura descrita acima se refere a um modelo padrão para companhias aéreas brasileiras.
 Fora do Brasil, entretanto, a estrutura do custos pode ser diferente. Nos Estados Unidos, por 
 exemplo, o custo de uma viagem é dado por uma função não-linear de diferentes custos. 
@@ -149,7 +83,6 @@ $FLY\_TIME_d$ é o tempo de voo da jornada $d$ (pode ser multiplicado por algum 
 $TIME\_AWAY_p$ é o tempo total que o tripulante passa fora de sua base na viagem $p$ (também pode
 ser multiplicado por algum fator). Observe assim, que nesse modelo, o custo de cada etapa depende da
 viagem em ela está incluída.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -188,7 +121,8 @@ permitido em uma jornada seja excedido.
 O gerador de viagens funciona aplicando um algoritmo de busca em profundidade à rede de voos. O
 algoritmo inicia-se no nó de origem $s$ e explora todas a conexões viáveis $(i, j) \in \calA$, até
 retroceder. O processo de busca em profundidade controla a viabilidade das viagens, levando em conta
-a duração máxima das jornadas e limites de horas de voo e de pousos.
+a duração máxima das jornadas e limites de horas de voo e de pousos, etc (ou seja, verifica as 
+regras de trabalho ao atravessar cada aresta).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -269,9 +203,12 @@ resolução do mesmo pode ser obtido por qualquer pacote de otimização linear.
 
 \begin{figure}[htbp]
 	\begin{center}
-		\includegraphics[scale=0.65]{fig/rede.eps}
-		\caption{Rede de voos para a base $A$ de tripulantes. Arcos tracejados representam conexões 
-		legais entre etapas. O caminho em vermelho representa uma das viagens possíveis.}
+		\includegraphics[scale=0.80]{fig/rede.eps}
+		\caption{Rede de voos referente às 7 etapas do exemplo ilustrativo. Consirou-se viagens de no 
+		máximo 3 dias, por isso os nós são replicados três vezes para o problema diário. A base dos 
+		tripulantes considerada foi a localidade A, dando origem as ligações da fonte e do sorvedouro.
+		Arcos tracejados representam conexões legais entre localidades. O caminho em vermelho representa
+		uma das viagens possíveis.}
 		\label{fig:rede}
 	\end{center}
 \end{figure}
