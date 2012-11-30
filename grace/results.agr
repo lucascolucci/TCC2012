@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Fri Nov  9 22:38:17 2012"
+@timestamp def "Thu Nov 29 09:05:49 2012"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -1204,7 +1204,7 @@
 @    yaxis  ticklabel char size 0.800000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
-@    yaxis  tick place both
+@    yaxis  tick place normal
 @    yaxis  tick spec type none
 @    altxaxis  off
 @    altyaxis  off

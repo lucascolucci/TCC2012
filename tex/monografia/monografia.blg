@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2011)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: monografia.aux
+A level-1 auxiliary file: capa.aux
+A level-1 auxiliary file: resumo.aux
+A level-1 auxiliary file: introducao.aux
+A level-1 auxiliary file: geracao.aux
+A level-1 auxiliary file: heuristicas.aux
+A level-1 auxiliary file: resultados.aux
+A level-1 auxiliary file: conclusao.aux
+A level-1 auxiliary file: subjetivo_daniel.aux
+A level-1 auxiliary file: bibliografia.aux
+The style file: plain.bst
+Database file #1: ../bib/crew_scheduling.bib
+You've used 19 entries,
+            2118 wiz_defined-function locations,
+            620 strings with 6579 characters,
+and the built_in function-call counts, 6148 in all, are:
+= -- 586
+> -- 299
+< -- 2
++ -- 121
+- -- 98
+* -- 441
+:= -- 1054
+add.period$ -- 57
+call.type$ -- 19
+change.case$ -- 102
+chr.to.int$ -- 0
+cite$ -- 19
+duplicate$ -- 223
+empty$ -- 483
+format.name$ -- 98
+if$ -- 1281
+int.to.chr$ -- 0
+int.to.str$ -- 19
+missing$ -- 22
+newline$ -- 97
+num.names$ -- 39
+pop$ -- 95
+preamble$ -- 1
+purify$ -- 87
+quote$ -- 0
+skip$ -- 148
+stack$ -- 0
+substring$ -- 376
+swap$ -- 30
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 67
+warning$ -- 0
+while$ -- 53
+width$ -- 21
+write$ -- 208

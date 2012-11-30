@@ -1,0 +1,104 @@
+\begin{thebibliography}{10}
+
+\bibitem{anbil91b}
+R.~Anbil, E.~L. Johnson, and R.~Ranga.
+\newblock A global approach to crew pairing optimization.
+\newblock {\em IBM System Journal}, 31:71--78, 1991.
+
+\bibitem{anbil98}
+Ranga Anbil, John~J. Forrest, and William~R. Pulleyblank.
+\newblock Column generation and the airline crew pairing problem.
+\newblock {\em Documenta Mathematica}, 3:677--686, 1998.
+
+\bibitem{anbil91a}
+Ranga Anbil, Eric Gelman, Bruce Patty, and Rajan Tanga.
+\newblock Recent advances in crew-pairing optimization at american airlines.
+\newblock {\em Interfaces}, 21(1):62--74, 1991.
+
+\bibitem{arabeyre69}
+J.~P. Arabeyre, J.~Fearnley, F.~C. Steiger, and W.~Teather.
+\newblock The airline crew scheduling problem: A survey.
+\newblock {\em Transportation Science}, 3:140--163, 1969.
+
+\bibitem{barnhart03}
+Cynthia Barnhart, Amy~M. Cohn, Ellis~L. Johnson, Diego Klabjan, George~L.
+  Nemhauser, and Pamela~H. Vance.
+\newblock {\em Airline Crew Scheduling}, chapter~14, pages 517--560.
+\newblock Kluwer Academic Publishers, Norwell, MA, 2 edition, 2003.
+
+\bibitem{beasley96}
+J.~E. Beasley and P.~C. Chu.
+\newblock A genetic algorithm for the set covering problem.
+\newblock {\em European Journal of Operational Research}, 94(2):392--404, 1996.
+
+\bibitem{dantzig60}
+George~B. Dantzig and Philip Wolfe.
+\newblock Decomposition principle for linear programs.
+\newblock {\em Operations Research}, 8:101--111, 1960.
+
+\bibitem{feo89}
+T.~A. Feo and M.~G.~C. Resende.
+\newblock A probabilistic heuristic for a computationally difficult set
+  covering problem.
+\newblock {\em Operations Research Letters}, 8:67--71, 1989.
+
+\bibitem{feo95}
+T.~A. Feo and M.~G.~C. Resende.
+\newblock Greedy randomized adaptive search procedures.
+\newblock {\em J. of Global Optimization}, 6(109-133), 1995.
+
+\bibitem{garey79}
+M.~R. Garey and D.~S. Johnson.
+\newblock {\em Computers and Intractability: A Guide to the Theory of
+  NP-Completeness}.
+\newblock W. H. Freeman, 1979.
+
+\bibitem{gershkoff89}
+I.~Gershkoff.
+\newblock Optimizing flight crew schedules.
+\newblock {\em Interfaces}, 19(4):24--43, 1989.
+
+\bibitem{goldberg89}
+David~E Goldberg.
+\newblock {\em Genetic Algorithms in Search, Optimization and Machine
+  Learning}.
+\newblock Kluwer Academic Publishers, 1989.
+
+\bibitem{gopalakrishnan05}
+Balaji Gopalakrishnan and Ellis~L. Johnson.
+\newblock Airline crew scheduling: State-of-the-art.
+\newblock {\em Annals of Operations Research}, 140:305--337, 2005.
+
+\bibitem{graves93}
+G.~W. Graves, R.~D. McBride, I.~Gershkoff, D.~Anderson, and D.~Mahidhara.
+\newblock Flight crew scheduling.
+\newblock {\em Management Science}, 39(6):736--745, 1993.
+
+\bibitem{holland75}
+John Holland.
+\newblock {\em Adaptation in Natural and Artificial Systems}.
+\newblock University of Michigan Press, 1975.
+
+\bibitem{kornilakis02}
+H.~Kornilakis and P.~Stamatopoulos.
+\newblock Crew pairing optimization with genetic algorithms.
+\newblock {\em Lecture Notes in Computer Science}, 2308:109--120, 2002.
+
+\bibitem{souai09}
+Nadia Souai and Jacques Teghem.
+\newblock Genetic algorithm based approach for the integrated airline
+  crew-pairing and rostering problem.
+\newblock {\em European Journal of Operational Research}, 199:674--683, 2009.
+
+\bibitem{vance97}
+P.~H. Vance, C.~Barnhart, E.~L. Johnson, and G.~L. Nemhauser.
+\newblock Airline crew scheduling: A new formulation and decomposition
+  algorithm.
+\newblock {\em Operations Research}, 45(2):188--200, 1997.
+
+\bibitem{yu}
+Gang Yu, editor.
+\newblock {\em Operations Research in the Airline Industry}. Kluwer Academic
+  Publishers, 1998.
+
+\end{thebibliography}

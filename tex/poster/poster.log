@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  10 NOV 2012 10:58
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  29 NOV 2012 09:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1029,10 +1029,10 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 95.
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
 Package epstopdf Info: Source file: <fig/pairing.eps>
-(epstopdf)                    date: 2012-11-09 09:21:32
+(epstopdf)                    date: 2012-11-10 11:01:40
 (epstopdf)                    size: 11289 bytes
 (epstopdf)             Output file: <fig/pairing-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-09 09:21:32
+(epstopdf)                    date: 2012-11-10 11:01:40
 (epstopdf)                    size: 11156 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/pairing-eps-converted-
 to.pdf fig/pairing.eps>
@@ -1053,10 +1053,10 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package epstopdf Info: Source file: <fig/network.eps>
-(epstopdf)                    date: 2012-11-09 09:21:32
+(epstopdf)                    date: 2012-11-10 11:01:40
 (epstopdf)                    size: 27069 bytes
 (epstopdf)             Output file: <fig/network-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-09 09:21:32
+(epstopdf)                    date: 2012-11-10 11:01:40
 (epstopdf)                    size: 12245 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/network-eps-converted-
 to.pdf fig/network.eps>
@@ -1074,10 +1074,10 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package epstopdf Info: Source file: <fig/preliminary.eps>
-(epstopdf)                    date: 2012-11-06 19:27:02
+(epstopdf)                    date: 2012-11-10 11:01:40
 (epstopdf)                    size: 60751 bytes
 (epstopdf)             Output file: <fig/preliminary-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-06 19:27:34
+(epstopdf)                    date: 2012-11-10 11:01:40
 (epstopdf)                    size: 21665 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/preliminary-eps-conver
 ted-to.pdf fig/preliminary.eps>
@@ -1095,10 +1095,10 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package epstopdf Info: Source file: <fig/local.eps>
-(epstopdf)                    date: 2012-11-10 10:56:50
+(epstopdf)                    date: 2012-11-10 11:01:40
 (epstopdf)                    size: 9737 bytes
 (epstopdf)             Output file: <fig/local-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-10 10:58:26
+(epstopdf)                    date: 2012-11-10 11:01:40
 (epstopdf)                    size: 7951 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/local-eps-converted-to
 .pdf fig/local.eps>
@@ -1116,10 +1116,10 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package epstopdf Info: Source file: <fig/genetic.eps>
-(epstopdf)                    date: 2012-11-10 10:42:48
+(epstopdf)                    date: 2012-11-10 11:01:40
 (epstopdf)                    size: 11221 bytes
 (epstopdf)             Output file: <fig/genetic-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-10 10:43:59
+(epstopdf)                    date: 2012-11-10 11:01:40
 (epstopdf)                    size: 8562 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/genetic-eps-converted-
 to.pdf fig/genetic.eps>
@@ -1137,10 +1137,10 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package epstopdf Info: Source file: <fig/cg.eps>
-(epstopdf)                    date: 2012-11-09 19:05:46
+(epstopdf)                    date: 2012-11-10 11:01:40
 (epstopdf)                    size: 8707 bytes
 (epstopdf)             Output file: <fig/cg-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-09 19:21:32
+(epstopdf)                    date: 2012-11-10 11:01:40
 (epstopdf)                    size: 8390 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/cg-eps-converted-to.pd
 f fig/cg.eps>
@@ -1168,11 +1168,11 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package epstopdf Info: Source file: <fig/results.eps>
-(epstopdf)                    date: 2012-11-09 22:39:36
-(epstopdf)                    size: 165754 bytes
+(epstopdf)                    date: 2012-11-29 09:08:04
+(epstopdf)                    size: 165322 bytes
 (epstopdf)             Output file: <fig/results-eps-converted-to.pdf>
-(epstopdf)                    date: 2012-11-09 22:40:04
-(epstopdf)                    size: 48127 bytes
+(epstopdf)                    date: 2012-11-29 09:08:43
+(epstopdf)                    size: 48031 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig/results-eps-converted-
 to.pdf fig/results.eps>
 (epstopdf)             \includegraphics on input line 294.
@@ -1201,7 +1201,7 @@ o.pdf> <./fig/results-eps-converted-to.pdf>] (./poster.aux) )
 Here is how much of TeX's memory you used:
  14663 strings out of 493633
  281610 string characters out of 3143378
- 372377 words of memory out of 3000000
+ 372376 words of memory out of 3000000
  17546 multiletter control sequences out of 15000+200000
  36619 words of font info for 74 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
@@ -1221,7 +1221,7 @@ ist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2011/texmf-dist
 fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2011/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2011/texmf-dist/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on poster.pdf (1 page, 483844 bytes).
+Output written on poster.pdf (1 page, 483748 bytes).
 PDF statistics:
  132 PDF objects out of 1000 (max. 8388607)
  80 compressed objects within 1 object stream

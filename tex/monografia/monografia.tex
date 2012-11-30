@@ -1,0 +1,122 @@
+% Tipo de documento
+\documentclass[12pt,a4paper]{report}
+
+% Pacotes
+%\usepackage{showlabels}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{multirow}
+
+% Paginação
+\textwidth17.0cm                       
+\textheight24.0cm                      
+\addtolength{\oddsidemargin}{-1.6cm}   
+\addtolength{\evensidemargin}{-1.6cm}  
+\addtolength{\topmargin}{-2.1cm}       
+
+% Estilo dos parágrafos
+\sloppy                              % Mais flexível
+\setlength{\jot}{08pt}               % Distância entre linhas do eqnarray
+\setlength{\parskip}{1ex}            % Distância entre parágrafos
+\renewcommand{\baselinestretch}{1.0} % Distância entre linhas
+
+
+
+% Comandos customizados
+\newcommand{\vet}{\mathbf}                                   % vetor
+\newcommand{\ie}{\emph{i.e.}}                                % isto é
+\newcommand{\prodint}[2]{\left\langle #1 , #2 \right\rangle} % produto interno
+\newcommand{\Fullbox}{{\rule{2.0mm}{2.0mm}}}                 % caixa cheia
+\newcommand{\EOS}{\hfill\Box\vspace{-0.2cm}}                 % fim de enunciado
+\newcommand{\EOP}{\hfill\Fullbox\vspace{0.2cm}}              % fim de prova
+\newcommand{\eps}{\varepsilon}                               % epsilon
+\newcommand{\defi}{\: := \: }                                % definição
+\newcommand{\del}{\partial}                                  % derivada parcial
+\newcommand{\hsp}{\hspace{0.5cm}}                            % espaco horizontal para fórmulas
+\newcommand{\vsp}{\vspace{0.1cm}}                            % espaco vertical para fórmulas
+\newcommand{\ev}{\, ,}                                       % espaco e virgula
+\newcommand{\ep}{\, .}                                       % espaco e ponto
+\newcommand{\eg}{\emph{e.g.}}                               % por exemplo
+
+% Fontes caligráficas
+\newcommand{\calA}{\mathcal{A}} 
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calR}{\mathcal{R}}                             
+
+% Contagem de equações por seção
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+
+% Contagem de figuras por seção
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+
+% Contagem de tabelas por seção
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+
+% Zerar as contagem em cada seção
+\newcommand{\zerar}{\setcounter{equation}{0}\setcounter{figure}{0}\setcounter{table}{0}}
+
+% Operadores
+\DeclareMathOperator{\sen}{sen}
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\cotg}{cotg}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\arctg}{arctg}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\tr}{tr}
+
+% Conjunto de números
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	
+\pagenumbering{roman}
+
+\include{capa}
+
+\pagestyle{plain}
+
+\include{resumo}
+
+\tableofcontents
+\listoffigures
+
+\newpage
+
+\pagenumbering{arabic}
+
+\part{Conteúdo Técnica}
+
+\include{introducao}
+
+\include{geracao}
+
+\include{heuristicas}
+
+\include{resultados}
+
+\include{conclusao}
+
+\part{Conteúdo Subjetivo}
+
+\include{subjetivo_daniel}
+
+%\include{subjetivo_lucas}
+
+%\include{subjetivo_renato}
+
+\include{bibliografia}
+
+\end{document}
+

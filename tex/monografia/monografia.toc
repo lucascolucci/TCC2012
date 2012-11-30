@@ -1,0 +1,35 @@
+\select@language {brazil}
+\contentsline {part}{I\hspace {1em}Conte\IeC {\'u}do T\IeC {\'e}cnica}{1}
+\contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{2}
+\contentsline {section}{\numberline {1.1}Defini\IeC {\c c}\IeC {\~o}es}{3}
+\contentsline {section}{\numberline {1.2}Formula\IeC {\c c}\IeC {\~a}o do PDV}{5}
+\contentsline {section}{\numberline {1.3}Objetivos e Estrutura}{8}
+\contentsline {chapter}{\numberline {2}Gera\IeC {\c c}\IeC {\~a}o de Viagens}{9}
+\contentsline {section}{\numberline {2.1}Regras de Trabalho e Estrutura de Custo}{9}
+\contentsline {section}{\numberline {2.2}Gerador de Viagens}{11}
+\contentsline {section}{\numberline {2.3}Exemplo}{11}
+\contentsline {chapter}{\numberline {3}Heur\IeC {\'\i }sticas}{14}
+\contentsline {section}{\numberline {3.1}Refatornado o Modelo}{14}
+\contentsline {section}{\numberline {3.2}Busca Local}{15}
+\contentsline {section}{\numberline {3.3}Algoritmo Gen\IeC {\'e}tico}{16}
+\contentsline {section}{\numberline {3.4}Gera\IeC {\c c}\IeC {\~a}o de Colunas}{19}
+\contentsline {chapter}{\numberline {4}Resultados e Discuss\IeC {\~a}o}{22}
+\contentsline {section}{\numberline {4.1}An\IeC {\'a}lise Preliminar}{22}
+\contentsline {section}{\numberline {4.2}Inst\IeC {\^a}ncias}{24}
+\contentsline {section}{\numberline {4.3}Solu\IeC {\c c}\IeC {\~o}es Exatos}{25}
+\contentsline {section}{\numberline {4.4}Uma Solu\IeC {\c c}\IeC {\~a}o Expl\IeC {\'\i }cita}{27}
+\contentsline {section}{\numberline {4.5}Aplica\IeC {\c c}\IeC {\~a}o das Heur\IeC {\'\i }sticas}{28}
+\contentsline {subsection}{\numberline {4.5.1}Valores}{28}
+\contentsline {subsection}{\numberline {4.5.2}Busca Local}{29}
+\contentsline {subsection}{\numberline {4.5.3}Algoritmo Gen\IeC {\'e}tico}{30}
+\contentsline {subsection}{\numberline {4.5.4}Gera\IeC {\c c}\IeC {\~a}o de Colunas}{30}
+\contentsline {section}{\numberline {4.6}Implementa\IeC {\c c}\IeC {\~a}o}{31}
+\contentsline {subsection}{\numberline {4.6.1}Algumas M\IeC {\'e}tricas do C\IeC {\'o}digo}{32}
+\contentsline {chapter}{\numberline {5}Conclus\IeC {\~a}o}{34}
+\contentsline {section}{\numberline {5.1}Perspectivas Futuras}{36}
+\contentsline {part}{II\hspace {1em}Conte\IeC {\'u}do Subjetivo}{37}
+\contentsline {chapter}{\numberline {6}Opini\IeC {\~o}es e Impress\IeC {\~o}es}{38}
+\contentsline {section}{\numberline {6.1}Sobre Ci\IeC {\^e}ncia da Computa\IeC {\c c}\IeC {\~a}o}{38}
+\contentsline {section}{\numberline {6.2}Sobre o BCC}{38}
+\contentsline {section}{\numberline {6.3}Sobre o IME}{38}
+\contentsline {section}{\numberline {6.4}Sobre o Projeto}{38}
