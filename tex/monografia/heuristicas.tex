@@ -78,7 +78,7 @@ a alterações locais e, em geral, não será a solução ótima global.
 
 O método de busca local no contexto do PDV é bastante simples e foi um dos primeiros a ser utilizado
 na tentativa de melhorar uma solução viável do problema (\ref{eq:scpdv}). Basicamente o método
-consiste em escolher aleatoriamente um número pequeno $k$ de viagens da solução viável inicial
+consiste em escolher aleatoriamente um número pequeno, $k$, de viagens da solução viável inicial
 (subproblema) e, a partir da lista de etapas cobertas e tripuladas por essas viagens, gerar
 explicitamente todas as possíveis viagens legais usando o gerador. Como o número de etapas não é
 muito grande, o número de variáveis geradas é gerenciável. O modelo (\ref{eq:scpdv}) é então
@@ -122,22 +122,22 @@ dentro da área de computação evolucionária. A abordagem comum dos algoritmos
 população e de operadores inspiradas pela genética de seres vivos para explorar o espaço de busca
 (os operadores mais típicos são {\it reprodução}, {\it mutação} e {\it recombinação}). Cada
 indivíduo no algoritmo representa direta ou indiretamente (através de um esquema de decodificação)
-uma solução para o problema em consideração. O operador de reprodução se refere ao processo de
+uma solução para o problema em consideração. O operador de reprodução refere-se ao processo de
 seleção de indivíduos que irão sobreviver e se tornar parte da próxima geração. Esse operador
-normalmente utiliza um viés em direção à indivíduos de boa qualidade: quanto melhor a função
+normalmente utiliza um viés em direção a indivíduos de boa qualidade: quanto melhor a função
 objetivo de um indivíduo, maior será a probabilidade do indivíduo ser selecionado e se tornar membro
 da próxima geração. O operador de recombinação (também chamado de {\it crossover}) combina partes de
 dois ou mais indivíduos para gerar novos indivíduos, também chamados de {\it offspring}. O operador
 de mutação é um operador unitário que introduz modificações aleatórias em um indivíduo. Algoritmos
 genéticos tipicamente utilizam variáveis com valores binários ou discretos para representar
-informação em seus indivíduos, priorizando o uso de recombinação.
+informação em seus indivíduos, priorizando o uso da recombinação.
 
-O uso de técnicas evolucionárias aplicadas à resolução do problema {\it set cover} é encontrado
+O uso de técnicas evolutivas aplicadas à resolução do problema {\it set cover} é encontrado
 em~\cite{beasley96}. Inspirado nesse trabalho, os autores de~\cite{kornilakis02} propõem um
 algoritmo genético para resolver o problema da determinação de viagens. Na verdade, o algoritmo
 proposto em~\cite{kornilakis02} é uma especialização daquele em~\cite{beasley96}, com algumas
 modificações que visam a minimização do número de {\it deadheads} na solução final e um método para
-corrigir soluções que violam restriçoes (soluções que não cobrem todos as etapas). Estudamos os dois
+corrigir soluções que violam restrições (soluções que não cobrem todos as etapas). Estudamos os dois
 trabalhos em detalhes. Vamos apresentar abaixo uma síntese de seus métodos e descrever a nossa
 implementação.
 

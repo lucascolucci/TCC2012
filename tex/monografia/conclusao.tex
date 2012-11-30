@@ -96,11 +96,33 @@ escalonamento dos tripulantes.
 \section{Perspectivas Futuras}
 \label{sec:perspectivas}
 
+O desenvolvimento do projeto mostrou-se satisfatório. Entretanto sentimos que ainda há espaço para
+efetuarmos algumas melhorias e novas implementações. Por exemplo, não foi possível ainda obter uma
+solução inteira a partir do preocedimento de geração de colunas. A técnica utilizada para isso é
+conhecida por {\it branch-and-price}~\cite{vance97h} e consiste basicamente em aplicar o
+procedimento de geração de colunas em cada nó da árvore enumerativa da técnica {\it
+branch-and-bound} usual. Acreditamos que o trabalho desenvolvido até então fornece uma boa base para
+implementar essa técnica.
+
+Outro ponto interessante do trabalho foi analisar os pontos fortes de cada heurística estudada. A
+partir desse conhecimento, acreditamos que seja possível combinar as três heurísticas em um novo
+algoritmo híbrido. A ideia inicial seria utilizar as colunas produzidas pelo método geração de
+colunas como entrada para o algoritmo genético híbrido a fim de se obter uma solução inteira
+aproximada. Essa, por sua vez, poderia ser refinada através do procedimento de busca local.
+Novamente, acreditamos que a implementação dessa nova heurística possa ser realizada de forma
+simples, dada a base desenvolvida durante esse trabalho.
+
+Uma outra possibilidade de exploração futura seria a paralelização de partes importantes do código,
+visando um melhor desempenho no contexto da computação paralela e distribuída. Por exemplo, o
+procedimento de geração de viagens pode ser facilmente paralelizavel.
+
+Resumidamente, os pontos que podem ser explorados futuramente são listados abaixo:
+
 \begin{itemize} 
-\item Implementação de um esquema branch-and-price para obtenção de solução inteira a partir da
-geração de colunas.
+\item Implementação de um esquema {\it branch-and-price} para obtenção de solução inteira a partir
+da geração de colunas;
 \item Combinação e paralelização das heurísticas estudadas, explorando os pontos fortes de cada uma
-delas.
+delas;
 \item Possível sistema comercial.
 \end{itemize}
 

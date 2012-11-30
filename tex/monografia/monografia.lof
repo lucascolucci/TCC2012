@@ -19,6 +19,6 @@
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Evolu\IeC {\c c}\IeC {\~a}o do processo de otimiza\IeC {\c c}\IeC {\~a}o para o m\IeC {\'e}todo da busca local (custo $\times $ itera\IeC {\c c}\IeC {\~a}o).}}{29}
 \contentsline {figure}{\numberline {4.6}{\ignorespaces Evolu\IeC {\c c}\IeC {\~a}o do processo de otimiza\IeC {\c c}\IeC {\~a}o para o algoritmo gen\IeC {\'e}tico (custo m\IeC {\'e}dio da popula\IeC {\c c}\IeC {\~a}o $\times $ gera\IeC {\c c}\IeC {\~a}o).}}{30}
 \contentsline {figure}{\numberline {4.7}{\ignorespaces Evolu\IeC {\c c}\IeC {\~a}o do processo de otimiza\IeC {\c c}\IeC {\~a}o para o procedimento de gera\IeC {\c c}\IeC {\~a}o de colunas (custo $\times $ itera\IeC {\c c}\IeC {\~a}o). S\IeC {\~a}o apresentadas os resultados para as cinco inst\IeC {\^a}ncias estudadas.}}{31}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Interface {\it CostCalculator} e a sua rela\IeC {\c c}\IeC {\~a}o com a implementa\IeC {\c c}\IeC {\~a}o concreta DutyToFlightCalculator. Note que com esse acoplamento diversas implementa\IeC {\c c}\IeC {\~o}es para o c\IeC {\'a}lculo do custo s\IeC {\~a}o poss\IeC {\'\i }veis.}}{32}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Interface {\it CostCalculator} e a sua rela\IeC {\c c}\IeC {\~a}o com a implementa\IeC {\c c}\IeC {\~a}o concreta DutyToFlightCalculator. Note que, com esse acoplamento, diversas implementa\IeC {\c c}\IeC {\~o}es para o c\IeC {\'a}lculo do custo s\IeC {\~a}o poss\IeC {\'\i }veis.}}{32}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

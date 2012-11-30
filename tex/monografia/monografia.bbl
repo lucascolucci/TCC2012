@@ -96,6 +96,13 @@ P.~H. Vance, C.~Barnhart, E.~L. Johnson, and G.~L. Nemhauser.
   algorithm.
 \newblock {\em Operations Research}, 45(2):188--200, 1997.
 
+\bibitem{vance97h}
+Pamela~H. Vance, Alper Atamturk, Cynthia Barnhart, Eric Gelman, Ellis~L.
+  Johnson, Alamuru Krishna, Deepa Mahidhara, George~L. Nemhauser, and Ranjit
+  Rebello.
+\newblock A heuristic branch-and-price approach for the airline crew pairing
+  problem, 1997.
+
 \bibitem{yu}
 Gang Yu, editor.
 \newblock {\em Operations Research in the Airline Industry}. Kluwer Academic

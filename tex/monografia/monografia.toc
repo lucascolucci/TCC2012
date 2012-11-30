@@ -1,5 +1,5 @@
 \select@language {brazil}
-\contentsline {part}{I\hspace {1em}Conte\IeC {\'u}do T\IeC {\'e}cnica}{1}
+\contentsline {part}{I\hspace {1em}Conte\IeC {\'u}do T\IeC {\'e}cnico}{1}
 \contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{2}
 \contentsline {section}{\numberline {1.1}Defini\IeC {\c c}\IeC {\~o}es}{3}
 \contentsline {section}{\numberline {1.2}Formula\IeC {\c c}\IeC {\~a}o do PDV}{5}
@@ -16,10 +16,10 @@
 \contentsline {chapter}{\numberline {4}Resultados e Discuss\IeC {\~a}o}{22}
 \contentsline {section}{\numberline {4.1}An\IeC {\'a}lise Preliminar}{22}
 \contentsline {section}{\numberline {4.2}Inst\IeC {\^a}ncias}{24}
-\contentsline {section}{\numberline {4.3}Solu\IeC {\c c}\IeC {\~o}es Exatos}{25}
+\contentsline {section}{\numberline {4.3}Solu\IeC {\c c}\IeC {\~o}es Exatas}{25}
 \contentsline {section}{\numberline {4.4}Uma Solu\IeC {\c c}\IeC {\~a}o Expl\IeC {\'\i }cita}{27}
 \contentsline {section}{\numberline {4.5}Aplica\IeC {\c c}\IeC {\~a}o das Heur\IeC {\'\i }sticas}{28}
-\contentsline {subsection}{\numberline {4.5.1}Valores}{28}
+\contentsline {subsection}{\numberline {4.5.1}Tabela de Resultados}{28}
 \contentsline {subsection}{\numberline {4.5.2}Busca Local}{29}
 \contentsline {subsection}{\numberline {4.5.3}Algoritmo Gen\IeC {\'e}tico}{30}
 \contentsline {subsection}{\numberline {4.5.4}Gera\IeC {\c c}\IeC {\~a}o de Colunas}{30}
@@ -28,8 +28,7 @@
 \contentsline {chapter}{\numberline {5}Conclus\IeC {\~a}o}{34}
 \contentsline {section}{\numberline {5.1}Perspectivas Futuras}{36}
 \contentsline {part}{II\hspace {1em}Conte\IeC {\'u}do Subjetivo}{37}
-\contentsline {chapter}{\numberline {6}Opini\IeC {\~o}es e Impress\IeC {\~o}es}{38}
-\contentsline {section}{\numberline {6.1}Sobre Ci\IeC {\^e}ncia da Computa\IeC {\c c}\IeC {\~a}o}{38}
-\contentsline {section}{\numberline {6.2}Sobre o BCC}{38}
-\contentsline {section}{\numberline {6.3}Sobre o IME}{38}
-\contentsline {section}{\numberline {6.4}Sobre o Projeto}{38}
+\contentsline {chapter}{\numberline {6}An\IeC {\'a}lise Subjetiva}{38}
+\contentsline {section}{\numberline {6.1}Daniel Augusto Cortez}{39}
+\contentsline {section}{\numberline {6.2}Lucas Rodrigues Colucci}{40}
+\contentsline {section}{\numberline {6.3}Renato Lerac Corr\IeC {\^e}a de S\IeC {\'a}}{41}

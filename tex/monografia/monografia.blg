@@ -9,47 +9,49 @@ A level-1 auxiliary file: heuristicas.aux
 A level-1 auxiliary file: resultados.aux
 A level-1 auxiliary file: conclusao.aux
 A level-1 auxiliary file: subjetivo_daniel.aux
+A level-1 auxiliary file: subjetivo_lucas.aux
+A level-1 auxiliary file: subjetivo_renato.aux
 A level-1 auxiliary file: bibliografia.aux
 The style file: plain.bst
 Database file #1: ../bib/crew_scheduling.bib
-You've used 19 entries,
+You've used 20 entries,
             2118 wiz_defined-function locations,
-            620 strings with 6579 characters,
-and the built_in function-call counts, 6148 in all, are:
-= -- 586
-> -- 299
+            625 strings with 6875 characters,
+and the built_in function-call counts, 6600 in all, are:
+= -- 620
+> -- 347
 < -- 2
-+ -- 121
-- -- 98
-* -- 441
-:= -- 1054
-add.period$ -- 57
-call.type$ -- 19
-change.case$ -- 102
++ -- 141
+- -- 116
+* -- 480
+:= -- 1134
+add.period$ -- 59
+call.type$ -- 20
+change.case$ -- 114
 chr.to.int$ -- 0
-cite$ -- 19
-duplicate$ -- 223
-empty$ -- 483
-format.name$ -- 98
-if$ -- 1281
+cite$ -- 20
+duplicate$ -- 230
+empty$ -- 505
+format.name$ -- 116
+if$ -- 1366
 int.to.chr$ -- 0
-int.to.str$ -- 19
+int.to.str$ -- 20
 missing$ -- 22
-newline$ -- 97
-num.names$ -- 39
-pop$ -- 95
+newline$ -- 101
+num.names$ -- 41
+pop$ -- 112
 preamble$ -- 1
-purify$ -- 87
+purify$ -- 98
 quote$ -- 0
-skip$ -- 148
+skip$ -- 156
 stack$ -- 0
-substring$ -- 376
-swap$ -- 30
+substring$ -- 382
+swap$ -- 31
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 67
+type$ -- 71
 warning$ -- 0
-while$ -- 53
-width$ -- 21
-write$ -- 208
+while$ -- 55
+width$ -- 22
+write$ -- 216
