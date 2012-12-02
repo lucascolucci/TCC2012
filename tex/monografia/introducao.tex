@@ -3,9 +3,9 @@
 \label{cap:introducao}
 
 Métodos de otimização no planejamento das operações de uma empresa aérea têm sido aplicados a várias
-décadas~\cite{yu}. Tal planejamento envolve diversos problemas que normalmente são resolvidos de
-forma separada e sequencial devido ao tamanho e a complexibilidade de cada problema individual,
-embora eles estejam intimamente relacionados~\cite{barnhart03} (veja Figura~\ref{fig:planejamento}).
+décadas~\cite{yu}. Tal planejamento envolve diversos problemas que, devido ao tamanho e complexidade
+de cada um, são normalmente resolvidos de forma separada e sequencial, embora alguns estejam
+intimamente relacionados~\cite{barnhart03} (veja Figura~\ref{fig:planejamento}).
 
 Primeiro, resolve-se o problema da \emph{malha de voos}, que consiste em determinar todos os trechos
 a serem voados pela empresa num determinado período de tempo. O planejamento é basicamente feito em
@@ -18,13 +18,13 @@ do custo de se operar determinada frota em determinado trecho, sujeito à restri
 voos da malha sejam cobertos com a frota disponível.
 
 Terceiro, considera-se o problema do \emph{roteamento de aeronaves}, que envolve a escolha das
-aeronaves de uma frota que vão realizar determinados voos de forma que cada aeronave passe um tempo
-adequado em aeroportos específicos com a finalidade de serem revisadas pela manutenção. O objetivo é
-maximizar os lucros, respeitando ainda a restrição de que todos os voos da frota sejam cobertos.
+aeronaves de uma frota que vão realizar determinados voos, de forma que cada aeronave passe um tempo
+adequado em aeroportos específicos, com a finalidade de serem revisadas pela manutenção. O objetivo
+é maximizar os lucros, respeitando ainda a restrição de que todos os voos da frota sejam cobertos.
 
 Finalmente, o problema de \emph{escalonamento de tripulantes} é resolvido. Tal problema foi um dos
 primeiros a receber atenção significativa por parte da comunidade de pesquisa
-operacional~\cite{arabeyre69}, sendo ainda um dos mais estudados. Isso porque, no transporte aéreo,
+operacional~\cite{arabeyre69}, sendo ainda um dos mais estudados. Isto porque, no transporte aéreo,
 os custos com a tripulação representam a segunda maior parcela dos custos operacionais da empresa,
 perdendo apenas para os custos com combustível. Para se ter uma ideia, o custo total com tripulação
 excede 1,3 bilhões de dólares todo ano na Americam Airlines~\cite{anbil91a}. Hoje em dia, a
@@ -40,17 +40,17 @@ para uma companhia de grande porte~\cite{barnhart03}.
 	\end{center}
 \end{figure}
 
-De forma geral, escalonamento de tripulantes pode ser definido como o problema de se atribuir um
-grupo de trabalhadores (uma tripulação) para realizar um conjunto de atividades. No contexto da
-aviação, cada tripulante (comandante, co-piloto, comissário, etc) deve ser designado para realizar
-um determinado voo da empresa. Tal designação deve ser feita respeitando-se uma série de restrições
-impostas pelas agências reguladoras da aviação, bem como regras de regulamentação trabalhista,
-restrições operacionais impostas pela própria empresa e acordos trabalhistas entre empregado e
-empregador. Dado o grande número de variáveis e restrições envolvidas, assim como a possibilidade de
-grandes ganhos econômicos, o problema torna-se bastante interessante, tanto do ponto de vista da
-indústria, quanto acadêmico.
+De forma geral, o escalonamento de tripulantes pode ser definido como o problema de se atribuir a um
+grupo de trabalhadores (uma tripulação) um conjunto de atividades. No contexto da aviação, cada
+tripulante (comandante, co-piloto, comissário, etc) deve ser designado para realizar um determinado
+voo da empresa. Tal designação deve ser feita respeitando-se uma série de restrições impostas pelas
+agências reguladoras da aviação, bem como regras de regulamentação trabalhista, restrições
+operacionais impostas pela própria empresa e acordos trabalhistas entre empregado e empregador. Dado
+o grande número de variáveis e restrições envolvidas, assim como a possibilidade de grandes ganhos
+econômicos, o problema torna-se bastante interessante, tanto do ponto de vista da indústria, quanto
+acadêmico.
 
-Normalmente o problema do escalonamento de tripulantes é dividido em dois subproblemas que são
+Normalmente, o problema do escalonamento de tripulantes é dividido em dois subproblemas que são
 resolvidos de forma independente e sequencial. O primeiro deles é conhecido como \emph{problema da
 determinação de viagens} (PDV), que consiste na obtenção de um subconjunto de viagens, obedecendo as
 regras de trabalho impostas pela legislação, com custo mínimo, cobrindo todas os segmentos de voo
@@ -61,8 +61,8 @@ para cada tripulante requerido. Na atribuição, visa-se minimizar os custos e g
 uniforme de trabalho. A atribuição das viagens também está sujeita a uma série restrições
 reguladoras.
 
-Tanto o PDV quanto o PDE têm sido extensamente estudados na literatura~\cite{gopalakrishnan05}. Em
-especial, o primeiro deles recebeu mais atenção, principalmente no contexto norte-americano, dada o
+Tanto o PDV quanto o PDE têm sido extensamente estudados pela comunidade~\cite{gopalakrishnan05}. Em
+especial, o primeiro deles recebeu mais atenção, principalmente no contexto norte-americano, dado o
 seu potencial em produzir economia significativa de custos. No problema da determinação de escalas,
 além de minimizar custos, é importante também levar em conta aspectos da qualidade de vida dos
 tripulantes. Uma visão geral e esquemática dos dois problemas é apresentada na
@@ -89,8 +89,8 @@ mais detalhes sobre as duas abordagens.
 \label{sec:definicoes}
 
 Antes que possamos apresentar e explorar a estrutura do problema com mais detalhes, faz-se
-necessário a introdução de algumas definições e nomenclaturas normalmente utilizadas, as quais serão
-amplamente utilizadas neste trabalho.
+necessário a introdução de algumas definições e nomenclaturas usuais, as quais serão amplamente
+utilizadas neste trabalho.
 
 \begin{itemize}
 	\item {\bf Etapa:} é um voo único sem paradas, também chamado de {\bf perna}, {\bf trecho} ou 
@@ -100,24 +100,23 @@ amplamente utilizadas neste trabalho.
 	\item {\bf Tempo Mínimo de Conexão:} menor intervalo possível de tempo entre duas etapas 
 	consecutivas em uma jornada.
 	\item {\bf Tempo Máximo de Conexão:} maior intervalo possível de tempo entre duas etapas 
-	consecutivos em uma jornada.
+	consecutivas em uma jornada.
 	\item {\bf Tempo de Briefing:} tempo mínimo que antecede o início da primeira etapa de uma
 	jornada, necessário para o {\it briefing} da tripulação.
 	\item {\bf Tempo de Debriefing:} tempo mínimo que sucede o término da último etapa de uma
-	jornada,
-	necessário para o {\it debriefing} da tripulação.
-	\item {\bf Início da Jornada:} horário em que a tripulação deve se apresentar para o início de
-	uma jornada. Corresponde ao horário da decolagem da primeira etapa menos o tempo de 
+	jornada, necessário para o {\it debriefing} da tripulação.
+	\item {\bf Início da Jornada:} horário em que a tripulação deve apresentar-se para o início
+	de uma jornada. Corresponde ao horário da decolagem da primeira etapa menos o tempo de 
 	{\it briefing}. 
 	Também chamado de {\bf checkin}.
-	\item {\bf Término da Jornada:} horário em que a tripulação encerra suas atividade em uma 
+	\item {\bf Término da Jornada:} horário em que a tripulação encerra suas atividades em uma 
 	jornada. Corresponde ao horário de pouso da última etapa mais o tempo de {\it debriefing}.
 	Também chamado de {\bf checkout}.
-	\item {\bf Base Contratual:} cidade onde uma dado tripulante está domiciliado, também chamada 
-	simplesmente de {\bf base}.
-	\item {\bf Viagem:} conjunto de jornadas de trabalho, com a primeiro etapa da primeira jornada e
-	a última etapa da última jornada começando e terminando na mesma base contratual. 
-	Uma viagem também é chamada de {\bf pairing}, ou {\bf rotação}.
+	\item {\bf Base Contratual:} cidade onde um dado tripulante está domiciliado, também
+	chamada simplesmente de {\bf base}.
+	\item {\bf Viagem:} conjunto de jornadas de trabalho, com a primeira etapa da primeira
+	jornada e a última etapa da última jornada começando e terminando respectivamente na mesma
+	base contratual. Uma viagem também é chamada de {\bf pairing}, ou {\bf rotação}.
 	\item {\bf Descanso:} intervalo mínimo de tempo ininterrupto de repouso após uma jornada.
 	\item {\bf Pernoite:} intervalo de tempo separando duas jornadas consecutivas de uma viagem.
 \end{itemize}
@@ -158,24 +157,24 @@ voos operados exatamente e uma vez e que tenha o custo mínimo (veja Figura~\ref
 Normalmente os voos das companhias aéreas apresentam uma frequência regular de oferecimento, sendo
 que a maioria deles operam diariamente. Outros são oferecidos apenas em alguns dias fixos da semana
 e poucos são oferecidos vez ou outra no mês. Costuma-se então inicialmente resolver o problema
-diário, onde se assume que todos os voos são repetidos diariamente. Note que para o problema diário,
-viagens de vários dias com etapas repetidas são inviáveis. Um segmento de voo repetido causaria o
-efeito de mais de uma tripulação ser atribuída para realização dessa etapa, uma vez que quando se
-faz a implementação da solução diária, uma tripulação distinta é atribuída a cada um dos dias da
-viagem.
+diário, onde se assume que todos os voos são repetidos diariamente. Note que, para o problema
+diário, viagens de vários dias com etapas repetidas são inviáveis. Um segmento de voo repetido
+causaria o efeito de mais de uma tripulação ser atribuída para realização dessa etapa, uma vez que
+quando se faz a implementação da solução diária, uma tripulação distinta é atribuída a cada um dos
+dias da viagem.
 
 O problema semanal é mais complicado porque envolve um maior número de etapas consideradas. De
-qualquer forma, a solução do problema semanal pode ser obtido a partir de um ajuste da solução do
+qualquer forma, a solução do problema semanal pode ser obtida a partir de um ajuste da solução do
 problema diário, sem perda significativa de custo~\cite{gopalakrishnan05}. A solução do problema
 mensal completo segue da solução do problema semanal. Como a maior parte da redução de custos está
-associada à resolução do problema diário, ele se torna o mais importante. Daqui em diante trataremos
+associada à resolução do problema diário, ele torna-se o mais importante. Daqui em diante trataremos
 apenas do problema diário.
 
-Uma outra simplificação do problema está no fato que os tripulantes são habilitados para operar
+Uma outra simplificação do problema está no fato de que os tripulantes são habilitados para operar
 apenas um tipo, ou família, de aeronaves dentro de uma frota. Assim, fatora-se o problema da
 determinação das viagens por tipo de aeronave. Para cada tipo, resolve-se um PDV considerando apenas
-as etapas operadas por aquele tipo. As viagens assim geradas são atribuídas aos tripulantes
-habilitados no tipo ao se resolver o PDE.
+as etapas operadas por ele. No PDE, as viagens assim geradas são atribuídas apenas a tripulantes
+habilitados a operar cada tipo de aeronave.
 
 Há uma formulação natural para o PDV em termos de um problema de programação linear. Suponha que
 seja possível gerar e enumerar todas as $n$ viagens associadas a uma dada entrada do problema
@@ -207,17 +206,17 @@ viagem. Existe ainda uma formulação alternativa onde as restrições são dada
 	\sum_{j=1}^n a_{ij} x_j \geq 1 \, , \;\; i = 1, \ldots, m \ep
 \end{equation} 
 %
-Nesse caso uma mesma etapa pode ser coberta por mais de uma viagem e o problema se torna um
-\emph{set cover}. Do ponto de vista do escalonamento, se uma etapa é coberta por mais
+Nesse caso uma mesma etapa pode ser coberta por mais de uma viagem e o problema passa a ser
+denominado \emph{set cover}. Do ponto de vista do escalonamento, se uma etapa é coberta por mais
 de uma viagem, então uma tripulação estará trabalhando nessa etapa e as demais viajando de
-passageiro (situação conhecida por \emph{deadheading}). As vezes essa situação é necessária para
-que se garanta viabilidade da solução. Se o preço a se pagar pela operação com \emph{deadheading} 
+passageiro (situação conhecida por \emph{deadheading}). Às vezes, essa situação é necessária para
+que se garanta a viabilidade da solução. Se o preço a se pagar pela operação com \emph{deadheading} 
 for essencialmente o mesmo de uma operação normal, então não há alteração significativa no custo 
 da viagem associada. Isso permite que o problema seja modelado com as restrições (\ref{eq:dh}) 
 sem alterar a estrutura de custos.
 
 É comum a inserção de restrições adicionais ao modelo que garantem uma distribuição de trabalho
-entre as bases compatível com os recursos disponíveis em cada base. Se o número total de bases do
+entre as bases compatível com os recursos disponíveis em cada uma. Se o número total de bases do
 problema considerado é $r$, então as \emph{restrições de bases} são expressas por
 %
 \begin{equation} \label{eq:bases}
@@ -226,7 +225,7 @@ problema considerado é $r$, então as \emph{restrições de bases} são express
 %
 onde $H_k^L$ é o número mínimo de horas disponíveis na base $k$ e $H_k^U$ é seu número máximo. 
 Note que $H_k^L$ pode ser diferente de zero desde que se exija que não mais do que um certo número 
-de tripulantes fiquem de reserva. O coeficiente $h_{kj}$ dá o número de horas necessárias para 
+de tripulantes fique de reserva. O coeficiente $h_{kj}$ dá o número de horas necessárias para 
 efetuar a viagem $j$ ($h_{kj} = 0$ se a viagem $j$ não pertencer à base $k$).
 
 O grande problema com a formulação (\ref{eq:sppv}) está no enorme número de variáveis geradas, mesmo
@@ -236,8 +235,8 @@ aeronaves. O número enorme de variáveis está associada com a natureza combina
 maioria das empresas aéreas operam em aeroportos conhecidos como \emph{hubs}, onde um grande número
 de aeronaves chegam e partem em um mesmo intervalo de tempo, possibilitando que os passageiros
 efetuem suas conexões para uma variedade de destinos em pouco tempo. Esse tipo de estrutura em rede 
-leva à explosão no número de viagens legais que podem ser construídas~\cite{graves93}. Note da
-Tabela~\ref{tab:viagens} que apesar do número de viagens ser gigantesco, o número de 
+leva à explosão no número de viagens legais que podem ser construídas~\cite{graves93}. Note na
+Tabela~\ref{tab:viagens} que, apesar do número de viagens ser gigantesco, o número de 
 jornadas tem um valor mais gerenciável.
 
 \begin{table}[ht]
@@ -280,22 +279,22 @@ Neste trabalho focamos no problema da determinação das viagens. Os objetivos f
 literatura, entender e implementar alguns dos métodos de solução disponíveis, aplicando-os
 no contexto de companhias aéreas brasileiras e, por fim, analisar os resultados obtidos.
 
-O contexto brasileiro difere significativamente dos contextos estrangeiros no que se refere à 
+O contexto brasileiro difere significativamente dos contextos estrangeiros no que refere-se à 
 estrutura de custos e regras que ditam a viabilidade de uma viagem. Como os trabalhos estudados na
 literatura referem-se ao escopo norte-americano e europeu, tivemos por objetivo também efetuar as 
 devidas adaptações na tentativa de solucionar problemas de companhias aéreas brasileiras.
 
 Esta monografia está estruturada da seguinte forma: neste capítulo faz-se uma introdução e
-contextualização do problema em estudo. Em seguida, no Capítulo~\ref{cap:geracao} apresentamos o
-método de geração de viagens, com destaque especial na estrutura de custos e regras de viabilidade e
-um exemplo explícito é apresentado. No Capítulo~\ref{cap:heuristicas} apresentamos as três
+contextualização do problema em estudo. Em seguida, no Capítulo~\ref{cap:geracao}, apresentamos o
+método de geração de viagens, com destaque especial na estrutura de custos e regras de viabilidade,
+e um exemplo explícito é apresentado. No Capítulo~\ref{cap:heuristicas}, apresentamos as três
 heurísticas implementadas neste trabalho, a saber, um método de busca local, um algoritmo genético
 híbrido e um procedimento de geração de colunas. O Capítulo~\ref{cap:resultados} mostra os
 resultados obtidos aplicando-se as heurísticas estudadas a algumas instâncias reais do problema. Em
 particular, mostramos a redução do custo da solução em função do número de iterações que controla a
-evolução dos algoritmos. Finalmente, no Capítulo~\ref{cap:conclusao} destacamos algumas conclusões e
-comparações de resultados. Listamos também alguns pontos de melhorias, dificuldades com o projeto e
-perspectivas futuras.
+evolução dos algoritmos. Finalmente, no Capítulo~\ref{cap:conclusao}, destacamos algumas conclusões
+e comparações de resultados. Listamos também alguns pontos de melhorias, dificuldades com o projeto
+e perspectivas futuras.
 
 A segunda parte desta monografia apresenta o conteúdo subjetivo, destacando a opinião e as
 impressões de cada autor sobre o curso do BCC/IME e sua relação com este projeto

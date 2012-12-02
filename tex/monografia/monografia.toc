@@ -1,5 +1,5 @@
 \select@language {brazil}
-\contentsline {part}{I\hspace {1em}Conte\IeC {\'u}do T\IeC {\'e}cnico}{1}
+\contentsline {part}{I\hspace {1em}T\IeC {\'e}cnico}{1}
 \contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{2}
 \contentsline {section}{\numberline {1.1}Defini\IeC {\c c}\IeC {\~o}es}{3}
 \contentsline {section}{\numberline {1.2}Formula\IeC {\c c}\IeC {\~a}o do PDV}{5}
@@ -23,12 +23,20 @@
 \contentsline {subsection}{\numberline {4.5.2}Busca Local}{29}
 \contentsline {subsection}{\numberline {4.5.3}Algoritmo Gen\IeC {\'e}tico}{30}
 \contentsline {subsection}{\numberline {4.5.4}Gera\IeC {\c c}\IeC {\~a}o de Colunas}{30}
-\contentsline {section}{\numberline {4.6}Implementa\IeC {\c c}\IeC {\~a}o}{31}
+\contentsline {section}{\numberline {4.6}Desenvolvimento e Implementa\IeC {\c c}\IeC {\~a}o}{31}
 \contentsline {subsection}{\numberline {4.6.1}Algumas M\IeC {\'e}tricas do C\IeC {\'o}digo}{32}
 \contentsline {chapter}{\numberline {5}Conclus\IeC {\~a}o}{34}
 \contentsline {section}{\numberline {5.1}Perspectivas Futuras}{36}
-\contentsline {part}{II\hspace {1em}Conte\IeC {\'u}do Subjetivo}{37}
+\contentsline {part}{II\hspace {1em}Subjetivo}{37}
 \contentsline {chapter}{\numberline {6}An\IeC {\'a}lise Subjetiva}{38}
-\contentsline {section}{\numberline {6.1}Daniel Augusto Cortez}{39}
-\contentsline {section}{\numberline {6.2}Lucas Rodrigues Colucci}{40}
-\contentsline {section}{\numberline {6.3}Renato Lerac Corr\IeC {\^e}a de S\IeC {\'a}}{41}
+\contentsline {section}{\numberline {6.1}Daniel Augusto Cortez}{38}
+\contentsline {subsection}{\numberline {6.1.1}IME/BCC}{38}
+\contentsline {subsection}{\numberline {6.1.2}Disciplinas}{39}
+\contentsline {subsection}{\numberline {6.1.3}Projeto do TCC}{40}
+\contentsline {subsection}{\numberline {6.1.4}Coment\IeC {\'a}rios Finais}{40}
+\contentsline {section}{\numberline {6.2}Lucas Rodrigues Colucci}{41}
+\contentsline {section}{\numberline {6.3}Renato Lerac Corr\IeC {\^e}a de S\IeC {\'a}}{42}
+\contentsline {subsection}{\numberline {6.3.1}IME/BCC}{42}
+\contentsline {subsection}{\numberline {6.3.2}Disciplinas}{42}
+\contentsline {subsection}{\numberline {6.3.3}Projeto do TCC}{44}
+\contentsline {subsection}{\numberline {6.3.4}Coment\IeC {\'a}rios Finais}{44}

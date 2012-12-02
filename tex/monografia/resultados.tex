@@ -90,8 +90,9 @@ para 36 pernas).
 		\includegraphics[scale=0.45,angle=-90]{fig/generation_time.eps}
 		\caption{Tempo gasto na geração das viagens em função do número de pernas utilizadas na 
 		construção da rede de voos. São apresentados valor médio $\pm$ desvio-padrão, considerando 5 
-		medidas para cada ponto. O primeiro ponto da curva verde encontra-se um pouco fora provavelmente
-		devido a algum transiente da máquina, visto que ele foi o primeiro a ser processado.}
+		medidas para cada ponto. O primeiro ponto da curva verde encontra-se um pouco fora,
+		provavelmente devido a algum transiente da máquina, visto que ele foi o primeiro a
+		ser processado.}
 		\label{fig:generation}
 	\end{center}
 \end{figure}
@@ -516,14 +517,15 @@ iterações obtemos a solução ótima. Por exemplo, na instância 73G\_340, for
 	\begin{center}
 		\includegraphics[scale=0.5]{fig/cg_results.eps}
 		\caption{Evolução do processo de otimização para o procedimento de geração de colunas (custo 
-		$\times$ iteração). São apresentadas os resultados para as cinco instâncias estudadas.}
+		$\times$ iteração). São apresentados os resultados para as cinco instâncias
+		estudadas.}
 		\label{fig:cg_results}
 	\end{center}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Implementação}
+\section{Desenvolvimento e Implementação}
 \label{sec:implementacao}
 
 O trabalho foi desenvolvido em Java pois é a linguagem orientada a objetos com a qual temos mais
@@ -578,7 +580,7 @@ resultados.
 	\begin{center}
 		\includegraphics[scale=0.65]{fig/cost_calculator.eps}
 		\caption{Interface {\it CostCalculator} e a sua relação com a implementação concreta
-    DutyToFlightCalculator. Note que, com esse acoplamento, diversas implementações para o cálculo
+    DutyToFlightCalculator. Note que, com este acoplamento, diversas implementações para o cálculo
     do custo são possíveis.}
 		\label{fig:cost_interface}
 	\end{center}
@@ -597,10 +599,15 @@ Através do {\it plugin} Metrics do Eclipse obtivemos algumas informações sobr
 cobertura total foi reduzida. No entanto, a base do código teve cerca de 80\% de cobertura e 
 garantiu a robustez desejada;
 \item 5600 linhas de código; 
-\item 3,6 linhas de código por método; 
 \item 16 pacotes; 
 \item 78 classes; 
-\item 795 métodos.
+\item 795 métodos;
+\item Número médio de linhas por método = $3,639 \pm 3,198$;
+\item Complexidade cyclomática média = $1,585 \pm 1,072$;
+\item Número de parâmtros médio por método = $0,588 \pm 0,789$;
+\item Profundidade de aninhamento de bloco médio = $1,115 \pm 0,452$;
+\item LOCM ({\it lack os cohesion of methods}) médio = $0,263 \pm 0,328$;
+\item Nível de abstratividade média = $0,097 \pm 0,148$.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -25,8 +25,8 @@ norte-americano e europeu, normalmente analisados na literatura.
 No caso do PDV, a geração de uma viagem é regida por uma série de regras impostas pela Agência
 Nacional de Aviação Civil (ANAC), além de restrições impostas por leis trabalhistas e acordos
 contratuais. Uma viagem é dita legal se ela obedecer todas as regras impostas pela legislação em
-questão. Abaixo apresenta-se valores típicos para as regras que regem a construção de uma viagem em
-uma empresa de aviação regular do Brasil com voos de curto e médio alcance (veja a
+questão. Abaixo, apresentamos os valores típicos das regras que regem a construção de uma viagem
+em uma empresa de aviação regular do Brasil, com voos de curto e médio alcance (veja a
 Seção~\ref{sec:definicoes} para as defininições):
 
 \begin{itemize}
@@ -43,7 +43,7 @@ Seção~\ref{sec:definicoes} para as defininições):
 \end{itemize}
 
 O custo de uma viagem está associado à produtividade mais os custos referentes à estadia do 
-tripulante quando esse precisar pernoitar fora da base, além das diárias de alimentação. Uma 
+tripulante quando este precisar pernoitar fora da base, além das diárias de alimentação. Uma 
 expressão típica para calcular o custo $c_p$ de uma viagem $p$ é dada por
 %
 \begin{equation} \label{eq:custov} 
@@ -66,9 +66,9 @@ onde
 %
 Note que a expressão que multiplica $\alpha_0$ em (\ref{eq:custov}) representa o tempo que o
 tripulante passou trabalhando sem estar voando, portanto representa uma medida de produtividade.
-Quanto mais cara a viagem, menor foi a produtividade do tripulante.
+Quanto mais cara a viagem, menor é a produtividade do tripulante.
 
-A estrutura descrita acima se refere a um modelo padrão para companhias aéreas brasileiras.
+A estrutura descrita acima refere-se a um modelo padrão para companhias aéreas brasileiras.
 Fora do Brasil, entretanto, a estrutura do custos pode ser diferente. Nos Estados Unidos, por 
 exemplo, o custo de uma viagem é dado por uma função não-linear de diferentes custos. 
 Especificamente, o custo de uma viagem $p$ é dado por
@@ -81,7 +81,7 @@ Especificamente, o custo de uma viagem $p$ é dado por
 onde $MIN\_GRT_d$ é o mínimo de garantia oferecido ao tripulante ao voar a jornada $d$, 
 $FLY\_TIME_d$ é o tempo de voo da jornada $d$ (pode ser multiplicado por algum fator) e
 $TIME\_AWAY_p$ é o tempo total que o tripulante passa fora de sua base na viagem $p$ (também pode
-ser multiplicado por algum fator). Observe assim, que nesse modelo, o custo de cada etapa depende da
+ser multiplicado por algum fator). Observe assim que, nesse modelo, o custo de cada etapa depende da
 viagem em ela está incluída.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,25 +104,25 @@ $s$ e um sorvedouro $t$. Existe um arco representando cada etapa da malha de voo
 diário, replicamos cada arco quantas vezes for o número máximo de dias permitido em um viagem. O
 conjunto de arcos será denotado por $\calA$.
 
-O nó fonte é ligado ao nó de saída de cada etapa que se origina em uma base específica. O nó de
+O nó fonte é ligado ao nó de saída de cada etapa que origina-se em uma base específica. O nó de
 chegada de cada etapa que termina nessa base é ligado ao sorvedouro. Existem ainda arcos
-representando conexões legais entre etapas. Um par de etapas terá um arco de conexão entre eles se
-o aeroporto de chegada do primeiro corresponder ao aeroporto de saída do segundo, e o intervalo de
-tempo entre a chegada e a saída estiver for uma conexão legal de uma jornada, 
-ou descanso regular entre jornadas. 
+representando conexões legais entre etapas. Um par de etapas terá um arco de conexão entre elas se
+o aeroporto de chegada do primeiro corresponder ao aeroporto de saída do segundo e se o intervalo de
+tempo entre a chegada e a saída estiver dentro dos limites necessários para se estabelecer uma
+conexão legal em uma jornada ou descanso regular entre jornadas. 
 
 É fácil notar que toda viagem legal é representada por um caminho $s-t$ na rede de voos. Porém,
 existem caminhos $s-t$ que não representam viagens legais pois podem desrespeitar alguma regra de
 trabalho, embora as conexões possíveis sejam legais. A estrutura da rede garante que não seja feita
-nenhuma conexão entre duas etapas que não tenham suas respectivos destino e origem coincidentes no
+nenhuma conexão entre duas etapas que não tenham seus respectivos destino e origem coincidentes no
 espaço e no tempo. Entretanto, não garante, por exemplo, que o número máximo de horas de voo
 permitido em uma jornada seja excedido. 
 
 O gerador de viagens funciona aplicando um algoritmo de busca em profundidade à rede de voos. O
 algoritmo inicia-se no nó de origem $s$ e explora todas a conexões viáveis $(i, j) \in \calA$, até
 retroceder. O processo de busca em profundidade controla a viabilidade das viagens, levando em conta
-a duração máxima das jornadas e limites de horas de voo e de pousos, etc (ou seja, verifica as 
-regras de trabalho ao atravessar cada aresta).
+a duração máxima das jornadas, limites de horas de voo e de pousos, etc (ou seja, verifica as regras
+de trabalho ao atravessar cada arco).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -147,7 +147,7 @@ diariamente entre as localidades A, B, C e D. O exemplo é adaptado de~\cite{bar
 	\end{center}
 \end{table}
 
-A rede de voos (parcial) para uma base contratual A é ilustrado na Figura~\ref{fig:rede}, onde são
+A rede de voos (parcial) para uma base contratual A é ilustrada na Figura~\ref{fig:rede}, onde são
 apresentadas algumas das conexões legais possíveis para clareza do desenho. O caminho vermelho
 na figura representa uma viagem legal com dois dias de duração. 
 
@@ -165,11 +165,12 @@ expressas em termos das jornadas como
 %
 \begin{eqnarray*}
 	&& P_1 = \{D_4, D_8\} \ev \hsp P_2 = \{D_9, D_5\} \ev \hsp P_3 = \{D_5, D_6, D_{10}\} \\
-	&& P_4 = \{D_4, D_6, D_7\} \ev \hsp P_5 = \{D_1, D_7, D_4\} \ev \hsp P_6 = \{D_5, D_7, D_9\} \ep 
+	&& P_4 = \{D_4, D_6, D_7\} \ev \hsp P_5 = \{D_1, D_7, D_4\} \ev \hsp P_6 = \{D_7, D_4, D_9\}
+\ep 
 \end{eqnarray*}
 
 Note que a viagem $P_6$ cobre a etapa $7$ duas vezes, então ela não é válida e deve ser 
-desconsiderada. Supondo que os custos associados as viagens sejam $c_1 = c_2 = c_3 = c_4 = 4$ e
+desconsiderada. Supondo que os custos associados às viagens sejam $c_1 = c_2 = c_3 = c_4 = 4$ e
 $c_5 = 5$, a partir de (\ref{eq:sppv}) obtemos o seguinte problema ($x_i \in \{0, 1\}$, 
 $i=1, \ldots, 5$):
 %
@@ -199,14 +200,15 @@ na base C, então as restrições de bases (\ref{eq:bases}) são
 
 A solução ótima para o problema formulado usa as viagens 3 e 5 ($x_3 = x_5 = 1$, 
 $x_1 = x_2 = x_4 =  0$) e tem um custo total igual à 9. Por se tratar de um problema pequeno, a
-resolução do mesmo pode ser obtido por qualquer pacote de otimização linear.
+resolução do mesmo pode ser obtida por qualquer pacote de otimização linear.
 
 \begin{figure}[htbp]
 	\begin{center}
 		\includegraphics[scale=0.80]{fig/rede.eps}
-		\caption{Rede de voos referente às 7 etapas do exemplo ilustrativo. Consirou-se viagens de no 
-		máximo 3 dias, por isso os nós são replicados três vezes para o problema diário. A base dos 
-		tripulantes considerada foi a localidade A, dando origem as ligações da fonte e do sorvedouro.
+		\caption{Rede de voos referente às 7 etapas do exemplo ilustrativo. Considerou-se
+		viagens de no máximo 3 dias, por isso os nós são replicados três vezes para o
+		problema diário. A base dos tripulantes considerada foi a localidade A, dando origem
+		às ligações da fonte e do sorvedouro.
 		Arcos tracejados representam conexões legais entre localidades. O caminho em vermelho representa
 		uma das viagens possíveis.}
 		\label{fig:rede}
