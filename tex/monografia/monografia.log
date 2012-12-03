@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  3 DEC 2012 09:42
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  3 DEC 2012 12:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -476,7 +476,6 @@ e
  (./abstract.tex) [3
 
 
-
 ] (./monografia.toc
 LaTeX Font Info:    Try loading font information for U+lasy on input line 4.
 
@@ -923,7 +922,7 @@ fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2011/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2011/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2011/texmf-dist/font
 s/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on monografia.pdf (54 pages, 470753 bytes).
+Output written on monografia.pdf (54 pages, 471197 bytes).
 PDF statistics:
  425 PDF objects out of 1000 (max. 8388607)
  249 compressed objects within 3 object streams
