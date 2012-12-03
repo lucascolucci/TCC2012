@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  2 DEC 2012 21:33
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  3 DEC 2012 09:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -379,9 +379,9 @@ Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
 (/usr/local/texlive/2011/texmf-dist/tex/latex/multirow/multirow.sty
 \bigstrutjot=\dimen118
 )
-(./monografia.aux (./capa.aux) (./resumo.aux) (./introducao.aux) (./geracao.aux
-) (./heuristicas.aux) (./resultados.aux) (./conclusao.aux) (./bibliografia.aux)
-)
+(./monografia.aux (./capa.aux) (./resumo.aux) (./abstract.aux)
+(./introducao.aux) (./geracao.aux) (./heuristicas.aux) (./resultados.aux)
+(./conclusao.aux) (./bibliografia.aux))
 \openout1 = `monografia.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
@@ -396,7 +396,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
 LaTeX Font Info:    ... okay on input line 82.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
 LaTeX Font Info:    ... okay on input line 82.
- (/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
+
+(/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count102
 \scratchdimen=\dimen119
@@ -469,6 +470,13 @@ e
 
 
 
+]
+\openout2 = `abstract.aux'.
+
+ (./abstract.tex) [3
+
+
+
 ] (./monografia.toc
 LaTeX Font Info:    Try loading font information for U+lasy on input line 4.
 
@@ -484,21 +492,21 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 4.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) [3
+) [4
 
 
 ])
 \tf@toc=\write3
 \openout3 = `monografia.toc'.
 
- [4]
-(./monografia.lof [5
+ [5]
+(./monografia.lof [6
 
 ])
 \tf@lof=\write4
 \openout4 = `monografia.lof'.
 
- [6] [1
+ [7] [1
 
 ]
 \openout2 = `introducao.aux'.
@@ -515,7 +523,7 @@ Package epstopdf Info: Source file: <fig/planejamento.eps>
 rted-to.pdf fig/planejamento.eps>
 (epstopdf)             \includegraphics on input line 36.
 Package epstopdf Info: Output file is already uptodate.
-<fig/planejamento-eps-converted-to.pdf, id=32, 399.4925pt x 254.9525pt>
+<fig/planejamento-eps-converted-to.pdf, id=35, 399.4925pt x 254.9525pt>
 File: fig/planejamento-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/planejamento-eps-converted-to.pdf>
@@ -537,7 +545,7 @@ erted-to.pdf fig/escalonamento.eps>
 (epstopdf)             \includegraphics on input line 79.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/escalonamento-eps-converted-to.pdf, id=36, 553.06625pt x 557.08125pt>
+<fig/escalonamento-eps-converted-to.pdf, id=39, 553.06625pt x 557.08125pt>
 File: fig/escalonamento-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/escalonamento-eps-converted-to.pdf>
@@ -564,7 +572,7 @@ o.pdf fig/viagem.eps>
 (epstopdf)             \includegraphics on input line 132.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/viagem-eps-converted-to.pdf, id=59, 761.84625pt x 273.02pt>
+<fig/viagem-eps-converted-to.pdf, id=62, 761.84625pt x 273.02pt>
 File: fig/viagem-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/viagem-eps-converted-to.pdf>
@@ -582,7 +590,7 @@ df fig/pdv.eps>
 (epstopdf)             \includegraphics on input line 151.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/pdv-eps-converted-to.pdf, id=60, 439.6425pt x 363.3575pt>
+<fig/pdv-eps-converted-to.pdf, id=63, 439.6425pt x 363.3575pt>
 File: fig/pdv-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/pdv-eps-converted-to.pdf>
@@ -610,7 +618,7 @@ pdf fig/rede.eps>
 (epstopdf)             \includegraphics on input line 207.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/rede-eps-converted-to.pdf, id=101, 585.18625pt x 530.98375pt>
+<fig/rede-eps-converted-to.pdf, id=104, 585.18625pt x 530.98375pt>
 File: fig/rede-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/rede-eps-converted-to.pdf>
@@ -637,7 +645,7 @@ ted-to.pdf fig/localsearch.eps>
 (epstopdf)             \includegraphics on input line 98.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/localsearch-eps-converted-to.pdf, id=120, 633.36626pt x 381.425pt>
+<fig/localsearch-eps-converted-to.pdf, id=123, 633.36626pt x 381.425pt>
 File: fig/localsearch-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/localsearch-eps-converted-to.pdf>
@@ -656,7 +664,7 @@ to.pdf fig/genetic.eps>
 (epstopdf)             \includegraphics on input line 233.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/genetic-eps-converted-to.pdf, id=132, 787.94376pt x 327.2225pt>
+<fig/genetic-eps-converted-to.pdf, id=135, 787.94376pt x 327.2225pt>
 File: fig/genetic-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/genetic-eps-converted-to.pdf>
@@ -674,7 +682,7 @@ Package epstopdf Info: Source file: <fig/cg.eps>
 f fig/cg.eps>
 (epstopdf)             \includegraphics on input line 312.
 Package epstopdf Info: Output file is already uptodate.
- <fig/cg-eps-converted-to.pdf, id=145, 399.4925pt x 200.75pt>
+ <fig/cg-eps-converted-to.pdf, id=148, 399.4925pt x 200.75pt>
 File: fig/cg-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/cg-eps-converted-to.pdf>
@@ -692,7 +700,7 @@ erted-to.pdf fig/shortest_path.eps>
 (epstopdf)             \includegraphics on input line 352.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/shortest_path-eps-converted-to.pdf, id=149, 505.89pt x 231.86626pt>
+<fig/shortest_path-eps-converted-to.pdf, id=152, 505.89pt x 231.86626pt>
 File: fig/shortest_path-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/shortest_path-eps-converted-to.pdf>
@@ -722,7 +730,7 @@ f>
 (epstopdf)             \includegraphics on input line 75.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/number_of_pairings-eps-converted-to.pdf, id=166, 516.93124pt x 659.46375pt
+<fig/number_of_pairings-eps-converted-to.pdf, id=169, 516.93124pt x 659.46375pt
 >
 File: fig/number_of_pairings-eps-converted-to.pdf Graphic file (type pdf)
  <use fig/number_of_pairings-eps-converted-to.pdf>
@@ -741,7 +749,7 @@ nverted-to.pdf fig/generation_time.eps>
 (epstopdf)             \includegraphics on input line 90.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/generation_time-eps-converted-to.pdf, id=179, 516.93124pt x 662.475pt>
+<fig/generation_time-eps-converted-to.pdf, id=182, 516.93124pt x 662.475pt>
 File: fig/generation_time-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/generation_time-eps-converted-to.pdf>
@@ -760,7 +768,7 @@ f>
 (epstopdf)             \includegraphics on input line 107.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/glpk_solution_time-eps-converted-to.pdf, id=180, 516.93124pt x 662.475pt>
+<fig/glpk_solution_time-eps-converted-to.pdf, id=183, 516.93124pt x 662.475pt>
 File: fig/glpk_solution_time-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/glpk_solution_time-eps-converted-to.pdf>
@@ -779,7 +787,7 @@ s-converted-to.pdf fig/cplex_solution_time.eps>
 (epstopdf)             \includegraphics on input line 119.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/cplex_solution_time-eps-converted-to.pdf, id=181, 665.48625pt x 519.9425pt
+<fig/cplex_solution_time-eps-converted-to.pdf, id=184, 665.48625pt x 519.9425pt
 >
 File: fig/cplex_solution_time-eps-converted-to.pdf Graphic file (type pdf)
  <use fig/cplex_solution_time-eps-converted-to.pdf>
@@ -801,7 +809,7 @@ s-converted-to.pdf fig/localsearch_results.eps>
 (epstopdf)             \includegraphics on input line 459.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/localsearch_results-eps-converted-to.pdf, id=224, 709.65125pt x 441.65pt>
+<fig/localsearch_results-eps-converted-to.pdf, id=227, 709.65125pt x 441.65pt>
 File: fig/localsearch_results-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/localsearch_results-eps-converted-to.pdf>
@@ -820,7 +828,7 @@ nverted-to.pdf fig/genetic_results.eps>
 (epstopdf)             \includegraphics on input line 485.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/genetic_results-eps-converted-to.pdf, id=233, 712.6625pt x 441.65pt>
+<fig/genetic_results-eps-converted-to.pdf, id=236, 712.6625pt x 441.65pt>
 File: fig/genetic_results-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/genetic_results-eps-converted-to.pdf>
@@ -839,7 +847,7 @@ ed-to.pdf fig/cg_results.eps>
 (epstopdf)             \includegraphics on input line 518.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/cg_results-eps-converted-to.pdf, id=242, 699.61375pt x 443.6575pt>
+<fig/cg_results-eps-converted-to.pdf, id=246, 699.61375pt x 443.6575pt>
 File: fig/cg_results-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/cg_results-eps-converted-to.pdf>
@@ -858,7 +866,7 @@ nverted-to.pdf fig/cost_calculator.eps>
 (epstopdf)             \includegraphics on input line 582.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig/cost_calculator-eps-converted-to.pdf, id=252, 613.29124pt x 84.315pt>
+<fig/cost_calculator-eps-converted-to.pdf, id=255, 613.29124pt x 84.315pt>
 File: fig/cost_calculator-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/cost_calculator-eps-converted-to.pdf>
@@ -890,35 +898,35 @@ Cap\'{\i }tulo 6.
 
 
 ])) [47] (./monografia.aux (./capa.aux) (./resumo.aux)
-(./introducao.aux) (./geracao.aux) (./heuristicas.aux) (./resultados.aux)
-(./conclusao.aux) (./bibliografia.aux)) ) 
+(./abstract.aux) (./introducao.aux) (./geracao.aux) (./heuristicas.aux)
+(./resultados.aux) (./conclusao.aux) (./bibliografia.aux)) ) 
 Here is how much of TeX's memory you used:
- 3080 strings out of 493633
- 42195 string characters out of 3143378
- 130932 words of memory out of 3000000
- 6215 multiletter control sequences out of 15000+200000
+ 3087 strings out of 493633
+ 42284 string characters out of 3143378
+ 131202 words of memory out of 3000000
+ 6216 multiletter control sequences out of 15000+200000
  13730 words of font info for 57 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  37i,12n,26p,700b,308s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2011/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2011/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2011/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2011/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2011/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2011/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmti12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmtt12.pfb>
-Output written on monografia.pdf (53 pages, 469685 bytes).
+</usr/local/texlive
+/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/
+2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/
+2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2
+011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/20
+11/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2011
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2011/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2011/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2011/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2011/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2011/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2011/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2011/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2011/texmf-dist/font
+s/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on monografia.pdf (54 pages, 470753 bytes).
 PDF statistics:
- 422 PDF objects out of 1000 (max. 8388607)
- 247 compressed objects within 3 object streams
+ 425 PDF objects out of 1000 (max. 8388607)
+ 249 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

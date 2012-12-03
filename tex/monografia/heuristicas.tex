@@ -34,7 +34,7 @@ branch-and-price}~\cite{vance97}.
 
 Antes de explicarmos em mais detalhes cada uma das heurísticas estudadas, vamos fazer uma pequena
 modificação no modelo (\ref{eq:sppv}). Observe que o mesmo não admite a existência de {\it
-deadheading}, \ie, tripulação viajando como passageiro. Em algumas situações isto pode implicar a
+dead\-heading}, \ie, tripulação viajando como passageiro. Em algumas situações isto pode implicar a
 inviabilidade do problema.
 
 A formulação que adotaremos a seguir modela o problema conhecido por {\it set cover}. Ele é bastante
@@ -345,7 +345,7 @@ caminho seja a soma do segundo parâmetro de todas as arestas que constituem o c
 primeiro parâmetro seja um recurso sendo consumido ao se utilizar a aresta. Gostaríamos de encontrar
 o caminho de custo mínimo entre os nós $s$ e $t$ que satisfaça a restrição de que o total de
 recursos utilizados no caminho seja menor ou igual a 4. O algoritmo procede com uma busca em 
-profundidade, efetuando um cheque de dominância entre os rótulos de cada nó atingido.
+largura, efetuando um cheque de dominância entre os rótulos de cada nó atingido.
 
 \begin{figure}[htbp]
 	\begin{center}
