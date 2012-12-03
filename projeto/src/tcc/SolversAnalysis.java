@@ -29,7 +29,7 @@ public class SolversAnalysis {
 		//sa.doLocalSearch();
 		//sa.doGeneticSolver();
 		//sa.doLocalSearchGeneticSolver();
-		//sa.doColumnGeneration();
+		sa.doColumnGeneration();
 	}
 	
 	public void doInitialSolution() {
