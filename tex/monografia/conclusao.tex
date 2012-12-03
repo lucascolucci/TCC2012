@@ -6,28 +6,28 @@ Com relação a análise preliminar apresentada na Seção~\ref{sec:preliminar},
 procedimento de geração de viagens leva a um número gigantesco de variáveis, mesmo para um pequeno
 número de pernas (Figura~\ref{fig:pairings}). Isso porque a natureza combinatória do problema leva o
 algoritmo de busca a explorar diversas possibilidades, principalmente em uma rede como a da ponte
-aérea, onde existem diversas possibilidades de conexão toda vez que se chega em uma das localidades.
-Além disso, essas possibilidades se multiplicam quando consideramos um maior número de jornadas
-permitidas (\verb|MAX_DUTIES|). Apesar disso, a geração de viagens ainda se fez em tempo aceitável,
-podendo ser aplicada para redes maiores (Figura~\ref{fig:generation}).
+aérea, onde existem diversas opções de conexão toda vez que se chega em uma das localidades. Além
+disso, essas possibilidades se multiplicam quando consideramos um maior número de jornadas
+permitidas (\verb|MAX_DUTIES|). Mesmo resultando em um grande número de viagens, sua geração foi
+realizada em tempo aceitável, podendo ser aplicada para redes maiores (Figura~\ref{fig:generation}).
 
 Entretanto, quando esse número enorme de variáveis é levado ao otimizador, o tempo de processamento
-se torna impraticável. Para se certificar disso, basta extrapolar as curvas obtidas nas
+torna-se impraticável. Para se certificar disso, basta extrapolar as curvas obtidas nas
 Figuras~\ref{fig:glpk} e~\ref{fig:cplex}. Uma tentativa de resolução de uma instância da ponte-aérea
-contendo 40 etapas, não pode ser resolvida mesmo após 12 horas de processamento. Ainda assim,
-ficamos surpresos com a capacidade do otimizador resolver instâncias com um número de variáveis da
-ordem de $10^6$ em tempo aceitável (resultados da Tabela~\ref{tab:resultados}).
+contendo 40 etapas, não pôde ser resolvida mesmo após 12 horas de processamento. Ainda assim,
+ficamos surpresos com a capacidade do otimizador em resolver instâncias com um número de variáveis
+da ordem de $10^6$ em tempo aceitável (resultados da Tabela~\ref{tab:resultados}).
 
 A análise preliminar então nos mostra que o método de ``gerar-e-otimizar'' não é adequado para
-resolver o problema de forma geral. Em particular, das milhares de variáveis geradas, apenas poucas
-delas são escolhidas para entrar na solução final, como se pode observar da
-Tabela~\ref{tab:resultados}. Isso indica que o procedimento de geração explícita de variáveis não é
-adequado, pois muitas delas não servem para nada. Um procedimento mais inteligente seria o de gerar
-apenas variáveis ``boas'', ou seja, com grande chance de aparecerem na solução final. O método de
-geração de colunas é o que desenvolve essa ideia.
+resolver o problema de forma geral. Em particular, dos milhares de variáveis geradas, poucas delas
+são escolhidas para entrar na solução final, como se pode observar da Tabela~\ref{tab:resultados}.
+Isso indica que o procedimento de geração explícita de variáveis não é adequado, pois muitas delas
+não servem para nada. Um procedimento mais inteligente seria o de gerar apenas variáveis ``boas'',
+ou seja, com grande chance de aparecerem na solução final. O método de geração de colunas é o que
+desenvolve essa ideia.
 
 Com relação aos resultados exatos obtidos utilizando o modelo {\it set cover} (\ref{eq:scpdv}), 
-observamos que como as colunas associadas às variáveis $y_i$ foram ajustadas com preços altos, e 
+observamos que, como as colunas associadas às variáveis $y_i$ foram ajustadas com preços altos e 
 como os problemas analisados eram viáveis do ponto de vista do {\it set partition}, o otimizador 
 encontrou as mesmas soluções que seriam obitidas sem a presença de {\it deadheading}. Assim, a 
 presença de {\it deadheading} na solução só existirá se for estritamente necessária para 
@@ -36,22 +36,22 @@ puderam ser resolvidos exatamente.
 
 Analisando a heurística da busca local, podemos tirar mais algumas conclusões com relação ao
 parâmetro $k$ de sua implementação. Em nossos testes, utilizamos três valores distintos para $k$ 
-e com base nos dados da Tabela~\ref{tab:comparacao} e gráficos da Figura~\ref{fig:ls_results} 
+e, com base nos dados da Tabela~\ref{tab:comparacao} e gráficos da Figura~\ref{fig:ls_results}, 
 podemos afirmar:
 
 \begin{itemize}
 \item $k = 2$: Pode ser visto facilmente nos gráficos que o algoritmo converge para mínimos locais
 rapidamente, apresentando ganhos pequenos por iteração. Além disso, muitas iterações não resultam em
 melhoria pois os subproblemas resultantes da escolha de duas viagens são normalmente inviáveis ou já
-são ótimas; 
+são ótimos; 
 \item $k = 3$: Mostrou-se o valor mais eficiente para k pois apresentou uma boa convergência e
 iterações mais rápidas do que $k = 4$. Para obter soluções tão boas quanto $k = 4$, torna-se
 necessário um número maior de iterações.
-\item $k = 4$: Converge em poucas iterações em direção ao ótimo mas cada iteração necessita de um
+\item $k = 4$: Converge em menos iterações em direção ao ótimo mas cada iteração necessita de um
 tempo maior de processamento.
 \end{itemize}
 
-O algoritmo genético híbrido proposto apresenta dependência sensível de desempenho com relação a
+O algoritmo genético híbrido proposto apresenta dependência sensível de desempenho em relação a
 seus parâmetros. Em particular, o número de vezes, $L$, que cada indivíduo da população inicial é
 iterado pelo método de busca local, foi variado em nossos testes. Para cada valor de $L$ utilizado,
 chegamos as seguintes conclusões:
@@ -61,33 +61,33 @@ chegamos as seguintes conclusões:
 convergência;
 \item $L = 5$: Tornou mais rápida a convergência, mostrando a utilização de busca local tem um
 impacto positivo nos resultados;
-\item $L = 10$: Para instâncias pequenas teve influência similar ao $L = 5$, no entanto para a
+\item $L = 10$: Para instâncias pequenas teve influência similar ao $L = 5$. No entanto, para a
 instância 73G\_340, seu desempenho foi muito superior. Isso indica que quanto maior o número de
 voos, maior é o valor de $L$ que maximiza os ganhos de performance.
 \end{itemize}
 
-O método de geração de coluna implementado se mostrou bastante eficiente para a resolução da
+O método de geração de colunas implementado mostrou-se bastante eficiente para a resolução da
 relaxação linear associada ao problema. Entretanto, para as instâncias grandes, os subconjuntos de
-viagens geradas não foram pequenos o suficiente para que pudéssemos resolver o problema linear
-inteiro com essas variáveis. Ou seja, não foi possível obter uma solução inteira utilizando as
-colunas geradas.
+viagens gerados não foram pequenos o suficiente para que pudéssemos resolver o problema linear
+inteiro a partir deles. Ou seja, não foi possível obter uma solução inteira, utilizando as colunas
+geradas, através dos otimizadores.
 
-Heurísticas ainda podem ser aplicadas no sentido de se diminuir o subconjunto de viagens geradas,
+Heurísticas podem ainda ser aplicadas no sentido de se diminuir o subconjunto de viagens geradas,
 possibilitando a resolução do problema inteiro. Por exemplo, podemos restringir o número máximo de
 caminhos encontrados até cada nó do grafo durante a resolução do {\it pricing problem}. Podemos
 ainda considerar no final apenas as colunas com custo reduzido abaixo de um valor limite ({\it
 cutoff}). Não fizemos a implementação dessas heurísticas nesse trabalho.
 
 Para resumir, listamos a seguir em forma de tópicos algumas conclusões gerais com relação ao
-problema estudado neste projeto:
+problema estudado:
 
 \begin{itemize}
-\item O problema de geração de viagens é muito mais complexo do que aparenta. 
+\item O PDV é muito mais complexo do que aparenta. 
 \item O problema realmente necessita de métodos aproximados devido à incapacidade dos métodos exatos
-em resolver instancias grandes.
-\item Uma solução otimizada realmente pode gerar uma grande economia à empresa aérea.
-\item Ainda há muito espaço para pesquisas nessa área. 
-\item O problema de otimização de viagens é apenas parte de um problema maior que seria o
+em resolver instâncias grandes.
+\item Uma solução otimizada pode gerar uma grande economia à companhia aérea.
+\item Ainda há muito espaço para pesquisas nesta área. 
+\item O problema de otimização de viagens é apenas parte de um problema maior, que seria o
 escalonamento dos tripulantes.
 \end{itemize}
 
@@ -96,7 +96,7 @@ escalonamento dos tripulantes.
 \section{Perspectivas Futuras}
 \label{sec:perspectivas}
 
-O desenvolvimento do projeto mostrou-se satisfatório. Entretanto sentimos que ainda há espaço para
+O desenvolvimento do projeto mostrou-se satisfatório. Entretanto, sentimos que há espaço para
 efetuarmos algumas melhorias e novas implementações. Por exemplo, não foi possível ainda obter uma
 solução inteira a partir do preocedimento de geração de colunas. A técnica utilizada para isso é
 conhecida por {\it branch-and-price}~\cite{vance97h} e consiste basicamente em aplicar o
@@ -107,14 +107,14 @@ implementar essa técnica.
 Outro ponto interessante do trabalho foi analisar os pontos fortes de cada heurística estudada. A
 partir desse conhecimento, acreditamos que seja possível combinar as três heurísticas em um novo
 algoritmo híbrido. A ideia inicial seria utilizar as colunas produzidas pelo método geração de
-colunas como entrada para o algoritmo genético híbrido a fim de se obter uma solução inteira
-aproximada. Essa, por sua vez, poderia ser refinada através do procedimento de busca local.
-Novamente, acreditamos que a implementação dessa nova heurística possa ser realizada de forma
-simples, dada a base desenvolvida durante esse trabalho.
+colunas como entrada para o algoritmo genético híbrido, a fim de se obter uma solução inteira. Essa,
+por sua vez, poderia ser refinada através do procedimento de busca local. Novamente, acreditamos que
+a implementação dessa nova heurística possa ser realizada de forma simples, dada a base desenvolvida
+durante esse trabalho.
 
 Uma outra possibilidade de exploração futura seria a paralelização de partes importantes do código,
 visando um melhor desempenho no contexto da computação paralela e distribuída. Por exemplo, o
-procedimento de geração de viagens pode ser facilmente paralelizavel.
+procedimento de geração de viagens pode ser facilmente paralelizado.
 
 Resumidamente, os pontos que podem ser explorados futuramente são listados abaixo:
 

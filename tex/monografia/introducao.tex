@@ -57,7 +57,7 @@ regras de trabalho impostas pela legislação, com custo mínimo, cobrindo todas
 exatamente uma vez. Obtida a solução das viagens, um segundo problema é resolvido, conhecido como
 \emph{problema da determinação de escalas} (PDE), cujo objetivo é construir as escalas dos
 tripulantes, distribuindo as viagens de tal forma que cada viagem seja atribuída exatamente uma vez
-para cada tripulante requerido. Na atribuição, visa-se minimizar os custos e garantir distribuição
+para cada tripulante necessário. Na atribuição, visa-se minimizar os custos e garantir distribuição
 uniforme de trabalho. A atribuição das viagens também está sujeita a uma série restrições
 reguladoras.
 
@@ -142,7 +142,7 @@ contratual considerada é CGH (São Paulo).
 
 No problema da determinação das viagens, tem-se como entrada o conjunto de voos a ser operado pela
 empresa, o conjunto de bases contratuais dos tripulantes, as regras de trabalho que ditam a
-construção de viagens legais e uma estrutura de custo (mais detalhes na 
+construção de viagens válidas e uma estrutura de custo (mais detalhes na
 Seção~\ref{sec:regras_e_custos}). A saída, então, deve ser um conjunto de viagens que cubra todos os
 voos operados exatamente e uma vez e que tenha o custo mínimo (veja Figura~\ref{fig:pdv}).
 
@@ -230,12 +230,12 @@ efetuar a viagem $j$ ($h_{kj} = 0$ se a viagem $j$ não pertencer à base $k$).
 
 O grande problema com a formulação (\ref{eq:sppv}) está no enorme número de variáveis geradas, mesmo
 nos casos das instâncias pequenas (poucas etapas diárias). A Tabela~\ref{tab:viagens} ilustra o
-número de viagens legais geradas, com duração máxima de 3 ou 4 dias, para diversas frotas de
+número de viagens válidas geradas, com duração máxima de 3 ou 4 dias, para diversas frotas de
 aeronaves. O número enorme de variáveis está associada com a natureza combinatória do problema. A
 maioria das empresas aéreas operam em aeroportos conhecidos como \emph{hubs}, onde um grande número
 de aeronaves chegam e partem em um mesmo intervalo de tempo, possibilitando que os passageiros
 efetuem suas conexões para uma variedade de destinos em pouco tempo. Esse tipo de estrutura em rede 
-leva à explosão no número de viagens legais que podem ser construídas~\cite{graves93}. Note na
+leva à explosão no número de viagens válidas que podem ser construídas~\cite{graves93}. Note na
 Tabela~\ref{tab:viagens} que, apesar do número de viagens ser gigantesco, o número de 
 jornadas tem um valor mais gerenciável.
 
@@ -259,8 +259,8 @@ jornadas tem um valor mais gerenciável.
 			USDC9 & 4 & 478 & 4 & 562.000 & 105.000.000 \\
 			\hline
 		\end{tabular}
-		\caption{Jornadas e viagens legais geradas para um conjunto de frotas de aeronaves de companhias
-		norte-americanas (fonte:~\cite{anbil98}).}
+		\caption{Jornadas e viagens válidas geradas para um conjunto de frotas de aeronaves
+		de companhias norte-americanas (fonte:~\cite{anbil98}).}
 		\label{tab:viagens}
 	\end{center}
 \end{table}

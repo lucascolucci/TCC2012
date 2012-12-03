@@ -12,29 +12,33 @@ o que gera uma solução ótima fracionária $x^\ast$. A partir de $x^\ast$, emp
 que tais procedimentos de enumeração implícita consomem tempo e memória exponencial no número de
 variáveis. Assim, a aplicação de tais métodos limita-se a instâncias pequenas.
 
-Devido à dificuldade dos otimizadores em lidar com a imensa quantidade de variáveis produzidas em
-problemas reais, diversos métodos heurísticos foram desenvolvidos ao longo dos anos. Uma listagem
-descritiva das principais heurísticas pode ser encontrada em~\cite{gopalakrishnan05}.
+Devido à incapacidade dos otimizadores em lidar com a imensa quantidade de variáveis produzidas em
+alguns problemas reais, diversos métodos heurísticos foram desenvolvidos ao longo dos anos. Uma
+listagem descritiva das principais heurísticas pode ser encontrado em~\cite{gopalakrishnan05}.
+
+Diversos métodos heurísticos foram desenvolvidos ao longo dos anos para lidar com o número
+gigantesco de variáveis do problema e a incapacidade dos otimizadores lidarem com elas. Uma
+listagem descritiva das principais heurísticas pode ser encontrado em~\cite{gopalakrishnan05}.
 
 Após análise da literatura, resolvemos estudar mais a fundo e implementar três alternativas: um
 método de busca local, um algoritmo genético híbrido e um procedimento de geração de colunas. 
 
 Busca local foi a primeira heurística historicamente adotada pelas empresas para resolver seus
-grandes problemas de escalonamento, levando a resultados satisfatórios~\cite{gershkoff89} na década
-de 80. Dentre as meta-heurísticas, algoritmos genéticos vêm sendo mais recentemente aplicados como
+grandes problemas de escalonamento, levando a resultados satisfatórias~\cite{gershkoff89} na década
+de 80. Dentre as meta-heurísticas, algoritmos genéticos vem sendo mais recentemente aplicados como
 forma de se obter uma solução aproximada~\cite{kornilakis02}. Os resultados para problemas grandes,
 entretanto, ainda não são satisfatórios. Finalmente, procedimentos de geração de colunas representam
-o estado-da-arte dos métodos de solução e constituem a base dos poderosos métodos do tipo {\it
+o estado-da-arte dos métodos de solução, e constituem a base dos poderosos métodos do tipo {\it
 branch-and-price}~\cite{vance97}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Refatorando o Modelo}
+\section{Refatornado o Modelo}
 \label{sec:refatorando}
 
 Antes de explicarmos em mais detalhes cada uma das heurísticas estudadas, vamos fazer uma pequena
-modificação no modelo (\ref{eq:sppv}). Observe que o mesmo não admite a existência de {\it
-deadheading}, \ie, tripulação viajando como passageiro. Em algumas situações isto pode implicar a
+modificação ao modelo (\ref{eq:sppv}). Observe que o mesmo não admite a existência de {\it
+deadheading}, \ie, tripulação viajando como passageiro. Em algumas situações isso pode implicar na
 inviabilidade do problema.
 
 A formulação que adotaremos a seguir modela o problema conhecido por {\it set cover}. Ele é bastante
@@ -56,8 +60,8 @@ que a etapa $i$ é utilizada como {\it deadhead}, o problema de programação li
 
 A adoção de custos altos associados às varáveis $y_i$ faz com que elas sejam naturalmente expulsas 
 da base no final, levando a uma solução livre de {\it deadheading}, se alguma existir. Isso funciona
-mais ou menos como o método-$M$, na primeira fase do algoritmo Simplex, para obtenção de uma
-solução viável básica.
+mais ou menos como o método-$M$ na primeira fase do algoritmo Simplex para obtenção de uma solução 
+viável básica.
 
 A vantagem do modelo (\ref{eq:scpdv}) é que com ele fica mais fácil encontrar uma solução viável
 inicial para o problema. Como é permitido a sobreposição de etapas, podemos ir percorrendo a rede
@@ -69,21 +73,21 @@ armazenamos essa viagem na solução. Paramos quando todas as pernas tiverem sid
 \section{Busca Local}
 \label{sec:metodos_busca}
 
-Busca local é uma abordagem utilizada para encontrar soluções de boa qualidade para problemas de
-otimização combinatória difíceis, em tempo aceitável. O método é baseado na exploração iterativa de
-vizinhos da solução, com o objetivo de melhorar a solução atual através de alterações locais.
+Busca local é uma abordagem geral utilizada para encontrar soluções de boa qualidade para problemas
+de otimização combinatória difíceis, em tempo aceitável. O método é baseado em uma exploração 
+iterativa de vizinhos da solução tentando melhorar a solução atual através de alterações locais.
 
 A solução encontrada por um algoritmo de busca local tem a garantia apenas de ser ótima com relação
 a alterações locais e, em geral, não será a solução ótima global.
 
-O método de busca local no contexto do PDV é bastante simples e foi um dos primeiros a serem
-utilizados na tentativa de melhorar uma solução viável do problema (\ref{eq:scpdv}). Basicamente, o
-método consiste em escolher aleatoriamente um número pequeno, $k$, de viagens da solução viável
-inicial (subproblema) e, a partir da lista de etapas cobertas e tripuladas por essas viagens, gerar
-explicitamente todas as possíveis viagens válidas usando o gerador. Como o número de etapas não é
+O método de busca local no contexto do PDV é bastante simples e foi um dos primeiros a ser utilizado
+na tentativa de melhorar uma solução viável do problema (\ref{eq:scpdv}). Basicamente o método
+consiste em escolher aleatoriamente um número pequeno, $k$, de viagens da solução viável inicial
+(subproblema) e, a partir da lista de etapas cobertas e tripuladas por essas viagens, gerar
+explicitamente todas as possíveis viagens legais usando o gerador. Como o número de etapas não é
 muito grande, o número de variáveis geradas é gerenciável. O modelo (\ref{eq:scpdv}) é então
 resolvido pelo otimizador para todas essas variáveis, obtendo-se um novo conjunto de viagens que
-cobre a lista inicial de etapas. Se o custo desse novo conjunto de viagens for menor do que o
+cobre o lista inicial de etapas. Se o custo desse novo conjunto de viagens for menor do que o
 original, então as viagens originais serão substituídas na solução inicial. O processo é iterado um
 número máximo de vezes (ou um tempo máximo de execução), ou até que não haja variação significativa
 do custo (mínimo local), de tal forma que o custo sempre seja reduzido a cada passo.
@@ -105,8 +109,8 @@ resolver eficientemente o PLI (\ref{eq:scpdv}) para um número pequeno de variá
 
 A escolha do subproblema de forma aleatória é uma das mais simples possíveis. Algumas outras 
 propostas foram consideradas~\cite{anbil91a,arabeyre69}. Entretanto, a escolha aleatória ainda
-parece ser a que apresenta melhor custo-benefíficio. Assim, adotamos a estratégia aleatória em
-nossa implementação.
+parece ser a que apresenta melhor custo-benefíficio. Assim, adotamos a estratégia aletória em nossa 
+implementação.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -114,18 +118,18 @@ nossa implementação.
 \label{sec:metodos_genetico}
 
 Computação evolucionária tem se tornado um termo padrão para indicar técnicas de resolução de 
-problemas que usam princípios de {\it design} inspirados em modelos da evolução natural das
+problemas que usam princípios de {\it design} inspirados a partir de modelos da evolução natural das
 espécies.
 
 Algoritmos genéticos~\cite{holland75, goldberg89} representam um tipo de estratégia desenvolvida
 dentro da área de computação evolucionária. A abordagem comum dos algoritmos é baseada no uso de uma
-população e de operadores, inspirados na genética de seres vivos, para explorar o espaço de busca
+população e de operadores inspiradas pela genética de seres vivos para explorar o espaço de busca
 (os operadores mais típicos são {\it reprodução}, {\it mutação} e {\it recombinação}). Cada
 indivíduo no algoritmo representa direta ou indiretamente (através de um esquema de decodificação)
 uma solução para o problema em consideração. O operador de reprodução refere-se ao processo de
 seleção de indivíduos que irão sobreviver e se tornar parte da próxima geração. Esse operador
 normalmente utiliza um viés em direção a indivíduos de boa qualidade: quanto melhor a função
-objetivo de um indivíduo, maior será a probabilidade do indivíduo ser selecionado e tornar-se membro
+objetivo de um indivíduo, maior será a probabilidade do indivíduo ser selecionado e se tornar membro
 da próxima geração. O operador de recombinação (também chamado de {\it crossover}) combina partes de
 dois ou mais indivíduos para gerar novos indivíduos, também chamados de {\it offspring}. O operador
 de mutação é um operador unitário que introduz modificações aleatórias em um indivíduo. Algoritmos
@@ -142,8 +146,8 @@ trabalhos em detalhes. Vamos apresentar abaixo uma síntese de seus métodos e d
 implementação.
 
 Inicialmente um determinado conjunto de viagens é gerado. O processo de otimização do algoritmo
-genético refere-se a esse conjunto de viagens. Indivíduos são representados por cromossomos. Uma
-codificação binária é utilizada para cada cromossomo. Cada gene corresponde a uma viagem e, quando 
+genético se refere a esse conjunto de viagens. Indivíduos são representados por cromossomos. Uma
+codificação binária é utilizada para cada cromossomo. Cada gene corresponde a uma viagem e quando 
 seu valor é 0, significa que aquela viagem não faz parte da solução. Se o valor for 1, então a 
 viagem correspondente é incluída na solução.
 
@@ -171,7 +175,7 @@ forem diferentes, o gene correspondente no {\it offspring} pode ser 0 ou 1, com 
 Isso define um operador de {\it crossover} uniforme.
 
 A operação de mutação é aplicada ao indivíduo filho gerado. O objetivo da mutação é prevenir que a
-busca fique presa em um mínimo local. Isso é feito alterando aleatoriamente alguns dos genes do
+busca fique presa em um mínimo local. Isso é feito alterando aleatóriamente alguns dos genes do
 cromossomo gerado, de forma direcionar a busca em direção a novas áreas no espaço de busca. O número
 de genes $\mu$ a serem mutados é dado pela fórmula~\cite{beasley96} ({\it steady-state replacement
 model})
@@ -181,30 +185,30 @@ model})
 \end{equation*}
 %
 onde $k$ é o número da geração, $m_f$ especifica a taxa de mutação estável final, $m_c$ representa o
-número de gerações no qual a taxa $m_f/2$ é atingida e $m_g$ especifica o gradiente em $k = m_c$. Os
+número de gerações no qual a taxa $m_f/2$ é atingida e $m_g$ específica o gradiente em $k = m_c$. Os
 parâmetros acima podem ser livremente escolhidos de modo a produzir os melhores resultados. Assim,
-escolhendo-se $\mu$ genes do cromossomo aleatoriamente, cada um será mutado para 0, com
-probabilidade igual à proporção de zeros no cromossomo mais apto da população, ou para 1.
+escolhendo $\mu$ genes do cromossomo aleatoriamente, cada um será mutado para 0 com probabilidade
+igual ao número de zeros do cromossomo mais apto da população, de outra forma será mutado para 1.
 
-Pode acontecer que, depois das operações de {\it crossover} e mutação, o cromossomo gerado não mais
-represente uma solução viável, \ie, nem todas as etapas estarão presentes em pelo menos uma das
-viagens do cromossomo. Deve-se então aplicar um algoritmo corretivo no novo indivíduo. Esse
+Pode acontecer que depois das operações de {\it crossover} e mutação o cromossomo gerado não mais
+represente uma solução viável, \ie, nem todas as etapas estão presentes em pelo menos uma das
+viagens do cromossomo. Deve-se então aplicar um algoritmo correctivo no novo indivíduo. Esse
 algoritmo funciona de forma heurística alterando o valor de alguns genes para 1, até que todos os
 voos sejam cobertos, tornando a solução viável: para cada perna descoberta da solução, adicionamos
-uma viagem que cobre aquela perna. Para isso, escolhemos uma viagem de baixo custo que, quando
-selecionada, cubra o máximo de pernas descobertas possível e o mínimo de pernas já cobertas. Para
-mais detalhes e uma descrição formal do método corretivo, consulte~\cite{beasley96}.
+uma viagem que cobre aquela perna. Para isso, escolhemos uma viagem de baixo custo que quando
+selecionada cubra o máximo de pernas descobertas possível e o mínimo de pernas já cobertas. Para
+mais detalhes e uma descrição forma do método corretivo, consulte~\cite{beasley96}.
 
 A população inicial criada pelo algoritmo deve ter a maior diversidade de indivíduos possível para
-que uma boa parte do espaço de busca seja explorada no início. Para tanto, geramos os indivíduos
+que uma boa parte do espaço de busca seja explorado no início. Para tanto, geramos os indivíduos
 iniciais escolhendo viagens aleatoriamente, que não tenham pernas comuns com as outras viagens já
 selecionadas. Quando atingirmos um ponto em que não é mais possível escolher tais viagens, rodamos o
-algoritmo corretivo para tornar o cromossomo viável. Assim, conseguimos obter a diversidade
-desejada na geração da população.
+algoritmo corretivo para tornar o cromossomo viável. Assim, bastante aleatoriedade estará presente
+na geração dos indivíduos, de forma que a população criada apresentará a diversidade desejada.
 
 A implementação do algoritmo genético descrito acima não se mostrou satisfatória. O problema está no
 fato de precisarmos inicialmente gerar um conjunto com um grande número de viagens para serem
-otimizadas, no primeiro passo do algoritmo. Para instâncias maiores, esse número é muito grande,
+otimizadas, no primeiro passo do algoritmo. Para instâncias grandes esse número é muito grande,
 tornando inclusive seu armazenamento em memória complicado. Mesmo utilizando estruturas de dados
 mais inteligentes para armazenar informações como {\it hashes} e {\it lists}, o algoritmo torna-se
 demasiadamente lento.
@@ -224,9 +228,9 @@ adaptive search procedures})~\cite{feo89, feo95}.
 Na Figura~\ref{fig:genetico} apresentamos uma descrição esquemática do algoritmo genético híbrido
 implementado. O algoritmo é híbrido por que envolve alguns passos de otimização usando o 
 procedimento de busca local para melhorar a qualidade e a diversidade da população inicial. Mais
-especificamente, introduzimos um parâmetro $L$ que representa o número de iterações do tipo
-apresentado na Figura~\ref{fig:busca_local} que um indivíduo deve submeter-se antes de entrar na
-população inicial.
+epecificamnte, intrduzimos um parámetro $L$ que representa o número de iterações do tipo apresentado
+na Figura~\ref{fig:busca_local} que um indivíduo deve se submeter antes de entrar na população 
+inicial.
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -255,7 +259,7 @@ de subproblemas lineares menores. Métodos de geração de colunas, baseados no 
 decomposição de Dantzig e Wolfe, aproveitam-se do fato de que não é necessário ter disponível toda a
 matriz de restrições durante o processamento. As colunas devem ser geradas apenas quando necessário.
 
-Considere o seguinte programa linear, denotado por Problema Mestre (PM), onde o número de variáveis,
+Considere o seguinte programa linear, denotado por Problme Mestre (PM), onde o número de variáveis,
 ou colunas, $n$, é muito grande:
 %
 \begin{eqnarray*} 
@@ -291,9 +295,9 @@ o seguinte Subproblema (denotado por SP) deve ser resolvido:
 	w^\ast = \min_{j = 1, \ldots, n} \left[ c_j - \sum_{i=1}^m \pi_i a_{ij} \right] \ev
 \end{equation}
 %
-Se $w^\ast \geq 0$, a solução do PRM é ótima para o PM. Caso contrário, se $w^\ast < 0$, a coluna 
+Se $w^\ast \geq 0$ a solução do PRM é ótima para o PM. Caso contrário, se $w^\ast < 0$, a coluna 
 $k$, tal que $\bar{c}_k < 0$ é identificada e adicionada ao PRM. O PRM é resolvido novamente com 
-essa nova coluna, e todo o processo é repetido até que nenhuma variável com custo reduzido negativo
+essa nova coluna, e todo o processo é repetido até que nenhum variável com custo reduzido negativo
 seja encontrada. O problema (\ref{eq:pricing}) é conhecido como {\it pricing problem}.
 
 Especializando o procedimento de geração de colunas para o PDV, observamos que o SP
@@ -325,7 +329,7 @@ Problemas simples (ou sem restrições) de caminho mais curto envolvem apenas a 
 caminho de menor custo sem considerações adicionais e podem ser resolvidos em tempo polinomial. 
 Problemas de caminho mais curto com restrições podem levar tempo exponencial.
 
-Para ilustração, considere o problema comum de caminho mais curto, onde um rótulo em cada nó dá o 
+Para ilustração, consire o problema comum de caminho mais curto, onde um rótulo em cada nó dá o 
 comprimento do caminho mais curto atual a partir da fonte até o dado nó. Como cada rótulo contém
 apenas um custo, ele pode, sem ambiguidade, dominar ou ser dominado por outro rótulo: um rótulo mais
 barato domina um rótulo mais caro.
@@ -334,14 +338,14 @@ No caso de problemas de caminho mais curto com restrições, em cada nó pode ha
 rótulos, cada qual correspondendo a um caminho e nenhum deles sendo dominante. Tal conjunto de 
 rótulos é dito {\it eficiente}. Um rótulo pode dominar outro rótulo apenas se ele tiver custo
 menor e for menos restrito com relação a todos os parâmetros que governam a viabilidade dos 
-caminhos. Se, em determinado nó, nenhum dos rótulos pode dominar os demais, então todos eles
-devem ser armazenados. Como teoricamente pode haver um número exponencial de caminhos no grafo, um
-número exponencial de rótulos também pode existir, fazendo, portanto, com que o algoritmo leve um
-tempo exponencial para ser executado.
+caminhos. Suponha em um nó que nenhum dos rótulos possa dominar os outros, então todos eles devem 
+ser armazenados. Como teoricamente pode haver um número exponencial de caminhos no grafo, um número
+exponencial de rótulos também pode existir, fazendo, portanto, com que o algoritmo leve um tempo
+exponencial para ser executado.
 
 A Figura~\ref{fig:shortest_path} pode ser utilizada para demonstrar o procedimento de solução
 adotado para resolver o problema de caminho mais curto com restrições. Suponha que o custo de um
-caminho seja a soma do segundo parâmetro de todas as arestas que constituem o caminho e que o
+caminho seja a soma do segundo parâmetro de todas as arestas que constituem o caminho, e que o
 primeiro parâmetro seja um recurso sendo consumido ao se utilizar a aresta. Gostaríamos de encontrar
 o caminho de custo mínimo entre os nós $s$ e $t$ que satisfaça a restrição de que o total de
 recursos utilizados no caminho seja menor ou igual a 4. O algoritmo procede com uma busca em 

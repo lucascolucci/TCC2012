@@ -8,15 +8,12 @@ A level-1 auxiliary file: geracao.aux
 A level-1 auxiliary file: heuristicas.aux
 A level-1 auxiliary file: resultados.aux
 A level-1 auxiliary file: conclusao.aux
-A level-1 auxiliary file: subjetivo_daniel.aux
-A level-1 auxiliary file: subjetivo_lucas.aux
-A level-1 auxiliary file: subjetivo_renato.aux
 A level-1 auxiliary file: bibliografia.aux
 The style file: plain.bst
 Database file #1: ../bib/crew_scheduling.bib
 You've used 20 entries,
             2118 wiz_defined-function locations,
-            625 strings with 6875 characters,
+            622 strings with 6816 characters,
 and the built_in function-call counts, 6600 in all, are:
 = -- 620
 > -- 347

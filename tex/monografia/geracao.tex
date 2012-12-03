@@ -3,7 +3,7 @@
 \label{cap:geracao}
 
 Todos os métodos de solução do PDV (exatos ou heurísticos) exigem um mecanismo de geração 
-explícita de viagens legais, as quais representam as variáveis que desejamos otimizar. 
+explícita de viagens válidas, as quais representam as variáveis que desejamos otimizar. 
 
 A geração pode ser eficientemente implementada através de uma busca em uma rede de voos. 
 O resultado da busca depende explicitamente das regras de trabalho impostas pelo contexto do
@@ -24,9 +24,9 @@ norte-americano e europeu, normalmente analisados na literatura.
 
 No caso do PDV, a geração de uma viagem é regida por uma série de regras impostas pela Agência
 Nacional de Aviação Civil (ANAC), além de restrições impostas por leis trabalhistas e acordos
-contratuais. Uma viagem é dita legal se ela obedecer todas as regras impostas pela legislação em
-questão. Abaixo, apresentamos os valores típicos das regras que regem a construção de uma viagem
-em uma empresa de aviação regular do Brasil, com voos de curto e médio alcance (veja a
+contratuais. Uma viagem é dita válida (ou legal) se ela obedecer todas as regras impostas pela
+legislação em questão. Abaixo, apresentamos os valores típicos das regras que regem a construção de
+uma viagem em uma empresa de aviação ergular do Brasil, com voos de curto e médio alcance (veja a
 Seção~\ref{sec:definicoes} para as defininições):
 
 \begin{itemize}
@@ -82,7 +82,7 @@ onde $MIN\_GRT_d$ é o mínimo de garantia oferecido ao tripulante ao voar a jor
 $FLY\_TIME_d$ é o tempo de voo da jornada $d$ (pode ser multiplicado por algum fator) e
 $TIME\_AWAY_p$ é o tempo total que o tripulante passa fora de sua base na viagem $p$ (também pode
 ser multiplicado por algum fator). Observe assim que, nesse modelo, o custo de cada etapa depende da
-viagem em ela está incluída.
+viagem em que ela está incluída.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -90,7 +90,7 @@ viagem em ela está incluída.
 \label{sec:gerador_viagens}
 
 O primeiro passo em direção à solução do PDV consiste na implementação de um gerador de viagens 
-eficiente que seja capaz de produzir um grande número de viagens legais em pouco tempo. Como já
+eficiente que seja capaz de produzir um grande número de viagens válidas em pouco tempo. Como já
 mencionamos, os métodos de resolução de (\ref{eq:sppv}) baseiam-se no conceito de 
 ``gerar-e-otimizar'', e já que as rotinas de otimização estão normalmente prontas em pacotes 
 fechados, a parte de geração é de grande importância.
@@ -106,14 +106,14 @@ conjunto de arcos será denotado por $\calA$.
 
 O nó fonte é ligado ao nó de saída de cada etapa que origina-se em uma base específica. O nó de
 chegada de cada etapa que termina nessa base é ligado ao sorvedouro. Existem ainda arcos
-representando conexões legais entre etapas. Um par de etapas terá um arco de conexão entre elas se
+representando conexões válidas entre etapas. Um par de etapas terá um arco de conexão entre elas se
 o aeroporto de chegada do primeiro corresponder ao aeroporto de saída do segundo e se o intervalo de
 tempo entre a chegada e a saída estiver dentro dos limites necessários para se estabelecer uma
-conexão legal em uma jornada ou descanso regular entre jornadas. 
+conexão válida em uma jornada ou descanso regular entre jornadas. 
 
-É fácil notar que toda viagem legal é representada por um caminho $s-t$ na rede de voos. Porém,
-existem caminhos $s-t$ que não representam viagens legais pois podem desrespeitar alguma regra de
-trabalho, embora as conexões possíveis sejam legais. A estrutura da rede garante que não seja feita
+É fácil notar que toda viagem válida é representada por um caminho $s-t$ na rede de voos. Porém,
+existem caminhos $s-t$ que não representam viagens válidas pois podem desrespeitar alguma regra de
+trabalho, embora as conexões possíveis sejam válidas. A estrutura da rede garante que não seja feita
 nenhuma conexão entre duas etapas que não tenham seus respectivos destino e origem coincidentes no
 espaço e no tempo. Entretanto, não garante, por exemplo, que o número máximo de horas de voo
 permitido em uma jornada seja excedido. 
@@ -148,8 +148,8 @@ diariamente entre as localidades A, B, C e D. O exemplo é adaptado de~\cite{bar
 \end{table}
 
 A rede de voos (parcial) para uma base contratual A é ilustrada na Figura~\ref{fig:rede}, onde são
-apresentadas algumas das conexões legais possíveis para clareza do desenho. O caminho vermelho
-na figura representa uma viagem legal com dois dias de duração. 
+apresentadas algumas das conexões válidas possíveis para clareza do desenho. O caminho vermelho
+na figura representa uma viagem válida com dois dias de duração. 
 
 A partir da rede apresentada, montamos as seguintes jornadas válidas (os números representam os
 números das etapas)
@@ -209,8 +209,8 @@ resolução do mesmo pode ser obtida por qualquer pacote de otimização linear.
 		viagens de no máximo 3 dias, por isso os nós são replicados três vezes para o
 		problema diário. A base dos tripulantes considerada foi a localidade A, dando origem
 		às ligações da fonte e do sorvedouro.
-		Arcos tracejados representam conexões legais entre localidades. O caminho em vermelho representa
-		uma das viagens possíveis.}
+		Arcos tracejados representam conexões válidas entre localidades. O caminho em
+		vermelho representa uma das viagens possíveis.}
 		\label{fig:rede}
 	\end{center}
 \end{figure}

@@ -11,7 +11,7 @@ modelo em arquivo (formato mps) e posterior execução do otimizador em um proce
 necessário realizar um {\it parsing} no arquivo de saída gerado para obtenção dos resultados.
 
 Implementamos os métodos de solução do PDV descritos no Capítulo~\ref{cap:heuristicas}. Os 
-parâmetros utilizados, que garantem a validade das viagens geradas, são apresentados na
+parâmetros utilizados, que garantem a legalidade das viagens geradas, são apresentados na
 Tabela~\ref{tab:parametros} e baseiam-se na legislação brasileira para aviação comercial regular.
 
 Todos os testes foram realizados em um computador utilizando um processador Intel Core~i3 64~bits, 
@@ -58,7 +58,7 @@ trechos diários oferecidos na ponte-aérea pela companhia aérea Gol. Um total 
 
 Vale observar que o caso da ponte-aérea é um pouco atípico no sentido de que representa um malha 
 muito densa de voos: muitas etapas são oferecidas de ida e volta num curto intervalo de tempo, 
-criando muitas conexões válidas (arcos) entre os nós da rede de voos gerada. Com isso, o número
+criando muitas conexões legais (arcos) entre os nós da rede de voos gerada. Com isso, o número
 de viagens dado pela procedimento de busca no grafo explode rapidamente.
 
 O gráfico da Figura~\ref{fig:pairings} mostra o número de viagens geradas em função do número de
@@ -341,8 +341,8 @@ apresentaram soluções aceitáveis, em alguns casos ótimas, em tempos de execu
 apresentaremos os resultados específicos de cada método implementado.
 
 Todos os testes foram realizados com as instâncias da Tabela~\ref{tab:instancias}, considerando
-apenas a base GRU para geração de viagens. O número máximo de jornadas escolhido foi 4, menos
-no caso da ponte-aérea (PA\_62), onde consideramos o valor 2 (no máximo um pernoite).
+apenas a base GRU para geração de viagens. O número máximo de jornadas foi escolhido 4, menos no
+caso da ponte-aérea (PA\_62), onde consideramos o valor 2 (no máximo um pernoite).
 
 A função de custo utilizada para cada viagem foi uma que buscava maximizar a relação de horas de voo
 por horas de jornada. Buscamos com isso viagens com jornadas produtivas para os tripulantes. Mais
@@ -439,8 +439,8 @@ BL = busca local e AG = algoritmo genético.}
 \end{center}
 \end{table}
 
-A partir dos dados da Tabela~\ref{tab:comparacao}, faremos uma análise dos resultados, para cada
-uma das heurísticas estudadas, nas seções seguintes.
+A partir dos dados da Tabela~\ref{tab:comparacao}, faremos uma análise dos resultados para cada uma 
+das heurísticas estudadas nas seções seguintes.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -469,14 +469,14 @@ considerados e cada valor de $k$ escolhido.
 \label{sec:resultados_genetico}
 
 O algoritmo genético tradicional provou-se inviável para instâncias com muitos voos pois necessita
-a geração de todas as viagens para gerar sua população e realizar mutações. Além disso, as soluções
-para problemas pequenos mostraram-se muito ruins, convergindo rapidamente para mínimos locais, longe
+da geração de todos as viagens para gerar sua população e realizar mutações. Além disso as soluções
+para problemas pequenos mostraram-se muito ruins, convergindo rapidamente para mínimos locais longe
 do ótimo. Através da utilização de busca local para gerar indivíduos melhores, obtivemos sensíveis
-ganhos em relação ao método original. Apesar disso, as características apresentadas pelo método
+ganhos em relação ao método original. Apesar disso as características apresentadas pelo método
 híbrido não se modificaram. 
 
 A Figura~\ref{fig:ga_results} mostra a evolução do processo de otimização para cada um dos problemas
-considerados e cada valor de $L$ escolhido. Como pode ser visto no gráfico, algumas das soluções
+considerados e cada valore de $L$ escolhido. Como pode ser visto no gráfico, algumas das soluções
 obtidas não foram boas devido à dificuldade do método em remover {\it deadheads}. Lembramos que o
 custo dos {\it deadheads} são altos, o que explica soluções ruins como em 737\_92 e 73G\_340.
 
@@ -492,7 +492,7 @@ custo dos {\it deadheads} são altos, o que explica soluções ruins como em 737
 Assim como o algoritmo de busca local, as iterações são muito rápidas, mas é necessário um grande
 número de iterações na busca por soluções aceitáveis. O algoritmo genético híbrido é um método que
 converge rapidamente para um mínimo local e depende de um grande número de parâmetros. Uma sintonia
-fina é necessária no ajuste dos parâmetros, porém sua realização é demasiadamente difícil devido à
+fina é necessária no ajuste dos parâmetros porém sua realização é demasiadamente difícil devido à
 natureza aleatória do algoritmo.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -501,10 +501,10 @@ natureza aleatória do algoritmo.
 \label{sec:resultados_cg}
 
 O método de geração de colunas conseguiu obter soluções ótimas fracionárias para todas as instâncias
-disponíveis, produzindo um conjunto reduzido de viagens que contém tais soluções, em tempos muito
+disponíveis, produzindo um conjunto reduzido de viagens, que contém tais soluções, em tempos muito
 reduzidos. 
 
-Estas soluções fornecem um limitante inferior para o problema inteiro. O algoritmo
+Estas soluções indicam um limitante inferior para o problema inteiro. O algoritmo
 caracteriza-se por uma pequena quantidade de iterações, porém cada iteração é mais demorada do que
 os métodos anteriores.
 
@@ -532,37 +532,36 @@ O trabalho foi desenvolvido em Java pois é a linguagem orientada a objetos com 
 experiência. A existência de uma API do Cplex para Java também foi importante para a nossa escolha.
 Procuramos programar sempre em trio para que todos os integrantes do grupo tivessem conhecimento
 total sobre o código e, quando isso não era possível, realizávamos programação pareada. Utilizamos
-um repositório Git para o controle de versões. A seguir descrevemos as etapas percorridas durante a
-elaboração do código.
+um repositório Git para termos controle de versões. A seguir descrevemos as etapas percorridas 
+durante a elaboração do código.
 
 \begin{enumerate}
 \item {\bf Modelagem de Dados:}
 Iniciamos o trabalho com a modelagem das entidades necessárias para representar os diversos
 elementos do problema de geração de viagens. Implementamos uma rede de voos através de um grafo em
-que nós representam voos e arestas suas conexões. Realizamos testes de unidade (JUnit) para
-garantir
+que nós representam voos e arestas suas conexões. Realizamos testes de unidade (JUnit) para garantir
 a robustez da base do projeto.
 \item {\bf Geração de Pairings:}
 O primeiro passo foi gerar a rede de voos através da leitura de um arquivo texto contendo
 informações sobre os voos. A seguir, implementamos as regras utilizadas pelas companhias aéreas do
-Brasil para a geração de viagens válidas. As viagens foram então geradas percorrendo-se a rede de
-voos, buscando caminhos válidos entre a fonte e o sorvedouro. Assim como na etapa anterior, diversos
+Brasil para a geração de viagens legais. As viagens foram então geradas percorrendo-se a rede de
+voos, buscando caminhos legais entre a fonte e o sorvedouro. Assim como na etapa anterior, diversos
 testes de unidade foram implementados.
 \item {\bf Modelagem do Problema:}
 Nessa etapa foi necessário transformar as informações sobre voos e viagens em entradas para os
 otimizadores Cplex e GLPK. Definimos a função objetivo que determina o custo de uma solução e o
-modelo (\ref{eq:scpdv}) utilizando a API do Cplex. Para o cálculo do custo de uma viagem, definimos 
+modelo (\ref{eq:scpdv}) utilizando a API do Cplex. Para o cálculo do custo de uma viagem definimos 
 uma interface que pode ser implementada por classes concretas para representar o custo desejado 
 pelo cliente (veja Figura~\ref{fig:cost_interface}).
 \item {\bf Análise Preliminar:}
 Com todos os elementos necessários para gerar viagens e resolver problemas de forma exata,
 realizamos testes para analisar as limitações computacionais do PDV. Os objetivos eram verificar a
 quantidade total de viagens geradas e o tempo consumido tanto para gerar as viagens quanto para
-resolver os problemas.
+resolver o problema.
 \item {\bf Heurísticas:}
 Após comprovar a ineficiência dos métodos exatos, iniciamos a implementação de meta-heurísticas.
 \item {\bf Busca Local:}
-Iniciamos essa fase implementando o algoritmo de busca local, pois é amplamente utilizado em
+Iniciamos essa fase implementando o algoritmo de busca local pois é amplamente utilizado em
 problemas de otimização e faz uso do {\it set cover}, que foi desenvolvido na etapa anterior.
 \item {\bf Algoritmo Genético Híbrido:}
 O algoritmo genético tradicional implementado em um primeiro momento mostrou-se muito deficiente
@@ -573,7 +572,7 @@ mudanças de comportamento do método.
 \item {\bf Geração de Colunas:}
 Com a obtenção dos duais através da API do Cplex, a geração de colunas foi implementada através de
 uma busca no grafo de voos utilizando os custos reduzidos. Como o método proporciona um limitante
-inferior para o problema inteiro, obtivemos informações importantes para uma melhor análise dos
+inferior para o problema inteiro, adquiri-se informações importantes para uma melhor análise dos
 resultados.
 \end{enumerate}
 
